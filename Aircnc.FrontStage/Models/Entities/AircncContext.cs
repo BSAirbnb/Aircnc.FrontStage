@@ -465,6 +465,16 @@ namespace Aircnc.FrontStage.Models.Entities
                 new Admin { AdminId = 2, AccountName = "SubAdmin01", Password = "1234", Permission = PermissionEnum.Sub  },
                 new Admin { AdminId = 3, AccountName = "SubAdmin02", Password = "1234", Permission = PermissionEnum.Sub}
            );
+            modelBuilder.Entity<UserVerification>().HasData(
+                new UserVerification { UserVerificationId = 1,DocumentType =1 ,Status =1,ApplyTime = DateTime.Now, CertificationTime= DateTime.Now,AdminId = 1},
+                new UserVerification { UserVerificationId = 2, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
+                new UserVerification { UserVerificationId = 3, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 }
+           );
+            //modelBuilder.Entity<BankVerification>().HasData(
+            //    new BankVerification { BankVerificationId = 1, Status=1 , BankAccount =802222222222},
+
+                
+            //);
 
         }
 

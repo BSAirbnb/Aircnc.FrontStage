@@ -16,7 +16,8 @@ namespace Aircnc.FrontStage.Models.Entities
         [Key]
         public int BankVerificationId { get; set; }
         public int Status { get; set; }
-        public int BankAccount { get; set; }
+        [Required]
+        public string BankAccount { get; set; }
         public DateTime ApplyTime { get; set; }
         public DateTime CertificationTime { get; set; }
         public int AdminId { get; set; }
