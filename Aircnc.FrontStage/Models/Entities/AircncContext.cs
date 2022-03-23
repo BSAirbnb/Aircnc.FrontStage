@@ -98,9 +98,9 @@ namespace Aircnc.FrontStage.Models.Entities
 
                 entity.HasIndex(e => e.UserId, "IX_Comment_UserId");
 
-                entity.Property(e => e.Comment1)
+                entity.Property(e => e.CommentContent)
                     .HasMaxLength(400)
-                    .HasColumnName("Comment");
+                    .HasColumnName("CommentContent");
 
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
 
@@ -470,11 +470,213 @@ namespace Aircnc.FrontStage.Models.Entities
                 new UserVerification { UserVerificationId = 2, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
                 new UserVerification { UserVerificationId = 3, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 }
            );
-            //modelBuilder.Entity<BankVerification>().HasData(
-            //    new BankVerification { BankVerificationId = 1, Status=1 , BankAccount =802222222222},
+            modelBuilder.Entity<BankVerification>().HasData(
+                new BankVerification { BankVerificationId = 1, Status = 1, BankAccount = "80222222222220",ApplyTime=DateTime.Now,CertificationTime=DateTime.Now,AdminId=1,BankbookImg= "https://picsum.photos/seed/picsum/200/300" },
+                new BankVerification { BankVerificationId = 2, Status = 1, BankAccount = "80222222222221", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1, BankbookImg = "https://picsum.photos/seed/picsum/200/300" },
+                new BankVerification { BankVerificationId = 3, Status = 1, BankAccount = "80222222222222", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2, BankbookImg = "https://picsum.photos/seed/picsum/200/300" }
+            );
 
-                
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    UserId = 1,
+                    Name = "Bill",
+                    Email = "123@gmail.com",
+                    Phone = "0911123123",
+                    Address = "台北市大安區建國南路一段96號",
+                    Password = "123",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = true,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    UserVerificationId = 1,
+                    BankVerificationId = 1,
+                    IsDelete = false
+                },
+                new User
+                {
+                    UserId = 2,
+                    Name = "c老師",
+                    Email = "123d@gmail.com",
+                    Phone = "091112315553",
+                    Address = "台北市大安區建國南路一段966號",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    UserVerificationId = 2,
+                    BankVerificationId = 2,
+                    IsDelete = false
+                },
+                new User
+                {
+                    UserId = 3,
+                    Name = "曹老師",
+                    Email = "1232d@gmail.com",
+                    Phone = "09111231512121",
+                    Address = "台北市大安區建國南路一段9266號",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    CreateTime = DateTime.Now,
+                    UserVerificationId = 3,
+                    BankVerificationId = 3,
+                    IsDelete = true
+                },
+                new User
+                {
+                    UserId = 4,
+                    Name = "d老師",
+                    Email = "123d@gmail.com",
+                    Phone = "091112315553",
+                    Address = "台北市大安區建國南路一段966號33",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    IsDelete = false
+                },
+                new User
+                {
+                    UserId = 5,
+                    Name = "d5老師",
+                    Email = "123d@gmail.com",
+                    Phone = "091112315553",
+                    Address = "台北市大安區建國南路一段966號12",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸f",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    IsDelete = false
+                },
+                new User
+                {
+                    UserId = 6,
+                    Name = "d老師",
+                    Email = "123d@gmail.com",
+                    Phone = "091112315553",
+                    Address = "台北市大安區建國南路一段9566號11",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸fff",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    IsDelete = false
+                },
+                new User
+                {
+                    UserId = 7,
+                    Name = "d老師",
+                    Email = "123d@gmail.com",
+                    Phone = "091112315553",
+                    Address = "台北市大安區建國南路一段9266號",
+                    Password = "1234",
+                    Birthday = new DateTime(2011, 6, 10),
+                    Gender = false,
+                    Photo = "https://picsum.photos/seed/picsum/200/300",
+                    EmergencyContactName = "你爸",
+                    EmergencyContactPhone = "0911111111",
+                    CreateTime = DateTime.Now,
+                    IsDelete = false
+                }
+
+            );
+            modelBuilder.Entity<Message>().HasData(
+                new Message { MessageId = 1, SenderId = 1, RecipientId = 2, Text = "HI", SendTime = DateTime.Now },
+                new Message { MessageId = 2, SenderId = 1, RecipientId = 2, Text = "HI", SendTime = DateTime.Now },
+                new Message { MessageId = 3, SenderId = 1, RecipientId = 2, Text = "HI", SendTime = DateTime.Now }
+            );
+            modelBuilder.Entity<Room>().HasData(
+                new Room() { RoomId = 1, UserId = 1, HouseType = 1, RoomType = 1, Street = "石潭路88號", District = "內湖區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "星雲小屋", UnitPrice = 2310, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 2, UserId = 2, HouseType = 2, RoomType = 2, Street = "南京東路3段25號9樓", District = "松山區", City = "台北市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "小葉-懶人-溫馨寬敞的樓中樓套房,青山綠樹景色,適合宅度假", UnitPrice = 710, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 3, UserId = 3, HouseType = 3, RoomType = 3, Street = "東新街116-3號", District = "南港區", City = "台北市", Country = "台灣", Pax = 2, BedCount = 1, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "景觀雙人房A25，免費早餐、交通方便、溫馨舒適", UnitPrice = 500, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 4, UserId = 4, HouseType = 4, RoomType = 3, Street = "敦化南路二段201號", District = "大安區", City = "台北市", Country = "台灣", Pax = 5, BedCount = 5, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "303魚池白宮", UnitPrice = 1110, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 5, UserId = 1, HouseType = 1, RoomType = 2, Street = "林森南路17號", District = "中正區", City = "台北市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "捷運站步行3分鐘 近夜市與101 Near MRT & Taipei 101", UnitPrice = 990, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 6, UserId = 2, HouseType = 5, RoomType = 1, Street = "福德路57巷2號1樓", District = "士林區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "1 min walk to YounChun MRT, center of Taipei city", UnitPrice = 3210, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 7, UserId = 6, HouseType = 2, RoomType = 2, Street = "中正路570號", District = "永和區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "榮星花園旁靜巷溫馨小宅～適合親子同遊！", UnitPrice = 1495, CreateTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 8, UserId = 5, HouseType = 3, RoomType = 3, Street = "大仁街44號", District = "三重區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "[K] 38 ✦ 大雙人房 含獨立衛浴 沙發", UnitPrice = 865, CreateTime = new DateTime(2011, 6, 10), Status = 2 }
+                );
+            modelBuilder.Entity<WishList>().HasData(
+                new WishList { WishListId = 1, UserId = 1, RoomId = 1, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 2, UserId = 2, RoomId = 2, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 3, UserId = 3, RoomId = 3, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 4, UserId = 4, RoomId = 4, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 5, UserId = 5, RoomId = 5, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 6, UserId = 6, RoomId = 6, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 7, UserId = 6, RoomId = 3, CreateTime = new DateTime(2013, 7, 18) },
+
+                new WishList { WishListId = 8, UserId = 5, RoomId = 2, CreateTime = new DateTime(2013, 7, 18) });
+
+            //    new WishList { WishListId = 9, UserId = 4, RoomId = 6, CreateTime = new DateTime(12 - 31 - 2011) },
+
+            //    new WishList { WishListId = 10, UserId = 3, RoomId = 7, CreateTime = new DateTime(12 - 31 - 2011) },
+
+            //    new WishList { WishListId = 11, UserId = 2, RoomId = 8, CreateTime = new DateTime(12 - 31 - 2011) }
             //);
+
+
+            //modelBuilder.Entity<Comment>().HasData(
+            //    new Comment { CommentId = 1, UserId = 1, RoomId = 3, Comment1 = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 2, UserId = 3, RoomId = 2, Comment1 = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 3, UserId = 3, RoomId = 3, Comment1 = "環境整潔，還不錯", Stars = 2, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 4, UserId = 5, RoomId = 4, Comment1 = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 5, UserId = 6, RoomId = 5, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 6, UserId = 7, RoomId = 2, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 7, UserId = 1, RoomId = 6, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+
+
+            //    new Comment { CommentId = 8, UserId = 5, RoomId = 1, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) }
+
+            //        new Comment { CommentId = 9, UserId = 2, RoomId = 7, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 10, UserId = 6, RoomId = 4, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 11, UserId = 4, RoomId = 7, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 12, UserId = 5, RoomId = 8, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 13, UserId = 2, RoomId = 4, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 14, UserId = 1, RoomId = 5, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 15, UserId = 1, RoomId = 2, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 16, UserId = 2, RoomId = 8, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
+
+            //        new Comment { CommentId = 17, UserId = 6, RoomId = 1, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
+            //    );
 
         }
 

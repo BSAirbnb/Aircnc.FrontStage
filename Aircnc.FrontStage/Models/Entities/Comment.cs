@@ -12,7 +12,7 @@ namespace Aircnc.FrontStage.Models.Entities
         public int CommentId { get; set; }
         public int UserId { get; set; }
         public int RoomId { get; set; }
-        public string Comment1 { get; set; }
+        public string CommentContent { get; set; }
         public double Stars { get; set; }
         public DateTime CreateTime { get; set; }
 
