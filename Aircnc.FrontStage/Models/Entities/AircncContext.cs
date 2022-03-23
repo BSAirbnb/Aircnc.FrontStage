@@ -635,29 +635,29 @@ namespace Aircnc.FrontStage.Models.Entities
             //);
 
 
-            //modelBuilder.Entity<Comment>().HasData(
-            //    new Comment { CommentId = 1, UserId = 1, RoomId = 3, Comment1 = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+            modelBuilder.Entity<Comment>().HasData(
+                new Comment { CommentId = 1, UserId = 1, RoomId = 3, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 2, UserId = 3, RoomId = 2, Comment1 = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 2, UserId = 3, RoomId = 2, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 3, UserId = 3, RoomId = 3, Comment1 = "環境整潔，還不錯", Stars = 2, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 3, UserId = 3, RoomId = 3, CommentContent = "環境整潔，還不錯", Stars = 2, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 4, UserId = 5, RoomId = 4, Comment1 = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 4, UserId = 5, RoomId = 4, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 5, UserId = 6, RoomId = 5, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 5, UserId = 6, RoomId = 5, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 6, UserId = 7, RoomId = 2, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 6, UserId = 7, RoomId = 2, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 7, UserId = 1, RoomId = 6, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 7, UserId = 1, RoomId = 6, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
 
 
-            //    new Comment { CommentId = 8, UserId = 5, RoomId = 1, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) }
+                new Comment { CommentId = 8, UserId = 5, RoomId = 1, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) });
 
             //        new Comment { CommentId = 9, UserId = 2, RoomId = 7, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
 
@@ -678,6 +678,289 @@ namespace Aircnc.FrontStage.Models.Entities
             //        new Comment { CommentId = 17, UserId = 6, RoomId = 1, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
             //    );
 
+            modelBuilder.Entity<Order>().HasData(
+                new Order { 
+                    OrderId = 1,
+                    BookingDateTime = new DateTime (2022,07,01),
+                    UserId = 1,
+                    RoomId = 1,
+                    CkeckIn = new DateTime(2022, 07, 11),
+                    CkeckOut = new DateTime(2022, 07, 12),
+                    PaymentType = 1,
+                    Status = 1,
+                    BedCount = 1,
+                    RoomCount = 1,
+                    GuestCount = 2,
+                    OriginalPrice = 2000,
+                    Address = "台中市"
+                },
+                 new Order
+                 {
+                     OrderId = 2,
+                     BookingDateTime = new DateTime(2022, 07, 01),
+                     UserId = 1,
+                     RoomId = 1,
+                     CkeckIn = new DateTime(2022, 07, 11),
+                     CkeckOut = new DateTime(2022, 07, 12),
+                     PaymentType = 1,
+                     Status = 1,
+                     BedCount = 2,
+                     RoomCount = 1,
+                     GuestCount = 4,
+                     OriginalPrice = 6000,
+                     Address = "花蓮市"
+                 },
+                  new Order
+                  {
+                      OrderId = 3,
+                      BookingDateTime = new DateTime(2022, 07, 01),
+                      UserId = 1,
+                      RoomId = 1,
+                      CkeckIn = new DateTime(2022, 07, 11),
+                      CkeckOut = new DateTime(2022, 07, 12),
+                      PaymentType = 1,
+                      Status = 1,
+                      BedCount = 1,
+                      RoomCount = 1,
+                      GuestCount = 2,
+                      OriginalPrice = 2000,
+                      Address = "台中市"
+                  },
+                   new Order
+                   {
+                       OrderId = 4,
+                       BookingDateTime = new DateTime(2022, 07, 01),
+                       UserId = 1,
+                       RoomId = 1,
+                       CkeckIn = new DateTime(2022, 07, 11),
+                       CkeckOut = new DateTime(2022, 07, 12),
+                       PaymentType = 1,
+                       Status = 1,
+                       BedCount = 1,
+                       RoomCount = 1,
+                       GuestCount = 1,
+                       OriginalPrice = 1000,
+                       Address = "台中市"
+                   },
+                    new Order
+                    {
+                        OrderId = 5,
+                        BookingDateTime = new DateTime(2022, 07, 01),
+                        UserId = 1,
+                        RoomId = 1,
+                        CkeckIn = new DateTime(2022, 07, 11),
+                        CkeckOut = new DateTime(2022, 07, 12),
+                        PaymentType = 1,
+                        Status = 1,
+                        BedCount = 1,
+                        RoomCount = 1,
+                        GuestCount = 2,
+                        OriginalPrice = 1500,
+                        Address = "新竹市"
+                    }
+                );
+
+            modelBuilder.Entity<RoomCalendar>().HasData(
+                new RoomCalendar 
+                { RoomCalendarId = 1,
+                  RoomId = 1,
+                  Date = new DateTime(2022, 01, 12),
+                  LastChangeTime = new DateTime(2022, 03, 02),
+                  RoomCalendarStatus = 1,
+                  UnitPrice = 2000,
+                  Note = "價格異動"
+                },
+                new RoomCalendar
+                {
+                    RoomCalendarId = 2,
+                    RoomId = 2,
+                    Date = new DateTime(2022, 01, 12),
+                    LastChangeTime = new DateTime(2022, 03, 02),
+                    RoomCalendarStatus = 1,
+                    UnitPrice = 3000,
+                    Note = "價格異動"
+                },
+                new RoomCalendar
+                {
+                    RoomCalendarId = 3,
+                    RoomId = 1,
+                    Date = new DateTime(2022, 01, 12),
+                    LastChangeTime = new DateTime(2022, 03, 02),
+                    RoomCalendarStatus = 1,
+                    UnitPrice = 2000,
+                    Note = "今天不租"
+                },
+                new RoomCalendar
+                {
+                    RoomCalendarId = 4,
+                    RoomId = 1,
+                    Date = new DateTime(2022, 01, 12),
+                    LastChangeTime = new DateTime(2022, 03, 02),
+                    RoomCalendarStatus = 1,
+                    UnitPrice = 2000,
+                    Note = "開啟租房"
+                },
+                new RoomCalendar
+                {
+                    RoomCalendarId = 5,
+                    RoomId = 1,
+                    Date = new DateTime(2022, 01, 12),
+                    LastChangeTime = new DateTime(2022, 03, 02),
+                    RoomCalendarStatus = 1,
+                    UnitPrice = 4500,
+                    Note = "價格異動"
+                }
+                );
+
+
+            modelBuilder.Entity<RoomImg>().HasData(
+                new RoomImg 
+                { RoomImgId = 1,
+                  RoomId = 1,
+                  ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                  Sort = 1,
+                  CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 2,
+                    RoomId = 1,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 2,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 3,
+                    RoomId = 1,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 5,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 4,
+                    RoomId = 1,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 3,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 5,
+                    RoomId = 1,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 4,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 6,
+                    RoomId = 2,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 1,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 7,
+                    RoomId = 2,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 2,
+                    CreateTime = new DateTime(2022, 03, 02)
+                },
+                new RoomImg
+                {
+                    RoomImgId = 8,
+                    RoomId = 2,
+                    ImageUrl = "https://picsum.photos/seed/picsum/200/300",
+                    Sort = 3,
+                    CreateTime = new DateTime(2022, 03, 02)
+                });
+
+            modelBuilder.Entity<RoomServiceLabel>().HasData(
+                new RoomServiceLabel
+                {
+                    RoomServiceLabelId = 1,
+                    RoomId = 1,
+                    TypeOfLabel = 1
+                },
+                new RoomServiceLabel
+                {
+                    RoomServiceLabelId = 2,
+                    RoomId = 1,
+                    TypeOfLabel = 2
+                },
+                new RoomServiceLabel
+                {
+                    RoomServiceLabelId = 3,
+                    RoomId = 3,
+                    TypeOfLabel = 3
+                },
+                new RoomServiceLabel
+                {
+                    RoomServiceLabelId = 4,
+                    RoomId = 4,
+                    TypeOfLabel = 2
+                },
+                new RoomServiceLabel
+                {
+                    RoomServiceLabelId = 5,
+                    RoomId = 5,
+                    TypeOfLabel = 2
+                });
+
+            modelBuilder.Entity<TransactionStatus>().HasData(
+                new TransactionStatus
+                {
+                    TransactionStatusId = 1,
+                    UserId = 1,
+                    OrderId = 2,
+                    CreateTime = new DateTime(2022, 03, 02),
+                    AdminId = 1,
+                    TotalAmount = 1700,
+                    StatusType = 1
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 2,
+                    UserId = 1,
+                    OrderId = 2,
+                    CreateTime = new DateTime(2022, 03, 29),
+                    AdminId = 1,
+                    TotalAmount = 1900,
+                    StatusType = 1
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 3,
+                    UserId = 2,
+                    OrderId = 4,
+                    CreateTime = new DateTime(2022, 03, 05),
+                    AdminId = 1,
+                    TotalAmount = 1400,
+                    StatusType = 2
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 4,
+                    UserId = 1,
+                    OrderId = 2,
+                    CreateTime = new DateTime(2022, 04, 12),
+                    AdminId = 1,
+                    TotalAmount = 3500,
+                    StatusType = 2
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 5,
+                    UserId = 1,
+                    OrderId = 2,
+                    CreateTime = new DateTime(2022, 03, 09),
+                    AdminId = 1,
+                    TotalAmount = 1100,
+                    StatusType = 3
+                });
         }
 
 
