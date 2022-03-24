@@ -17,15 +17,15 @@ namespace Aircnc.FrontStage.Controllers
 
 
         }
-        //RoomOwnerRoomList(int userid)
-        public IActionResult RoomOwnerRoomList()
+        
+        public IActionResult RoomOwnerRoomList(int userid)
         {
-            //先假裝是一
-            var userid = 1;
+            //先假設user1的房源
+             userid = 1;
             var result =
-                _RoomOwnerService.GetAllRoomByOwnerId(userid).Select(roomOwnerDto=>new RoomOwnerViewModel
+                _RoomOwnerService.GetAllRoomByOwnerId(userid).Select(RoomOwnerDto=>new RoomOwnerViewModel
                 { 
-                    RoomOwnerDto = roomOwnerDto
+                    RoomOwnerDto = RoomOwnerDto
 
                 });
 

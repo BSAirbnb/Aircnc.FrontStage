@@ -25,7 +25,7 @@ namespace Aircnc.FrontStage.Services
                 Status = room.Status,
                 RoomName = room.RoomName,
                 BathroomCount = room.BathroomCount,
-                Address = $"{room.Country} {room.City} {room.District} {room.Street}",
+                Address = $"{room.Country} {room.City}",
                 BedCount = room.BedCount,
                 RoomCount = room.RoomCount,
                 CreateTime = room.CreateTime,
