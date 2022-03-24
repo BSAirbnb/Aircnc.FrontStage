@@ -1,4 +1,6 @@
 using Aircnc.FrontStage.Models.Entities;
+using Aircnc.FrontStage.Services;
+using Aircnc_0321.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +32,11 @@ namespace Aircnc.FrontStage
             services.AddDbContext<AircncContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AircncContext"));
+
             });
+            services.AddTransient<DBRepository, DBRepository>();
+            services.AddTransient<RoomOwnerService, RoomOwnerService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

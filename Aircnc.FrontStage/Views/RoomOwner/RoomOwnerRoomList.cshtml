@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewData["Title"] = "RoomOwnerRoomList";
+}
+@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.RoomOwnerViewModel>
+
+    @section topCSS{
+
+
+    <style>
+        .h1_house_nums {
+            font-size: 25px;
+            color: #484848;
+            font-weight: bold;
+        }
+
+        #hostList_searchBar {
+            /* width: 25%; */
+            height: 2rem;
+            background: #f5f5f5;
+            outline: none;
+            border: none;
+            border-radius: 1.625rem;
+            padding: 0 3.5rem 0 1.5rem;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .hostList_filter_container .dropdown {
+            padding: 0 15px;
+            padding-top: 20px;
+        }
+
+            .hostList_filter_container .dropdown a {
+                background-color: #fff;
+                border-radius: 20px;
+                border: 1px solid #6c6c6c;
+                color: #000;
+                font-size: 14px;
+            }
+
+        #button_hostList_searchBar {
+            width: 3.5rem;
+            height: 2.8rem;
+            margin-left: -3.5rem;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+            #button_hostList_searchBar:hover {
+                cursor: pointer;
+            }
+
+        .btn_create_house {
+            border: 1px solid #6c6c6c;
+            color: #222222;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .fa-plus {
+            padding-right: 5px;
+        }
+
+        /* 房源資訊圖片 */
+
+        .host_list_house_img img {
+            width: 100px;
+        }
+        .tr_roomlist  {
+            line-height:2rem;
+            margin: auto 0 ;
+        }
+    </style>
+    }
+
+    <section class="container-fluid d-flex justify-content-between mt-5">
+        <h1 class="h1_house_nums">1個房源</h1>
+        <button class="btn btn_create_house"><i class="fas fa-plus"></i>建立房源</button>
+    </section>
+
+    <section class="container-fluid d-flex hostList_filter_container">
+        <!-- 搜尋房源 -->
+        <div class="searchBar">
+            <input id="hostList_searchBar" type="text" name="hostList_searchBar" placeholder="搜尋房源" value="" />
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+            <button id="button_hostList_searchBar" type="submit" name="button_hostList_searchBar">
+            </button>
+        </div>
+        <!-- 房間與床鋪 -->
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink_room" data-bs-toggle="dropdown" aria-expanded="false">
+                房間與床鋪
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink_room">
+                <li><a class="dropdown-item" href="#"></a></li>
+
+            </ul>
+        </div>
+        <!-- 設備與服務 -->
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                設備與服務
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            </ul>
+        </div>
+        <!-- 房源狀態 -->
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                房源狀態
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            </ul>
+        </div>
+        <!-- 更多篩選條件 -->
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                更多篩選條件
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            </ul>
+        </div>
+    </section>
+
+    <section class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        </div>
+                    </th>
+                    <th scope="col">房源</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">代辦事項</th>
+                    <th scope="col">即時預定</th>
+                    <th scope="col">臥室</th>
+                    <th scope="col">床位</th>
+                    <th scope="col">衛浴</th>
+                    <th scope="col">位置</th>
+                    <th scope="col">上次修改時間</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var room in Model)
+                {
+                    <tr class="tr_roomlist w-100">
+
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex  host_list_house_img">
+                                <img src="./HostHomePage_Image/accessories1.jpg" alt="">
+                                <p class="host_list_house_name">@room.RoomOwnerDto.RoomName</p>
+                            </div>
+                        </td>
+                        <td><i class="fas fa-hourglass-half"></i>@room.RoomOwnerDto.Status</td>
+                        <td><button class="btn">完成</button></td>
+                        <td><i class="fas fa-check-circle"></i>開</td>
+                        <td>@room.RoomOwnerDto.RoomCount</td>
+                        <td>@room.RoomOwnerDto.BedCount</td>
+                        <td>@room.RoomOwnerDto.BathroomCount</td>
+                        <td>@room.RoomOwnerDto.Address</td>
+                        @*<td>(@room.RoomOwnerDto.LastChangeTime==@null?@room.RoomOwnerDto.CreateTime:@room.RoomOwnerDto.LastChangeTime)</td>*@
+                    <td>
+                        @if (@room.RoomOwnerDto.LastChangeTime == null)@room.RoomOwnerDto.CreateTime
+                        else @room.RoomOwnerDto.LastChangeTime
+                    </td>
+                                        
+                    </tr>
+                }
+                </tbody>
+        </table>
+    </section>
+
