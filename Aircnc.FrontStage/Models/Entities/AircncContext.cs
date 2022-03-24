@@ -160,9 +160,9 @@ namespace Aircnc.FrontStage.Models.Entities
 
                 entity.Property(e => e.BookingDateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.CkeckIn).HasColumnType("datetime");
+                entity.Property(e => e.CkeckIn).HasColumnType("date");
 
-                entity.Property(e => e.CkeckOut).HasColumnType("datetime");
+                entity.Property(e => e.CkeckOut).HasColumnType("date");
 
                 entity.Property(e => e.Discount)
                     .HasColumnType("decimal(18, 0)")
