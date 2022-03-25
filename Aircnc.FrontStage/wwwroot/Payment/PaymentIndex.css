@@ -1,0 +1,58 @@
+﻿/* 中間內容的容器 */
+.content-box {
+    margin-top: 100px;
+}
+/* 標題列 */
+.account:hover {
+    color: black;
+}
+
+.content-head .account, span {
+    color: rgb(72,72,72);
+}
+/* 選項切換列 */
+.options {
+    padding-bottom: 15px;
+    /* border-bottom: 1px solid rgb(220,220,220); */
+}
+
+    .options .pay {
+        padding-bottom: 15px;
+        border-bottom: 2px solid rgb(66, 142, 144);
+        color: rgb(66, 142, 144);
+        font-weight: bold;
+    }
+
+    .options a {
+        color: rgb(72,72,72);
+        border-bottom: none;
+    }
+/* 付款區塊 */
+.payment-record-method button {
+    background-color: rgb(0,132,137);
+    padding: 10px 0;
+}
+
+.payment-record-method .manage-payment:hover {
+    border-bottom: none;
+}
+/* 禮物卡&coupon */
+.gift-card-balance, .coupon-balance {
+    border-bottom: 1px solid rgb(220,220,220);
+}
+/* 右側提醒區塊 */
+.reminder {
+    border: 1px solid rgb(220,220,220);
+}
+
+.reminder .clause, .reminder .detail {
+    color: rgb(0,132,137);
+}
+
+    .reminder .clause:hover {
+        border-bottom: 1px solid rgb(0,132,137);
+    }
+
+    .reminder .detail:hover {
+        border-bottom: 1px solid rgb(0,132,137);
+    }

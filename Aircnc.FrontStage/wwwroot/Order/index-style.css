@@ -1,0 +1,83 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    border-bottom: 1px solid #000;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    z-index: 4;
+}
+.navbar-brand:hover{
+    border: none;
+}
+.logo{
+    width: 50px;
+}
+li{
+    list-style: none;
+}
+
+footer ul {
+    font-size: 12px;
+}
+footer h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+.dropdown-menu.dropdown-menu-end{
+    border-radius: 20px;
+}
+.social:hover{
+    border: none;
+    color: #faa;
+    transition: 0.3s ease;
+}
+
+/* container */
+.icon{
+    color: rgb(217,9,100);
+    margin:20px 0;
+}
+.topic{
+    margin-top: 100px;
+}
+.content-box .reservation{
+    border: 1px solid rgb(220, 220, 220);
+}
+.content-box .description{
+    color: rgb(113,113,113);
+}
+.search_btn{
+    background-color: rgb(217,9,100);
+    display: block;
+}
+.search_btn a:hover{
+    border-bottom: none;
+}
+/* 歷史紀錄區塊 */
+.history{
+    margin-bottom: 25px;
+}
+.history .row img{
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
+.history .row  a:hover{
+    color: #000;
+    border-bottom: none;
+}
+.qqq:hover{
+    outline: 1px solid red;
+}
+/* 找不到預定區塊 */
+.not-found{
+    border-top: 1px solid rgb(220, 220, 220);
+    padding-top: 20px;
+}
+.info:hover{
+    color: #000;
+}
