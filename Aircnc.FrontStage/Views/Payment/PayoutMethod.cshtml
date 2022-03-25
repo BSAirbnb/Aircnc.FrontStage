@@ -1,0 +1,80 @@
+﻿@{ViewData["Title"] = "付款與收款";
+    Layout = "PaymentLayout";}
+
+<!-- content -->
+<div class="container-fluid content-box">
+    <div class="container">
+        <!-- 標題列 -->
+        <div class="row content-head mb-3 mx-4">
+            <div class="col-10">
+                <a href="#" class="fw-bold account">帳號</a>
+                <span class="fw-bold mx-2">></span>
+                <span class="fw-bold">付款與收款</span>
+            </div>
+            <div class="col-10">
+                <span class="fs-2 fw-bold">付款與收款</span>
+            </div>
+        </div>
+        <!-- 選項切換列 -->
+        <div class="row options mx-4 mt-5">
+            <div class="col-10">
+                <ul class="nav nav-tabs">
+                    <a href="#" class="fw-bold me-2">付款</a>
+                    <a href="#" class="payout fw-bold mx-2">收款</a>
+                    <a href="#" class="fw-bold mx-2">稅款</a>
+                    <a href="#" class="fw-bold mx-2">捐款</a>
+                    <a href="#" class="fw-bold mx-2">旅客贈款</a>
+                </ul>
+            </div>
+        </div>
+        <!-- 收款區塊 -->
+        <div class="row payout-method mt-4 mx-4">
+            <div class="col-10 col-md-7">
+                <span class="fs-4 fw-bold d-block">收款方式</span>
+                <span class="d-block">當你收到預定款項時，我們會將該付款稱為「收款」。我們的安全支付系統支援多種收款方式，你可以在下方設定。<a href="#" class="a_faq">前往常見問題。</a></span>
+                <span class="fw-bold d-block mt-3">若要獲得收款，請設定一種收款方式</span>
+                <span>Airbnb 會在房客預計入住時間大約 24 小時後發放收款。款項入帳所需時間取決於你的收款方式。<a href="#" class="a_detail">了解詳情</a></span>
+                <button class="btn btn-lg px-4 fs-6 fw-bold mt-4 d-block mb-5">
+                    <a href="#" class="text-white manage-payment">新增收款方式</a>
+                </button>
+            </div>
+            <!-- 提醒事項區塊 -->
+            <div class="col-md-4 ms-auto faq">
+                <i class="fas fa-book-open fs-3 d-block mt-4 mb-3 ms-3"></i>
+                <span class="fw-bold p-2 fs-4">常見問題</span>
+                <div class="faq-container ms-2">
+                    <ul class="nav nav-tabs">
+                        <a href="#" class="py-3 faq-link">
+                            <div>
+                                <span class="faq-content">收款如何運作</span>
+                            </div>
+                        </a>
+                    </ul>
+
+                    <ul class="nav nav-tabs">
+                        <a href="#" class="py-3 faq-link">
+                            <div>
+                                <span class="faq-content">新增收款資料</span>
+                            </div>
+                        </a>
+                    </ul>
+
+                    <ul class="nav">
+                        <a href="#" class="py-3 d-flex faq-link">
+                            <div class="">
+                                <span class="faq-content">我什麼時候會收到收款?</span>
+                            </div>
+                            <div class="me-0">
+                                <!-- <span >></span> -->
+                            </div>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section CSS{
+    <link href="~/Payment/PayoutMethod.css" rel="stylesheet" />
+}
