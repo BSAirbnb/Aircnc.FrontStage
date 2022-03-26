@@ -1,0 +1,52 @@
+.carousel.slide{
+    margin-top: 100px;
+}
+
+.room-title{
+    border-bottom: 1px solid #000;
+}
+
+.carousel-inner{
+    border-radius: 50px;
+}
+
+#reservation-sticky{
+    top: 100px;
+}
+
+#reserve-btn{
+    width: 100px;
+    position: fixed;
+    bottom: 80px;
+    right: 100px;
+    z-index: 2;
+}
+
+#review-bar{
+    width: 40%;
+    height: 2px;
+    background: rgb(143, 143, 143);
+    align-self: center;
+}
+#review-bar-dark{
+    width: 90%;
+    height: 2px;
+    background: #000;
+    align-self: center;
+}
+
+input[type="date"]{
+    position: relative;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
