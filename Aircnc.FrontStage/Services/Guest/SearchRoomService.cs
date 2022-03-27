@@ -1,23 +1,21 @@
 ﻿using Aircnc.FrontStage.Models.Dtos.Guest;
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc_0321.Repositories;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Aircnc.FrontStage.Services.Guest
 {
-    public class SearchRoom
+    public class SearchRoomService
     {
-        private readonly DBRepository _DBRepository;
-        public SearchRoom(DBRepository dBRepository)
+        private readonly DBRepository _dbRepository;
+        public SearchRoomService(DBRepository dbRepository)
         {
-            _DBRepository = dBRepository;
+            _dbRepository = dbRepository;
         }
-
-        public IEnumerable<SearchRoomResult> GetRoom(string location)
+        public IEnumerable<SearchRoomDto> GetRoom(string location)
         {
-            return _DBRepository.GetAll<Room>().Where(room => room.City == location).Select(room => new SearchRoomResult
+            return _dbRepository.GetAll<Room>().Where(room => room.City == location).Select(room => new SearchRoomDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,
@@ -36,5 +34,6 @@ namespace Aircnc.FrontStage.Services.Guest
 
             });
         }
+
     }
 }

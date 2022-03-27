@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "AirCnC";
+    Layout = "_GuestLayout";
+}
+
+<!-- /.intro-bg -->
+<div class="container-fluid intro-bg">
+    <div class="row justify-content-center">
+        <div class="col-10 intro d-flex justify-content-center align-items-center box-shadow">
+            <p class="text-white">是時候出發了 - 體驗不一樣的生活</p>
+        </div>
+    </div>
+</div>
+
+<!-- banner -->
+<div class="container my-5 banner-img">
+    <div class="row position-relative">
+        <img src="https://picsum.photos/id/1011/1200/600" alt="">
+        <p class="text-end position-absolute">心之嚮往&nbsp;&bull;&nbsp;隨心所欲</p>
+    </div>
+</div>
+
+<!-- recommendations -->
+<h3 class="text-center fs-1 fw-bold my-3">推薦給你</h3>
+<div class="row row-cols-1 row-cols-md-3 g-4 container mx-auto">
+    <div class="col">
+        <div class="card h-100" role="button">
+            <img src="https://picsum.photos/id/1028/500/700" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">花蓮</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100"  role="button">
+            <img src="https://picsum.photos/id/1065/500/700" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">台東</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100"  role="button">
+            <img src="https://picsum.photos/id/1080/500/700" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center fw-bold">苗栗</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section topCSS{ <link href="~/css/Guest_Module/home-style.css" rel="stylesheet" />}
