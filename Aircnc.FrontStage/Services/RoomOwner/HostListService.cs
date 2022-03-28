@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Services
 {
-    public class RoomOwnerService
+    public class HostListService
     {
         private readonly DBRepository _DBRepository;
-        public RoomOwnerService(DBRepository DBRepository)
+        public HostListService(DBRepository DBRepository)
         {
 
             _DBRepository = DBRepository;
         }
-        public IEnumerable<RoomOwnerDto> GetAllRoomByOwnerId(int userid)
+        public IEnumerable<HostListDto> GetAllRoomByOwnerId(int userid)
         {
-            return _DBRepository.GetAll<Room>().Where(room=>room.UserId == userid).Select(room=>new RoomOwnerDto
+            return _DBRepository.GetAll<Room>().Where(room=>room.UserId == userid).Select(room=>new HostListDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,

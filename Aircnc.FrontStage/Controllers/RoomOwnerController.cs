@@ -1,5 +1,6 @@
 ﻿using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
 using Aircnc.FrontStage.Services;
+using Aircnc.FrontStage.Services.RoomOwner;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,43 @@ namespace Aircnc.FrontStage.Controllers
 {
     public class RoomOwnerController : Controller
     {
-        private readonly RoomOwnerService _RoomOwnerService;
-        public RoomOwnerController(RoomOwnerService RoomOwnerService)
+        private readonly HostListService  _hostListService;
+        private readonly HostReservationService _hostReservationService;
+        public RoomOwnerController(HostListService hostListService, HostReservationService hostReservationService)
         {
-            _RoomOwnerService = RoomOwnerService;
-
-
+            _hostListService = hostListService;
+            _hostReservationService = hostReservationService;
         }
-        
-        public IActionResult RoomOwnerRoomList(int userid)
+
+        public IActionResult HostList(int userid)
         {
             //先假設user1的房源
              userid = 1;
             var result =
-                _RoomOwnerService.GetAllRoomByOwnerId(userid).Select(RoomOwnerDto=>new RoomOwnerViewModel
+                _hostListService.GetAllRoomByOwnerId(userid).Select(RoomOwnerDto=>new HostListViewModel
                 { 
-                    RoomOwnerDto = RoomOwnerDto
+                    HostListDto = RoomOwnerDto
 
 
                 });
 
             return View(result);
+        }
+
+        public IActionResult HostReservation(int id)
+        {
+            id = 1;
+            var reservation = _hostReservationService.GetHostReservation(id).Select(HostReservation => new HostReservationViewModel
+            {
+                RoomId = HostReservation.RoomId,
+                OwnerId = HostReservation.OwnerId,
+                GuestName = HostReservation.GuestName,
+                Status = HostReservation.Status,
+                BookingDateTime = HostReservation.BookingDateTime,
+                CkeckIn = HostReservation.CkeckIn,
+                CkeckOut = HostReservation.CkeckOut,
+            });
+            return View(reservation);
         }
     }
 }

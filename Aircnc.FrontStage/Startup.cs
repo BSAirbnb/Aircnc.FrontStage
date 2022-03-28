@@ -1,5 +1,6 @@
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Services;
+using Aircnc.FrontStage.Services.RoomOwner;
 using Aircnc_0321.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,8 @@ namespace Aircnc.FrontStage
 
             });
             services.AddTransient<DBRepository, DBRepository>();
-            services.AddTransient<RoomOwnerService, RoomOwnerService>();
+            services.AddTransient<HostListService, HostListService>();
+            services.AddTransient<HostReservationService, HostReservationService>();
 
         }
 
