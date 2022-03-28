@@ -1,0 +1,29 @@
+.section1 {
+    margin-top: 150px;
+    font-size: 20px;
+}
+
+.sec-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.ull{
+    list-style: disc;
+}
+
+.info-center{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.info-center:hover{
+    text-decoration: underline;
+    font-weight: bold;
+    color: black;
+    border-bottom: none;
+}
