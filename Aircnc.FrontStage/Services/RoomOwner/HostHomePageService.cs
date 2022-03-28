@@ -8,23 +8,22 @@ using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Services.RoomOwner
 {
-    public class HostReservationService
+    public class HostHomePageService
     {
         private readonly DBRepository _dBRepository;
-        public HostReservationService(DBRepository dBRepository)
+        public HostHomePageService(DBRepository dBRepository)
         {
             _dBRepository = dBRepository;
         }
 
-        public IEnumerable<HostReservationDto> GetHostReservation(int id)
+        public IEnumerable<HostHomePageDto> GetHostHomePagesReservation(int Hostid) 
         {
-            return _dBRepository.GetAll<Order>().Where(x => x.Room.UserId == id).Select(reservation => new HostReservationDto
+            return _dBRepository.GetAll<Order>().Where(x => x.Room.UserId == Hostid).Select(reservation => new HostHomePageDto
             {
-                RoomId = reservation.RoomId,
-                OwnerId = id,
-                GuestName = reservation.User.Name,
+                OwnerId = Hostid,
                 Status = reservation.Status,
-                BookingDateTime = reservation.BookingDateTime,
+                GuestName = reservation.User.Name,
+                RoomName = reservation.Room.RoomName,
                 CkeckIn = reservation.CkeckIn,
                 CkeckOut = reservation.CkeckOut
             }).ToList();

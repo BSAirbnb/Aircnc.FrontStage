@@ -38,6 +38,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<DBRepository, DBRepository>();
             services.AddTransient<HostListService, HostListService>();
             services.AddTransient<HostReservationService, HostReservationService>();
+            services.AddTransient<HostHomePageService, HostHomePageService>();
 
         }
 

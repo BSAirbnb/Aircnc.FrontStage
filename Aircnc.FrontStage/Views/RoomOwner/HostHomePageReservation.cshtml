@@ -1,0 +1,222 @@
+﻿@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.HostHomePageViewModel>
+@{
+    ViewData["Title"] = "控制版面 - Aircnc";
+    Layout = "RoomOwnerNavbar.cshtml";
+}
+
+@section topCSS{
+    <link href="~/css/Room_Owner/HostHomePage.css" rel="stylesheet" />
+}
+
+<div class="container-fluid host_HomePage_today_container">
+    <div class="container pt-5 pb-5">
+        <h1>今天</h1>
+        <div class="hostHomePage_host_info_text">
+            <p>填妥重要詳情</p>
+            <span>必須完成才能發布</span>
+        </div>
+    </div>
+</div>
+
+<section class="container start_to_be_a_host mt-5 mb-5">
+    <div class="hostHomePage_host_welcome_text">
+        <p>歡迎！</p>
+        <span>你即將成為一名出色的房東，來了解一下要如何著手開始。</span>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 d-flex mt-3">
+        <div class="card">
+            <a href="https://www.airbnb.com.tw/hosting?modal=ACTION_SUBPAGE_GUEST_READINESS_CONTAINER&modalItem=">
+                <img src="./HostHomePage_Image/迎接首批房客.jpeg"
+                     class="card-img-top"
+                     alt="為迎接首批房客作好準備" />
+                <div class="card-body">
+                    <p class="card-text">為迎接首批房客作好準備</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="https://www.airbnb.com.tw/hosting?modal=ACTION_SUBPAGE_CALENDAR_AND_PRICING_CONTAINER&modalItem=">
+                <img src="./HostHomePage_Image/自訂日曆與價格.jpeg"
+                     class="card-img-top"
+                     alt="自訂你的日曆與價格" />
+                <div class="card-body">
+                    <p class="card-text">自訂你的日曆與價格</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="https://www.airbnb.com.tw/hosting?modal=ACTION_SUBPAGE_INSTANT_BOOK_CONTAINER&modalItem=">
+                <img src="./HostHomePage_Image/房客的預定方式.jpeg"
+                     class="card-img-top"
+                     alt="確認房客可使用的預訂方式" />
+                <div class="card-body">
+                    <p class="card-text">確認房客可使用的預訂方式</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="container host_order_details_container mt-5 mb-5">
+    <div class="d-flex justify-content-between host_order_details_text">
+        <p>你的預定</p>
+        <a href="#">所有預定(0)</a>
+    </div>
+    <div>
+        <button class="btn">目前接待中(0)</button>
+        <button class="btn">即將入住(0)</button>
+        <button class="btn">即將退房(0)</button>
+        <!-- <button class="btn">即將開始的住宿(0)</button> -->
+    </div>
+
+    <!-- <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
+          <p class="p_host_your_orders_status">目前沒有任何旅客入住。</p>
+        </div> -->
+    <!-- Swiper -->
+    <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                @*@foreach (var item in Model)
+                {
+                    <div class="swiper-slide">
+                        <div class="card host_your_orders_card">
+                            <div class="card-body">
+                                <p class="card-title p_currently_hosting">@item.Status</p>
+                                <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
+                                <p class="card-text text-black p_guest_name">@item.GuestName</p>
+                                <p class="card-text text-black">@item.During</p>
+                            </div>
+                        </div>
+                    </div>
+                }*@
+
+                <div class="swiper-slide">
+                        <div class="card host_your_orders_card">
+                            <div class="card-body">
+                                <p class="card-title p_currently_hosting">目前接待中2</p>
+                                <h2 class="card-subtitle mb-2 h2_host_room_title">One4Night</h2>
+                                <div class="guest_info d-flex">
+                                    <p class="card-text text-black p_guest_name">Antetokounmpo</p>
+                                </div>
+                                <p class="card-text text-black">June 6-11</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card host_your_orders_card">
+                            <div class="card-body">
+                                <p class="card-title p_currently_hosting">目前接待中3</p>
+                                <h2 class="card-subtitle mb-2 h2_host_room_title">One4Night</h2>
+                                <p class="card-text text-black p_guest_name">Alvin</p>
+                                <p class="card-text text-black">June 6-11</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card host_your_orders_card">
+                            <div class="card-body">
+                                <p class="card-title p_currently_hosting">目前接待中4</p>
+                                <h2 class="card-subtitle mb-2 h2_host_room_title">One4Night</h2>
+                                <p class="card-text text-black p_guest_name">Amos</p>
+                                <p class="card-text text-black">June 6-11</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <!-- 動態生成 -->
+    <!-- <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-evenly">
+            <div class="card host_your_orders_card">
+              <div class="card-body">
+                <h5 class="card-title text-black">目前接待中</h5>
+                <h6 class="card-subtitle mb-2 text-black">One4Night</h6>
+                <p class="card-text text-black">Bill</p>
+                <p class="card-text text-black">June 6-11</p>
+              </div>
+            </div>
+            <div class="card host_your_orders_card">
+              <div class="card-body">
+                <h5 class="card-title text-black">目前接待中</h5>
+                <h6 class="card-subtitle mb-2 text-black">One4Night</h6>
+                <p class="card-text text-black">Bill</p>
+                <p class="card-text text-black">June 6-11</p>
+              </div>
+            </div>
+            <div class="card host_your_orders_card">
+              <div class="card-body">
+                <h5 class="card-title text-black">目前接待中</h5>
+                <h6 class="card-subtitle mb-2 text-black">One4Night</h6>
+                <p class="card-text text-black">Bill</p>
+                <p class="card-text text-black">June 6-11</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+</section>
+
+<section class="container-fluid tips_and_news_container mt-5 pb-5">
+    <div class="container tips_and_news_wrap_container">
+        <p class="p_tips_and_news">出租秘訣與最新消息</p>
+        <div class="row row-cols-1 row-cols-md-4 d-flex justify-content-evenly">
+            <div class="card">
+                <a href="https://www.airbnb.com.tw/resources/hosting-homes/a/how-to-make-your-listing-stand-out-321">
+                    <img src="./HostHomePage_Image/如何讓房源脫穎而出.webp"
+                         class="card-img-top"
+                         alt="如何讓房源脫穎而出" />
+                    <div class="card-body">
+                        <p class="card-text">如何讓房源脫穎而出</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card">
+                <a href="https://www.airbnb.com.tw/resources/hosting-homes/a/sprucing-up-your-listing-description-13">
+                    <img src="./HostHomePage_Image/修飾潤色房源描述.webp"
+                         class="card-img-top"
+                         alt="修飾潤色房源描述" />
+                    <div class="card-body">
+                        <p class="card-text">修飾潤色房源描述</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card">
+                <a href="https://www.airbnb.com.tw/resources/hosting-homes/a/understanding-calendar-and-booking-settings-16">
+                    <img src="./HostHomePage_Image/了解日曆和預定設定.webp"
+                         class="card-img-top"
+                         alt="了解日曆和預定設定" />
+                    <div class="card-body">
+                        <p class="card-text">了解日曆和預定設定</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card">
+                <a href="https://www.airbnb.com.tw/resources/hosting-homes/a/create-a-guidebook-to-share-your-local-tips-23">
+                    <img src="./HostHomePage_Image/建立《在地指南》，分享當地攻略.webp"
+                         class="card-img-top"
+                         alt="建立《在地指南》，分享當地攻略" />
+                    <div class="card-body">
+                        <p class="card-text">建立《在地指南》，分享當地攻略</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section endJS{
+
+    @*Swiper JS*@
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="~/js/RoomOwner/HostHomePage.js"></script>
+}
+    
