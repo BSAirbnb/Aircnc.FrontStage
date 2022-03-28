@@ -1,0 +1,404 @@
+﻿@model IEnumerable<Aircnc.FrontStage.Models.Dtos.Guest.SearchRoomDto>
+
+@{
+	ViewData["Title"] = "AirCnC-Search";
+	Layout = "~/Views/Guest/_GuestLayout.cshtml";
+}
+
+<div class="container-fluid advance-search d-flex justify-content-center">
+	<div class="justify-content-evenly d-flex flex-row my-2 w-75">
+		<!-- 價格Button trigger modal -->
+		<div>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
+					data-bs-target="#priceModal">
+				價格&nbsp<i class="fas fa-angle-down"></i>
+			</button>
+		</div>
+
+		<!-- 房源類型Button trigger modal -->
+		<div>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
+					data-bs-target="#roomTypeModal">
+				房源類型&nbsp<i class="fas fa-angle-down"></i>
+			</button>
+		</div>
+
+		<!-- 免費退訂 -->
+		<div>
+			<input type="checkbox" class="btn-check" id="btnFreeCancel" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnFreeCancel">免費退訂</label>
+		</div>
+		<!-- WiFi -->
+		<div class="d-none d-md-block">
+			<input type="checkbox" class="btn-check" id="btnWifi" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWifi">WiFi</label>
+		</div>
+		<!-- 廚房 -->
+		<div class="d-none d-md-block">
+			<input type="checkbox" class="btn-check" id="btnKitchen" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnKitchen">廚房</label>
+		</div>
+		<!-- 空調設備 -->
+		<di class="d-none d-md-block" v>
+			<input type="checkbox" class="btn-check" id="btnAirConditioner" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnAirConditioner">空調設備</label>
+		</di>
+		<!-- 洗衣機 -->
+		<div class="d-none d-md-block">
+			<input type="checkbox" class="btn-check" id="btnWashMachine" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWashMachine">洗衣機</label>
+		</div>
+		<!-- 免費停車 -->
+		<div class="d-none d-md-block">
+			<input type="checkbox" class="btn-check" id="btnFreeParking" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnFreeParking">免費停車</label>
+		</div>
+		<!-- 自助入住 -->
+		<div class="d-none d-md-block">
+			<input type="checkbox" class="btn-check" id="btnSelf-Check-in" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnSelf-Check-in">自助入住</label>
+		</div>
+		<!-- 篩選條件Button trigger modal -->
+		<div>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
+					data-bs-target="#advancedSearchModal">
+				篩選條件
+			</button>
+		</div>
+
+	</div>
+</div>
+<!-- 房源列表與地圖 -->
+<div class="container-fluid room-list-map">
+	<div class="row">
+		<!-- 房源列表 -->
+		<div class="col-12 col-md-7 room-list mt-1">
+			<!-- card -->
+			@foreach (var room in Model)
+			{
+				@await Html.PartialAsync("_Search_RoomCardPartial",room)
+			}
+			<!-- pagination -->
+			<nav aria-label="Page navigation">
+				<ul class="pagination justify-content-center">
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+				<p class="text-center">第 1 項至第 8 項，共 20 多間房源</p>
+			</nav>
+		</div>
+
+		<!-- 地圖 -->
+		<div class="col-12 col-md-5 map-container d-md-block d-none">
+			<div class="mapbox">
+				<!-- <img class="mapimg w-100" src="./googlemap.png"> -->
+				<div id="map"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<button type="button" id="btn-switch-map-list" class="btn btn-primary rounded-pill d-md-none">
+	地圖
+</button>
+<!-- 價格Modal -->
+<div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="priceModalLabel">平均每晚價格為</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="d-flex align-content-center">
+					<form class="form-floating">
+						<input type="text" class="form-control" id="minPrice" value="800">
+						<label for="minPrice">最低價格</label>
+					</form>
+					<div class="m-2 my-auto">
+						<span>-</span>
+					</div>
+					<form class="form-floating">
+						<input type="text" class="form-control" id="maxPrice" value="2500">
+						<label for="maxPrice">最高價格</label>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" class="btn btn-dark">儲存</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 房源類型Modal -->
+<div class="modal fade" id="roomTypeModal" tabindex="-1" aria-labelledby="roomTypeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="roomTypeModalLabel">選擇房源類型</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					<label class="form-check-label" for="flexCheckDefault">
+						整個房源
+					</label>
+					<p>無需與他人分享共住，可以獨享整個房源</p>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+					<label class="form-check-label" for="flexCheckChecked">
+						獨立房間
+					</label>
+					<p>擁有自己的房間，但與別人共用其他的空間</p>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+					<label class="form-check-label" for="flexCheckChecked">
+						合住房間
+					</label>
+					<p>入住共用房源，如公共休息室</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" class="btn btn-dark">儲存</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 篩選條件Modal -->
+<div class="modal fade" id="advancedSearchModal" tabindex="-1" aria-labelledby="advancedSearchModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="advancedSearchModalLabel">更多篩選條件</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid filter-option border-bottom">
+					<p class="fs-5 fw-bold">臥室和床鋪</p>
+					<div class="d-flex align-items-center justify-content-between">
+						<div>床位</div>
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn">
+								<i class="fas fa-minus-circle fs-4"></i>
+							</button>
+							<span class="my-auto" id="bed">0</span>
+							<button type="button" class="btn">
+								<i class="fas fa-plus-circle fs-4"></i>
+							</button>
+						</div>
+					</div>
+					<div class="d-flex align-items-center justify-content-between">
+						<div>臥室</div>
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn">
+								<i class="fas fa-minus-circle fs-4"></i>
+							</button>
+							<span class="my-auto" id="bedroom">0</span>
+							<button type="button" class="btn">
+								<i class="fas fa-plus-circle fs-4"></i>
+							</button>
+						</div>
+					</div>
+					<div class="d-flex align-items-center justify-content-between mb-4">
+						<div>衛浴</div>
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn">
+								<i class="fas fa-minus-circle fs-4"></i>
+							</button>
+							<span class="my-auto" id="bathroom">0</span>
+							<button type="button" class="btn">
+								<i class="fas fa-plus-circle fs-4"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid filter-option border-bottom mt-4">
+					<p class="fs-5 fw-bold">更多選項</p>
+					<div class="row mb-4">
+						<div class="col-md-8">免費退訂</div>
+						<div class="col-md-4 d-flex justify-content-end">
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" id="SwitchFreeCancel">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid filter-option border-bottom  mt-4">
+					<p class="fs-5 fw-bold">設備與服務</p>
+					<div class="row mb-4">
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckWiFi">
+								<label class="form-check-label" for="CheckWiFi">
+									WiFi
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckKitchen">
+								<label class="form-check-label" for="CheckKitchen">
+									廚房
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckAirConditioner">
+								<label class="form-check-label" for="CheckAirConditioner">
+									空調設備
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckWashMachine">
+								<label class="form-check-label" for="CheckWashMachine">
+									洗衣機
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckFreeParking">
+								<label class="form-check-label" for="CheckFreeParking">
+									免費停車
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="Check-in-self">
+								<label class="form-check-label" for="Check-in-self">
+									自助入住
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid filter-option  mt-4">
+					<p class="fs-5 fw-bold">房源類型</p>
+					<div class="row">
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckApartment">
+								<label class="form-check-label" for="CheckApartment">
+									公寓
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckHouse">
+								<label class="form-check-label" for="CheckHouse">
+									獨棟房屋
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckLoft">
+								<label class="form-check-label" for="CheckLoft">
+									附屬建築
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckSpecial">
+								<label class="form-check-label" for="CheckSpecial">
+									獨特房源
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckGuesthouse">
+								<label class="form-check-label" for="CheckGuesthouse">
+									家庭式旅館
+								</label>
+							</div>
+						</div>
+						<div class="col-6 col-md-6">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="CheckHotel">
+								<label class="form-check-label" for="CheckHotel">
+									精品旅店
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" class="btn btn-dark">儲存</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 心願單Modal -->
+<div class="modal fade" id="WishListModal" tabindex="-1" aria-labelledby="WishListModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="WishListModalLabel">你的心願單</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="box">
+					<button type="button" class="btn btn-outline-light text-dark w-100" data-bs-toggle="modal"
+							data-bs-target="#newWishListModal">
+						<i class="fas fa-plus"></i>建立新的心願單
+					</button>
+				</div>
+				<div class="WishLish"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 建立新的心願單Modal -->
+<div class="modal fade" id="newWishListModal" tabindex="-1" aria-labelledby="newWishListModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="newWishListModalLabel">為心願單取名</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+				<div>
+					<input type="text" id="wishListName" class="form-control" aria-describedby="wishListHelpBlock"
+						   placeholder="心願單名稱">
+					<div id="wishListHelpBlock" class="form-text">
+						最多50字
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light">建立</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@section topCSS{<link rel="stylesheet" href="~/css/Guest_Module/search-style.css">}
