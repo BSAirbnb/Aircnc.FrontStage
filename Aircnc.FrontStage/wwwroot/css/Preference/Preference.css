@@ -1,0 +1,107 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    border-bottom: 1px solid #000;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    z-index: 4;
+}
+.navbar-brand:hover{
+    border: none;
+}
+.logo{
+    width: 50px;
+}
+li{
+    list-style: none;
+}
+footer ul {
+    font-size: 12px;
+}
+footer h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+.dropdown-menu.dropdown-menu-end{
+    border-radius: 20px;
+}
+.social:hover{
+    border: none;
+    color: #faa;
+    transition: 0.3s ease;
+}
+
+section{
+    margin-top: 120px;
+    margin-bottom: 50px;
+}
+
+.right-container{
+    box-sizing: border-box;
+    height: 5%;
+    padding: 2%;
+    border: lightgray solid;
+    border-radius: 5px;
+}
+#hr-sm-display{
+    display: none;
+}
+@media screen and (max-width:767px) {
+    .right-container{
+        box-sizing: border-box;
+        height: 5%;
+        padding: 2%;
+        border: none;
+    }
+    #hr-sm-display{
+        display: block;
+    }
+}
+#dropdownMenu2{
+    width: 20%;
+}
+
+.property-photo img{
+    width: 50%;
+    height: 55%;
+    border-radius: 5%;
+}
+
+.each-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-check{
+    display: flex;
+    justify-content: space-between;
+}
+.edit-btn{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #008489;
+}
+
+.collapse{
+    width: 100%
+}
+
+.card-body .card{
+    padding: 0px;
+}
+
+.dropdown-container{
+    width: 555px;
+}
+
+.function-share-to-facebook{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,164 @@
+﻿@model Aircnc.FrontStage.Models.ViewModels.Member.MemberViewModel
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="topper-content ps-5 col-md-12">
+                    <div class=" title">
+                        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">帳號</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">隱私與分享</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="title">
+                        <h4>隱私與分享</h4>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 left-container ps-5">
+                    <div class="left-main-cotent">
+                        <div class="your-privacy-column">
+                            <div class="your-privacy">
+                                <h5>你的隱私</h5>
+                                <p>開啟此功能代表你的動態會分享到 Facebook，其中可能包括用戶名稱、個人資料相片和你造訪過的地點。</p>
+                            </div>
+                            <button type="button" class="btn edit-btn" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                編輯
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">你的隱私</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                當您造訪網站時，多數網站可能會透過Cookie來獲取或存取您瀏覽器上的資訊。
+                                                這些資訊可能與您本人、您的偏好設置或您的裝置有關，主要用來使網站依照您想要的方式運行。
+                                                這些訊息通常不會直接識別您的身份，而是為您提供更個人化的網站瀏覽體驗。
+                                                由於我們尊重您的隱私權，您可以選擇封鎖某些類型的Cookie。
+                                                如需進一步了解詳情，請點擊其他標題並更改我們預設的設定。 提醒您，封鎖部分Cookie可能會影響您瀏覽和使用服務的網站功能。
+                                            </p>
+                                            <h5>絕對必要的Cookie</h5>
+                                            <p>
+                                                網站需要這些Cookie才能正常運作，因此我們的系統無法將其關閉。
+                                                設定這些Cookie通常只是為了回應您提出的服務要求，例如：設定隱私偏好、登入或填寫表格等。
+                                                您可以將瀏覽器設定為封鎖Cookie或收到Cookie安裝通知，不過這可能會導致網站的部分功能無法正常運作。
+                                            </p>
+                                            <h5>效能Cookie</h5>
+                                            <p>
+                                                這些 Cookie
+                                                能讓我們計算造訪次數和追蹤流量來源，藉以評估並改善我們網站的效能。此外，還能讓我們了解最受歡迎和最不受歡迎的頁面，同時查看訪客如何使用網站。若你不允許瀏覽器使用
+                                                Cookie，這些資訊將不會用於提升網站表現。
+                                            </p>
+                                            <div class="form-check form-switch">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                                    Google
+                                                    Analytics (分析)
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                       id="flexSwitchCheckDefault">
+                                            </div>
+                                            <hr>
+                                            <div class="form-check form-switch">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                                    Google
+                                                    marketo.com
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                       id="flexSwitchCheckDefault">
+                                            </div>
+                                            <hr>
+                                            <div class="form-check form-switch">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                                    Google
+                                                    Airbnb 分析
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                       id="flexSwitchCheckDefault">
+                                            </div>
+                                            <hr>
+                                            <div class="form-check form-switch">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                                    Google
+                                                    Google Universal Analytics
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                       id="flexSwitchCheckDefault">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                儲存
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="function-share-to-facebook">
+                            <div class="function-share-to-facebook-content">
+                                <h5>在 Facebook 上分享我的動態</h5>
+                                <p>我們透過 Cookie 提供個人化內容、根據用戶偏好投放廣告，並提供更安全的使用體驗。</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                       id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="function-share-to-facebook">
+                            <div class="function-share-to-facebook-content">
+                                <h5>將你的心願單發布到 Facebook</h5>
+                                <p>開啟此功能代表你的心願單會自動發布到 Facebook。</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                       id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="function-share-to-facebook">
+                            <div class="function-share-to-facebook-content">
+                                <h5>讓我的個人資料及房源出現在搜尋引擎中</h5>
+                                <p>開啟此功能代表你的個人資料和房源頁面會出現在 Google 等搜尋引擎的搜尋結果中。</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                       id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 right-container py-md-auto d-none d-md-block ms-md-5">
+                    <hr id="hr-sm-display">
+                    <i class="bi bi-binoculars"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-binoculars" viewBox="0 0 16 16">
+                        <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z" />
+                    </svg>
+                    <h5>選擇想分享的內容</h5>
+                    <p>Airbnb 非常重視你的隱私。你可以使用此頁面選擇分享活動的方式。</p>
+                </div>
+            </div>
+    </section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
+
+@section topCSS{
+    <link href="~/css/Notification/normalize.css" rel="stylesheet" />
+    <link href="~/css/Notification/Notification.css" rel="stylesheet" />
+}
