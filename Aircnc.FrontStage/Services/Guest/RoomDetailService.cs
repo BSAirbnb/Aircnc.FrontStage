@@ -17,21 +17,21 @@ namespace Aircnc.FrontStage.Services.Guest
         }
 
         //以下為 RoomDetail 測試
-        public IEnumerable<RoomDetailDto> GetRoomDetailById(int roomId)
+        public RoomDetailDto GetRoomDetailById(int roomId)
         {
-            var rooms = _dbRepository.GetAll<Room>().Where(x => x.RoomId == roomId).Select(y => new RoomDetailDto()
-            {
-                RoomId = y.RoomId,
-                District = y.District,
-                City = y.City,
-                RoomName = y.RoomName,
-                RoomCount = y.RoomCount,
-                BedCount = y.BedCount,
-                BathroomCount = y.BathroomCount,
-                RoomDescription = y.RoomDescription
-            });
-
-            return rooms;
+            var result = _dbRepository.GetAll<Room>().FirstOrDefault(x => x.RoomId == roomId);
+            var room = new RoomDetailDto() { 
+                RoomId = result.RoomId,
+                District = result.District,
+                City = result.City,
+                RoomName = result.RoomName,
+                RoomCount = result.RoomCount,
+                BedCount = result.BedCount,
+                BathroomCount = result.BathroomCount,
+                RoomDescription = result.RoomDescription
+            };
+        
+            return room;
         }
     }
 }
