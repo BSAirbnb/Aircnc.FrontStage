@@ -15,7 +15,7 @@ namespace Aircnc.FrontStage.Services.Guest
         }
         public IEnumerable<SearchRoomDto> GetRoom(string location)
         {
-            return _dbRepository.GetAll<Room>().Where(room => room.City == location).Select(room => new SearchRoomDto
+            return _dbRepository.GetAll<Room>().Where(room => room.City == location && room.Status == 2).Select(room => new SearchRoomDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,
