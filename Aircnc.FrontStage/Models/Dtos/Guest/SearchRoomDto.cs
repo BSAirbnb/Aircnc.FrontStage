@@ -22,15 +22,10 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string RoomDescription { get; set; }
         public string RoomName { get; set; }
         public decimal UnitPrice { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Aircnc.FrontStage.Models.Entities.Order> Orders { get; set; }
-        public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
-        public virtual ICollection<RoomImg> RoomImgs { get; set; }
-        public virtual ICollection<RoomServiceLabel> RoomServiceLabels { get; set; }
-        public virtual ICollection<WishList> WishLists { get; set; }
+        public int Comments { get; set; }
+        public List<string> RoomImgs { get; set; }
+        public List<int> RoomServiceLabels { get; set; }
+        public List<string> WishLists { get; set; }
     }
 }
