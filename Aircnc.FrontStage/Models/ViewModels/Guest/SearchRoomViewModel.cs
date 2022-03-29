@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Aircnc.FrontStage.Models.ViewModels.Guest
 {
@@ -19,8 +20,10 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public string RoomDescription { get; set; }
         public string RoomName { get; set; }
         public decimal UnitPrice { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
+        public int Comments { get; set; }
+        public List<string> RoomImgs { get; set; }
+        public List<int> RoomServiceLabels { get; set; }
+        public List<string> WishLists { get; set; }
     }
 }
