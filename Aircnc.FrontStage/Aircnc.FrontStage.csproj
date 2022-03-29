@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Guest\" />
     <Folder Include="wwwroot\css\Privacy_and_Share\" />
     <Folder Include="wwwroot\css\Notification\" />
     <Folder Include="wwwroot\css\Personal_Details\" />
