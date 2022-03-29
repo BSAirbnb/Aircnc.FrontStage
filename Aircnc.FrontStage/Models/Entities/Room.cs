@@ -36,6 +36,8 @@ namespace Aircnc.FrontStage.Models.Entities
         public decimal UnitPrice { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
+        public string RoomCheckInTime { get; set; }
+        public string RoomCheckOutTime { get; set; }
         public int Status { get; set; }
         [ StringLength(500)]
         public string Note { get; set; }
