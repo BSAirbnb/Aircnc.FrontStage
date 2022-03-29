@@ -20,4 +20,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Privacy_and_Share\" />
+    <Folder Include="wwwroot\css\Notification\" />
+    <Folder Include="wwwroot\css\Personal_Details\" />
+    <Folder Include="wwwroot\css\Preference\Photos\" />
+  </ItemGroup>
+
 </Project>

@@ -8,6 +8,8 @@
     <link href="~/css/Nav_Footer/normalize.css" rel="stylesheet" />
     <link href="~/css/Nav_Footer/homepage.css" rel="stylesheet" />
     <title>@ViewData["Title"]</title>
+    @RenderSection("topCSS", required: false)
+    @RenderSection("topJS", required: false)
 </head>
 <body>
     <nav class="navbar navbar-light bg-white border-bottom container-fluid">

@@ -1,0 +1,112 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    border-bottom: 1px solid #000;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    z-index: 4;
+}
+.navbar-brand:hover{
+    border: none;
+}
+.logo{
+    width: 50px;
+}
+li{
+    list-style: none;
+}
+footer ul {
+    font-size: 12px;
+}
+footer h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+.dropdown-menu.dropdown-menu-end{
+    border-radius: 20px;
+}
+.social:hover{
+    border: none;
+    color: #faa;
+    transition: 0.3s ease;
+}
+section{
+    margin-top: 120px;
+    margin-bottom: 50px;
+}
+.update-photo{
+    text-align: center;
+}
+section{
+    margin-top: 150px;
+}
+.profile-picture-container{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+.profile-picture-container img{
+    width: 100%;
+    height: 100%;
+}
+.left-container{
+    box-sizing: border-box;
+    border: lightgray solid;
+    border-radius: 10px;
+}
+
+#hr-sm-display{
+    display: none;
+}
+
+@media screen and (max-width:767px) {
+    .left-container{
+        box-sizing: border-box;
+        /* height: 5%; */
+        /* padding: 2%; */
+        border: none;
+    }
+    #hr-sm-display{
+        display: block;
+    }
+}
+
+.profile{
+    margin-top: 8%;
+}
+.regist-date{
+    font-size: 14px;
+    color: #717171
+}
+
+.property-photo img{
+    width: 50%;
+    height: 55%;
+    border-radius: 5%;
+}
+.right-container{
+    box-sizing: border-box;
+    padding-left: 5%;
+}
+.commenter-profile-container{
+    display: flex;
+}
+.commenter-picture{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+}
+.commenter-profile-container img{
+    width: 100%;
+    height: 100%;
+}
+.review-amount{
+    font-weight: bold;
+    font-size: 20px;
+}
