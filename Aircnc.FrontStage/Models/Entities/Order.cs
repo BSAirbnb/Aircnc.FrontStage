@@ -28,7 +28,6 @@ namespace Aircnc.FrontStage.Models.Entities
         public int GuestCount { get; set; }
         public decimal OriginalPrice { get; set; }
         public string Address { get; set; }
-
         public virtual Room Room { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<TransactionStatus> TransactionStatuses { get; set; }
