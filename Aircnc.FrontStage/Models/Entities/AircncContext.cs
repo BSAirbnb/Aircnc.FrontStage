@@ -156,7 +156,14 @@ namespace Aircnc.FrontStage.Models.Entities
 
                 entity.HasIndex(e => e.UserId, "IX_Order_UserId");
 
-                entity.Property(e => e.Address).IsRequired();
+                entity.Property(e => e.Country);
+
+                entity.Property(e => e.City).IsRequired();
+
+                entity.Property(e => e.District).IsRequired();
+
+                entity.Property(e => e.Street).IsRequired();
+
 
                 entity.Property(e => e.BookingDateTime).HasColumnType("datetime");
 
@@ -684,6 +691,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     BookingDateTime = new DateTime (2022,07,01),
                     UserId = 1,
                     RoomId = 1,
+                    RoomName = "高級馬桶",
                     CkeckIn = new DateTime(2022, 07, 11),
                     CkeckOut = new DateTime(2022, 07, 12),
                     PaymentType = 1,
@@ -692,7 +700,10 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomCount = 1,
                     GuestCount = 2,
                     OriginalPrice = 2000,
-                    Address = "台中市"
+                    City = "台中市",
+                    District = "沙鹿區",
+                    Street = "沙鹿路87樓"
+
                 },
                  new Order
                  {
@@ -708,7 +719,10 @@ namespace Aircnc.FrontStage.Models.Entities
                      RoomCount = 1,
                      GuestCount = 4,
                      OriginalPrice = 6000,
-                     Address = "花蓮市"
+                     City = "花蓮市",
+                     District = "吉安鄉",
+                     Street = "曾記麻糬路3號",
+                     RoomName = "麻糬吃到飽飯店"
                  },
                   new Order
                   {
@@ -724,7 +738,10 @@ namespace Aircnc.FrontStage.Models.Entities
                       RoomCount = 1,
                       GuestCount = 2,
                       OriginalPrice = 2000,
-                      Address = "台中市"
+                      City = "台北市",
+                      District = "信義區",
+                      Street = "市府路一號",
+                      RoomName = "台北市政府柯文哲辦公室"
                   },
                    new Order
                    {
@@ -740,7 +757,11 @@ namespace Aircnc.FrontStage.Models.Entities
                        RoomCount = 1,
                        GuestCount = 1,
                        OriginalPrice = 1000,
-                       Address = "台中市"
+                       City = "台南市",
+                       District = "中西區",
+                       Street = "國華街",
+                       RoomName = "堯平布朗尼吃到飽飯店"
+
                    },
                     new Order
                     {
@@ -756,7 +777,11 @@ namespace Aircnc.FrontStage.Models.Entities
                         RoomCount = 1,
                         GuestCount = 2,
                         OriginalPrice = 1500,
-                        Address = "新竹市"
+                        City = "新竹市",
+                        District = "東區",
+                        Street = "新竹科學園區路78號",
+                        RoomName = "高階工程師聚集旅社"
+
                     }
                 );
 

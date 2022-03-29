@@ -21,9 +21,13 @@ namespace Aircnc.FrontStage.Services
             return _dbRepository.GetAll<Order>().Where(order => order.UserId == UserId).Select(order => new OrderDto
             {
                 OrderId = order.OrderId,
+                RoomName = order.RoomName,
                 CkeckIn = order.CkeckIn,
                 CkeckOut = order.CkeckOut,
-                Address = order.Address
+                Country = order.Country,
+                City = order.City,
+                District = order.District,
+                Street = order.Street
             });
         }
 
@@ -34,7 +38,9 @@ namespace Aircnc.FrontStage.Services
                 OrderId = x.OrderId,
                 CkeckIn = x.CkeckIn,
                 CkeckOut = x.CkeckOut,
-                Address = x.Address
+                City = x.City,
+                District = x.District,
+                Street = x.Street
             });
         }
     }
