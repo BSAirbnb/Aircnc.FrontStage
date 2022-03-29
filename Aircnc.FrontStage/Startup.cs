@@ -1,5 +1,6 @@
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Services;
+using Aircnc.FrontStage.Services.Guest;
 using Aircnc_0321.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +37,7 @@ namespace Aircnc.FrontStage
             });
             services.AddTransient<DBRepository, DBRepository>();
             services.AddTransient<RoomOwnerService, RoomOwnerService>();
-
+            services.AddTransient<SearchRoomService, SearchRoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
