@@ -48,4 +48,21 @@ namespace Aircnc.FrontStage.Models.Entities
         public virtual ICollection<RoomServiceLabel> RoomServiceLabels { get; set; }
         public virtual ICollection<WishList> WishLists { get; set; }
     }
+
+    public enum Status
+    {
+        Online = 1,
+        Offline = 2,
+        Pending = 3
+    }
+
+    public enum HouseType
+    {
+
+    }
+    
+    public enum RoomType
+    {
+
+    }
 }
