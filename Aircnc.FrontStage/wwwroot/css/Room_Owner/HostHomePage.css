@@ -92,6 +92,10 @@
     border-radius: 10px;
 }
 
+.host_your_orders_card {
+    width: 70%;
+}
+
 @media screen and (max-width: 768px) {
     .host_your_orders {
         flex-direction: column;

@@ -24,8 +24,8 @@ namespace Aircnc.FrontStage.Services.RoomOwner
                 Status = reservation.Status,
                 GuestName = reservation.User.Name,
                 RoomName = reservation.Room.RoomName,
-                CkeckIn = reservation.CkeckIn,
-                CkeckOut = reservation.CkeckOut
+                CkeckIn = reservation.CkeckIn.ToString("MM/dd"),
+                CkeckOut = reservation.CkeckOut.ToString("MM/dd")
             }).ToList();
         }
     }
