@@ -11,8 +11,8 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int OwnerId { get; set; }
         public string GuestName { get; set; }
         public int Status { get; set; }
-        public DateTime BookingDateTime { get; set; }
-        public DateTime CkeckIn { get; set; }
-        public DateTime CkeckOut { get; set; }
+        public string BookingDateTime { get; set; }
+        public string CkeckIn { get; set; }
+        public string CkeckOut { get; set; }
     }
 }
