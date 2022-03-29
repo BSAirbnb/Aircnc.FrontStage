@@ -35,7 +35,9 @@ namespace Aircnc.FrontStage
 
             });
             services.AddTransient<DBRepository, DBRepository>();
+
             services.AddTransient<RoomOwnerService, RoomOwnerService>();
+            services.AddTransient<OrderService, OrderService>();
 
         }
 
