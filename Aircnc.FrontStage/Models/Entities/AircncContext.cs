@@ -164,7 +164,7 @@ namespace Aircnc.FrontStage.Models.Entities
 
                 entity.Property(e => e.Street).IsRequired();
 
-
+                entity.Property(e => e.RoomName).IsRequired();
                 entity.Property(e => e.BookingDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.CkeckIn).HasColumnType("date");
