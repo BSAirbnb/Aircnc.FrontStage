@@ -30,7 +30,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
 
         public virtual User User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Aircnc.FrontStage.Models.Entities.Order> Orders { get; set; }
         public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
         public virtual ICollection<RoomImg> RoomImgs { get; set; }
         public virtual ICollection<RoomServiceLabel> RoomServiceLabels { get; set; }
