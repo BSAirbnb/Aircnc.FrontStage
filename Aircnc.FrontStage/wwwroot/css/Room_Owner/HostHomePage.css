@@ -2,6 +2,11 @@
     text-decoration: none;
 }
 
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 /* 今天 */
 .host_HomePage_today_container {
     width: 100%;
