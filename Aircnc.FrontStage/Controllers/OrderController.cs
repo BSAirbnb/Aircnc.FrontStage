@@ -31,8 +31,8 @@ namespace Aircnc.FrontStage.Controllers
             OrderId = 1;
             var order = _orderService.GetOrderByOrderId(OrderId).Select(x=>new OrderViewModel
             {
-                CkeckIn = x.CkeckIn,
-                CkeckOut = x.CkeckOut,
+                CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
+                CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
                 Address = x.Address
             });
             return View(order);

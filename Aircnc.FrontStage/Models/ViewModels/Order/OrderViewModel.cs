@@ -9,8 +9,8 @@ namespace Aircnc.FrontStage.Models.ViewModels.Order
     {
         public int OrderId { get; set; }
 
-        public DateTime CkeckIn { get; set; }
-        public DateTime CkeckOut { get; set; }
+        public string CkeckIn { get; set; }
+        public string CkeckOut { get; set; }
         public string Address { get; set; }
 
     }
