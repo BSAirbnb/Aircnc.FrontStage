@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
 {
-    public class RoomOwnerDto
+    public class HostListDto
     {
         public int RoomId { get; set; }
         public int UserId { get; set; }
         public string RoomName { get; set; }
-
         public int BathroomCount { get; set; }
         public string Address { get; set; }
         public int Status { get; set; }

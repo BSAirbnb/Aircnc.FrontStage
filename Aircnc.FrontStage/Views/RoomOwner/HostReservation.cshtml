@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.HostReservationViewModel>
+@{
+    ViewData["Title"] = "Aiecnc 預定";
+
+    Layout = "RoomOwnerNavbar.cshtml";
+}
+
+@section topCSS{ 
+    <link href="~/css/Room_Owner/HostReservation.css" rel="stylesheet" />
+}
+
+
+<section class="container-fluid d-flex justify-content-between mt-5">
+    <h1 class="h1_reservation"><i class="fas fa-angle-left"></i></i>預定</h1>
+
+    <div>
+        <!-- 篩選條件Btn -->
+        <div class="btn-group">
+            <button type="button" class="btn btn_filter" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-filter"></i></i>篩選條件
+            </button>
+            <div class="dropdown-menu dropdown_menu_filter">
+                <p>篩選條件</p>
+                <p>按日期篩選</p>
+                <span>開始或結束於下列日期範圍的預訂</span>
+                <form>
+                    <label>
+                        從
+                        <input type="date" name="filter_from" value="從">
+                        <span class="validity"></span>
+                    </label>
+                </form>
+                <button class="btn button_filter_submit">套用</button>
+
+            </div>
+        </div>
+        <!-- 匯出Btn -->
+        <div class="btn-group">
+            <button type="button" class="btn btn_export" data-bs-toggle="dropdown" aria-expanded="false">
+                匯出<i class="fas fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">下載CSV檔...</a></li>
+                <li><a class="dropdown-item" href="#">同步您的預定...</a></li>
+                <li><a class="dropdown-item" href="#">下載增值稅發票...</a></li>
+            </ul>
+        </div>
+        <!-- 列印Btn -->
+        <button class="btn btn_print">列印</button>
+    </div>
+</section>
+
+<section class="container-fluid tabs_container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-upcoming-tab" data-bs-toggle="tab" data-bs-target="#nav-upcoming" type="button" role="tab" aria-controls="nav-upcoming" aria-selected="true">將至旅程</button>
+            <button class="nav-link" id="nav-finished-tab" data-bs-toggle="tab" data-bs-target="#nav-finished" type="button" role="tab" aria-controls="nav-finished" aria-selected="false">已完成</button>
+            <button class="nav-link" id="nav-canceled-tab" data-bs-toggle="tab" data-bs-target="#nav-canceled" type="button" role="tab" aria-controls="nav-canceled" aria-selected="false">已取消</button>
+            <button class="nav-link" id="nav-All-result-tab" data-bs-toggle="tab" data-bs-target="#nav-All-result" type="button" role="tab" aria-controls="nav-All-result" aria-selected="false">全部</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-upcoming" role="tabpanel" aria-labelledby="nav-upcoming-tab">
+            <div class="tab_pane_text_upcoming">
+                <p>為全體用戶提供健康和安全指引</p>
+                <span>隨著旅遊業回溫，我們希望能保障全體社區的安全。如果和旅客會有互動，請遵守健康和安全指引。<a href="https://www.airbnb.com.tw/help/article/2839/airbnb-%E4%BD%8F%E5%AE%BF%E7%9A%84%E5%81%A5%E5%BA%B7%E5%92%8C%E5%AE%89%E5%85%A8%E8%A6%81%E6%B1%82" target="_blank">參閱指引</a> </span>
+            </div>
+            <div class="upcoming_check_all_reservations">
+                <p>您接下來沒有預訂</p>
+                <a href="#">查看所有預訂</a>
+            </div>
+
+            <!-- 動態生成 -->
+            <div class="reservations_upcoming">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">訂單狀態</th>
+                            <th scope="col">房客姓名</th>
+                            <th scope="col">訂房日期</th>
+                            <th scope="col">入住日期</th>
+                            <th scope="col">退房日期</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th scope="row">@item.Status</th>
+                            <td>@item.GuestName</td>
+                            <td>@item.BookingDateTime</td>
+                            <td>@item.CkeckIn</td>
+                            <td>@item.CkeckOut</td>
+                            <td><button class="btn btn-primary text-white">詳細</button></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+        </div>
+
+        <div class="tab-pane fade" id="nav-finished" role="tabpanel" aria-labelledby="nav-finished-tab">
+            <div class="tab_pane_text">
+                <p>找不到結果</p>
+                <span>請嘗試不同的篩選條件。</span>
+            </div>
+            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+        </div>
+        <div class="tab-pane fade" id="nav-canceled" role="tabpanel" aria-labelledby="nav-canceled-tab">
+            <div class="tab_pane_text">
+                <p>找不到結果</p>
+                <span>請嘗試不同的篩選條件。</span>
+            </div>
+            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+        </div>
+        <div class="tab-pane fade" id="nav-All-result" role="tabpanel" aria-labelledby="nav-All-result-tab">
+            <div class="tab_pane_text">
+                <p>找不到結果</p>
+                <span>請嘗試不同的篩選條件。</span>
+            </div>
+            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+        </div>
+    </div>
+    </div>
+</section>
+
+
