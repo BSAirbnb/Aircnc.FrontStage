@@ -1,0 +1,74 @@
+﻿@using Aircnc.FrontStage.Models.ViewModels.Guest
+@model SearchRoomViewModel
+
+@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="card mb-3 mx-3">
+	<div class="row g-0">
+		<div class="col-md-4 cardImgBox">
+			<div id="carouselIndicators-@Model.RoomId" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselIndicators-@Model.RoomId" data-bs-slide-to="0"
+							class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselIndicators-@Model.RoomId" data-bs-slide-to="1"
+							aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselIndicators-@Model.RoomId" data-bs-slide-to="2"
+							aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="https://picsum.photos/500/1000/?random=10"
+							 class="d-block w-100 rounded" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="https://picsum.photos/900/700/?random=20"
+							 class="d-block w-100 rounded" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="https://picsum.photos/600/200/?random=30"
+							 class="d-block w-100 rounded" alt="...">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselIndicators-@Model.RoomId" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselIndicators-@Model.RoomId" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="card-body">
+				<div>
+					<div class="d-flex justify-content-between">
+						<p class="card-text mb-0">
+							<small class="text-muted">位於 @Model.City @Model.District 的 @Model.RoomType</small>
+						</p>
+						<input type="checkbox" class="btn-check" id="WishList" autocomplete="off">
+						<label class="btn labelHeart" for="WishList" data-bs-toggle="modal"
+							   data-bs-target="#WishListModal">
+							<i class="far fa-heart"></i><i class="fas fa-heart"></i>
+						</label>
+
+					</div>
+					<h5 class="card-title">@Model.RoomName</h5>
+					<p class="card-text">
+						<small class="text-muted">
+							@Model.Pax 位.@Model.RoomCount 間臥室.@Model.BedCount 張床.@Model.BathroomCount 間共用衛浴<br>
+							廚房.空調設備
+						</small>
+					</p>
+				</div>
+				<div class="d-flex mt-auto">
+					<p class="card-text "><small class="text-muted">4.88(277則評價)</small></p>
+					<p class="card-text ms-auto">$@Model.UnitPrice / 晚</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

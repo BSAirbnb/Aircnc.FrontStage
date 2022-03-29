@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Aircnc.FrontStage.Models.Dtos.Guest
 {
-    public class SearchRoomResult
+    public class SearchRoomDto
     {
         public int RoomId { get; set; }
         public int UserId { get; set; }
@@ -25,9 +25,6 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
-        [StringLength(500)]
-        public string Note { get; set; }
-
         public virtual User User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Aircnc.FrontStage.Models.Entities.Order> Orders { get; set; }

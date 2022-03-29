@@ -1,0 +1,63 @@
+.advance-search{
+    position: fixed;
+    top: 80px;
+    z-index: 4;
+    background-color: #fff;
+}
+.room-list-map{
+    margin-top: 130px;
+    /* height: 80%; */
+}
+.mapbox{
+    position:sticky;
+    top: 130px;
+}
+#map{
+    height: 80vh;
+}
+
+@media screen and (max-width:767px){
+    .carousel-item > img{
+        height: 400px;
+        }
+}
+@media screen and (min-width:768px){
+    .carousel-item > img{
+        height: 12vw;
+        }
+}
+
+.card-body{
+    padding: 0;
+    margin: 0 15px;
+}
+#btn-switch-map-list{
+    width: 100px;
+    position: fixed;
+    bottom: 50px;
+    left: 40%;
+    z-index: 4;
+}
+.btn-check:focus+.btn, .btn:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 253, 253, 0.25);
+}
+.advance-search-item{
+    font-size: 14px;
+}
+.page-link{
+    color: black;
+}
+.page-link:focus {
+    z-index: 3;
+    color: black;
+    background-color: #e9ecef;
+    outline: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+}
+.page-link:hover {
+    z-index: 2;
+    color: black;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
