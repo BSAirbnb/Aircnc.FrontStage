@@ -39,7 +39,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<HostListService, HostListService>();
             services.AddTransient<HostReservationService, HostReservationService>();
             services.AddTransient<HostHomePageService, HostHomePageService>();
-
+            services.AddTransient<OrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
