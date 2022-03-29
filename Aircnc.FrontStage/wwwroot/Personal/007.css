@@ -1,0 +1,51 @@
+.section1 {
+    margin-top: 150px;
+}
+
+.rightbox {
+    box-sizing: border-box;
+    border: 1px solid cadetblue;
+    border-radius: 21px;
+    padding: 25px;
+    height: 90vh;
+
+}
+
+.rbh {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 9px;
+    color: rgb(65, 54, 54);
+}
+
+
+.title {
+    font-size: 20px;
+}
+
+.btnss {
+    width: 95px;
+    height: 60px;
+    border-radius: 10px;
+    background-color:black;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0ch;
+}
+
+.inp{
+    border-radius: 15px;
+    height: 60px;
+}
+
+.btnss {
+    width: 200px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: rgb(6, 146, 156);
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 15px;
+    border: 0ch;
+}

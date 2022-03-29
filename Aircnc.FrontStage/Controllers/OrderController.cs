@@ -33,7 +33,10 @@ namespace Aircnc.FrontStage.Controllers
             {
                 CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
                 CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
-                Address = x.Address
+                RoomName = x.RoomName,
+                City = x.City,
+                District = x.City,
+                Street = x.Street
             });
             return View(order);
         }

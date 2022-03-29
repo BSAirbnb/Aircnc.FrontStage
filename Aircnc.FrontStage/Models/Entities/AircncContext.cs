@@ -156,7 +156,14 @@ namespace Aircnc.FrontStage.Models.Entities
 
                 entity.HasIndex(e => e.UserId, "IX_Order_UserId");
 
-                entity.Property(e => e.Address).IsRequired();
+                entity.Property(e => e.Country);
+
+                entity.Property(e => e.City).IsRequired();
+
+                entity.Property(e => e.District).IsRequired();
+
+                entity.Property(e => e.Street).IsRequired();
+
 
                 entity.Property(e => e.BookingDateTime).HasColumnType("datetime");
 
@@ -606,9 +613,18 @@ namespace Aircnc.FrontStage.Models.Entities
                 new Room() { RoomId = 3, UserId = 3, HouseType = 3, RoomType = 3, Street = "東新街116-3號", District = "南港區", City = "台北市", Country = "台灣", Pax = 2, BedCount = 1, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "景觀雙人房A25，免費早餐、交通方便、溫馨舒適", UnitPrice = 500, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
                 new Room() { RoomId = 4, UserId = 4, HouseType = 4, RoomType = 3, Street = "敦化南路二段201號", District = "大安區", City = "台北市", Country = "台灣", Pax = 5, BedCount = 5, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "303魚池白宮", UnitPrice = 1110, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
                 new Room() { RoomId = 5, UserId = 1, HouseType = 1, RoomType = 2, Street = "林森南路17號", District = "中正區", City = "台北市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "捷運站步行3分鐘 近夜市與101 Near MRT & Taipei 101", UnitPrice = 990, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 6, UserId = 2, HouseType = 5, RoomType = 1, Street = "福德路57巷2號1樓", District = "士林區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "1 min walk to YounChun MRT, center of Taipei city", UnitPrice = 3210, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 6, UserId = 2, HouseType = 2, RoomType = 1, Street = "福德路57巷2號1樓", District = "士林區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "1 min walk to YounChun MRT, center of Taipei city", UnitPrice = 3210, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
                 new Room() { RoomId = 7, UserId = 6, HouseType = 2, RoomType = 2, Street = "中正路570號", District = "永和區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "榮星花園旁靜巷溫馨小宅～適合親子同遊！", UnitPrice = 1495, CreateTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 8, UserId = 5, HouseType = 3, RoomType = 3, Street = "大仁街44號", District = "三重區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "[K] 38 ✦ 大雙人房 含獨立衛浴 沙發", UnitPrice = 865, CreateTime = new DateTime(2011, 6, 10), Status = 2 }
+                new Room() { RoomId = 8, UserId = 5, HouseType = 3, RoomType = 3, Street = "大仁街44號", District = "三重區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "[K] 38 ✦ 大雙人房 含獨立衛浴 沙發", UnitPrice = 865, CreateTime = new DateTime(2011, 6, 10), Status = 2 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "省府路130號", District = "南投市", City = "南投縣", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "超級優質", RoomName = "免費午餐，交通方便、溫馨舒適", UnitPrice = 950, CreateTime = new DateTime(2020, 9, 22), Status = 3 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "中山路二段", District = "彰化市", City = "彰化縣", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "一定要來", RoomName = "溫馨有事，超大床", UnitPrice = 1560, CreateTime = new DateTime(2019, 2, 25), Status = 2 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "中正路66號", District = "新埤鄉", City = "屏東縣", Country = "台灣", Pax = 2 BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "必需來住 必需來住 必需來住 必需來住", RoomName = "免費午餐，鄰近夜市", UnitPrice = 1230, CreateTime = new DateTime(2022, 10, 15), Status = 1 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "南京路19號", District = "台東市", City = "台東縣", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "鄰近花園 可以慢跑", RoomName = "交通方便、溫馨舒適，超大床", UnitPrice = 2890, CreateTime = new DateTime(2018, 12, 05), Status = 2 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "忠孝路250號", District = "麻豆區", City = "台南市", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "這裡超吵 不要來", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 600, CreateTime = new DateTime(2015, 11, 02), Status = 1 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "縣府路1號", District = "桃園區", City = "桃園市", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡床位，有午餐", RoomName = "漫步在雲端，語言交換，超大床", UnitPrice = 500, CreateTime = new DateTime(2016, 9, 06), Status = 2 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "台灣大道3段99號", District = "西屯區", City = "台中市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大床位，有免費歪泛", RoomName = "免費午餐，溫馨寬敞的樓中樓套房，超大床", UnitPrice = 400, CreateTime = new DateTime(2017, 7, 08), Status = 1 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "凱旋2路132-1號號", District = "苓雅區", City = "高雄市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大位 來騎車", RoomName = "免費午餐，交通方便", UnitPrice = 300, CreateTime = new DateTime(2018, 6, 19), Status = 3 },
+                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "府前路17號", District = "花蓮市", City = "花蓮縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "大車位，有回饋", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 750, CreateTime = new DateTime(2019, 5, 26), Status = 2 }
                 );
             modelBuilder.Entity<WishList>().HasData(
                 new WishList { WishListId = 1, UserId = 1, RoomId = 1, CreateTime = new DateTime(2013, 7, 18) },
@@ -684,6 +700,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     BookingDateTime = new DateTime (2022,07,01),
                     UserId = 1,
                     RoomId = 1,
+                    RoomName = "高級馬桶",
                     CkeckIn = new DateTime(2022, 07, 11),
                     CkeckOut = new DateTime(2022, 07, 12),
                     PaymentType = 1,
@@ -692,7 +709,10 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomCount = 1,
                     GuestCount = 2,
                     OriginalPrice = 2000,
-                    Address = "台中市"
+                    City = "台中市",
+                    District = "沙鹿區",
+                    Street = "沙鹿路87樓"
+
                 },
                  new Order
                  {
@@ -708,7 +728,10 @@ namespace Aircnc.FrontStage.Models.Entities
                      RoomCount = 1,
                      GuestCount = 4,
                      OriginalPrice = 6000,
-                     Address = "花蓮市"
+                     City = "花蓮市",
+                     District = "吉安鄉",
+                     Street = "曾記麻糬路3號",
+                     RoomName = "麻糬吃到飽飯店"
                  },
                   new Order
                   {
@@ -724,7 +747,10 @@ namespace Aircnc.FrontStage.Models.Entities
                       RoomCount = 1,
                       GuestCount = 2,
                       OriginalPrice = 2000,
-                      Address = "台中市"
+                      City = "台北市",
+                      District = "信義區",
+                      Street = "市府路一號",
+                      RoomName = "台北市政府柯文哲辦公室"
                   },
                    new Order
                    {
@@ -740,7 +766,11 @@ namespace Aircnc.FrontStage.Models.Entities
                        RoomCount = 1,
                        GuestCount = 1,
                        OriginalPrice = 1000,
-                       Address = "台中市"
+                       City = "台南市",
+                       District = "中西區",
+                       Street = "國華街",
+                       RoomName = "堯平布朗尼吃到飽飯店"
+
                    },
                     new Order
                     {
@@ -756,7 +786,11 @@ namespace Aircnc.FrontStage.Models.Entities
                         RoomCount = 1,
                         GuestCount = 2,
                         OriginalPrice = 1500,
-                        Address = "新竹市"
+                        City = "新竹市",
+                        District = "東區",
+                        Street = "新竹科學園區路78號",
+                        RoomName = "高階工程師聚集旅社"
+
                     }
                 );
 

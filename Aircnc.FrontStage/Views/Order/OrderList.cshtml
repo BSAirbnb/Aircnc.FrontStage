@@ -37,12 +37,13 @@
                 <div class="col-10 col-md-5 order-content">
                     <!-- District -->
                     @*<span class="fw-bold fs-3 d-block mt-2 ">中正區</span>*@
-                    @foreach (var district in Model)
+                    @foreach (var data in Model)
                     {
-                        <span class="fw-bold fs-3 d-block mt-2 ">@district.Address</span>
+                        <span class="fw-bold fs-3 d-block mt-2 ">@data.District</span>
+                        <!-- 房源名稱 -->
+                        <span class="order-room-detail fs-5">Vicky出租的高級馬桶房間</span>
+                        <span class="order-room-detail fs-5">@data.RoomName</span>
                     }
-                    <!-- 房源名稱 -->
-                    <span class="order-room-detail fs-5">Vicky出租的高級馬桶房間</span>
                     <div class="date-address-content d-flex mt-4">
                         <!-- 入退房日期 -->
                         <div class="col-5 check-in-out-date">
@@ -55,7 +56,12 @@
                         </div>
                         <!-- 入住地址 -->
                         <div class="col-6 col-md-6 stay-address ">
-                            <span class="fs-5">台北市信義區市府路一號87樓</span>
+                            @foreach (var address in Model)
+                            {
+                                <span class="fs-5">@*台北市信義區市府路一號87樓*@</span>
+                                <span class="fs-5">@address.City@address.District@address.Street</span>
+
+                            }
                         </div>
                     </div>
                 </div>
@@ -121,7 +127,7 @@
                                 @*<span class="d-block">中正區</span>*@
                                 @foreach (var district in Model)
                                 {
-                                    <span class="d-block">@district.Address</span>
+                                    <span class="d-block">@district.District</span>
 
                                 }
                                 <span class="d-block">房東:ABC</span>
@@ -150,7 +156,7 @@
                                 @*<span class="d-block">中正區</span>*@
                                 @foreach (var district in Model)
                                 {
-                                    <span class="d-block">@district.Address</span>
+                                    <span class="d-block">@district.District</span>
 
                                 }
                                 <span class="d-block">房東:ABC</span>

@@ -1,0 +1,38 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    border-bottom: 1px solid #000;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    z-index: 4;
+}
+.navbar-brand:hover{
+    border: none;
+}
+.logo{
+    width: 50px;
+}
+li{
+    list-style: none;
+}
+
+footer ul {
+    font-size: 12px;
+}
+footer h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+.dropdown-menu.dropdown-menu-end{
+    border-radius: 20px;
+}
+.social:hover{
+    border: none;
+    color: #faa;
+    transition: 0.3s ease;
+}
+

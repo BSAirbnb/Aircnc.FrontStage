@@ -1,0 +1,54 @@
+.section1 {
+    margin-top: 100px;
+}
+
+.rounded {
+    border-radius: 1.50rem !important;
+}
+
+.textbox2 {
+    /* margin-left: 40px; */
+    font-size: 20px;
+}
+
+.button5 {
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid black;
+    height: 45px;
+    width: 100%;
+}
+
+.button5:hover {
+    background-color: rgb(245, 239, 239);
+}
+
+.section2 {
+    font-size: 15px;
+}
+
+.section3 {
+    font-size: 20px;
+}
+
+footer {
+    margin-top: 150px;
+}
+
+.middleline {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.info-center{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.info-center:hover{
+    text-decoration: underline;
+    font-weight: bold;
+    color: black;
+    border-bottom: none;
+}
