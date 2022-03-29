@@ -41,7 +41,6 @@ namespace Aircnc.FrontStage
             services.AddTransient<HostReservationService, HostReservationService>();
             services.AddTransient<HostHomePageService, HostHomePageService>();
             services.AddTransient<OrderService, OrderService>();
-            services.AddTransient<RoomOwnerService, RoomOwnerService>();
             services.AddTransient<RoomDetailService, RoomDetailService>();
             services.AddTransient<NavSearchService, NavSearchService>();
 
