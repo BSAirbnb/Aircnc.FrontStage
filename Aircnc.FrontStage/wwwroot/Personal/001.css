@@ -1,0 +1,51 @@
+.section1 {
+    margin-top: 150px;
+}
+
+.rightbox {
+    box-sizing: border-box;
+    border: 1px solid cadetblue;
+    border-radius: 21px;
+    padding: 25px;
+    height: 85vh;
+
+}
+
+.rbh {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: rgb(65, 54, 54);
+}
+
+.rbht {
+    margin-top: 25px;
+    font-size: 17px;
+    color: grey;
+}
+
+.sec-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.btnss {
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+    background-color:black;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 15px;
+    border: 0ch;
+}
+
+.inp{
+    border-radius: 15px;
+    height: 60px;
+}

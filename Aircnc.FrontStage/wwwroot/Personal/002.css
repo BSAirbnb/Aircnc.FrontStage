@@ -1,0 +1,62 @@
+.section1 {
+    margin-top: 150px;
+    font-weight: bold;
+    
+}
+
+.rightbox {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 25px;
+    height: 75vh;
+
+}
+
+.rbh {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: rgb(65, 54, 54);
+}
+
+.rbh2 {
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: rgb(65, 54, 54);
+}
+
+.rbht {
+    margin-top: 25px;
+    font-size: 20px;
+    color: rgb(65, 54, 54);
+}
+
+.sec-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.select2 {
+    width: 75px;
+    height: 40px;
+    border-radius: 10px;
+    
+    background-color: rgb(6, 146, 156);
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 15px;
+    border: 0ch;
+}
+
+.linkline {
+    color: rgb(3, 94, 100);
+}
+.linkline:hover {
+    text-decoration: underline;
+    border-bottom: none;
+}
+
