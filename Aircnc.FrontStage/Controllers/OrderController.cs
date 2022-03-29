@@ -1,4 +1,5 @@
-﻿using Aircnc.FrontStage.Models.ViewModels.Order;
+﻿using Aircnc.FrontStage.Models.Entities;
+using Aircnc.FrontStage.Models.ViewModels.Order;
 using Aircnc.FrontStage.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,29 +17,21 @@ namespace Aircnc.FrontStage.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult OrderList(int OrderId) //透過使用者ID去找他的訂單們
+        public IActionResult OrderList(int UserId) //透過使用者ID去找他的訂單們
         {
-            //UserId = 1;
-            //var orderList = _orderService.GetAllOrderByUserId(UserId).Select(OrderDto => new OrderViewModel
-            //{
-            //    CkeckIn = OrderDto.CkeckIn,
-            //    CkeckOut = OrderDto.CkeckOut,
-            //    Address = OrderDto.Address
-            //});
-            //return View(orderList);
-
-            //用訂單ID找訂單
-            OrderId = 1;
-            var order = _orderService.GetOrderByOrderId(OrderId).Select(x=>new OrderViewModel
+            UserId = 1;
+            var orderList = _orderService.GetAllOrderByUserId(UserId).Select(x => new OrderViewModel
             {
                 CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
                 CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
                 RoomName = x.RoomName,
                 City = x.City,
-                District = x.City,
-                Street = x.Street
+                District = x.District,
+                Street = x.Street,
+                RoomImg = x.RoomImg
+
             });
-            return View(order);
+            return View(orderList);
         }
     }
 }

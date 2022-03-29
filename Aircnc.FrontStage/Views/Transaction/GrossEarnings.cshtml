@@ -1,0 +1,108 @@
+﻿@{ ViewData["Title"] = "交易紀錄"; Layout = "TransactionLayout.cshtml";}
+<!-- content -->
+<div class="container">
+    <!-- 新增收款方式的按鈕區塊 -->
+    <div class="row mt-5 ms-md-3">
+        <div class="col-10 col-md-8 add-new-payout-method border ms-md-5 p-3">
+            <div class="icon-add-payout-container d-flex">
+                <div class="icon-container">
+                    <i class="fas fa-exclamation-triangle fs-5 text-white icon"></i>
+                </div>
+                <div class="add-payout-content ms-3">
+                    <span class="fs-6 add fw-bold">新增收款方式</span>
+                    <span class="payout-content-text d-block fw-bold">你必須設定收款方式，才能收取款項。</span>
+                </div>
+            </div>
+            <div class="link-area mt-3 ms-5">
+                <a href="#" class="text-black fw-bold ms-3 know-detail">了解詳情</a>
+                <a href="#" class="text-black fw-bold start ms-2">開始吧</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查詢交易紀錄區塊 -->
+    <div class="row mt-4 ms-md-3">
+        <div class="col-10 col-md-8 ms-4 mt-5">
+            <span class="fs-2 fw-bold transactions ms-md-3">交易紀錄</span>
+        </div>
+        <!-- 選項切換列 -->
+        <div class="col-10 col-md-8">
+            <div class="options ms-md-2">
+                <ul class="nav-tabs">
+                    <a href="#" class="completed-transactions">已完成的收款</a>
+                    <a href="#" class="future-transactions">將至收款</a>
+                    <a href="#" class="gross-earnings">總收入</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 篩選器區塊 -->
+    <!-- 日期篩選區塊 -->
+    <div class="row mt-2 ms-3 ms-md-1">
+        <!-- 起始月份 -->
+        <div class="col-6 col-md-3 ms-md-5 mt-2">
+            <div class="input-group input-group-lg">
+                <select class="form-select ms-md-1" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>一月</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <!-- 起始年分 -->
+        <div class="col-4 col-md-3 ms-md-1 mt-sm-2">
+            <div class="input-group input-group-lg w-50">
+                <select class="form-select mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>2022</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <!-- 結束月份 -->
+        <div class="col-6 col-md-3 mt-sm-2">
+            <div class="input-group input-group-lg">
+                <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>一月</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <!-- 結束年分 -->
+        <div class="col-4 col-md-2 ms-md-1 mt-sm-2">
+            <div class="input-group input-group-lg w-50">
+                <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>2022</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 查詢結果區塊 -->
+    <div class="row mt-5 query">
+        <div class="col-2 col-md-3 submit">
+            <button class="btn border border-2 fw-bold query-submit">查詢</button>
+        </div>
+    </div>
+
+    <!-- reminder -->
+    <div class="row mt-3 ms-3 ms-md-5 mb-3 reminder">
+        <div class="col-10 col-md-8 ms-md-3 shadow py-4 px-3 border border-1">
+            <span class="fs-5">你沒有任何交易</span>
+            <span class="d-block fs-6">日期、房源及目前選擇的收款方式</span>
+        </div>
+    </div>
+</div>
+
+@section CSS{ 
+    <link href="~/css/Transaction/GrossEarnings.css" rel="stylesheet" />
+}

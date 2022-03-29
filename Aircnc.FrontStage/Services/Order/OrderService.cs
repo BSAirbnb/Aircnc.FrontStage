@@ -16,7 +16,7 @@ namespace Aircnc.FrontStage.Services
             _dbRepository = dBRepository;
         }
 
-        public IEnumerable<OrderDto>GetAllOrderByUserId(int UserId)
+        public IEnumerable<OrderDto>GetAllOrderByUserId(int UserId) //撈使用者所有的訂單(包含過去現在取消)
         {
             return _dbRepository.GetAll<Order>().Where(order => order.UserId == UserId).Select(order => new OrderDto
             {
@@ -27,21 +27,18 @@ namespace Aircnc.FrontStage.Services
                 Country = order.Country,
                 City = order.City,
                 District = order.District,
-                Street = order.Street
-            });
+                Street = order.Street,
+                RoomImg = _dbRepository.GetAll<RoomImg>()
+                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0]
+        });
         }
 
-        public IEnumerable<OrderDto>GetOrderByOrderId(int OrderId)
-        {
-            return _dbRepository.GetAll<Order>().Where(x => x.OrderId == OrderId).Select(x=>new OrderDto
-            {
-                OrderId = x.OrderId,
-                CkeckIn = x.CkeckIn,
-                CkeckOut = x.CkeckOut,
-                City = x.City,
-                District = x.District,
-                Street = x.Street
-            });
-        }
+        //public string GetRoomImgByOrderId(Order Order)
+        //{
+        //    var targetroom = _dbRepository.GetAll<Room>().FirstOrDefault(x => x.RoomId == Order.RoomId);
+        //    var img = _dbRepository.GetAll<RoomImg>()
+        //        .Where(x => x.RoomId == targetroom.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0];
+        //    return img;
+        //}
     }
 }

@@ -15,6 +15,8 @@ namespace Aircnc.FrontStage.Models.ViewModels.Order
         public string City { get; set; }
         public string District { get; set; }
         public string Street { get; set; }
+        public string RoomImg { get; set; }
+
 
     }
 }
