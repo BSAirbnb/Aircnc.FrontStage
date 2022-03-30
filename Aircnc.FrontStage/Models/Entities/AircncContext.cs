@@ -482,9 +482,9 @@ namespace Aircnc.FrontStage.Models.Entities
                 new UserVerification { UserVerificationId = 7, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 }
            );
             modelBuilder.Entity<BankVerification>().HasData(
-                new BankVerification { BankVerificationId = 1, Status = 1, BankAccount = "80222222222220",ApplyTime=DateTime.Now,CertificationTime=DateTime.Now,AdminId=1,BankbookImg= "https://picsum.photos/seed/picsum/200/300" },
-                new BankVerification { BankVerificationId = 2, Status = 1, BankAccount = "80222222222221", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1, BankbookImg = "https://picsum.photos/seed/picsum/200/300" },
-                new BankVerification { BankVerificationId = 3, Status = 1, BankAccount = "80222222222222", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2, BankbookImg = "https://picsum.photos/seed/picsum/200/300" }
+                new BankVerification { BankVerificationId = 1, Status = StatusEnum.NotVerified, BankAccount = "80222222222220",ApplyTime=DateTime.Now,CertificationTime=DateTime.Now,AdminId=1,BankbookImg= "https://picsum.photos/seed/picsum/200/300" },
+                new BankVerification { BankVerificationId = 2, Status = StatusEnum.NotVerified, BankAccount = "80222222222221", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1, BankbookImg = "https://picsum.photos/seed/picsum/200/300" },
+                new BankVerification { BankVerificationId = 3, Status = StatusEnum.Verified, BankAccount = "80222222222222", ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2, BankbookImg = "https://picsum.photos/seed/picsum/200/300" }
             );
 
             modelBuilder.Entity<User>().HasData(
@@ -635,21 +635,21 @@ namespace Aircnc.FrontStage.Models.Entities
                 new Room() { RoomId = 17, UserId = 6, HouseType = 4, RoomType = 2, Street = "府前路17號", District = "花蓮市", City = "花蓮縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "大車位，有回饋", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 750, CreateTime = new DateTime(2019, 5, 26), Status = 2 }
                 );
             modelBuilder.Entity<WishList>().HasData(
-                new WishList { WishListId = 1, UserId = 1, RoomId = 1, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 1, UserId = 1, RoomId = 1, CreateTime = new DateTime(2020, 2, 25) },
 
-                new WishList { WishListId = 2, UserId = 2, RoomId = 2, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 2, UserId = 2, RoomId = 2, CreateTime = new DateTime(2015, 1, 19) },
 
-                new WishList { WishListId = 3, UserId = 3, RoomId = 3, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 3, UserId = 3, RoomId = 3, CreateTime = new DateTime(2019, 3, 15) },
 
-                new WishList { WishListId = 4, UserId = 4, RoomId = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 4, UserId = 4, RoomId = 4, CreateTime = new DateTime(2017, 4, 7) },
 
-                new WishList { WishListId = 5, UserId = 5, RoomId = 5, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 5, UserId = 5, RoomId = 5, CreateTime = new DateTime(2015, 6, 5) },
 
-                new WishList { WishListId = 6, UserId = 6, RoomId = 6, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 6, UserId = 6, RoomId = 6, CreateTime = new DateTime(2020, 12, 30) },
 
-                new WishList { WishListId = 7, UserId = 6, RoomId = 3, CreateTime = new DateTime(2013, 7, 18) },
+                new WishList { WishListId = 7, UserId = 6, RoomId = 3, CreateTime = new DateTime(2021, 11, 21) },
 
-                new WishList { WishListId = 8, UserId = 5, RoomId = 2, CreateTime = new DateTime(2013, 7, 18) });
+                new WishList { WishListId = 8, UserId = 5, RoomId = 2, CreateTime = new DateTime(2017, 7, 18) });
 
             //    new WishList { WishListId = 9, UserId = 4, RoomId = 6, CreateTime = new DateTime(12 - 31 - 2011) },
 
@@ -660,47 +660,40 @@ namespace Aircnc.FrontStage.Models.Entities
 
 
             modelBuilder.Entity<Comment>().HasData(
-                new Comment { CommentId = 1, UserId = 1, RoomId = 3, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 1, UserId = 1, RoomId = 17, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2022, 1, 8) },
 
+                new Comment { CommentId = 2, UserId = 3, RoomId = 10, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2022, 6, 14) },
 
-                new Comment { CommentId = 2, UserId = 3, RoomId = 2, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 3, UserId = 3, RoomId = 12, CommentContent = "環境整潔，還不錯", Stars = 2, CreateTime = new DateTime(2021, 8, 11) },
 
+                new Comment { CommentId = 4, UserId = 5, RoomId = 4, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2019, 11, 23) },
 
-                new Comment { CommentId = 3, UserId = 3, RoomId = 3, CommentContent = "環境整潔，還不錯", Stars = 2, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 5, UserId = 6, RoomId = 12, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2022, 12, 26) },
 
+                new Comment { CommentId = 6, UserId = 7, RoomId = 2, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2022, 5, 27) },
 
-                new Comment { CommentId = 4, UserId = 5, RoomId = 4, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 7, UserId = 1, RoomId = 13, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2021, 4, 24) },
 
+                new Comment { CommentId = 8, UserId = 5, RoomId = 1, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2021, 4, 19) },
 
-                new Comment { CommentId = 5, UserId = 6, RoomId = 5, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 9, UserId = 2, RoomId = 1, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2020, 2, 15) },
 
+                new Comment { CommentId = 10, UserId = 6, RoomId = 4, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2020, 10, 7) },
 
-                new Comment { CommentId = 6, UserId = 7, RoomId = 2, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 11, UserId = 3, RoomId = 7, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2020, 9, 30) },
 
+                new Comment { CommentId = 12, UserId = 1, RoomId = 8, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2016, 8, 3) },
 
-                new Comment { CommentId = 7, UserId = 1, RoomId = 6, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2013, 7, 18) },
+                new Comment { CommentId = 13, UserId = 7, RoomId = 4, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2018, 11, 2) },
 
+                new Comment { CommentId = 14, UserId = 10, RoomId = 5, CommentContent = "環境整潔，還不錯", Stars = 5, CreateTime = new DateTime(2017, 11, 10) },
 
-                new Comment { CommentId = 8, UserId = 5, RoomId = 1, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2013, 7, 18) });
+                new Comment { CommentId = 15, UserId = 9, RoomId = 15, CommentContent = "環境整潔，還不錯", Stars = 3, CreateTime = new DateTime(2017, 10, 11) },
 
-            //        new Comment { CommentId = 9, UserId = 2, RoomId = 7, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
+                new Comment { CommentId = 16, UserId = 8, RoomId = 14, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2019, 8, 23) },
 
-            //        new Comment { CommentId = 10, UserId = 6, RoomId = 4, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 11, UserId = 4, RoomId = 7, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 12, UserId = 5, RoomId = 8, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 13, UserId = 2, RoomId = 4, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 14, UserId = 1, RoomId = 5, Comment = "環境整潔，還不錯", Stars = 5, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 15, UserId = 1, RoomId = 2, Comment = "環境整潔，還不錯", Stars = 3, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 16, UserId = 2, RoomId = 8, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
-
-            //        new Comment { CommentId = 17, UserId = 6, RoomId = 1, Comment = "環境整潔，還不錯", Stars = 4, CreateTime = "2020-04-52" }
-            //    );
+                new Comment { CommentId = 17, UserId = 6, RoomId = 12, CommentContent = "環境整潔，還不錯", Stars = 4, CreateTime = new DateTime(2018, 7, 18) }
+                );
 
             modelBuilder.Entity<Order>().HasData(
                 new Order { 
@@ -956,53 +949,114 @@ namespace Aircnc.FrontStage.Models.Entities
                 new TransactionStatus
                 {
                     TransactionStatusId = 1,
-                    UserId = 1,
+                    UserId = 7,
                     OrderId = 2,
-                    CreateTime = new DateTime(2022, 03, 02),
-                    AdminId = 1,
+                    CreateTime = new DateTime(2015, 02, 02),
+                    AdminId = 3,
                     TotalAmount = 1700,
-                    StatusType = 1
+                    StatusType = StatusTypeEnum.TransferredToOwner
                 },
                 new TransactionStatus
                 {
                     TransactionStatusId = 2,
-                    UserId = 1,
-                    OrderId = 2,
-                    CreateTime = new DateTime(2022, 03, 29),
-                    AdminId = 1,
+                    UserId = 4,
+                    OrderId = 1,
+                    CreateTime = new DateTime(2020, 11, 29),
+                    AdminId = 3,
                     TotalAmount = 1900,
-                    StatusType = 1
+                    StatusType = StatusTypeEnum.TransferredToOwner
                 },
                 new TransactionStatus
                 {
                     TransactionStatusId = 3,
                     UserId = 2,
-                    OrderId = 4,
-                    CreateTime = new DateTime(2022, 03, 05),
-                    AdminId = 1,
+                    OrderId = 3,
+                    CreateTime = new DateTime(2017, 12, 05),
+                    AdminId = 2,
                     TotalAmount = 1400,
-                    StatusType = 2
+                    StatusType = StatusTypeEnum.ReturnedToGuest
                 },
                 new TransactionStatus
                 {
                     TransactionStatusId = 4,
                     UserId = 1,
-                    OrderId = 2,
-                    CreateTime = new DateTime(2022, 04, 12),
+                    OrderId = 4,
+                    CreateTime = new DateTime(2020, 08, 12),
                     AdminId = 1,
-                    TotalAmount = 3500,
-                    StatusType = 2
+                    TotalAmount = 7100,
+                    StatusType = StatusTypeEnum.Pending
                 },
                 new TransactionStatus
                 {
                     TransactionStatusId = 5,
-                    UserId = 1,
-                    OrderId = 2,
+                    UserId = 8,
+                    OrderId = 5,
                     CreateTime = new DateTime(2022, 03, 09),
-                    AdminId = 1,
+                    AdminId = 2,
                     TotalAmount = 1100,
-                    StatusType = 3
-                });
+                    StatusType = StatusTypeEnum.Pending
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 6,
+                    UserId = 5,
+                    OrderId = 6,
+                    CreateTime = new DateTime(2018, 04, 12),
+                    AdminId = 2,
+                    TotalAmount = 5200,
+                    StatusType = StatusTypeEnum.Pending
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 7,
+                    UserId = 10,
+                    OrderId = 7,
+                    CreateTime = new DateTime(2020, 05, 12),
+                    AdminId = 1,
+                    TotalAmount = 800,
+                    StatusType = StatusTypeEnum.Pending
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 8,
+                    UserId = 9,
+                    OrderId = 8,
+                    CreateTime = new DateTime(2019, 07, 12),
+                    AdminId = 1,
+                    TotalAmount = 840,
+                    StatusType = StatusTypeEnum.ReturnedToGuest
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 9,
+                    UserId = 6,
+                    OrderId = 9,
+                    CreateTime = new DateTime(2019, 04, 30),
+                    AdminId = 3,
+                    TotalAmount = 750,
+                    StatusType = StatusTypeEnum.Pending
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 10,
+                    UserId = 12,
+                    OrderId = 10,
+                    CreateTime = new DateTime(2018, 06, 11),
+                    AdminId = 2,
+                    TotalAmount = 8000,
+                    StatusType = StatusTypeEnum.Pending
+                },
+                new TransactionStatus
+                {
+                    TransactionStatusId = 11,
+                    UserId = 7,
+                    OrderId = 11,
+                    CreateTime = new DateTime(2020, 09, 12),
+                    AdminId = 1,
+                    TotalAmount = 930,
+                    StatusType = StatusTypeEnum.TransferredToOwner
+                }
+                );
         }
 
 
