@@ -4,8 +4,6 @@
     Layout = "Guest/_GuestLayout";
 }
 
-@*@foreach (var item in Model)*@
-{
 <div id="room-img-carousel" class="carousel slide w-75 mx-auto" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#room-img-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -64,25 +62,7 @@
                     <div class="border rounded-3 m-3 p-4">
                         <p class="fw-bold fs-5">@Model.District</p>
                         <i class="fas fa-bed fs-1 d-block p-2"></i>
-                        <span>臥室</span>
-                        <span>1.4米雙人床</span>
-                    </div>
-                    <div class="border rounded-3 m-3 p-4">
-                        <p class="fw-bold fs-5">住宿地點</p>
-                        <i class="fas fa-bed fs-1 d-block p-2"></i>
-                        <span>臥室</span>
-                        <span>1.4米雙人床</span>
-                    </div>
-                    <div class="border rounded-3 m-3 p-4">
-                        <p class="fw-bold fs-5">住宿地點</p>
-                        <i class="fas fa-bed fs-1 d-block p-2"></i>
-                        <span>臥室</span>
-                        <span>1.4米雙人床</span>
-                    </div>
-                    <div class="border rounded-3 m-3 p-4">
-                        <p class="fw-bold fs-5">住宿地點</p>
-                        <i class="fas fa-bed fs-1 d-block p-2"></i>
-                        <span>臥室</span>
+                        <span>@Model.RoomType</span>
                         <span>1.4米雙人床</span>
                     </div>
                 </div>
@@ -456,7 +436,6 @@
         </div>
     </div>
 </div>
-}
 
 @section topCSS{
     <link href="~/css/Guest_Module/room-detail.css" rel="stylesheet" />

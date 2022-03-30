@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Guest\**" />
+    <Content Remove="Views\Guest\**" />
+    <EmbeddedResource Remove="Views\Guest\**" />
+    <None Remove="Views\Guest\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.15">
@@ -21,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Guest\" />
     <Folder Include="wwwroot\css\Privacy_and_Share\" />
     <Folder Include="wwwroot\css\Notification\" />
     <Folder Include="wwwroot\css\Personal_Details\" />
