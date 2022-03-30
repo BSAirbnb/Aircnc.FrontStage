@@ -38,6 +38,10 @@ namespace Aircnc.FrontStage.Models.Entities
         public DateTime? LastChangeTime { get; set; }
         public string RoomCheckInTime { get; set; }
         public string RoomCheckOutTime { get; set; }
+        //lat緯度
+        public decimal Lat { get; set; }
+        //lng 經度
+        public decimal Lng { get; set; }
         public int Status { get; set; }
         [ StringLength(500)]
         public string Note { get; set; }
