@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
 
 #nullable disable
 
@@ -608,23 +609,23 @@ namespace Aircnc.FrontStage.Models.Entities
                 new Message { MessageId = 3, SenderId = 1, RecipientId = 2, Text = "HI", SendTime = DateTime.Now }
             );
             modelBuilder.Entity<Room>().HasData(
-                new Room() { RoomId = 1, UserId = 1, HouseType = 1, RoomType = 1, Street = "石潭路88號", District = "內湖區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "星雲小屋", UnitPrice = 2310, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 2, UserId = 2, HouseType = 2, RoomType = 2, Street = "南京東路3段25號9樓", District = "松山區", City = "台北市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "小葉-懶人-溫馨寬敞的樓中樓套房,青山綠樹景色,適合宅度假", UnitPrice = 710, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 3, UserId = 3, HouseType = 3, RoomType = 3, Street = "東新街116-3號", District = "南港區", City = "台北市", Country = "台灣", Pax = 2, BedCount = 1, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "景觀雙人房A25，免費早餐、交通方便、溫馨舒適", UnitPrice = 500, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 4, UserId = 4, HouseType = 4, RoomType = 3, Street = "敦化南路二段201號", District = "大安區", City = "台北市", Country = "台灣", Pax = 5, BedCount = 5, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "303魚池白宮", UnitPrice = 1110, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 5, UserId = 1, HouseType = 1, RoomType = 2, Street = "林森南路17號", District = "中正區", City = "台北市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "捷運站步行3分鐘 近夜市與101 Near MRT & Taipei 101", UnitPrice = 990, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 6, UserId = 2, HouseType = 2, RoomType = 1, Street = "福德路57巷2號1樓", District = "士林區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "1 min walk to YounChun MRT, center of Taipei city", UnitPrice = 3210, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 7, UserId = 6, HouseType = 2, RoomType = 2, Street = "中正路570號", District = "永和區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "榮星花園旁靜巷溫馨小宅～適合親子同遊！", UnitPrice = 1495, CreateTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 8, UserId = 5, HouseType = 3, RoomType = 3, Street = "大仁街44號", District = "三重區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "[K] 38 ✦ 大雙人房 含獨立衛浴 沙發", UnitPrice = 865, CreateTime = new DateTime(2011, 6, 10), Status = 2 },
-                new Room() { RoomId = 9, UserId = 6, HouseType = 4, RoomType = 2, Street = "省府路130號", District = "南投市", City = "南投縣", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "超級優質", RoomName = "免費午餐，交通方便、溫馨舒適", UnitPrice = 950, CreateTime = new DateTime(2020, 9, 22), Status = 3 },
-                new Room() { RoomId = 10, UserId = 6, HouseType = 4, RoomType = 2, Street = "中山路二段", District = "彰化市", City = "彰化縣", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "一定要來", RoomName = "溫馨有事，超大床", UnitPrice = 1560, CreateTime = new DateTime(2019, 2, 25), Status = 2 },
-                new Room() { RoomId = 11, UserId = 6, HouseType = 4, RoomType = 2, Street = "中正路66號", District = "新埤鄉", City = "屏東縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "必需來住 必需來住 必需來住 必需來住", RoomName = "免費午餐，鄰近夜市", UnitPrice = 1230, CreateTime = new DateTime(2022, 10, 15), Status = 1 },
-                new Room() { RoomId = 12, UserId = 6, HouseType = 4, RoomType = 2, Street = "南京路19號", District = "台東市", City = "台東縣", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "鄰近花園 可以慢跑", RoomName = "交通方便、溫馨舒適，超大床", UnitPrice = 2890, CreateTime = new DateTime(2018, 12, 05), Status = 2 },
-                new Room() { RoomId = 13, UserId = 6, HouseType = 4, RoomType = 2, Street = "忠孝路250號", District = "麻豆區", City = "台南市", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "這裡超吵 不要來", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 600, CreateTime = new DateTime(2015, 11, 02), Status = 1 },
-                new Room() { RoomId = 14, UserId = 6, HouseType = 4, RoomType = 2, Street = "縣府路1號", District = "桃園區", City = "桃園市", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡床位，有午餐", RoomName = "漫步在雲端，語言交換，超大床", UnitPrice = 500, CreateTime = new DateTime(2016, 9, 06), Status = 2 },
-                new Room() { RoomId = 15, UserId = 6, HouseType = 4, RoomType = 2, Street = "台灣大道3段99號", District = "西屯區", City = "台中市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大床位，有免費歪泛", RoomName = "免費午餐，溫馨寬敞的樓中樓套房，超大床", UnitPrice = 400, CreateTime = new DateTime(2017, 7, 08), Status = 1 },
-                new Room() { RoomId = 16, UserId = 6, HouseType = 4, RoomType = 2, Street = "凱旋2路132-1號號", District = "苓雅區", City = "高雄市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大位 來騎車", RoomName = "免費午餐，交通方便", UnitPrice = 300, CreateTime = new DateTime(2018, 6, 19), Status = 3 },
-                new Room() { RoomId = 17, UserId = 6, HouseType = 4, RoomType = 2, Street = "府前路17號", District = "花蓮市", City = "花蓮縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "大車位，有回饋", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 750, CreateTime = new DateTime(2019, 5, 26), Status = 2 }
+                new Room() { RoomId = 1, UserId = 1, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "石潭路88號", District = "內湖區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "星雲小屋", UnitPrice = 2310, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat=  25.04450m,Lng = 121.52942m },
+                new Room() { RoomId = 3, UserId = 3, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "東新街116-3號", District = "南港區", City = "台北市", Country = "台灣", Pax = 2, BedCount = 1, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "景觀雙人房A25，免費早餐、交通方便、溫馨舒適", UnitPrice = 500, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.024350m, Lng = 121.519432m },
+                new Room() { RoomId = 2, UserId = 2, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "南京東路3段25號9樓", District = "松山區", City = "台北市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "小葉-懶人-溫馨寬敞的樓中樓套房,青山綠樹景色,適合宅度假", UnitPrice = 710, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.043540m, Lng = 121.514942m },
+                new Room() { RoomId = 4, UserId = 4, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "敦化南路二段201號", District = "大安區", City = "台北市", Country = "台灣", Pax = 5, BedCount = 5, RoomCount = 1, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "303魚池白宮", UnitPrice = 1110, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.044150m, Lng = 121.152942m },
+                new Room() { RoomId = 5, UserId = 1, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.FullHouse, Street = "林森南路17號", District = "中正區", City = "台北市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "捷運站步行3分鐘 近夜市與101 Near MRT & Taipei 101", UnitPrice = 990, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.104450m, Lng = 121.532942m },
+                new Room() { RoomId = 6, UserId = 2, HouseType = HouseTypeEnum.Special, RoomType = RoomTypeEnum.FullHouse, Street = "福德路57巷2號1樓", District = "士林區", City = "台北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "1 min walk to YounChun MRT, center of Taipei city", UnitPrice = 3210, CreateTime = new DateTime(2011, 6, 10), LastChangeTime = new DateTime(2011, 6, 10), Status = StatusEnum.Online, Lat = 25.043430m, Lng = 121.352942m },
+                new Room() { RoomId = 7, UserId = 6, HouseType = HouseTypeEnum.OneBuild, RoomType = RoomTypeEnum.Share, Street = "中正路570號", District = "永和區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "榮星花園旁靜巷溫馨小宅～適合親子同遊！", UnitPrice = 1495, CreateTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.044350m, Lng = 121.529432m },
+                new Room() { RoomId = 8, UserId = 5, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.FullHouse, Street = "大仁街44號", District = "三重區", City = "新北市", Country = "台灣", Pax = 6, BedCount = 3, RoomCount = 3, BathroomCount = 2, RoomDescription = "優質房源", RoomName = "[K] 38 ✦ 大雙人房 含獨立衛浴 沙發", UnitPrice = 865, CreateTime = new DateTime(2011, 6, 10), Status = StatusEnum.Offline, Lat = 25.044530m, Lng = 121.529342m },
+                new Room() { RoomId = 9, UserId = 6, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "省府路130號", District = "南投市", City = "南投縣", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "超級優質", RoomName = "免費午餐，交通方便、溫馨舒適", UnitPrice = 950, CreateTime = new DateTime(2020, 9, 22), Status = StatusEnum.Online, Lat = 25.044503m, Lng = 121.523942m },
+                new Room() { RoomId = 10, UserId = 6, HouseType = HouseTypeEnum.Special, RoomType = RoomTypeEnum.FullHouse, Street = "中山路二段", District = "彰化市", City = "彰化縣", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "一定要來", RoomName = "溫馨有事，超大床", UnitPrice = 1560, CreateTime = new DateTime(2019, 2, 25), Status = StatusEnum.Online, Lat = 25.044350m, Lng = 121.529342m },
+                new Room() { RoomId = 11, UserId = 6, HouseType = HouseTypeEnum.Special, RoomType = RoomTypeEnum.Share, Street = "中正路66號", District = "新埤鄉", City = "屏東縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "必需來住 必需來住 必需來住 必需來住", RoomName = "免費午餐，鄰近夜市", UnitPrice = 1230, CreateTime = new DateTime(2022, 10, 15), Status = StatusEnum.Pending, Lat = 25.044250m, Lng = 121.522942m },
+                new Room() { RoomId = 12, UserId = 6, HouseType = HouseTypeEnum.OneBuild, RoomType = RoomTypeEnum.Solo, Street = "南京路19號", District = "台東市", City = "台東縣", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "鄰近花園 可以慢跑", RoomName = "交通方便、溫馨舒適，超大床", UnitPrice = 2890, CreateTime = new DateTime(2018, 12, 05), Status = StatusEnum.Online, Lat = 25.044510m, Lng = 121.529242m },
+                new Room() { RoomId = 13, UserId = 6, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.FullHouse, Street = "忠孝路250號", District = "麻豆區", City = "台南市", Country = "台灣", Pax = 1, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "這裡超吵 不要來", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 600, CreateTime = new DateTime(2015, 11, 02), Status = StatusEnum.Online, Lat = 25.044530m, Lng = 121.529412m },
+                new Room() { RoomId = 14, UserId = 6, HouseType = HouseTypeEnum.Special, RoomType = RoomTypeEnum.FullHouse, Street = "縣府路1號", District = "桃園區", City = "桃園市", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡床位，有午餐", RoomName = "漫步在雲端，語言交換，超大床", UnitPrice = 500, CreateTime = new DateTime(2016, 9, 06), Status = StatusEnum.Online, Lat = 25.044504m, Lng = 121.529442m },
+                new Room() { RoomId = 15, UserId = 6, HouseType = HouseTypeEnum.Apartment, RoomType = RoomTypeEnum.Solo, Street = "台灣大道3段99號", District = "西屯區", City = "台中市", Country = "台灣", Pax = 3, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大床位，有免費歪泛", RoomName = "免費午餐，溫馨寬敞的樓中樓套房，超大床", UnitPrice = 400, CreateTime = new DateTime(2017, 7, 08), Status = StatusEnum.Online, Lat = 25.044520m, Lng = 121.529422m },
+                new Room() { RoomId = 16, UserId = 6, HouseType = HouseTypeEnum.OneBuild, RoomType = RoomTypeEnum.Share, Street = "凱旋2路132-1號號", District = "苓雅區", City = "高雄市", Country = "台灣", Pax = 4, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "我們這裡大位 來騎車", RoomName = "免費午餐，交通方便", UnitPrice = 300, CreateTime = new DateTime(2018, 6, 19), Status = StatusEnum.Online, Lat = 25.044250m, Lng = 121.529422m },
+                new Room() { RoomId = 17, UserId = 6, HouseType = HouseTypeEnum.OneBuild, RoomType = RoomTypeEnum.FullHouse, Street = "府前路17號", District = "花蓮市", City = "花蓮縣", Country = "台灣", Pax = 2, BedCount = 2, RoomCount = 2, BathroomCount = 1, RoomDescription = "大車位，有回饋", RoomName = "免費午餐，語言交換，超大床", UnitPrice = 750, CreateTime = new DateTime(2019, 5, 26), Status = StatusEnum.Online, Lat = 25.044520m, Lng = 121.529242m }
                 );
             modelBuilder.Entity<WishList>().HasData(
                 new WishList { WishListId = 1, UserId = 1, RoomId = 1, CreateTime = new DateTime(2013, 7, 18) },
@@ -800,7 +801,7 @@ namespace Aircnc.FrontStage.Models.Entities
                   RoomId = 1,
                   Date = new DateTime(2022, 01, 12),
                   LastChangeTime = new DateTime(2022, 03, 02),
-                  RoomCalendarStatus = 1,
+                  RoomCalendarStatus = RoomCalendarStatusEnum.Booked,
                   UnitPrice = 2000,
                   Note = "價格異動"
                 },
@@ -810,7 +811,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomId = 2,
                     Date = new DateTime(2022, 01, 12),
                     LastChangeTime = new DateTime(2022, 03, 02),
-                    RoomCalendarStatus = 1,
+                    RoomCalendarStatus = RoomCalendarStatusEnum.Booked,
                     UnitPrice = 3000,
                     Note = "價格異動"
                 },
@@ -820,7 +821,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomId = 1,
                     Date = new DateTime(2022, 01, 12),
                     LastChangeTime = new DateTime(2022, 03, 02),
-                    RoomCalendarStatus = 1,
+                    RoomCalendarStatus = RoomCalendarStatusEnum.Booked,
                     UnitPrice = 2000,
                     Note = "今天不租"
                 },
@@ -830,7 +831,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomId = 1,
                     Date = new DateTime(2022, 01, 12),
                     LastChangeTime = new DateTime(2022, 03, 02),
-                    RoomCalendarStatus = 1,
+                    RoomCalendarStatus = RoomCalendarStatusEnum.Booked,
                     UnitPrice = 2000,
                     Note = "開啟租房"
                 },
@@ -840,7 +841,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     RoomId = 1,
                     Date = new DateTime(2022, 01, 12),
                     LastChangeTime = new DateTime(2022, 03, 02),
-                    RoomCalendarStatus = 1,
+                    RoomCalendarStatus = RoomCalendarStatusEnum.Hided,
                     UnitPrice = 4500,
                     Note = "價格異動"
                 }
@@ -917,31 +918,31 @@ namespace Aircnc.FrontStage.Models.Entities
                 {
                     RoomServiceLabelId = 1,
                     RoomId = 1,
-                    TypeOfLabel = 1
+                    TypeOfLabel = TypeOfLabelEnum.Wifi
                 },
                 new RoomServiceLabel
                 {
                     RoomServiceLabelId = 2,
                     RoomId = 1,
-                    TypeOfLabel = 2
+                    TypeOfLabel = TypeOfLabelEnum.Kitchen
                 },
                 new RoomServiceLabel
                 {
                     RoomServiceLabelId = 3,
                     RoomId = 3,
-                    TypeOfLabel = 3
+                    TypeOfLabel = TypeOfLabelEnum.Parking
                 },
                 new RoomServiceLabel
                 {
                     RoomServiceLabelId = 4,
                     RoomId = 4,
-                    TypeOfLabel = 2
+                    TypeOfLabel = TypeOfLabelEnum.TV
                 },
                 new RoomServiceLabel
                 {
                     RoomServiceLabelId = 5,
                     RoomId = 5,
-                    TypeOfLabel = 2
+                    TypeOfLabel = TypeOfLabelEnum.Kitchen
                 });
 
             modelBuilder.Entity<TransactionStatus>().HasData(
