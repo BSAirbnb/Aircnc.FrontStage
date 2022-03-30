@@ -19,7 +19,7 @@ namespace Aircnc.FrontStage.Controllers
         }
         public IActionResult Index1(int userid)
         {
-            userid = 1;
+            userid = 2;
             var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
             var result = new PersonalViewModel
             {
