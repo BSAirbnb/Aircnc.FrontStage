@@ -16,7 +16,7 @@ namespace Aircnc.FrontStage.Models.Entities
         [Key]
         public int UserVerificationId { get; set; }
         public DocumentTypeEnum DocumentType { get; set; }
-        public StatusEnum Status { get; set; }
+        public VerifyStatusEnum Status { get; set; }
         public DateTime ApplyTime { get; set; }
         public DateTime? CertificationTime { get; set; }
         public int AdminId { get; set; }
@@ -33,7 +33,7 @@ namespace Aircnc.FrontStage.Models.Entities
     }
     //Identity身分證,Passport護照,DriverLicense駕照
 
-    public enum StatusEnum
+    public enum VerifyStatusEnum
     {
         Verified = 1,
         NotVerified = 2,

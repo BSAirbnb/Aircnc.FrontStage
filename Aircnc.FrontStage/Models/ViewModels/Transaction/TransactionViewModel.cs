@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aircnc.FrontStage.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Transaction
         public DateTime CreateTime { get; set; }
         public int AdminId { get; set; }
         public decimal TotalAmount { get; set; }
-        public int StatusType { get; set; }
+        public StatusTypeEnum StatusType { get; set; }
 
     }
 }

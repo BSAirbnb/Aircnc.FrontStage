@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -39,10 +40,14 @@ namespace Aircnc.FrontStage.Models.Entities
         public string RoomCheckInTime { get; set; }
         public string RoomCheckOutTime { get; set; }
         //lat緯度
+        [Required]
+        [Column(TypeName = "decimal(10, 6)")]
         public decimal Lat { get; set; }
         //lng 經度
+        [Required]
+        [Column(TypeName = "decimal(10, 6)")]
         public decimal Lng { get; set; }
-        public StatusEnum Status { get; set; }
+        public RoomStatusEnum Status { get; set; }
         [ StringLength(500)]
         public string Note { get; set; }
 
@@ -55,7 +60,7 @@ namespace Aircnc.FrontStage.Models.Entities
         public virtual ICollection<WishList> WishLists { get; set; }
     }
 
-    public enum StatusEnum
+    public enum RoomStatusEnum
     {
         //1上架中 2以下架 3建立中 
         Online = 1,

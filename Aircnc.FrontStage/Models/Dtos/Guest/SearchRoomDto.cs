@@ -22,7 +22,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string RoomDescription { get; set; }
         public string RoomName { get; set; }
         public decimal UnitPrice { get; set; }
-        public StatusEnum Status { get; set; }
+        public RoomStatusEnum Status { get; set; }
         public int Comments { get; set; }
         public List<string> RoomImgs { get; set; }
         public List<int> RoomServiceLabels { get; set; }
