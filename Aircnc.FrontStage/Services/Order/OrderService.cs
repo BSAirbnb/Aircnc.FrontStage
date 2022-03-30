@@ -16,9 +16,9 @@ namespace Aircnc.FrontStage.Services
             _dbRepository = dBRepository;
         }
 
-        public IEnumerable<OrderDto>GetAllOrderByUserId(int UserId) //撈使用者所有的訂單(包含過去現在取消)
+        public IEnumerable<OrderDto>GetAllOrderByUserId(int userId) //撈使用者所有的訂單(包含過去現在取消)
         {
-            return _dbRepository.GetAll<Order>().Where(order => order.UserId == UserId).Select(order => new OrderDto
+            return _dbRepository.GetAll<Order>().Where(order => order.UserId == userId).Select(order => new OrderDto
             {
                 OrderId = order.OrderId,
                 RoomName = order.RoomName,
@@ -29,16 +29,10 @@ namespace Aircnc.FrontStage.Services
                 District = order.District,
                 Street = order.Street,
                 RoomImg = _dbRepository.GetAll<RoomImg>()
-                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0]
-        });
+                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0],
+                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name
+            }) ;
         }
 
-        //public string GetRoomImgByOrderId(Order Order)
-        //{
-        //    var targetroom = _dbRepository.GetAll<Room>().FirstOrDefault(x => x.RoomId == Order.RoomId);
-        //    var img = _dbRepository.GetAll<RoomImg>()
-        //        .Where(x => x.RoomId == targetroom.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0];
-        //    return img;
-        //}
     }
 }

@@ -17,10 +17,10 @@ namespace Aircnc.FrontStage.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult OrderList(int UserId) //透過使用者ID去找他的訂單們
+        public IActionResult OrderList(int userId) //透過使用者ID去找他的訂單們
         {
-            UserId = 1;
-            var orderList = _orderService.GetAllOrderByUserId(UserId).Select(x => new OrderViewModel
+            userId = 1;
+            var orderList = _orderService.GetAllOrderByUserId(userId).Select(x => new OrderViewModel
             {
                 CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
                 CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
@@ -28,7 +28,8 @@ namespace Aircnc.FrontStage.Controllers
                 City = x.City,
                 District = x.District,
                 Street = x.Street,
-                RoomImg = x.RoomImg
+                RoomImg = x.RoomImg,
+                RoomOwnerName = x.RoomOwnerName
 
             });
             return View(orderList);

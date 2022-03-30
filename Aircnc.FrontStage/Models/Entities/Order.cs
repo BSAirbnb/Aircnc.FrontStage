@@ -21,8 +21,8 @@ namespace Aircnc.FrontStage.Models.Entities
         public string RoomName { get; set; }
         public DateTime CkeckIn { get; set; }
         public DateTime CkeckOut { get; set; }
-        public int PaymentType { get; set; }
-        public int Status { get; set; }
+        public PaymentTypeEnum PaymentType { get; set; }
+        public OrderStatusEnum Status { get; set; }
         public decimal? Discount { get; set; }
         public int BedCount { get; set; }
         public int RoomCount { get; set; }
@@ -37,5 +37,13 @@ namespace Aircnc.FrontStage.Models.Entities
         public virtual Room Room { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<TransactionStatus> TransactionStatuses { get; set; }
+    }
+    public enum PaymentTypeEnum
+    {
+        CreditCard = 1,  LinePay= 2
+    }
+    public enum OrderStatusEnum
+    {
+        Past = 1 , Cancel = 2 , Future = 3
     }
 }

@@ -16,6 +16,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Order
         public string District { get; set; }
         public string Street { get; set; }
         public string RoomImg { get; set; }
+        public string RoomOwnerName { get; set; }
 
 
 
