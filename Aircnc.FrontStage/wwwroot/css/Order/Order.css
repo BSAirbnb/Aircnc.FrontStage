@@ -21,42 +21,39 @@
     display: block;
 }
 
-    .search_btn a:hover {
-        border-bottom: none;
-    }
+.search_btn a:hover {
+    border-bottom: none;
+}
 /* 歷史紀錄區塊 */
 .history {
     margin-bottom: 25px;
 }
 
-    .history .row img {
-        width: 100px;
-        height: 100px;
-        display: flex;
-    }
+.history .row img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
 
-    .history .row a:hover {
-        color: #000;
-        border-bottom: none;
-    }
-/*.qqq:hover{
-    outline: 1px solid red;
-}*/
+.history .row a:hover {
+    color: #000;
+    border-bottom: none;
+}
 /* 取消紀錄 */
 .cancel {
     margin-bottom: 25px;
 }
 
-    .cancel .row img {
-        width: 100px;
-        height: 100px;
-        display: flex;
-    }
+.cancel .row img {
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
 
-    .cancel .row a:hover {
-        color: #000;
-        border-bottom: none;
-    }
+.cancel .row a:hover {
+    color: #000;
+    border-bottom: none;
+}
 
 /* 找不到預定區塊 */
 .not-found {
@@ -76,17 +73,18 @@
     /* border-radius: 25px; */
     border-radius: 0 25px 25px 0;
     min-width: 56%;
-    min-height: 122%;
+    min-height: 124%;
     position: relative;
     top: -25px;
     left: 22px;
 }
 
-.order-room-detail {
+/*.order-room-detail {
     border-bottom: 1px solid lightgray;
     color: rgb(72, 72, 72);
     padding-bottom: 20px;
 }
+*/
 /* 入退房日期 */
 .check-in-out-date {
     border-right: 1px solid lightgray;
@@ -96,3 +94,9 @@
 .stay-address {
     margin-left: 20px;
 }
+.date-address-content {
+    border-top: 1px solid lightgray;
+    color: rgb(72, 72, 72);
+    padding-top: 20px;
+}
+
