@@ -49,3 +49,10 @@
     border-radius: 15px;
     height: 60px;
 }
+
+.btt {
+    background-color: white;
+    border: none;
+    text-decoration: underline;
+    font-weight: bold;
+}
