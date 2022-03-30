@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 namespace Aircnc.FrontStage.Models.ViewModels.Guest
 {
     public class RoomDetailViewModel
-    {
-        public int RoomId { get; set; }
+    {   
         public int UserId { get; set; }
-        public int HouseType { get; set; }
-        public int RoomType { get; set; }
+        public string UserName { get; set; }
+        public string UserPhoto { get; set; }
+        public DateTime UserCreateTime { get; set; }
+
+        public int RoomId { get; set; }
+        public string HouseType { get; set; }
+        public string RoomType { get; set; }
         public string Street { get; set; }
         public string District { get; set; }
         public string City { get; set; }
@@ -24,6 +28,10 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public decimal UnitPrice { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
+
+        public string CommentContent { get; set; }
+        public double Star { get; set; }
+
     }
 }

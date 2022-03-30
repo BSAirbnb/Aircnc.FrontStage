@@ -23,30 +23,38 @@
 <!-- recommendations -->
 <h3 class="text-center fs-1 fw-bold my-3">推薦給你</h3>
 <div class="row row-cols-1 row-cols-md-3 g-4 container mx-auto">
-    <div class="col">
-        <div class="card h-100" role="button">
-            <img src="https://picsum.photos/id/1028/500/700" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center fw-bold">花蓮</h5>
+    <a asp-controller="RoomDetail" asp-action="RoomDetail" asp-route-id="花蓮">
+        <div class="col">
+            <div class="card h-100" role="button">
+                <img src="https://picsum.photos/id/1028/500/700" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">花蓮</h5>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="card h-100"  role="button">
-            <img src="https://picsum.photos/id/1065/500/700" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center fw-bold">台東</h5>
+    </a>
+    <a asp-controller="RoomDetail" asp-action="RoomDetail" asp-route-id="台東">
+        <div class="col">
+            <div class="card h-100" role="button">
+                <img src="https://picsum.photos/id/1065/500/700" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">台東</h5>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="card h-100"  role="button">
-            <img src="https://picsum.photos/id/1080/500/700" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center fw-bold">苗栗</h5>
+    </a>
+    <a asp-controller="RoomDetail" asp-action="RoomDetail" asp-route-id="苗栗">
+        <div class="col">
+            <div class="card h-100" role="button">
+                <img src="https://picsum.photos/id/1080/500/700" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">苗栗</h5>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 </div>
+
+
 
 @section topCSS{ <link href="~/css/Guest_Module/home-style.css" rel="stylesheet" />}
