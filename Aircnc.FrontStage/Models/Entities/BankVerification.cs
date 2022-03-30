@@ -15,7 +15,7 @@ namespace Aircnc.FrontStage.Models.Entities
 
         [Key]
         public int BankVerificationId { get; set; }
-        public int Status { get; set; }
+        public StatusEnum Status { get; set; }
         [Required]
         public string BankAccount { get; set; }
         public DateTime ApplyTime { get; set; }
@@ -26,4 +26,11 @@ namespace Aircnc.FrontStage.Models.Entities
         public virtual Admin Admin { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }
+
+    public enum StatusEnum
+    {
+        Verified = 1,
+        NotVerified = 2
+    }
 }
+// Verified = 已驗證, NotVerified = 未驗證
