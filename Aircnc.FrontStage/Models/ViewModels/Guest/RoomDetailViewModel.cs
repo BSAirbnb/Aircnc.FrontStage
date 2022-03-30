@@ -7,10 +7,10 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
 {
     public class RoomDetailViewModel
     {   
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPhoto { get; set; }
-        public DateTime UserCreateTime { get; set; }
+        public int OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerPhoto { get; set; }
+        public DateTime OwnerCreateTime { get; set; }
 
         public int RoomId { get; set; }
         public string HouseType { get; set; }

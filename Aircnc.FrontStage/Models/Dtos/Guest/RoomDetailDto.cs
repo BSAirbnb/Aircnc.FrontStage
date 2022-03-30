@@ -7,8 +7,12 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
 {
     public class RoomDetailDto
     {
+        public int OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerPhoto { get; set; }
+        public DateTime OwnerCreateTime { get; set; }
+
         public int RoomId { get; set; }
-        public int UserId { get; set; }
         public int HouseType { get; set; }
         public int RoomType { get; set; }
         public string Street { get; set; }
@@ -25,5 +29,8 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
+
+        public string CommentContent { get; set; }
+        public double Star { get; set; }
     }
 }
