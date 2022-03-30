@@ -17,9 +17,10 @@ namespace Aircnc.FrontStage.Controllers
             _db = db;
         }
 
-        public IActionResult Personal_Details(int userid)
+        public IActionResult Personal_Details()
         {
-            userid = 1;
+            //假設現在房東是1
+            int userid = 1;
             var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
             var result = new MemberViewModel
             {

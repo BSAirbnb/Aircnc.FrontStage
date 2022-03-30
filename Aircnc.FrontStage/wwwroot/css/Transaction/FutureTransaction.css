@@ -1,0 +1,144 @@
+﻿/* 新增收款方式的按鈕區塊 */
+.add-new-payout-method {
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+.icon-add-payout-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon-container {
+    background-color: #E07912;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
+
+.icon {
+    position: relative;
+    top: 10px;
+    left: 11px;
+}
+
+.payout-content-text {
+    color: rgb(113, 113, 113);
+}
+
+.start {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
+/* 交易內容 */
+.add-new-payout-method {
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+.icon-add-payout-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.icon-container {
+    background-color: #E07912;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
+
+.icon {
+    position: relative;
+    top: 10px;
+    left: 11px;
+}
+
+.payout-content-text {
+    color: rgb(113, 113, 113);
+}
+
+.start {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    text-decoration: none;
+}
+
+/* 選項切換列 */
+.transactions {
+    color: rgb(72, 72, 72);
+}
+
+.nav-tabs {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.completed-transactions:hover {
+    color: rgb(72, 72, 72);
+}
+
+.gross-earnings:hover {
+    color: rgb(72, 72, 72);
+}
+
+.options a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.future-transactions {
+    /* outline: 1px solid blue; */
+    color: rgb(66, 142, 144);
+    border-bottom: 2px solid rgb(66, 142, 144);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 22px;
+}
+
+    .future-transactions:hover {
+        color: rgb(66, 142, 144);
+    }
+
+.completed-transactions {
+    /* margin-right: 20px; */
+    color: rgb(72, 72, 72);
+}
+
+.gross-earnings {
+    color: rgb(72, 72, 72);
+}
+
+/* 查詢結果區塊 */
+.has-paid-label, .has-paid-amount, .query-submit {
+    color: rgb(72, 72, 72);
+}
+
+.submit {
+    /* outline: 1px solid red; */
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.query-submit {
+    white-space: nowrap;
+}
+
+/* reminder區塊 */
+.reminder div span {
+    color: rgb(72, 72, 72);
+}
+
+.add-payout {
+    color: rgb(0,132,137);
+    text-decoration: none;
+}
+
+    .add-payout:hover {
+        text-decoration: underline;
+    }

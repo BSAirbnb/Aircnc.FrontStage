@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aircnc.FrontStage.Services.Transaction;
 
 namespace Aircnc.FrontStage
 {
@@ -43,6 +44,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<OrderService, OrderService>();
             services.AddTransient<RoomDetailService, RoomDetailService>();
             services.AddTransient<NavSearchService, NavSearchService>();
+            services.AddTransient<FutureTransactionService, FutureTransactionService>();
 
             services.AddTransient<SearchRoomService, SearchRoomService>();
         }

@@ -26,12 +26,12 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
-        public IActionResult HostList(int userid)
+        public IActionResult HostList(int hostId)
         {
             //先假設user1的房源
-             userid = 1;
+            hostId = 1;
             var result =
-                _hostListService.GetAllRoomByOwnerId(userid).Select(RoomOwnerDto=>new HostListViewModel
+                _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto=>new HostListViewModel
                 { 
                     HostListDto = RoomOwnerDto
 
@@ -46,10 +46,10 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IActionResult HostReservation(int id)
+        public IActionResult HostReservation(int hostid)
         {
-            id = 1;
-            var reservation = _hostReservationService.GetHostReservation(id).Select(HostReservation => new HostReservationViewModel
+            hostid = 1;
+            var reservation = _hostReservationService.GetHostReservation(hostid).Select(HostReservation => new HostReservationViewModel
             {
                 RoomId = HostReservation.RoomId,
                 OwnerId = HostReservation.OwnerId,

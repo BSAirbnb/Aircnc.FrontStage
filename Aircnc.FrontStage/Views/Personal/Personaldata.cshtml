@@ -16,7 +16,7 @@
             <div class="col-12 col-md-6 mt-5">
                 <div class="sec-1">
                     <p class="title">法定名稱</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.Name</p>
                 <div class="input-group d-flex justify-content-between">
@@ -31,7 +31,7 @@
                 <hr style="border : 0.3px solid grey;" class="mt-5" />
                 <div class="sec-1">
                     <p class="title">性別</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@(Model.Gender==true?"男性":"女性")</p>
                 <select class="form-select form-select-lg mb-3 inp" aria-label=".form-select-lg example">
@@ -47,7 +47,7 @@
 
                 <div class="sec-1">
                     <p class="title">出生日期</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.Birthday</p>
                 <input type="date" class="form-control inp" id="date" name="date">
@@ -58,7 +58,7 @@
 
                 <div class="sec-1">
                     <p class="title">電子郵件地址</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.Email</p>
                 <input type="text" class="form-control inp " placeholder="電子郵件地址">
@@ -69,7 +69,7 @@
 
                 <div class="sec-1">
                     <p class="title">電話號碼</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.Phone</p>
                 @*<p>新增電話號碼，以便旅客和 Airbnb 能夠與你聯絡。你可以新增其他號碼並選擇其使用方式。</p>*@
@@ -82,14 +82,14 @@
 
                 <div class="sec-1">
                     <p class="title">政府核發的身分文件</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>未提供</p>
                 <hr style="border : 0.3px solid grey;" class="mt-5" />
 
                 <div class="sec-1">
                     <p class="title">地址</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.Address</p>
                 <select class="form-select form-select-lg mt-3 inp" aria-label=".form-select-lg example">
@@ -110,7 +110,7 @@
 
                 <div class="sec-1">
                     <p class="title">緊急聯絡人</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>@Model.EmergencyContactName</p>
                 <input type="text" class="form-control inp mt-2" placeholder="名稱">
@@ -131,7 +131,7 @@
 
                 <div class="sec-1">
                     <p class="title">中國旅遊的護照資訊</p>
-                    <label for="" class="text-decoration-underline fw-bold">編輯</label>
+                    <button class="btt">編輯</button>
                 </div>
                 <p>未提供</p>
                 <hr style="border : 0.3px solid grey;" class="mt-5" />
@@ -153,6 +153,6 @@
 </section>
 
 @section topCss{
-    <link href="~/Personal/index-style.css" rel="stylesheet" />
-    <link href="~/Personal/001.css" rel="stylesheet" />
+    <link href="~/css/Personal/index-style.css" rel="stylesheet" />
+    <link href="~/css/Personal/Personaldata.css" rel="stylesheet" />
 }
