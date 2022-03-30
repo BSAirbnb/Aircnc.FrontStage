@@ -24,7 +24,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
         // 以下測試
         public IActionResult RoomDetail(int id)
         {
-            var result = _roomDetailService.GetRoomDetailById(id);
+            var result = _roomDetailService.GetRoomDetailById(1);
             var room = new RoomDetailViewModel()
             {
                 RoomId = result.RoomId,
