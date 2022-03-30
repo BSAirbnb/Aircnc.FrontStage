@@ -21,8 +21,8 @@ namespace Aircnc.FrontStage.Models.Entities
         [Key]
         public int RoomId { get; set; }
         public int UserId { get; set; }
-        public int HouseType { get; set; }
-        public int RoomType { get; set; }
+        public HouseTypeEnum HouseType { get; set; }
+        public RoomTypeEnum RoomType { get; set; }
         public string Street { get; set; }
         public string District { get; set; }
         public string City { get; set; }
@@ -42,7 +42,7 @@ namespace Aircnc.FrontStage.Models.Entities
         public decimal Lat { get; set; }
         //lng 經度
         public decimal Lng { get; set; }
-        public int Status { get; set; }
+        public StatusEnum Status { get; set; }
         [ StringLength(500)]
         public string Note { get; set; }
 
@@ -55,20 +55,29 @@ namespace Aircnc.FrontStage.Models.Entities
         public virtual ICollection<WishList> WishLists { get; set; }
     }
 
-    public enum Status
+    public enum StatusEnum
     {
+        //1上架中 2以下架 3建立中 
         Online = 1,
         Offline = 2,
         Pending = 3
     }
 
-    public enum HouseType
+    public enum HouseTypeEnum
     {
-
+        //1公寓 2獨棟房屋 3獨特房源 4家庭式旅館 
+        Apartment = 1 ,
+        OneBuild = 2,
+        Special = 3,
+        Family = 4
     }
     
-    public enum RoomType
+    public enum RoomTypeEnum
     {
-
+        //1 整套房源 2獨立房間 3 合住房間
+        FullHouse =1,
+        Solo =2 ,
+        Share =3
+        
     }
 }
