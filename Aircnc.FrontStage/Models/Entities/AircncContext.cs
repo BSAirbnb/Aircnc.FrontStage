@@ -473,9 +473,13 @@ namespace Aircnc.FrontStage.Models.Entities
                 new Admin { AdminId = 3, AccountName = "SubAdmin02", Password = "1234", Permission = PermissionEnum.Sub}
            );
             modelBuilder.Entity<UserVerification>().HasData(
-                new UserVerification { UserVerificationId = 1,DocumentType =1 ,Status =1,ApplyTime = DateTime.Now, CertificationTime= DateTime.Now,AdminId = 1},
-                new UserVerification { UserVerificationId = 2, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
-                new UserVerification { UserVerificationId = 3, DocumentType = 1, Status = 1, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 }
+                new UserVerification { UserVerificationId = 1,DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime= DateTime.Now,AdminId = 1},
+                new UserVerification { UserVerificationId = 2, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
+                new UserVerification { UserVerificationId = 3, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 },
+                new UserVerification { UserVerificationId = 4, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 },
+                new UserVerification { UserVerificationId = 5, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
+                new UserVerification { UserVerificationId = 6, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 2 },
+                new UserVerification { UserVerificationId = 7, DocumentType = DocumentTypeEnum.Identity, Status = StatusEnum.Verified, ApplyTime = DateTime.Now, CertificationTime = DateTime.Now, AdminId = 1 }
            );
             modelBuilder.Entity<BankVerification>().HasData(
                 new BankVerification { BankVerificationId = 1, Status = 1, BankAccount = "80222222222220",ApplyTime=DateTime.Now,CertificationTime=DateTime.Now,AdminId=1,BankbookImg= "https://picsum.photos/seed/picsum/200/300" },
@@ -550,6 +554,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     EmergencyContactName = "你爸",
                     EmergencyContactPhone = "0911111111",
                     CreateTime = DateTime.Now,
+                    UserVerificationId = 4,
                     IsDelete = false
                 },
                 new User
@@ -566,6 +571,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     EmergencyContactName = "你爸f",
                     EmergencyContactPhone = "0911111111",
                     CreateTime = DateTime.Now,
+                    UserVerificationId = 5,
                     IsDelete = false
                 },
                 new User
@@ -582,6 +588,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     EmergencyContactName = "你爸fff",
                     EmergencyContactPhone = "0911111111",
                     CreateTime = DateTime.Now,
+                    UserVerificationId = 6,
                     IsDelete = false
                 },
                 new User
@@ -598,6 +605,7 @@ namespace Aircnc.FrontStage.Models.Entities
                     EmergencyContactName = "你爸",
                     EmergencyContactPhone = "0911111111",
                     CreateTime = DateTime.Now,
+                    UserVerificationId = 7,
                     IsDelete = false
                 }
 
