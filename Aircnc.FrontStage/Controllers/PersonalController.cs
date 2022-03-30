@@ -17,7 +17,7 @@ namespace Aircnc.FrontStage.Controllers
             _db = db;
         
         }
-        public IActionResult Index1(int userid)
+        public IActionResult Personaldata(int userid)
         {
             userid = 2;
             var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
@@ -36,27 +36,27 @@ namespace Aircnc.FrontStage.Controllers
             return View(result);
         }
 
-        public IActionResult Index2()
+        public IActionResult LoginSecurity()
         {
             return View();
         }
 
-        public IActionResult Index7()
+        public IActionResult Trip()
         {
             return View();
         }
 
-        public IActionResult Index8()
+        public IActionResult RentTool()
         {
             return View();
         }
 
-        public IActionResult Index9()
+        public IActionResult Invitecoupon()
         {
             return View();
         }
 
-        public IActionResult Index99()
+        public IActionResult PersonalBox()
         {
             return View();
         }
