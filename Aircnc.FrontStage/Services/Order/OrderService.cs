@@ -29,7 +29,7 @@ namespace Aircnc.FrontStage.Services
                 District = order.District,
                 Street = order.Street,
                 RoomImg = _dbRepository.GetAll<RoomImg>()
-                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).ToList()[0],
+                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x=>x.ImageUrl).FirstOrDefault(),
                 RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name
             }) ;
         }
