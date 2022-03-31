@@ -58,93 +58,64 @@ section{
     display: flex;
 }
 
-.dropdown-menu {
-    width: 100%;
-    max-height: 270px;
-    overflow-y: auto;
+#dropdownMenu2{
+    width: 20%;
 }
 
-.language:hover{
-    border-bottom: none;
-}
-
-#edit-btn{
+.edit-btn{
     font-size: 16px;
-    font-weight: bold;
+    line-height: 22px;
     color: #008489;
     width: 11%;
     margin: 0px;
     padding: 0px;
     text-align: right;
-    display: inline;
 }
 
-#edit-btn:hover{
-    text-decoration: none;
+.edit-btn:hover{
     color: #008489;
-    border: none;
-    font-weight: bold;
 }
 
-.btn-check:focus+.btn, .btn:focus {
-    outline: none;
-    box-shadow: none;
-    border: none;
+.form-check{
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
-.each-item{
+#flexSwitchCheckDefault1{
+    font-size: 20px;
+    background-color: #008489;
+}
+#flexSwitchCheckDefault2{
+    font-size: 20px;
+    background-color: #008489;
+}
+#flexSwitchCheckDefault3{
+    font-size: 20px;
+    background-color: #008489;
+}
+
+.function-share-to-facebook{
     display: flex;
     justify-content: space-between;
 }
 
-.each-item h5{
+.function-share-to-facebook-content h5{
     color: #484848;
     font-size: 16px;
     font-weight: bold;
+    line-height: 22px;
 }
 
-#select-language-dropdown{
-    width: 100%;
-    border: lightgray solid;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#select-currency-dropdown{
-    width: 100%;
-    border: lightgray solid;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#select-time-zone-dropdown{
-    width: 100%;
-    border: lightgray solid;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.language:hover{
-    border-bottom: none;
-}
-
-.currency:hover{
-    border-bottom: none;
-}
-
-.time-zone:hover{
-    border-bottom: none;
+.function-share-to-facebook-content p{
+    color: #484848;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .right-container{
     box-sizing: border-box;
-    height: 210px;
+    height: 55%;
     padding: 2%;
     border: lightgray solid;
     border-radius: 5px;

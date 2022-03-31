@@ -1,0 +1,91 @@
+﻿@model Aircnc.FrontStage.Models.ViewModels.Member.MemberViewModel
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-7 left-container ps-5">
+                    <div class="add-identity">
+                        <h4>請新增政府核發的身分證件</h4>
+                        <p>請新增政府核發的身分證件。這個步驟有助確認你的真實身分。</p>
+                    </div>
+                    <div class="form-check" id="list">
+                        <label id="form-check-label" for="radio">
+                            上傳現有的相片
+                        </label>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" checked>
+                    </div>
+                    <span>建議做法</span>
+                    <hr>
+                    <div class="form-check" id="list">
+                        <label id="form-check-label" for="radio">
+                            使用你的網路攝影機拍照
+                        </label>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
+                    </div>
+                    <hr>
+                    <div class="form-check" id="list">
+                        <label id="form-check-label" for="radio">
+                            使用Airbnb行動應用程式拍照
+                        </label>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
+                    </div>
+                    <div class="blank"></div>
+                    <hr>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary" id="keep-on-btn">
+                            <span>繼續</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="right-container col-12 col-md-3 py-md-auto d-none d-md-block ms-md-5">
+                    <h6>你的隱私</h6>
+                    <p>我們的目標是讓你在此過程中分享的資料保有隱私、安全且保密。詳情請參閱我們的<a href="#" class="link-dark">《隱私權政策》</a>。</p>
+                    <div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="link-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            運作方式
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">
+                                            身分驗證
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Airbnb如何驗證身分</h4>
+                                        <h6>提供政府核發的身分證件</h6>
+                                        <p>
+                                            請提供政府核發的正式身分證件，以便我們確認你的身分。在某些情況下，房東和體驗達人會要求旅客在預訂房源或體驗之前，必須先完成身分驗證。Airbnb可能也必須驗證你的身分，以便確認是你本人。我們絕不會向房東、體驗達人或其他
+                                            Airbnb 用戶透露你的身分證件資料。
+                                        </p>
+                                        <p>根據您的所在地和國家／地區而定，您可以新增駕照、護照或國民身分證等證件。</p>
+
+                                        <h6>如何新增身分證件？</h6>
+                                        <p>你可以使用手機、電腦或平板電腦的相機拍攝身分證件相片，也可以選擇上傳裝置中現有的身分證件相片。</p>
+                                        <h6>相片中應包括哪些內容？</h6>
+                                        <p>如果想新增駕照或身分證，請拍攝該證件的正反面照。如果想新增護照，請拍攝有你的相片在內的頁面。</p>
+                                        <h6>提供一張自拍照</h6>
+                                        <p>系統要求你自拍一張相片時，我們會比對此相片與你提供的身分證件上的相片。這能幫助我們確認你的身分。</p>
+                                        <h6>隱私</h6>
+                                        <p>我們非常重視你的隱私，你在此流程中提供的資訊都受到我們的《隱私權政策》保護。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@section topCSS{
+    <link href="~/css/Upload_Identification/normalize.css" rel="stylesheet" />
+    <link href="~/css/Upload_Identification/Upload_Identification.css" rel="stylesheet" />
+}

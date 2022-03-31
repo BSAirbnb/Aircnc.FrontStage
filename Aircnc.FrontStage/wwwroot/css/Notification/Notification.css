@@ -40,14 +40,43 @@ section{
     margin-bottom: 50px;
 }
 
-.nav-link{
+.breadcrumb{
     color: #484848;
     font-size: 14px;
     font-weight: bold;
     line-height: 20px;
 }
-.active{
-    padding-left: 0px;
+
+.title h4{
+    color: #484848;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
+}
+
+.lower-container{
+    display: flex;
+}
+
+#pills-news-tab{
+    background: white;
+    color: #222222;
+}
+
+#pills-account-tab{
+    background: white;
+    color: #222222;
+}
+
+.nav-item{
+    display: flex;
+}
+
+.nav-link{
+    color: #222222;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
 }
 
 .content-title h5{
