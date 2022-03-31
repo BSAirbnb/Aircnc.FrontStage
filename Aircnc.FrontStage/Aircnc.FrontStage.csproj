@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\css\Select_IdentificationType\" />
+    <Folder Include="wwwroot\css\Upload_ID_Photo\" />
+    <Folder Include="wwwroot\css\Upload_Identification\" />
     <Folder Include="wwwroot\css\Privacy_and_Share\" />
     <Folder Include="wwwroot\css\Notification\" />
     <Folder Include="wwwroot\css\Personal_Details\" />

@@ -12,99 +12,123 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="title">
+                <div class="title mb-5">
                     <h4>全球偏好設定</h4>
                 </div>
             </div>
-            <div class="col-12 col-md-7 left-container my-5 ps-5">
-                <div class="left-main-cotent">
+            <div class="lower-container">
+                <div class="left-container col-12 col-md-7 ps-5">
                     <div class="each-item">
                         <h5>偏好語言</h5>
-                        <div>
-                            <a class="btn edit-btn" data-bs-toggle="collapse" href="#edit-btn" role="button"
-                               aria-expanded="false" aria-controls="edit-btn">
-                                編輯
-                            </a>
-                        </div>
+                        <a class="btn" id="edit-btn" data-bs-toggle="collapse" href="#language-selector"
+                           role="button" aria-expanded="false" aria-controls="language-selector">
+                            編輯
+                        </a>
                     </div>
-                    <div class="collapse" id="edit-btn">
-                        <div>這會更新您在 Airbnb 上看到的內容，以及我們與您的溝通方式。</div>
-                        <div class="card card-body">
-                            <div class="dropdown-container">
-                                <button class="btn dropdown-toggle" type="button" id="dropdown-selector"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    中文(繁體)
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-selector">
-                                    <li><a class="dropdown-item" href="#">中文(繁體)</a></li>
-                                    <li><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">日本語</a></li>
-                                </ul>
-                            </div>
+                    <div class="collapse" id="language-selector">
+                        <div class="mb-3">這會更新您在 Airbnb 上看到的內容，以及我們與您的溝通方式。</div>
+                        <div class="dropdown" id="select-language">
+                            <button class="btn dropdown-toggle" type="button" id="select-language-dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                中文 (繁體)
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="select-language-dropdown">
+                                <li><a class="dropdown-item language" href="#">中文 (繁體)</a></li>
+                                <li><a class="dropdown-item language" href="#">中文 (简体)</a></li>
+                                <li><a class="dropdown-item language" href="#">English (UK)</a></li>
+                                <li><a class="dropdown-item language" href="#">English (Canada)</a></li>
+                                <li><a class="dropdown-item language" href="#">English (Australia)</a></li>
+                                <li><a class="dropdown-item language" href="#">Ślůnski</a></li>
+                                <li><a class="dropdown-item language" href="#">العربية</a></li>
+                                <li><a class="dropdown-item language" href="#">Español</a></li>
+                                <li><a class="dropdown-item language" href="#">한국어</a></li>
+                                <li><a class="dropdown-item language" href="#">ภาษาไทย</a></li>
+                                <li><a class="dropdown-item language" href="#">हिन्दी</a></li>
+                                <li><a class="dropdown-item language" href="#">Français</a></li>
+                                <li><a class="dropdown-item language" href="#">日本語</a></li>
+                            </ul>
                         </div>
                     </div>
                     <hr>
                     <div class="each-item">
                         <h5>偏好幣別</h5>
-                        <div>
-                            <a class="btn edit-btn" data-bs-toggle="collapse" href="#edit-btn-currency" role="button"
-                               aria-expanded="false" aria-controls="edit-btn-currency">
-                                編輯
-                            </a>
-                        </div>
+                        <a class="btn" id="edit-btn" data-bs-toggle="collapse" href="#currency-selector"
+                           role="button" aria-expanded="false" aria-controls="currency-selector">
+                            編輯
+                        </a>
                     </div>
-                    <div class="collapse" id="edit-btn-currency">
-                        <div class="card card-body">
-                            <div class="dropdown-container">
-                                <button class="btn dropdown-toggle" type="button" id="dropdown-selector"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    新台幣
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-selector">
-                                    <li><a class="dropdown-item" href="#">新台幣</a></li>
-                                    <li><a class="dropdown-item" href="#">美金</a></li>
-                                    <li><a class="dropdown-item" href="#">日元</a></li>
-                                </ul>
-                            </div>
+                    <div class="collapse" id="currency-selector">
+                        <div class="dropdown" id="select-currency">
+                            <button class="btn dropdown-toggle" type="button" id="select-currency-dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                新台幣
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="select-currency-dropdown">
+                                <li><a class="dropdown-item currency" href="#">新台幣</a></li>
+                                <li><a class="dropdown-item currency" href="#">美金</a></li>
+                                <li><a class="dropdown-item currency" href="#">日元</a></li>
+                                <li><a class="dropdown-item currency" href="#">澳元</a></li>
+                                <li><a class="dropdown-item currency" href="#">新加坡幣</a></li>
+                                <li><a class="dropdown-item currency" href="#">俄羅斯盧布</a></li>
+                                <li><a class="dropdown-item currency" href="#">人民幣</a></li>
+                                <li><a class="dropdown-item currency" href="#">港紙</a></li>
+                                <li><a class="dropdown-item currency" href="#">瑞士法郎</a></li>
+                                <li><a class="dropdown-item currency" href="#">捷克克朗</a></li>
+                                <li><a class="dropdown-item currency" href="#">泰銖</a></li>
+                                <li><a class="dropdown-item currency" href="#">英鎊</a></li>
+                                <li><a class="dropdown-item currency" href="#">歐元</a></li>
+                            </ul>
                         </div>
                     </div>
                     <hr>
                     <div class="each-item">
                         <h5>時區</h5>
-                        <div>
-                            <a class="btn edit-btn" data-bs-toggle="collapse" href="#edit-btn-time-zone" role="button"
-                               aria-expanded="false" aria-controls="edit-btn-time-zone">
-                                編輯
-                            </a>
-                        </div>
+                        <a class="btn" id="edit-btn" data-bs-toggle="collapse" href="#time-zone-selector"
+                           role="button" aria-expanded="false" aria-controls="time-zone-selector">
+                            編輯
+                        </a>
                     </div>
-                    <div class="collapse" id="edit-btn-time-zone">
-                        <div class="card card-body">
-                            <div class="dropdown-container">
-                                <button class="btn dropdown-toggle" type="button" id="dropdown-selector"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-selector">
-                                    <li><a class="dropdown-item" href="#"></a></li>
-                                </ul>
-                            </div>
+                    <div class="collapse" id="time-zone-selector">
+                        <div class="dropdown" id="select-time-zone">
+                            <button class="btn dropdown-toggle" type="button" id="select-time-zone-dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                新台幣
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="select-time-zone-dropdown">
+                                <li><a class="dropdown-item time-zone" href="#">(GMT-11:00) Istanbul</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT-11:00) Istanbul</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+02:00) Europe</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+03:00) Moscow</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+04:00) Indian</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+06:00) Astana</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+07:00) Dhaka</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+07:00) Jakarta</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Taiwan</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Hong Kong</a></li>
+                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Singapore</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-3 right-container py-md-auto d-none d-md-block ms-md-5">
-                <hr id="hr-sm-display">
-                <i class="fas fa-sliders-h"></i>
-                <h5>全球偏好設定</h5>
-                <p>Airbnb 非常重視你的隱私。你可以使用此頁面選擇分享活動的方式。</p>
+                <div class="right-container col-12 col-md-3 py-md-auto d-none d-md-block ms-md-5">
+                    <hr id="hr-sm-display">
+                    <div class="mb-4">
+                        <i class="bi bi-sliders2-vertical"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                             class="bi bi-sliders2-vertical" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M0 10.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H3V1.5a.5.5 0 0 0-1 0V10H.5a.5.5 0 0 0-.5.5ZM2.5 12a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5Zm3-6.5A.5.5 0 0 0 6 6h1.5v8.5a.5.5 0 0 0 1 0V6H10a.5.5 0 0 0 0-1H6a.5.5 0 0 0-.5.5ZM8 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2A.5.5 0 0 0 8 1Zm3 9.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H14V1.5a.5.5 0 0 0-1 0V10h-1.5a.5.5 0 0 0-.5.5Zm2.5 1.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5Z" />
+                        </svg>
+                    </div>
+                    <h5>全球偏好設定</h5>
+                    <p>Airbnb 非常重視你的隱私。你可以使用此頁面選擇分享活動的方式。</p>
+                </div>
             </div>
         </div>
+    </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous">
-</script>
+
 
 @section topCSS{
     <link href="~/css/Preference/normalize.css" rel="stylesheet" />

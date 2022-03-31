@@ -49,5 +49,20 @@ namespace Aircnc.FrontStage.Controllers
             return View();
         }
 
+        public IActionResult Upload_Identification()
+        {
+            return View();
+        }
+
+        public IActionResult Upload_ID_Photo()
+        {
+            return View();
+        }
+        public IActionResult Select_IdentificationType()
+        {
+            return View();
+        }
+
+
     }
 }
