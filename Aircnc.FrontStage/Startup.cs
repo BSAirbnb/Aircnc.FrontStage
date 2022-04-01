@@ -2,7 +2,7 @@ using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Services;
 using Aircnc.FrontStage.Services.RoomOwner;
 using Aircnc.FrontStage.Services.Guest;
-using Aircnc_0321.Repositories;
+using AircncFrontStage.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
