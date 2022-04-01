@@ -38,11 +38,10 @@ namespace Aircnc.FrontStage.Services.Account
             {
                 Email = input.Email,
                 Name = input.Name,
-                //Gender應改成可為null 改完後把這邊刪掉
                 Gender = false,
                 Password = input.Password.SHA256Encrypt(),
-                //user entity要加一個email是否已經驗證
-                //加email是否已經驗證 = false
+
+                MailIsVerify=false,
                 Birthday = input.Birthday
 
             };

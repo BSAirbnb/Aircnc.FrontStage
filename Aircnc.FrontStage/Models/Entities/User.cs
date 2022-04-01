@@ -28,7 +28,7 @@ namespace Aircnc.FrontStage.Models.Entities
         public string Address { get; set; }
         public string Password { get; set; }
         public DateTime Birthday { get; set; }
-        public bool Gender { get; set; }
+        public bool? Gender { get; set; }
         public string Photo { get; set; }
         public string EmergencyContactName { get; set; }
         public string EmergencyContactPhone { get; set; }
@@ -36,6 +36,8 @@ namespace Aircnc.FrontStage.Models.Entities
         public int? UserVerificationId { get; set; }
         public int? BankVerificationId { get; set; }
         public bool? IsDelete { get; set; }
+
+        public bool MailIsVerify { get; set; }
 
         public virtual BankVerification BankVerification { get; set; }
         public virtual UserVerification UserVerification { get; set; }
