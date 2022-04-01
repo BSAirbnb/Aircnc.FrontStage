@@ -44,5 +44,10 @@ namespace Aircnc.FrontStage.Controllers.Account
 
             
         }
+        public IActionResult Verify(int user)
+        {
+            _accountService.VerifyAccount(user);
+            return View();
+        }
     }
 }

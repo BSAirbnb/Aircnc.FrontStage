@@ -2,6 +2,7 @@
 using Aircnc.FrontStage.Models.Dtos.Account;
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Services.Account.Interface;
+using Aircnc.FrontStage.Services.Common;
 using AircncFrontStage.Repositories;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace Aircnc.FrontStage.Services.Account
     public class AccountService : IAccountService
     {
         private readonly DBRepository _dBRepository;
-
-        public AccountService(DBRepository dBRepository)
+        private readonly MailService _mailService;
+        public AccountService(DBRepository dBRepository, MailService mailService)
         {
             _dBRepository = dBRepository;
+            _mailService = mailService;
+
         }
 
         public CreateAccountOutputDto CreateAccount(CreateAccountInputDto input)
@@ -48,7 +51,7 @@ namespace Aircnc.FrontStage.Services.Account
             _dBRepository.Create(user);
             _dBRepository.Save();
             //mail驗證信發出去
-            //_mailService.SendVerifyMail(user.Email, user.Id);
+            _mailService.SendVerifyMail(user.Email, user.UserId);
 
             result.IsSuccess = true;
             result.User.UserId = user.UserId;
@@ -73,7 +76,14 @@ namespace Aircnc.FrontStage.Services.Account
 
         public void VerifyAccount(int userId)
         {
-            throw new NotImplementedException();
+            var user = _dBRepository.GetAll<User>().First(x => x.UserId == userId);
+
+            if (!user.MailIsVerify)
+            {
+                user.MailIsVerify = true;
+                _dBRepository.Update<User>(user);
+                _dBRepository.Save();
+            }
         }
     }
 }
