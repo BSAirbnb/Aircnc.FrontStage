@@ -55,6 +55,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 City = SearchRoomDto.City,
                 District = SearchRoomDto.District,
                 UnitPrice = SearchRoomDto.UnitPrice,
+                Comments = SearchRoomDto.Comments,
             });
 
             var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);

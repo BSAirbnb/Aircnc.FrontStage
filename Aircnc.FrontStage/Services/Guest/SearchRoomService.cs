@@ -31,7 +31,7 @@ namespace Aircnc.FrontStage.Services.Guest
                 City = room.City,
                 District = room.District,
                 UnitPrice = room.UnitPrice,
-
+                Comments = room.Comments.Count,
             });
         }
 
