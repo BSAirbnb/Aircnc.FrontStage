@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Aircnc.FrontStage.Services.Transaction;
 using Aircnc.FrontStage.Services.Account.Interface;
 using Aircnc.FrontStage.Services.Account;
+using Aircnc.FrontStage.Services.Common;
 
 namespace Aircnc.FrontStage
 {
@@ -50,6 +51,8 @@ namespace Aircnc.FrontStage
             services.AddTransient<IAccountService, AccountService>();
 
             services.AddTransient<SearchRoomService, SearchRoomService>();
+            services.AddTransient<MailService, MailService>();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
