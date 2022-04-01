@@ -1,0 +1,13 @@
+﻿
+/*airbnb主要色*/
+.common {
+    color: #ff385c;
+}
+
+/*btn點下去之後的效果關掉*/
+.btn{
+    box-shadow:none;
+}
+
+
+
