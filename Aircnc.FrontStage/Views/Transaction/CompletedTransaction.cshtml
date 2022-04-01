@@ -1,4 +1,5 @@
 ﻿@{ ViewData["Title"] = "交易紀錄"; Layout = "TransactionLayout.cshtml";}
+@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Transaction.TransactionViewModel>
 <!-- content -->
 <div class="container">
     <!-- 新增收款方式的按鈕區塊 -->
@@ -29,9 +30,9 @@
     <div class="col-10 col-md-8">
         <div class="options ms-md-2">
             <ul class="nav-tabs">
-                <a href="#" class="completed-transactions">已完成的收款</a>
-                <a href="#" class="future-transactions">將至收款</a>
-                <a href="#" class="gross-earnings">總收入</a>
+                <a href="~/Transaction/CompletedTransaction" class="completed-transactions">已完成的收款</a>
+                <a href="~/Transaction/FutureTransaction" class="future-transactions">將至收款</a>
+                <a href="~/Transaction/GrossEarnings" class="gross-earnings">總收入</a>
             </ul>
         </div>
     </div>
@@ -44,9 +45,9 @@
         <div class="input-group input-group-lg">
             <select class="form-select mt-md-2" id="inputGroupSelect04" aria-label="Example select with button addon">
                 <option selected>所有收款方式</option>
-                <option value="1">One</option>
+                @*<option value="1">One</option>
                 <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="3">Three</option>*@
             </select>
         </div>
     </div>
@@ -80,14 +81,11 @@
     <div class="col-4 col-md-2 ms-md-1 mt-sm-2">
         <div class="input-group input-group-lg">
             <select class="form-select mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                @*<option selected>2022</option>*@
-                @for(int i = int.Parse(DateTime.Now.ToString("yyyy")); i <int.Parse(DateTime.Now.ToString("yyyy"))-5 ; i--)
-            {
+                @for(int i = int.Parse(DateTime.Now.ToString("yyyy")); i >=int.Parse(DateTime.Now.ToString("yyyy"))-5 ; i--)
+            {   
                 <option value="@i">@i</option>
 
             }
-                @*<option value="2">2020</option>
-                <option value="3">2019</option>*@
             </select>
         </div>
     </div>
@@ -95,10 +93,11 @@
     <div class="col-6 col-md-2 ms-md-1 mt-sm-2">
         <div class="input-group input-group-lg">
             <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                <option selected>一月</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                @for (int i = 1; i <= 12; i++)
+                {
+                    @*<option selected>@i 月</option>*@
+                    <option value="@i">@i 月</option>
+                }
             </select>
         </div>
     </div>
@@ -106,35 +105,40 @@
     <div class="col-4 col-md-2 ms-md-1 mt-sm-2">
         <div class="input-group input-group-lg">
             <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                <option selected>2022</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                @for (int i = int.Parse(DateTime.Now.ToString("yyyy")); i >= int.Parse(DateTime.Now.ToString("yyyy")) - 5; i--)
+                {
+                    <option value="@i">@i</option>
+
+                }
+
             </select>
         </div>
     </div>
 </div>
 
 <!-- 查詢結果區塊 -->
-<div class="row mt-5 ms-3 ms-md-2 query">
-    <div class="col-8 col-md-5 ms-md-5">
-        <span class="has-paid-label fw-bold fs-5">已付:</span>
-        <span class="has-paid-amount fw-bold fs-5">0.00</span>
+    <div class="row mt-5 ms-3 ms-md-2 query">
+        <div class="col-8 col-md-5 ms-md-5">
+            <span class="has-paid-label fw-bold fs-5">已付:</span>
+            <span class="has-paid-amount fw-bold fs-5">0.00</span>
+        </div>
+        <div class="col-2 col-md-3 submit">
+            <button class="btn border border-2 fw-bold query-submit">查詢</button>
+        </div>
     </div>
-    <div class="col-2 col-md-3 submit">
-        <button class="btn border border-2 fw-bold query-submit">查詢</button>
-    </div>
-</div>
 
 <!-- reminder -->
-<div class="row mt-3 ms-3 ms-md-5 mb-3 reminder">
-    <div class="col-10 col-md-8 ms-md-3 shadow py-4 px-3 border border-1">
-        <span class="fs-5">我們無法處理您的收款</span>
-        <span class="d-block fs-6">在您的帳號<a href="#" class="add-payout">新增收款方式</a>，就可以開始接收您的收款</span>
+        @if (@Model.Count() == 0) { 
+    <div class="row mt-3 ms-3 ms-md-5 mb-3 reminder">
+        <div class="col-10 col-md-8 ms-md-3 shadow py-4 px-3 border border-1">
+            <span class="fs-5">我們無法處理您的收款</span>
+            <span class="d-block fs-6">在您的帳號<a href="#" class="add-payout">新增收款方式</a>，就可以開始接收您的收款</span>
+        </div>
     </div>
-</div>
+        }
 
     @* 資料顯示區塊 *@
+    @if(Model.Count()>0){ 
 <div class="row ms-2">
     <div class="col-10 col-md-8 ms-5">
         <table class="table">
@@ -170,10 +174,13 @@
         </table>
     </div>
 </div>
-
+}
 
 </div>
 
 @section CSS{ 
     <link href="~/css/Transaction/CompletedTransaction.css" rel="stylesheet" />
 }
+
+@* 如果沒有任何交易紀錄資料要顯示沒資料的面 *@
+

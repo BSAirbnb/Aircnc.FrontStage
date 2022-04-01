@@ -29,9 +29,9 @@
         <div class="col-10 col-md-8">
             <div class="options ms-md-2">
                 <ul class="nav-tabs">
-                    <a href="#" class="completed-transactions">已完成的收款</a>
-                    <a href="#" class="future-transactions">將至收款</a>
-                    <a href="#" class="gross-earnings">總收入</a>
+                    <a href="~/Transaction/CompletedTransaction" class="completed-transactions">已完成的收款</a>
+                    <a href="~/Transaction/FutureTransaction" class="future-transactions">將至收款</a>
+                    <a href="~/Transaction/GrossEarnings" class="gross-earnings">總收入</a>
                 </ul>
             </div>
         </div>
@@ -39,52 +39,56 @@
 
     <!-- 篩選器區塊 -->
     <!-- 日期篩選區塊 -->
-    <div class="row mt-2 ms-3 ms-md-1">
+    <div class="row mt-3">
         <!-- 起始月份 -->
-        <div class="col-6 col-md-3 ms-md-5 mt-2">
+        <div class="col-6 col-md-2 ms-md-5 mt-2">
             <div class="input-group input-group-lg">
                 <select class="form-select ms-md-1" id="inputGroupSelect04" aria-label="Example select with button addon">
-                    <option selected>一月</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        @*<option selected>@i 月</option>*@
+                        <option value="@i">@i 月</option>
+                    }
                 </select>
             </div>
         </div>
         <!-- 起始年分 -->
-        <div class="col-4 col-md-3 ms-md-1 mt-sm-2">
-            <div class="input-group input-group-lg w-50">
+        <div class="col-4 col-md-2 ms-md-1 mt-sm-2">
+            <div class="input-group input-group-lg">
                 <select class="form-select mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                    <option selected>2022</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @for (int i = int.Parse(DateTime.Now.ToString("yyyy")); i >= int.Parse(DateTime.Now.ToString("yyyy")) - 5; i--)
+                    {
+                        <option value="@i">@i</option>
+
+                    }
                 </select>
             </div>
         </div>
         <!-- 結束月份 -->
-        <div class="col-6 col-md-3 mt-sm-2">
+        <div class="col-6 col-md-2 ms-md-1 mt-sm-2">
             <div class="input-group input-group-lg">
                 <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                    <option selected>一月</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        @*<option selected>@i 月</option>*@
+                        <option value="@i">@i 月</option>
+                    }
                 </select>
             </div>
         </div>
         <!-- 結束年分 -->
         <div class="col-4 col-md-2 ms-md-1 mt-sm-2">
-            <div class="input-group input-group-lg w-50">
+            <div class="input-group input-group-lg">
                 <select class="form-select mt-3 mt-md-0" id="inputGroupSelect04" aria-label="Example select with button addon">
-                    <option selected>2022</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @for (int i = int.Parse(DateTime.Now.ToString("yyyy")); i >= int.Parse(DateTime.Now.ToString("yyyy")) - 5; i--)
+                    {
+                        <option value="@i">@i</option>
+
+                    }
+
                 </select>
             </div>
         </div>
-
     </div>
 
     <!-- 查詢結果區塊 -->
