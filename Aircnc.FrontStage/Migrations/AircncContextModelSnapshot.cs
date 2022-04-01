@@ -113,30 +113,30 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             BankVerificationId = 1,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(317),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(4346),
                             BankAccount = "80222222222220",
                             BankbookImg = "https://picsum.photos/seed/picsum/200/300",
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(544),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(4589),
                             Status = 2
                         },
                         new
                         {
                             BankVerificationId = 2,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(1200),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(5224),
                             BankAccount = "80222222222221",
                             BankbookImg = "https://picsum.photos/seed/picsum/200/300",
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(1203),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(5227),
                             Status = 2
                         },
                         new
                         {
                             BankVerificationId = 3,
                             AdminId = 2,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(1205),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(5229),
                             BankAccount = "80222222222222",
                             BankbookImg = "https://picsum.photos/seed/picsum/200/300",
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(1206),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(5230),
                             Status = 1
                         });
                 });
@@ -365,7 +365,7 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             MessageId = 1,
                             RecipientId = 2,
-                            SendTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(8804),
+                            SendTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(3601),
                             SenderId = 1,
                             Text = "HI"
                         },
@@ -373,7 +373,7 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             MessageId = 2,
                             RecipientId = 2,
-                            SendTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(9026),
+                            SendTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(3832),
                             SenderId = 1,
                             Text = "HI"
                         },
@@ -381,7 +381,7 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             MessageId = 3,
                             RecipientId = 2,
-                            SendTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(9029),
+                            SendTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(3837),
                             SenderId = 1,
                             Text = "HI"
                         });
@@ -1437,7 +1437,7 @@ namespace Aircnc.FrontStage.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool>("Gender")
+                    b.Property<bool?>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("IsDelete")
@@ -1445,6 +1445,9 @@ namespace Aircnc.FrontStage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValueSql("(CONVERT([bit],(0)))");
+
+                    b.Property<bool>("MailIsVerify")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1481,13 +1484,14 @@ namespace Aircnc.FrontStage.Migrations
                             UserId = 1,
                             Address = "台北市大安區建國南路一段96號",
                             BankVerificationId = 1,
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(6649),
-                            Email = "123@gmail.com",
-                            EmergencyContactName = "你爸",
-                            EmergencyContactPhone = "0911111111",
+                            Birthday = new DateTime(1996, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(1203),
+                            Email = "Bill123@gmail.com",
+                            EmergencyContactName = "力宏",
+                            EmergencyContactPhone = "0944412456",
                             Gender = true,
                             IsDelete = false,
+                            MailIsVerify = true,
                             Name = "Bill",
                             Password = "123",
                             Phone = "0911123123",
@@ -1499,100 +1503,106 @@ namespace Aircnc.FrontStage.Migrations
                             UserId = 2,
                             Address = "台北市大安區建國南路一段966號",
                             BankVerificationId = 2,
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7513),
-                            Email = "123d@gmail.com",
-                            EmergencyContactName = "你爸",
+                            Birthday = new DateTime(1997, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2312),
+                            Email = "sin123d@gmail.com",
+                            EmergencyContactName = "怡萱",
                             EmergencyContactPhone = "0911111111",
                             Gender = false,
                             IsDelete = false,
-                            Name = "c老師",
+                            MailIsVerify = true,
+                            Name = "新樺",
                             Password = "1234",
-                            Phone = "091112315553",
+                            Phone = "09122324343",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 2
                         },
                         new
                         {
                             UserId = 3,
-                            Address = "台北市大安區建國南路一段9266號",
+                            Address = "台北市大安區仁愛路一段66號",
                             BankVerificationId = 3,
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7520),
+                            Birthday = new DateTime(1982, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2383),
                             Email = "1232d@gmail.com",
                             Gender = false,
                             IsDelete = true,
-                            Name = "曹老師",
+                            MailIsVerify = true,
+                            Name = "曹聖光",
                             Password = "1234",
-                            Phone = "09111231512121",
+                            Phone = "0987987987",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 3
                         },
                         new
                         {
                             UserId = 4,
-                            Address = "台北市大安區建國南路一段966號33",
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7523),
-                            Email = "123d@gmail.com",
-                            EmergencyContactName = "你爸",
-                            EmergencyContactPhone = "0911111111",
+                            Address = "台北市大安區忠孝東路一段420號",
+                            Birthday = new DateTime(1973, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2389),
+                            Email = "123dann@gmail.com",
+                            EmergencyContactName = "Andy",
+                            EmergencyContactPhone = "0912222222",
                             Gender = false,
                             IsDelete = false,
-                            Name = "d老師",
+                            MailIsVerify = true,
+                            Name = "Dann",
                             Password = "1234",
-                            Phone = "091112315553",
+                            Phone = "0912344543",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 4
                         },
                         new
                         {
                             UserId = 5,
-                            Address = "台北市大安區建國南路一段966號12",
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7525),
-                            Email = "123d@gmail.com",
-                            EmergencyContactName = "你爸f",
-                            EmergencyContactPhone = "0911111111",
+                            Address = "台北市大安區建國南路一段966號12弄1樓",
+                            Birthday = new DateTime(1998, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2392),
+                            Email = "123dchen@gmail.com",
+                            EmergencyContactName = "秉承",
+                            EmergencyContactPhone = "0922222222",
                             Gender = false,
                             IsDelete = false,
-                            Name = "d5老師",
+                            MailIsVerify = true,
+                            Name = "陳育成",
                             Password = "1234",
-                            Phone = "091112315553",
+                            Phone = "0913313133",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 5
                         },
                         new
                         {
                             UserId = 6,
-                            Address = "台北市大安區建國南路一段9566號11",
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7584),
+                            Address = "台北市大安區建國南路一段9566號11樓",
+                            Birthday = new DateTime(1996, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2394),
                             Email = "123d@gmail.com",
-                            EmergencyContactName = "你爸fff",
-                            EmergencyContactPhone = "0911111111",
+                            EmergencyContactName = "美茜",
+                            EmergencyContactPhone = "0912234234",
                             Gender = false,
                             IsDelete = false,
-                            Name = "d老師",
+                            MailIsVerify = true,
+                            Name = "婷怡",
                             Password = "1234",
-                            Phone = "091112315553",
+                            Phone = "0911232423",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 6
                         },
                         new
                         {
                             UserId = 7,
-                            Address = "台北市大安區建國南路一段9266號",
-                            Birthday = new DateTime(2011, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateTime(2022, 3, 30, 21, 50, 26, 993, DateTimeKind.Local).AddTicks(7587),
+                            Address = "台北市大安區建國南路一段666號",
+                            Birthday = new DateTime(1966, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateTime(2022, 4, 1, 20, 34, 30, 576, DateTimeKind.Local).AddTicks(2397),
                             Email = "123d@gmail.com",
-                            EmergencyContactName = "你爸",
-                            EmergencyContactPhone = "0911111111",
+                            EmergencyContactName = "路加封",
+                            EmergencyContactPhone = "0911422422",
                             Gender = false,
                             IsDelete = false,
-                            Name = "d老師",
+                            MailIsVerify = true,
+                            Name = "向李",
                             Password = "1234",
-                            Phone = "091112315553",
+                            Phone = "0966666666",
                             Photo = "https://picsum.photos/seed/picsum/200/300",
                             UserVerificationId = 7
                         });
@@ -1637,8 +1647,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 1,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(1109),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(7515),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 574, DateTimeKind.Local).AddTicks(3196),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(1389),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1646,8 +1656,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 2,
                             AdminId = 2,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8376),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8381),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2538),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2543),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1655,8 +1665,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 3,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8383),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8384),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2545),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2546),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1664,8 +1674,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 4,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8387),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8388),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2548),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2549),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1673,8 +1683,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 5,
                             AdminId = 2,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8390),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8391),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2551),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2552),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1682,8 +1692,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 6,
                             AdminId = 2,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8392),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8393),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2554),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2555),
                             DocumentType = 1,
                             Status = 1
                         },
@@ -1691,8 +1701,8 @@ namespace Aircnc.FrontStage.Migrations
                         {
                             UserVerificationId = 7,
                             AdminId = 1,
-                            ApplyTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8394),
-                            CertificationTime = new DateTime(2022, 3, 30, 21, 50, 26, 992, DateTimeKind.Local).AddTicks(8395),
+                            ApplyTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2556),
+                            CertificationTime = new DateTime(2022, 4, 1, 20, 34, 30, 575, DateTimeKind.Local).AddTicks(2557),
                             DocumentType = 1,
                             Status = 1
                         });

@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aircnc.FrontStage.Services.Account
+namespace Aircnc.FrontStage.Services.Account.Interface
 {
     public interface IAccountService
     {
         public CreateAccountOutputDto CreateAccount(CreateAccountInputDto input);
         public LoginAccountOutputDto LoginAccount(LoginAccountInputDto input);
-        public void LogoutAccount();
+
         public bool IsExistAccount(string email);
-        public bool VertifyAccount(int userid);
+
+        public void VerifyAccount(int userId);
+        public void LogoutAccount();
+
     }
 }

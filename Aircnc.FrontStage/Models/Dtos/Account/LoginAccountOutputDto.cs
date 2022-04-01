@@ -10,14 +10,15 @@ namespace Aircnc.FrontStage.Models.Dtos.Account
         public LoginAccountOutputDto()
         {
             User = new UserData();
+
         }
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public UserData User { get; set; }
 
-        public class UserData 
+        public class UserData
         {
-            public int Id { get; set; }
+            public int UserId { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
 

@@ -9,6 +9,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Account
     {
         public CreateAccountOutputDto()
         {
+
             User = new UserData();
         }
         public bool IsSuccess { get; set; }
@@ -17,11 +18,10 @@ namespace Aircnc.FrontStage.Models.Dtos.Account
 
         public class UserData
         {
-            public int Id { get; set; }
+            public int UserId { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
-            //public bool Gender { get; set; }
-
+            public string Password { get; set; }
         }
     }
 }

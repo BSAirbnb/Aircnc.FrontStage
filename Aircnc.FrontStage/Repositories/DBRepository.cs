@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Aircnc.FrontStage.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aircnc_0321.Repositories
+namespace AircncFrontStage.Repositories
 {
     public class DBRepository
     {
