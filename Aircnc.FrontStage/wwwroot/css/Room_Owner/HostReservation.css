@@ -171,6 +171,10 @@
         font-size: 18px;
     }
 
+/*詳細按鈕*/
+.btn_host_reservation_detail {
+    background-color: #008489;
+}
 .share_your_oppinions {
     padding: 5em 0;
     font-size: 14px;
