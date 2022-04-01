@@ -9,62 +9,7 @@
     <link href="~/css/Order/normalize.css" rel="stylesheet" />
     <link href="~/css/Order/index-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <style>
-        .or {
-            height: 60px;
-            line-height: 60px;
-            text-align: center;
-        }
 
-            .or .line {
-                display: inline-block;
-                width: 200px;
-                border-top: 1px solid #ccc;
-            }
-
-            .or .text {
-                vertical-align: -8%;
-            }
-
-        .button5 {
-            border-radius: 10px;
-            background-color: white;
-            text-align: center;
-            font-weight: bold;
-            border: 1px solid black;
-            height: 45px;
-            width: 400px;
-        }
-
-            .button5:hover {
-                background-color: rgb(245, 239, 239);
-            }
-
-        .modal2 {
-            width: 600px;
-        }
-
-        .select1 {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .select2 {
-            width: 400px;
-            height: 40px;
-            border-radius: 10px;
-            ;
-            background-color: rgb(235, 17, 100);
-            color: aliceblue;
-            border: 0ch;
-        }
-
-            .select2:hover {
-                background-color: rgb(212, 57, 117)
-            }
-    </style>
 </head>
 <body>
     <header>
@@ -72,7 +17,7 @@
             <div class="container flex-nowrap">
                 <!-- 以下 logo 的連結記得要換 -->
                 <a href="./index.html" class="navbar-brand col-1">
-                    <img src="~/Img/creatures_of_corner.png" class="logo" alt="Creatures of Corner" />
+                    <img src="~/Img/creatures_of_corner.png" class="logo" alt="Creatures of Corner"/>
                 </a>
 
                 <div class="btn-group">
@@ -80,7 +25,7 @@
                         登入
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#SignupModal">註冊</a></li>
+                        <li><a class="dropdown-item" href="#">註冊</a></li>
                         <li><a class="dropdown-item" href="#">登入</a></li>
                         <li><a class="dropdown-item" href="#">出租房源</a></li>
                     </ul>
@@ -160,42 +105,6 @@
             </div>
         </div>
     </footer>
-    @*signup modal*@
-    <div class="modal" id="SignupModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content d-flex ">
-                <div class="modal-header font-weight:bold">
-                    <h5 class="modal-title fs-3">註冊</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="select1" method="post" action="/Account/Signup">
-                        <div class="input-group flex-nowrap w-75">
-                            <input type="text" class="form-control" placeholder="姓名" aria-label="Text"
-                                   aria-describedby="addon-wrapping" name="Name">
-                        </div>
-                        <div class="input-group flex-nowrap w-75 mt-3">
-                            <input type="date" class="form-control" placeholder="出生日期" aria-label="Birthday"
-                                   aria-describedby="addon-wrapping" name="Birthday">
-                        </div>
-                        <div class="input-group flex-nowrap w-75 mt-3">
-                            <input type="email" class="form-control" placeholder="電子郵件" aria-label="Email"
-                                   aria-describedby="addon-wrapping" name="Email">
-                        </div>
-                        <div class="input-group flex-nowrap w-75 mt-3">
-                            <input type="password" class="form-control" placeholder="密碼" aria-label="Password"
-                                   aria-describedby="addon-wrapping" name="Password">
-                        </div>
-                        <div class="d-flex justify-content-center mt-5 mb-5 align-items-center">
-                            <button class="btn btn-danger" type="submit">註冊</button>
-                        </div>
-                    </form>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
