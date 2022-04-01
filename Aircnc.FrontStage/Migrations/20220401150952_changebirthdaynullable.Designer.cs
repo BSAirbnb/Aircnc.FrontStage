@@ -4,14 +4,16 @@ using Aircnc.FrontStage.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Aircnc.FrontStage.Migrations
 {
     [DbContext(typeof(AircncContext))]
-    partial class AircncContextModelSnapshot : ModelSnapshot
+    [Migration("20220401150952_changebirthdaynullable")]
+    partial class changebirthdaynullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

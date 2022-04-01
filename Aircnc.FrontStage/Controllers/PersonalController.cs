@@ -28,7 +28,7 @@ namespace Aircnc.FrontStage.Controllers
                 Email=target.Email,
                 Gender= (bool)target.Gender,
                 Phone=target.Phone,
-                Birthday = target.Birthday.ToString("yyyy/MM/dd"),
+                //Birthday = target.Birthday.ToString("yyyy/MM/dd"),
                 EmergencyContactName=target.EmergencyContactName,
 
 

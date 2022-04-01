@@ -43,15 +43,19 @@ namespace Aircnc.FrontStage.Services.Account
                 Name = input.Name,
                 Gender = false,
                 Password = input.Password.SHA256Encrypt(),
-
+                CreateTime = DateTime.Now,
                 MailIsVerify=false,
-                Birthday = input.Birthday
+                Phone = "0912444444",
+                IsDelete =false,
+                
+
+                //Birthday = DateTime.Now
 
             };
             _dBRepository.Create(user);
             _dBRepository.Save();
             //mail驗證信發出去
-            //_mailService.SendVerifyMail(user.Email, user.Id);
+            _mailService.SendVerifyMail(user.Email, user.UserId);
 
             result.IsSuccess = true;
             result.User.UserId = user.UserId;
