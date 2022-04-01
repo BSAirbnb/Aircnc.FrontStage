@@ -28,14 +28,14 @@ namespace Aircnc.FrontStage.Controllers.Account
             {
                 Email = request.Email,
                 Name = request.Name,
-                Birthday = request.Birthday,
+                //Birthday = request.Birthday,
                 Password = request.Password
             };
             var outputDto = _accountService.CreateAccount(inputDto);
             if (outputDto.IsSuccess)
             {
                 //先跳回首頁看以後要怎樣
-                return  RedirectToAction("/");
+                return  Redirect("/");
             }
             else 
             {
