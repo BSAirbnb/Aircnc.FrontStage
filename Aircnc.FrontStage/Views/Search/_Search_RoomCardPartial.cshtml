@@ -1,9 +1,23 @@
 ﻿@using Aircnc.FrontStage.Models.ViewModels.Guest
+@using Aircnc.FrontStage.Models.Entities;
 @model SearchRoomViewModel
 
-@*
-	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@{
+	string roomtype;
+	switch (@Model.RoomType)
+	{
+		case RoomTypeEnum.FullHouse :
+			roomtype = "整套房源";
+			break;
+		case RoomTypeEnum.Solo :
+			roomtype = "獨立房間";
+			break;
+		default :
+			roomtype = "合住房間";
+			break;
+	}
+}
+
 <a asp-controller="RoomDetail" asp-action="RoomDetail" asp-route-roomId=@Model.RoomId>
 	<div class="card mb-3 mx-3">
 		<div class="row g-0">
@@ -19,7 +33,7 @@
 					</div>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="https://picsum.photos/500/1000/?random=10"
+							<img src="https://picsum.photos/500/400/?random=10"
 								 class="d-block w-100 rounded" alt="...">
 						</div>
 						<div class="carousel-item">
@@ -48,7 +62,7 @@
 					<div>
 						<div class="d-flex justify-content-between">
 							<p class="card-text mb-0">
-								<small class="text-muted">位於 @Model.City @Model.District 的 @Model.RoomType</small>
+								<small class="text-muted">位於 @Model.City @Model.District 的 @roomtype</small>
 							</p>
 							<input type="checkbox" class="btn-check" id="WishList" autocomplete="off">
 							<label class="btn labelHeart" for="WishList" data-bs-toggle="modal"
