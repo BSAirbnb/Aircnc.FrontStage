@@ -1,6 +1,10 @@
-﻿/* 新增收款方式的按鈕區塊 */
+﻿.btn:focus {
+    box-shadow: none;
+}
+
+/* 新增收款方式的按鈕區塊 */
 .add-new-payout-method {
-    border-radius: 20px;
+    border-radius: 15px;
     margin-left: 30px;
 }
 
@@ -26,18 +30,19 @@
     color: rgb(113, 113, 113);
 }
 
+/*了解詳情*/
+.know-detail {
+    padding-right: 15px;
+}
+
+
 .start {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 10px;
     border: 1px solid black;
     text-decoration: none;
 }
 
-/* 交易內容 */
-.add-new-payout-method {
-    border-radius: 20px;
-    margin-left: 30px;
-}
 
 .icon-add-payout-container {
     padding-top: 10px;
@@ -62,9 +67,9 @@
 }
 
 .start {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 10px;
-    border: 1.5px solid black;
+    border: 1px solid black;
     text-decoration: none;
 }
 
@@ -93,8 +98,8 @@
 
 .gross-earnings {
     /* outline: 1px solid blue; */
-    color: rgb(66, 142, 144);
-    border-bottom: 2px solid rgb(66, 142, 144);
+    color: #008489;
+    border-bottom: 2px solid #008489;
     /* margin-right: 20px; */
     padding-bottom: 22px;
 }
@@ -142,6 +147,13 @@
     text-decoration: none;
 }
 
-    .add-payout:hover {
-        text-decoration: underline;
-    }
+.add-payout:hover {
+    text-decoration: underline;
+}
+
+/*每個select*/
+.form-select:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
