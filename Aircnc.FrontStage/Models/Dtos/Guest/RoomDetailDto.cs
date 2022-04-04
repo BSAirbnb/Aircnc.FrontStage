@@ -12,6 +12,8 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string OwnerPhoto { get; set; }
         public DateTime OwnerCreateTime { get; set; }
 
+        public int UserId { get; set; }
+
         public int RoomId { get; set; }
         public int HouseType { get; set; }
         public int RoomType { get; set; }

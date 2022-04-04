@@ -19,7 +19,7 @@ namespace Aircnc.FrontStage.Services.Guest
         //以下為 RoomDetail 測試
         public RoomDetailDto GetRoomDetailById(int roomId)
         {
-            var room = _dbRepository.GetAll<Room>().FirstOrDefault(x => x.RoomId == roomId);
+            var room = _dbRepository.GetAll<Room>().FirstOrDefault(room => room.RoomId == roomId);
             var owner = _dbRepository.GetAll<User>().FirstOrDefault(owner => owner.UserId == room.UserId);
 
             var result = new RoomDetailDto() { 

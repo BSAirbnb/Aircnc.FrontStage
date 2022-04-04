@@ -24,20 +24,20 @@ namespace Aircnc.FrontStage.Controllers.Guest
         // 以下測試
         public IActionResult RoomDetail(int roomId)
         {
-            var result = _roomDetailService.GetRoomDetailById(roomId);
-            var room = new RoomDetailViewModel()
+            var room = _roomDetailService.GetRoomDetailById(roomId);
+            var detail = new RoomDetailViewModel()
             {
-                RoomId = result.RoomId,
-                District = result.District,
-                City = result.City,
-                RoomName = result.RoomName,
-                RoomCount = result.RoomCount,
-                BedCount = result.BedCount,
-                BathroomCount = result.BathroomCount,
-                RoomDescription = result.RoomDescription
+                RoomId = room.RoomId,
+                District = room.District,
+                City = room.City,
+                RoomName = room.RoomName,
+                RoomCount = room.RoomCount,
+                BedCount = room.BedCount,
+                BathroomCount = room.BathroomCount,
+                RoomDescription = room.RoomDescription
             };
-
-            return View(room);
+            var result = new SearchVM() { RoomDetailVM = detail };
+            return View(result);
         }
     }
 }

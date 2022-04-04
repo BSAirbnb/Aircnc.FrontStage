@@ -19,9 +19,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View();
         }
 
-        public IActionResult Search(string location,int id=1)
+        public IActionResult Search(SearchVM input, string location, int id=1)
         {
-            location = "台北市";
+            //location = "台北市";
             int activePage = id;
             int pageRows = 8; // show rows per page
             if(totalRows == 0)
