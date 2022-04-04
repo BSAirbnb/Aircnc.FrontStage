@@ -1,4 +1,5 @@
 ﻿using Aircnc.FrontStage.Models;
+using Aircnc.FrontStage.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,6 +17,17 @@ namespace Aircnc.FrontStage.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpPost]
+        public IActionResult Index(NavSearchVMPost input)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("SearchRoom", "Search", input);
+            }
+            
+            return NotFound();
         }
 
         public IActionResult Index()

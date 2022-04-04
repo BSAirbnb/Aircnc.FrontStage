@@ -17,7 +17,7 @@ namespace Aircnc.FrontStage.Services.Guest
             _dbRepository = DbRepository;
         }
 
-        public IEnumerable<SearchRoomDto> GetResult(NavSearchViewModel input)
+        public IEnumerable<SearchRoomDto> GetResult(NavSearchVMPost input)
         {
             var result = _dbRepository.GetAll<Room>().Where(x => x.City.Contains(input.Location)).Select(y => new SearchRoomDto() { RoomId = y.RoomId} );
 
