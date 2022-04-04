@@ -32,15 +32,16 @@ namespace Aircnc.FrontStage.Services.Guest
                 District = room.District,
                 UnitPrice = room.UnitPrice,
                 Comments = room.Comments.Count,
-            });
+            }).ToList();
 
-            //foreach (var room in rooms)
-            //{
-            //    var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
-            //    var start = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).Average();
-            //    room.Comments = comments;
-            //    room.Stars = start;
-            //}
+            foreach (var room in rooms)
+            {
+                var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
+                var start = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
+                var startavg = start.Count() > 0 ? start.Average() : 0;
+                room.Comments = comments;
+                room.Stars = startavg;
+            }
             return rooms;
         }
 
