@@ -16,6 +16,11 @@
     color: rgb(113,113,113);
 }
 
+.order-detail-link:hover{
+    border-bottom:none;
+    color:#000000;
+}
+
 .search_btn {
     background-color: rgb(217,9,100);
     display: block;
@@ -88,6 +93,7 @@
 /* 入退房日期 */
 .check-in-out-date {
     border-right: 1px solid lightgray;
+    padding-right:50%
 }
 
 /* 入住地址 */
