@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aircnc.FrontStage.Models.ViewModels
+namespace Aircnc.FrontStage.Models.ViewModels.Guest
 {
     public class NavSearchVMPost
     {

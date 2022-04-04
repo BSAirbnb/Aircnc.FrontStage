@@ -1,5 +1,5 @@
 ﻿using Aircnc.FrontStage.Models;
-using Aircnc.FrontStage.Models.ViewModels;
+using Aircnc.FrontStage.Models.ViewModels.Guest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,7 +20,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(NavSearchVMPost input)
+        public IActionResult Index(SearchVM input)
         {
             if (ModelState.IsValid)
             {

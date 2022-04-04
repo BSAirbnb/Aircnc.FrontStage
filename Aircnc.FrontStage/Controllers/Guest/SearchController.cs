@@ -59,12 +59,13 @@ namespace Aircnc.FrontStage.Controllers.Guest
             });
 
             var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
+            var viewResult = new SearchVM { SearRoom = result };
 
             ViewData["ActivePage"] = id;
             ViewData["Pages"] = pages;
             ViewData["TotalRows"] = totalRows;
 
-            return View(result);
+            return View(viewResult);
         }
     }
 }
