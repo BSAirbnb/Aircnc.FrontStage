@@ -15,7 +15,7 @@ namespace Aircnc.FrontStage.Services.Guest
         }
         public IEnumerable<SearchRoomDto> GetRoom(string location)
         {
-            return _dbRepository.GetAll<Room>().Where(room => room.City == location && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
+            var rooms = _dbRepository.GetAll<Room>().Where(room => room.City == location && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,
@@ -33,6 +33,15 @@ namespace Aircnc.FrontStage.Services.Guest
                 UnitPrice = room.UnitPrice,
                 Comments = room.Comments.Count,
             });
+
+            //foreach (var room in rooms)
+            //{
+            //    var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
+            //    var start = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).Average();
+            //    room.Comments = comments;
+            //    room.Stars = start;
+            //}
+            return rooms;
         }
 
     }
