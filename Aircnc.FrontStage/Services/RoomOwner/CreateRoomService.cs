@@ -87,9 +87,9 @@ namespace Aircnc.FrontStage.Services.RoomOwner
                     };
                     _repository.Create(roomServiceLabel);
 
-                    _repository.Save();
+                    
                 }
-                
+                _repository.Save();
 
             }
             //如果生成成功才把outputdto改成true
