@@ -8,6 +8,9 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
 {
     public class CreateRoomOutputDto
     {
+        public IEnumerable<int> RoomServiceLabel { get; set; }
+        public bool IsSuccess { get; set; }
+        public int  RoomId {get;set;}
         public int UserId { get; set; }
         public DateTime CreateTime { get; set; }
         public RoomStatusEnum Status { get; set; }
@@ -25,7 +28,7 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int RoomCount { get; set; }
         public string RoomDescription { get; set; }
         public string RoomName { get; set; }
-        public int UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         public decimal Lat { get; set; }
         public decimal Lng { get; set; }
     }

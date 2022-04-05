@@ -84,20 +84,25 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [HttpGet]
-        //int Hostid = 1 , string roomRequest
+        //int Hostid = 1
         public IActionResult CreateRoom()
         {
 
             return View();
         }
         [HttpPost]
-        //int Hostid = 1 , string roomRequest
-        public IActionResult CreateRoom([FromBody]CreateRoomDataModel json)
+        //int Hostid = 1 
+        public IActionResult CreateRoom([FromBody]CreateRoomDataModel request)
         {
 
+            var result = _createRoomService.CreateRoom(request);
+            
+            if (!result.IsSuccess)
+            {
+                return new JsonResult("未加入成功");
+            }
 
-            var Json = json;
-            return View();
+            return new JsonResult("加入房源成功"); 
         }
     }
 }

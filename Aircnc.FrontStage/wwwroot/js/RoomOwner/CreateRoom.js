@@ -390,8 +390,18 @@ btn_CreateRoom.addEventListener('click', () => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(result)
-        
+
     })
+        .then(response => response.json())
+        .then(jsonData => {
+            console.log(jsonData)
+            //the url need to be changed
+            let url = "HostList"　
+            
+            location.href = url
+
+
+        })
        
 })
 
