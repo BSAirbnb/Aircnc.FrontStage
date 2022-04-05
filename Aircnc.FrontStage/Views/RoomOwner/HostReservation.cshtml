@@ -5,8 +5,9 @@
     Layout = "RoomOwnerNavbar.cshtml";
 }
 
-@section topCSS{ 
+@section topCSS{
     <link href="~/css/Room_Owner/HostReservation.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }
 
 
@@ -86,14 +87,14 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <th scope="row">@item.Status</th>
-                            <td>@item.GuestName</td>
-                            <td>@item.BookingDateTime</td>
-                            <td>@item.CkeckIn</td>
-                            <td>@item.CkeckOut</td>
-                            <td><button class="btn btn_host_reservation_detail text-white">詳細</button></td>
-                        </tr>
+                            <tr>
+                                <th scope="row">@item.Status</th>
+                                <td>@item.GuestName</td>
+                                <td>@item.BookingDateTime</td>
+                                <td>@item.CkeckIn</td>
+                                <td>@item.CkeckOut</td>
+                                <td><button class="btn btn_host_reservation_detail text-white">詳細</button></td>
+                            </tr>
                         }
                     </tbody>
                 </table>

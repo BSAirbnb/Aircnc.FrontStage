@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Views\Guest\**" />
+    <Compile Remove="wwwroot\font_awesome\**" />
     <Content Remove="Views\Guest\**" />
+    <Content Remove="wwwroot\font_awesome\**" />
     <EmbeddedResource Remove="Views\Guest\**" />
+    <EmbeddedResource Remove="wwwroot\font_awesome\**" />
     <None Remove="Views\Guest\**" />
+    <None Remove="wwwroot\font_awesome\**" />
   </ItemGroup>
 
   <ItemGroup>
