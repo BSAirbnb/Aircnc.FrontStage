@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Aircnc.FrontStage.Models.ViewModels.Guest.SearchVM
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +19,10 @@
             <a href="~/Home/Index" class="navbar-brand col-1">
                 <img src="~/Img/creatures_of_corner.png" alt="Creatures of Corner" class="logo">
             </a>
-            @await Html.PartialAsync("Guest/_NavSearchBtnPartial")
+            <button type="button" class="btn btn-outline-primary rounded-pill search-bar" data-bs-toggle="modal" data-bs-target="#nav-search">
+                你想去哪裡?
+            </button>
+            @*@await Html.PartialAsync("Guest/_NavSearchBtnPartial")*@
             <div class="btn-group">
                 <button type="button" class="btn btn-outline-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                     登入
@@ -30,7 +35,40 @@
             </div>
         </div>
     </nav>
-    @await Html.PartialAsync("Guest/_NavSearchModalPartial")
+    @*@await Html.PartialAsync("Guest/_NavSearchModalPartial")*@
+    <div class="modal fade" id="nav-search" tabindex="-1" aria-labelledby="nav-searchLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nav-searchLabel">你想去哪裡?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="container">
+                        <form method="post" asp-controller="Home" asp-action="Index" class="row flex-column">
+                            <div class="my-2"><input asp-for="NavSearch.Location" placeholder="位置" class="form-control"></div>
+                            <label for="date" class="col-2 col-form-label">日期</label>
+                            <div class="d-flex my-2" id="datepicker">
+                                <input asp-for="NavSearch.StartDate" type="date" class="form-control">
+                                <span class="px-2 fs-5">至</span>
+                                <input asp-for="NavSearch.EndDate" type="date" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center my-3">
+                                <span class="fs-5">人數</span>
+                                <div class="d-flex justify-content-center col-6">
+                                    <div id="minus-guests" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
+                                    <input asp-for="NavSearch.NumberOfGuests" type="text" id="guestNumbers" class="form-control w-25 text-center">
+                                    <div id="add-guests" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-success rounded-pill my-3 w-25" type="submit">搜尋</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     @RenderBody()
 

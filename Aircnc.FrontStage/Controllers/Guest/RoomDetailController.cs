@@ -28,13 +28,16 @@ namespace Aircnc.FrontStage.Controllers.Guest
             var detail = new RoomDetailViewModel()
             {
                 RoomId = room.RoomId,
+                RoomType = room.RoomType,
+                HouseType = room.HouseType,
                 District = room.District,
                 City = room.City,
                 RoomName = room.RoomName,
                 RoomCount = room.RoomCount,
                 BedCount = room.BedCount,
                 BathroomCount = room.BathroomCount,
-                RoomDescription = room.RoomDescription
+                RoomDescription = room.RoomDescription,
+                ServiceLabels = room.ServiceLabels
             };
             var result = new SearchVM() { RoomDetailVM = detail };
             return View(result);
