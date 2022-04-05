@@ -32,7 +32,6 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
-        [HttpGet("HostList")]
         public IActionResult HostList(int hostId)
         {
             //先假設user1的房源
@@ -53,7 +52,6 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("HostReservation")]
         public IActionResult HostReservation(int hostid)
         {
             hostid = 1;
@@ -75,7 +73,6 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="Hostid"></param>
         /// <returns></returns>
-        [HttpGet("HostHomePageReservation")]
         public IActionResult HostHomePageReservation(int Hostid)
         {
             Hostid = 1;
@@ -95,7 +92,6 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="hostid"></param>
         /// <returns></returns>
-        [HttpGet("HostRoomEditList")]
         public IActionResult HostRoomEditList(int roomId)
         {
             roomId = 1;
