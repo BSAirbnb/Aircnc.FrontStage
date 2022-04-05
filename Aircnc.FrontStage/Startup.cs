@@ -74,8 +74,11 @@ namespace Aircnc.FrontStage
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            //ÅçÃÒ
+            app.UseAuthentication();
             app.UseAuthorization();
+            //¸ó°ì
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
