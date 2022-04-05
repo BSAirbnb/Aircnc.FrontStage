@@ -1,0 +1,472 @@
+﻿/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.Question {
+    background-image: linear-gradient(#CC277D, #441CA2);
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .Question > h3 {
+        text-align: center;
+        line-height: 3em;
+        font-size: 24px;
+        color: white;
+    }
+
+@media screen and (min-width:768px) {
+    .Question {
+        background-image: linear-gradient(#CC277D, #441CA2);
+        height: calc(100vh + 100px);
+        min-height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .Question > h3 {
+            text-align: center;
+            line-height: 3em;
+            font-size: 48px;
+            color: white;
+        }
+
+    .nextstep {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow1 {
+        height: 600px;
+    }
+}
+
+/* .Options{
+            height: 100vh;
+        } */
+
+/* 選項 */
+.OptionsRow1 > .OptionCards {
+    height: 100px;
+    margin: 10px;
+    border: 1px solid #B0B0B0;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.OptionsRow1 .OptionCards > span {
+    margin: auto 0;
+    font-weight: 600;
+}
+
+.nextstep {
+    /* margin-top: auto; */
+    /* max-height: 100px; */
+    background-color: white;
+    z-index: 2;
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    border-top: 1px solid #aaa;
+}
+
+.nextsteprow {
+    height: 100px;
+}
+
+.OptionsRow1 {
+    height: 100vh;
+}
+
+.Question {
+    background-image: linear-gradient(#CC277D, #441CA2);
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .Question > h3 {
+        text-align: center;
+        line-height: 3em;
+        font-size: 24px;
+        color: white;
+    }
+
+@media screen and (min-width:768px) {
+    .Question {
+        background-image: linear-gradient(#CC277D, #441CA2);
+        height: calc(100vh + 100px);
+        min-height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .Question > h3 {
+            text-align: center;
+            line-height: 3em;
+            font-size: 48px;
+            color: white;
+        }
+
+    .nextstep {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow2 {
+        height: 500px;
+    }
+}
+
+/* .Options{
+        height: 100vh;
+        } */
+
+/* 選項 */
+.OptionsRow2 > .OptionCards {
+    height: 100px;
+    margin: 10px;
+    border: 1px solid #B0B0B0;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.OptionsRow2 .OptionCards > span {
+    margin: auto 0;
+    font-weight: 600;
+}
+
+.nextstep {
+    background-color: white;
+    z-index: 2;
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    border-top: 1px solid #aaa;
+}
+
+.nextsteprow {
+    height: 100px;
+}
+
+.OptionsRow2 {
+    height: 100vh;
+}
+
+#map {
+    /* 給地圖寬跟高 */
+    width: 100%;
+    min-height: 600px;
+    height: 100vh;
+    margin-bottom: 100px;
+    /* 詳細設定且為手機時地圖不見 */
+    /* display: none; */
+}
+
+.form-control:focus {
+    border: 2px solid #444;
+    box-shadow: none;
+}
+
+.OptionsRow3 {
+    height: 100vh;
+    min-height: 602px !important;
+}
+
+/* 第一步地址搜尋列 */
+#first_address {
+    position: absolute;
+    /* 到時候隱藏改zindex */
+    z-index: 2;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    /* 或是讓它消失 */
+    /* display: none; */
+}
+
+#input_first_address {
+    height: 5rem;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 20px;
+}
+/* 詳細地址框 */
+#detail_address {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    height: 500px;
+    position: absolute;
+    z-index: 2;
+    margin-top: 50px;
+    padding: 20px;
+    /* display: none !important; */
+}
+
+/* 手機時詳細就不用浮在地圖上 */
+@media screen and (max-width: 768px) {
+    #detail_address {
+        position: static;
+    }
+}
+
+/* 第四頁床位幾張 */
+.form-outline {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+    .form-outline span {
+        font-size: 24px;
+        font-weight: bolder;
+    }
+
+i {
+    font-size: 24px;
+}
+
+.nextsteprow {
+    height: 100px;
+}
+
+.OptionsRow4 {
+    height: 100vh;
+}
+
+    /* 選項 */
+    .OptionsRow4 > .OptionCards {
+        max-height: 100px;
+        margin: 10px;
+        border: 1px solid #B0B0B0;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .OptionsRow4 .OptionCards > span {
+        margin: auto 0;
+        font-weight: 600;
+    }
+
+/* servicelabel頁面 */
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow5 {
+        height: calc(100% + 300px);
+    }
+}
+
+/* 選項 */
+.OptionsRow5 > .OptionCards {
+    height: 100px;
+    border: 2px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.OptionsRow5 .OptionCards > i {
+    margin: auto 1rem auto 0;
+    font-size: 36px;
+}
+
+.OptionsRow5 > .OptionCards > span {
+    margin: auto 0;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.OptionsRow5 {
+    height: 100vh;
+}
+
+/* 上傳照片 */
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow6 {
+        height: calc(100% + 300px);
+    }
+}
+
+/* 選項 */
+.OptionsRow6 > .OptionCards {
+    height: 150px;
+    border: 2px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+    .OptionsRow6 > .OptionCards > i {
+        margin: auto 1rem auto 0;
+        font-size: 36px;
+    }
+
+    .OptionsRow6 > .OptionCards > span {
+        margin: auto 0;
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+.nextstep {
+    /* margin-top: auto; */
+    /* max-height: 100px; */
+    background-color: white;
+    z-index: 2;
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    border-top: 1px solid #aaa;
+}
+
+#pic_upload_0 {
+    height: 60vh;
+    border: 2px dashed #dddddd;
+}
+
+.nextsteprow {
+    height: 100px;
+}
+
+.OptionsRow6 {
+    height: 100vh;
+}
+
+/* p7 建立標題 */
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow7 {
+        height: calc(100% + 300px);
+    }
+}
+
+/* 選項 */
+.OptionsRow7 > .OptionCards {
+    height: 150px;
+    border: 2px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+    .OptionsRow7 > .OptionCards > i {
+        margin: auto 1rem auto 0;
+        font-size: 36px;
+    }
+
+    .OptionsRow7 > .OptionCards > span {
+        margin: auto 0;
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+
+
+
+textarea {
+    min-height: 200px;
+    border: 1px solid #B0B0B0;
+    font-size: 24px;
+    border-radius: 10px;
+    resize: none;
+}
+
+.OptionsRow7 {
+    height: 100vh
+}
+
+/* p8 房源描述 */
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow8 {
+        height: calc(100% + 300px);
+    }
+}
+
+/* 選項 */
+.OptionsRow8 > .OptionCards {
+    height: 150px;
+    border: 2px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.OptionsRow8 .OptionCards > i {
+    margin: auto 1rem auto 0;
+    font-size: 36px;
+}
+
+.OptionsRow8 .OptionCards > span {
+    margin: auto 0;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.OptionsRow8 textarea {
+    min-height: 300px;
+    font-size: 20px;
+    border: 1px solid #B0B0B0;
+    border-radius: 10px;
+    resize: none;
+}
+
+.OptionsRow8 {
+    height: 100vh;
+}
+
+/* p9 價格 */
+@media screen and (max-width:767px) {
+    .Options > .OptionsRow9 {
+        height: calc(100% + 300px);
+    }
+}
+
+/* 選項 */
+.OptionsRow9 > .OptionCards {
+    height: 150px;
+    border: 2px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+    .OptionsRow9 > .OptionCards > i {
+        margin: auto 1rem auto 0;
+        font-size: 36px;
+    }
+
+    .OptionsRow9 > .OptionCards > span {
+        margin: auto 0;
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+
+
+.OptionsRow9 i {
+    font-size: 48px;
+}
+
+#input_price {
+    height: 100px;
+    width: 50%;
+    font-size: 36px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #B0B0B0;
+}
+
+.OptionsRow9 {
+    height: 100vh;
+}
+/* 標籤被選擇 */
+.btn_chosed {
+    background-color: #f7f7f7 !important;
+    border: 2px solid black !important;
+}

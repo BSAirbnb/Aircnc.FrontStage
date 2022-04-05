@@ -1,4 +1,5 @@
-﻿using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
+﻿using Aircnc.FrontStage.Models.Dtos.RoomOwner;
+using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
 using Aircnc.FrontStage.Services;
 using Aircnc.FrontStage.Services.RoomOwner;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace Aircnc.FrontStage.Controllers
         private readonly HostListService  _hostListService;
         private readonly HostReservationService _hostReservationService;
         private readonly HostHomePageService _hostHomePageService;
-        public RoomOwnerController(HostListService hostListService, HostReservationService hostReservationService, HostHomePageService hostHomePageService)
+        private readonly CreateRoomService _createRoomService;
+        public RoomOwnerController(HostListService hostListService, HostReservationService hostReservationService, HostHomePageService hostHomePageService, CreateRoomService createRoomService)
         {
             _hostListService = hostListService;
             _hostReservationService = hostReservationService;
             _hostHomePageService = hostHomePageService;
+            _createRoomService = createRoomService;
         }
 
         /// <summary>
@@ -78,6 +81,28 @@ namespace Aircnc.FrontStage.Controllers
                 During = $"{homePageReservation.CkeckIn} - {homePageReservation.CkeckOut}"
             });
             return View(reservation);
+        }
+
+        [HttpGet]
+        //int Hostid = 1
+        public IActionResult CreateRoom()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        //int Hostid = 1 
+        public IActionResult CreateRoom([FromBody]CreateRoomDataModel request)
+        {
+
+            var result = _createRoomService.CreateRoom(request);
+            
+            if (!result.IsSuccess)
+            {
+                return new JsonResult("未加入成功");
+            }
+
+            return new JsonResult("加入房源成功"); 
         }
     }
 }
