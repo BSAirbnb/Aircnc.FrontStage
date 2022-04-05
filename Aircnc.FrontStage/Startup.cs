@@ -53,6 +53,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<SearchRoomService, SearchRoomService>();
             services.AddTransient<MailService, MailService>();
             services.AddHttpContextAccessor();
+            services.AddTransient<HostRoomEditService, HostRoomEditService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

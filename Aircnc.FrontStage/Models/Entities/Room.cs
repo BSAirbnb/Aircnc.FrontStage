@@ -62,7 +62,7 @@ namespace Aircnc.FrontStage.Models.Entities
 
     public enum RoomStatusEnum
     {
-        //1上架中 2以下架 3建立中 
+        //1上架中 2已下架 3建立中 
         Online = 1,
         Offline = 2,
         Pending = 3

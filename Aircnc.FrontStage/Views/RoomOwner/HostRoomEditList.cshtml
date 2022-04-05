@@ -1,0 +1,556 @@
+﻿@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.HostRoomEditViewModel>
+
+@{
+    ViewData["Title"] = $"編輯Aircnc - 「{Model.Select(x => x.RoomName).First()}」房源";
+    Layout = "RoomOwnerNavbar.cshtml";
+}
+
+@section topCSS{
+    <link href="~/css/Room_Owner/HostRoomEdition.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+
+<section class="container d-flex justify-content-between mt-5 host_room_edit_roomName_container">
+    <h1>@Model.Select(x => x.RoomName).First()</h1>
+    <div>
+        <button class="btn btn_unpublish">取消發布</button>
+        <button class="btn btn_instant_booking">已開啟即時預訂功能</button>
+        <button class="btn btn_preview_houselist btn-outline-dark">預覽房源</button>
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <!-- 房源詳情tab -->
+            <button class="nav-link active" id="nav-room-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-room-detail" type="button" role="tab" aria-controls="nav-room-detail" aria-selected="true">房源詳情</button>
+            <!-- 價格和可訂狀態tab -->
+            <button class="nav-link" id="nav-price-and-order-status-tab" data-bs-toggle="tab" data-bs-target="#nav-price-and-order-status" type="button" role="tab" aria-controls="nav-price-and-order-status" aria-selected="false">價格和可訂狀態</button>
+            <!-- 政策和規則tab -->
+            <button class="nav-link" id="nav-policy-and-rule-tab" data-bs-toggle="tab" data-bs-target="#nav-policy-and-rule" type="button" role="tab" aria-controls="nav-policy-and-rule" aria-selected="false">政策和規則</button>
+            <!-- 房客資訊tab -->
+            <button class="nav-link" id="nav-guest-info-tab" data-bs-toggle="tab" data-bs-target="#nav-guest-info" type="button" role="tab" aria-controls="nav-guest-info" aria-selected="false">房客資訊</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <!-- 房源詳情(第一個tab) -->
+        <div class="tab-pane fade show active" id="nav-room-detail" role="tabpanel" aria-labelledby="nav-room-detail-tab">
+            <!-- 照片編輯 -->
+            <div class="edit_section edit_room_img_section">
+                <div class="edit_title d-flex justify-content-between">
+                    <h2 class="mt-4 mb-4 h2_room_detail">相片</h2>
+                    <button class="btn btn_edit_room">編輯<i class="fas fa-angle-right"></i></button>
+                </div>
+                <div class="d-flex">
+                    <div class="edit_room_img"><img src="./HostHomePage_Image/accessories1.jpg" alt=""></div>
+                    <div class="edit_room_img"><img src="./HostHomePage_Image/accessories1.jpg" alt=""></div>
+                    <div class="edit_room_img"><img src="./HostHomePage_Image/accessories1.jpg" alt=""></div>
+                </div>
+            </div>
+            <!-- 房源基本資訊 -->
+            <h2 class="mt-4 mb-4 h2_room_detail">房源基本資訊</h2>
+            <!-- 房源標題編輯 -->
+            <div class="edit_section edit_room_title_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房源標題</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_title">@Model.Select(x => x.RoomName).First()</p>
+            </div>
+            <!-- 房源描述編輯 -->
+            <div class="edit_section edit_room_description_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房源描述</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_description">@Model.Select(x => x.RoomDescription).First()</p>
+            </div>
+            <!-- 房源人數編輯 -->
+            <div class="edit_section edit_room_guestCount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房客人數</h3>
+                    <div class="d-flex">
+                        <button class="btn btn_edit_room_minus"> − </button>
+                        <span class="d-block edit_room_guestCount">@Model.Select(x => x.RoomGusetCount).First()</span>
+                        <button class="btn btn_edit_room_plus"> + </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 自訂連結編輯 -->
+            <div class="edit_section edit_room_concatenation_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">自訂連結</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_concatenation">未設定</p>
+            </div>
+            <!-- 語言編輯 -->
+            <div class="edit_section edit_room_language_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">語言</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_language">undefined (預設)</p>
+            </div>
+            <!-- 房源狀態編輯 -->
+            <div class="edit_section edit_room_status_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房源狀態</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_status">@Model.Select(x => x.RoomStatus).First()- 房客可以在搜尋結果中找到你的房源，且可以提出預訂申請或預訂日曆上開放的日期。</p>
+            </div>
+            <!-- 設備與服務編輯 -->
+            <div class="edit_section edit_room_equipment_and_service_section">
+                <div class="d-flex justify-content-between">
+                    <h2 class="mt-4 h2_room_detail">設備與服務</h2>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <div class="edit_room_equipment_and_service">
+                    @foreach (var item in (Model.Select(x => x.RoomService).First()).Split(","))
+                    {
+                    <span class="d-block">@item</span>
+
+                    }
+                </div>
+            </div>
+            <!-- 位置 -->
+            <h2 class="mt-4 mb-4 h2_room_detail">位置</h2>
+            <!-- 地址編輯 -->
+            <div class="edit_section edit_room_location_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">地址</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_location">@Model.Select(x => x.Address).First()</p>
+            </div>
+            <!-- 街區描述編輯 -->
+            <div class="edit_section edit_room_neighborhood_description_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">街區描述</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_neighborhood_description">未設定</p>
+            </div>
+            <!-- 周邊交通編輯 -->
+            <div class="edit_section edit_room_traffic_around_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">周邊交通</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_traffic_around">未設定</p>
+            </div>
+            <!-- 位置分享編輯 -->
+            <div class="edit_section edit_room_location_sharing_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">位置分享</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p>大概位置</p>
+                <span class="span_edit_room_location_sharing">退訂後的地址隱藏功能：關閉</span>
+            </div>
+            <!-- 美景編輯 -->
+            <div class="edit_section edit_room_scenery_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">美景</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_scenery">未設定</p>
+            </div>
+            <!-- 房源與房型 -->
+            <h2 class="mt-4 mb-4 h2_room_detail">房源與房型</h2>
+            <!-- 房源類型編輯 -->
+            <div class="edit_section edit_room_type_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房源類型</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                @*<p>私有公寓</p>*@
+                <p class="p_room_type">房源類型: @Model.Select(x => x.RoomType).First()／@Model.Select(x => x.HouseType).First()</p>
+            </div>
+            <!-- 房間與空間編輯 -->
+            <div class="edit_section edit_room_space_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_room_detail">房間與空間</h3>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <span class="d-block span_room_space">臥室: @Model.Select(x => x.RoomCount).First()</span>
+                <span class="d-block span_room_space">床數： @Model.Select(x => x.BedCount).First()</span>
+                <span class="d-block span_room_space">衛浴: @Model.Select(x => x.BathroomCount).First()</span>
+                <span class="d-block span_room_space">其他區域: 0</span>
+                <span class="d-block span_room_space">房客可能會共用部分區域</span>
+            </div>
+            <!-- 無障礙設施與服務編輯 -->
+            <div class="edit_section edit_room_disabled_facilities_and_services_section">
+                <div class="d-flex justify-content-between">
+                    <h2 class="mt-4 h2_room_detail">無障礙設施與服務</h2>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+            </div>
+            <!-- 房客安全編輯 -->
+            <div class="edit_section edit_room_safety_section">
+                <div class="d-flex justify-content-between">
+                    <h2 class="mt-4 h2_room_detail">房客安全</h2>
+                    <button class="btn btn_edit_room">編輯</button>
+                </div>
+                <p class="edit_room_safety">煙霧警報器</p>
+            </div>
+
+            <!-- 提出意見 -->
+            <button class="btn btn_your_opinions">提出意見</button>
+        </div>
+
+        <!-- 價格和可訂狀態(第二個tab) -->
+        <div class="tab-pane fade" id="nav-price-and-order-status" role="tabpanel" aria-labelledby="nav-price-and-order-status-tab">
+            <!-- 訂價 -->
+            <h2 class="mt-4 mb-4 h2_price_and_order_satus">訂價</h2>
+            <!-- 每晚價格編輯 -->
+            <div class="edit_section edit_price_per_night_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">每晚價格</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <span class="span_set_unit_price mb-2">你須要為房源設定價格。</span>
+                <a href="#">了解詳情</a>
+                <span class="d-block span_smart_setting_price">智慧訂價功能已關閉</span>
+                <span class="d-block span_basic_price">基本價格：$437 TWD</span>
+            </div>
+
+            <!-- 房源幣別編輯 -->
+            <div class="edit_section edit_currency_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">房源幣別</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>TWD</p>
+            </div>
+
+            <!-- 折扣 -->
+            <h2 class="mt-4 mb-4 h2_price_and_order_satus">折扣</h2>
+            <!-- 週租折扣編輯 -->
+            <div class="edit_section edit_weekly_discount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">週租折扣</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 月租折扣編輯 -->
+            <div class="edit_section edit_monthly_discount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">月租折扣</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 自訂長租折扣編輯 -->
+            <div class="edit_section edit_longTerm_lease_discount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">自訂長租折扣</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 早鳥折扣編輯 -->
+            <div class="edit_section edit_early_bird_discount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">早鳥折扣</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 晚鳥折扣編輯 -->
+            <div class="edit_section edit_late_bird_discount_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">晚鳥折扣</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 額外費用 -->
+            <h2 class="mt-4 mb-4 h2_price_and_order_satus">額外費用</h2>
+            <!-- 清潔費編輯 -->
+            <div class="edit_section edit_cleaning_fee_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">清潔費</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>無須支付清潔費</p>
+            </div>
+
+            <!-- 寵物費編輯 -->
+            <div class="edit_section edit_pet_fee_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">寵物費</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>目前不允許攜帶寵物入住</p>
+            </div>
+
+            <!-- 額外房客費用編輯 -->
+            <div class="edit_section edit_extra_fee_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">額外房客費用</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>
+                    未設定
+                </p>
+            </div>
+
+            <!-- 週末每晚價格編輯 -->
+            <div class="edit_section edit_weekend_nightly_price_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">週末每晚價格</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 稅費 -->
+            <h2 class="mt-4 mb-4 h2_price_and_order_satus">稅費</h2>
+            <div class="edit_section edit_tax_section">
+                <p class="p_tax">你的房源位於Taiwan VAT Tax。根據相關要求，Airbnb 可能會代表本地區的房東向房客收取與彙繳住宿稅。 <a href="#">了解詳情</a></p>
+            </div>
+
+            <!-- 住宿晚數 -->
+            <h2 class="mt-4 mb-4 h2_price_and_order_satus">住宿晚數</h2>
+            <!-- 最短住宿晚數編輯 -->
+            <div class="edit_section edit_minimum_night_stay_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">最短住宿晚數</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>1 晚</p>
+            </div>
+
+            <!-- 最長住宿晚數編輯 -->
+            <div class="edit_section edit_maxmum_night_stay_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">最長住宿晚數</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>365 晚</p>
+            </div>
+
+            <!-- 自訂住宿晚數編輯 -->
+            <div class="edit_section edit_custom_nights_stay_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_price_and_order_satus">自訂住宿晚數</h3>
+                    <button class="btn btn_edit_price_and_order_status">編輯</button>
+                </div>
+                <p>無</p>
+            </div>
+
+            <!-- 提出意見 -->
+            <button class="btn btn_your_opinions">提出意見</button>
+
+        </div>
+
+        <!-- 政策和規則(第三個tab) -->
+        <div class="tab-pane fade" id="nav-policy-and-rule" role="tabpanel" aria-labelledby="nav-policy-and-rule-tab">
+            <!-- 政策 -->
+            <h2 class="mt-4 mb-4 h2_policy_and_rule">政策</h2>
+            <!-- 退訂政策編輯 -->
+            <div class="edit_section edit_cancel_reservation_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">退訂政策</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>彈性: 在入住日1天前取消預訂，可獲得全額退款</p>
+            </div>
+
+            <!-- 即時預定編輯 -->
+            <div class="edit_section edit_instant_booking_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">即時預定</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>即時預訂功能已開啟 - 符合所有條件的房客可以即時預訂房源，其他人則須傳送預訂申請。</p>
+            </div>
+
+            <!-- 入住時段編輯 -->
+            <div class="edit_section edit_ckeck_in_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">入住時段</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>@Model.Select(x => x.RoomCheckInTime).First()</p>
+            </div>
+
+            <!-- 退房時間編輯 -->
+            <div class="edit_section edit_ckeck_out_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">退房時間</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>選擇時間</p>
+            </div>
+
+            <!-- 押金編輯 -->
+            <div class="edit_section edit_deposit_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">押金</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 《房屋守則》 -->
+            <h2 class="mt-4 mb-4 h2_policy_and_rule">《房屋守則》</h2>
+            <p class="p_house_rules">房客在預訂之前必須同意你的《房屋守則》。 <a href="#">了解如何設定《房屋守則》</a></p>
+            <!-- 適合兒童（2-12 歲） -->
+            <div class="edit_section edit_cancel_reservation_section">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-column w-75">
+                        <h3 class="mt-4 h3_policy_and_rule">適合兒童（2-12 歲）</h3>
+                        <p class="p_suitable_for_children">如果房源內的物品設施可能會對兒童造成傷害，你可以讓房客知道此房源不適合兒童入住。房客仍然可以聯絡你來了解詳情。 <a href="#">了解詳情</a></p>
+                    </div>
+                    <div class="d-flex w-25 justify-content-end">
+                        <button class="btn btn_edit_policy_and_rule_cross"> <i class="fas fa-times"></i> </button>
+                        <button class="btn btn_edit_policy_and_rule_check"> <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 適合嬰幼兒（2 歲以下） -->
+            <div class="edit_section edit_cancel_reservation_section">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-column w-75">
+                        <h3 class="mt-4 h3_policy_and_rule">適合嬰幼兒（2 歲以下）</h3>
+                        <p class="p_suitable_for_children">如果房源內的物品設施可能會對嬰幼兒造成傷害，你可以讓房客知道此房源不適合嬰幼兒入住。房客仍然可以聯絡你來了解詳情。 <a href="#">了解詳情</a></p>
+                    </div>
+                    <div class="d-flex w-25 justify-content-end">
+                        <button class="btn btn_edit_policy_and_rule_cross"> <i class="fas fa-times"></i> </button>
+                        <button class="btn btn_edit_policy_and_rule_check"> <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 可攜帶寵物 -->
+            <div class="edit_section edit_pet_allowed_section">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-column w-75">
+                        <h3 class="mt-4 h3_policy_and_rule">可攜帶寵物</h3>
+                        <p class="p_suitable_for_children">你可以限制房客攜帶寵物，但在合理情況下，仍須接受可能攜帶輔助性動物的房客。 <a href="#">了解詳情</a></p>
+                    </div>
+                    <div class="d-flex w-25 justify-content-end">
+                        <button class="btn btn_edit_policy_and_rule_cross"> <i class="fas fa-times"></i> </button>
+                        <button class="btn btn_edit_policy_and_rule_check"> <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 允許吸煙 -->
+            <div class="edit_section edit_smoking_allowed_section">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-column w-75">
+                        <h3 class="mt-4 h3_policy_and_rule">允許吸煙</h3>
+                    </div>
+                    <div class="d-flex w-25 justify-content-end">
+                        <button class="btn btn_edit_policy_and_rule_cross"> <i class="fas fa-times"></i> </button>
+                        <button class="btn btn_edit_policy_and_rule_check"> <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 允許舉辦活動 -->
+            <div class="edit_section edit_events_are_allowed_section">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-column w-75">
+                        <h3 class="mt-4 h3_policy_and_rule">允許舉辦活動</h3>
+                    </div>
+                    <div class="d-flex w-25 justify-content-end">
+                        <button class="btn btn_edit_policy_and_rule_cross"> <i class="fas fa-times"></i> </button>
+                        <button class="btn btn_edit_policy_and_rule_check"> <i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他守則編輯 -->
+            <div class="edit_section edit_other_rules_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_policy_and_rule">其他守則</h3>
+                    <button class="btn btn_edit_policy_and_rule">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 提出意見 -->
+            <button class="btn btn_your_opinions">提出意見</button>
+
+        </div>
+
+        <!-- 房客資訊(第四個tab) -->
+        <div class="tab-pane fade" id="nav-guest-info" role="tabpanel" aria-labelledby="nav-guest-info-tab">
+            <!-- 預訂前詳情 -->
+            <h2 class="mt-4 mb-4 h2_guest_info">預訂前詳情</h2>
+            <!-- 入住時段編輯 -->
+            <div class="edit_section edit_check_in_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">入住時段</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+                <p class="edit_check_in">下午3:00後</p>
+            </div>
+
+            <!-- 退房時間編輯 -->
+            <div class="edit_section edit_check_out_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">退房時間</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+                <p class="edit_check_out">選擇時間</p>
+            </div>
+
+            <!-- 預訂後詳情 -->
+            <h2 class="mt-4 mb-4 h2_guest_info">預訂後詳情</h2>
+            <!-- 地址編輯 -->
+            <div class="edit_section edit_address_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">地址</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+                <p class="edit_address">@Model.Select(x => x.Address).First()</p>
+            </div>
+
+            <!-- 路線編輯 -->
+            <div class="edit_section edit_path_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">路線</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+                <p>未設定</p>
+            </div>
+
+            <!-- 抵達詳情 -->
+            <h2 class="mt-4 mb-4 h2_guest_info">抵達詳情</h2>
+            <!-- 入住說明編輯 -->
+            <div class="edit_section edit_check_in_instructions_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">入住說明</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+                <p class="edit_address">未設定</p>
+            </div>
+
+            <!-- WiFi詳情編輯 -->
+            <div class="edit_section edit_WiFi_detail_section">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mt-4 h3_guest_info">WiFi詳情</h3>
+                    <button class="btn btn_guest_info">編輯</button>
+                </div>
+            </div>
+
+            <!-- 提出意見 -->
+            <button class="btn btn_your_opinions">提出意見</button>
+
+        </div>
+    </div>
+
+</section>
