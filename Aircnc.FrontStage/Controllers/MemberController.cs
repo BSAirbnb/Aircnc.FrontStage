@@ -17,37 +17,39 @@ namespace Aircnc.FrontStage.Controllers
             _db = db;
         }
 
-        public IActionResult Personal_Details()
-        {
-            //假設現在房東是1
-            int userid = 1;
-            var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
-            var result = new MemberViewModel
-            {
-                Name = target.Name,
-                Address = target.Address,
-                CreateTime = target.CreateTime,
-                Photo = target.Photo
-            };
+        //public IActionResult Personal_Details()
+        //{
+        //    //假設現在房東是1
+        //    int userid = 1;
+        //    var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
+        //    var result = new MemberViewModel
+        //    {
+        //        Name = target.Name,
+        //        Address = target.Address,
+        //        CreateTime = target.CreateTime,
+        //        Photo = target.Photo
+        //    };
 
 
-            return View(result);
-        }
+        //    return View(result);
+        //}
 
-        public IActionResult Preference()
-        {
-            return View();
-        }
+        //public IActionResult Preference()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult Notification()
-        {
-            return View();
-        }
+        //public IActionResult Notification()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult Privacy_and_Share()
-        {
-            return View();
-        }
+        //public IActionResult Privacy_and_Share()
+        //{
+        //    return View();
+        //}
+
+        //這邊以上全部移到personal了
 
         public IActionResult Upload_Identification()
         {
