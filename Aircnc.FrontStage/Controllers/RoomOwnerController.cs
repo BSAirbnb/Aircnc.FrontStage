@@ -1,4 +1,5 @@
 ﻿using Aircnc.FrontStage.Models.Dtos.RoomOwner;
+using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
 using Aircnc.FrontStage.Services;
 using Aircnc.FrontStage.Services.RoomOwner;
@@ -39,10 +40,20 @@ namespace Aircnc.FrontStage.Controllers
             var result =
                 _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto => new HostListViewModel
                 {
-                    HostListDto = RoomOwnerDto
+                    RoomId = RoomOwnerDto.RoomId,
+                    UserId = RoomOwnerDto.UserId,
+                    Status = RoomOwnerDto.Status,
+                    State = RoomOwnerDto.Status == RoomStatusEnum.Online ? "上架中" : RoomOwnerDto.Status == RoomStatusEnum.Pending ? "<i class='fas fa-hourglass-half'></i>建立中" : "已下架",
+                    RoomName = RoomOwnerDto.RoomName,
+                    BathroomCount = RoomOwnerDto.BathroomCount,
+                    Address = $"{RoomOwnerDto.Country} {RoomOwnerDto.City}",
+                    BedCount = RoomOwnerDto.BedCount,
+                    RoomCount = RoomOwnerDto.RoomCount,
+                    CreateTime = RoomOwnerDto.CreateTime,
+                    LastChangeTime = RoomOwnerDto.LastChangeTime
 
 
-                });
+                }) ;
 
             return View(result);
         }

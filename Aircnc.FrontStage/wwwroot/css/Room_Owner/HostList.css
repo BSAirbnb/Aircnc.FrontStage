@@ -1,4 +1,17 @@
-﻿.h1_house_nums {
+﻿.btn:focus{
+    box-shadow:none;
+}
+
+a{
+    text-decoration:none;
+    color:#000;
+}
+
+a:hover{
+    color: #000;
+}
+
+.h1_house_nums {
     font-size: 25px;
     color: #484848;
     font-weight: bold;
