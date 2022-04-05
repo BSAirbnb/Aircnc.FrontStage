@@ -12,8 +12,10 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int UserId { get; set; }
         public string RoomName { get; set; }
         public int BathroomCount { get; set; }
-        public string Address { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
         public RoomStatusEnum Status { get; set; }
+        public string State { get; set; }
         public int BedCount { get; set; }
         public int RoomCount { get; set; }
         public DateTime CreateTime { get; set; }

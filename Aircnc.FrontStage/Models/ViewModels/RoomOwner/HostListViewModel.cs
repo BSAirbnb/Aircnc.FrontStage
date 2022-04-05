@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Models.ViewModels.RoomOwner
 {
-    public class HostListViewModel
+    public class HostListViewModel : HostListDto
     {
-        public HostListDto HostListDto { get; set; }
+        public string Address { get; set; }
     }
 }
