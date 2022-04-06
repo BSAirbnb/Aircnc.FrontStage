@@ -4,9 +4,13 @@ using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Services.Account.Interface;
 using Aircnc.FrontStage.Services.Common;
 using AircncFrontStage.Repositories;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Services.Account
@@ -15,11 +19,13 @@ namespace Aircnc.FrontStage.Services.Account
     {
         private readonly DBRepository _dBRepository;
         private readonly MailService _mailService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountService(DBRepository dBRepository, MailService mailService)
+        public AccountService(DBRepository dBRepository, MailService mailService, IHttpContextAccessor httpContextAccessor)
         {
             _dBRepository = dBRepository;
             _mailService = mailService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public CreateAccountOutputDto CreateAccount(CreateAccountInputDto input)
@@ -34,8 +40,21 @@ namespace Aircnc.FrontStage.Services.Account
                 result.Message = "該Email已經被註冊";
                 return result;
             }
-
-
+            if (String.IsNullOrEmpty(input.Name))
+            {
+                result.Message = "名字不能空白";
+                return result;
+            }
+            if (String.IsNullOrEmpty(input.Email))
+            {
+                result.Message = "Email不能空白";
+                return result;
+            }
+            if (input.Password.Length < 8)
+            {
+                result.Message = "密碼需要至少8個字元";
+                return result;
+            }
             //做成entity
             var user = new User
             {
@@ -70,12 +89,48 @@ namespace Aircnc.FrontStage.Services.Account
 
         public LoginAccountOutputDto LoginAccount(LoginAccountInputDto input)
         {
-            throw new NotImplementedException();
+            var result = new LoginAccountOutputDto();
+            result.IsSuccess = false;
+
+            if (!this.IsExistAccount(input.Email))
+            {
+                result.Message = "此帳號不存在";
+                return result;
+            }
+            var currentUser = _dBRepository.GetAll<User>().First(x => x.Email == input.Email);
+            if (!currentUser.MailIsVerify)
+            {
+                result.Message = "此帳號尚未驗證";
+                return result;
+            }
+            if (input.Password != currentUser.Password)
+            {
+                result.Message = "密碼錯誤";
+                return result;
+            }
+            result.IsSuccess = true;
+            result.User.UserId = currentUser.UserId;
+            result.User.Name = currentUser.Name;
+            result.User.Email = currentUser.Email;
+
+            if (result.IsSuccess)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, result.User.UserId.ToString()),
+                    new Claim(ClaimTypes.Email, result.User.Email),
+                    new Claim("UserName", result.User.Name)//自訂欄位(聲明)
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                _httpContextAccessor.HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+            }
+
+            return result;
         }
 
         public void LogoutAccount()
         {
-            throw new NotImplementedException();
+            _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         public void VerifyAccount(int userId)

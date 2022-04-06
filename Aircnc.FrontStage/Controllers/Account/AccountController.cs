@@ -44,5 +44,33 @@ namespace Aircnc.FrontStage.Controllers.Account
 
             
         }
+        public IActionResult Verify(int user)
+        {
+            _accountService.VerifyAccount(user);
+            return Redirect("/");
+        }
+
+        public IActionResult Logout()
+        {
+            _accountService.LogoutAccount();
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        public IActionResult FetchLogin([FromBody] LoginDataModel request)
+        {
+
+            var inputDto = new LoginAccountInputDto
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var outputDto = _accountService.LoginAccount(inputDto);
+
+            return new JsonResult(outputDto);
+        }
+
+
     }
 }
