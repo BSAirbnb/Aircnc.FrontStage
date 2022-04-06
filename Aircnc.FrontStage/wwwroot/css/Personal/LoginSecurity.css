@@ -60,3 +60,6 @@
     border-bottom: none;
 }
 
+.account-setting:hover{
+    color:black;
+}

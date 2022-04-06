@@ -1,13 +1,9 @@
-﻿
-
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Aircnc.FrontStage</title>
+    <title>@ViewData["Title"] - Aircnc</title>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("topCSS", required: false)
@@ -54,7 +50,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-light bg-white" id="navbar_host_layout">
             <div class="container-fluid ">
-                <a href="./index.html" class="navbar-brand col-1">
+                <a href="~/RoomOwner/HostHomePageReservation" class="navbar-brand col-1">
                     <img src="~/Img/logo.jpg" alt="Creatures of Corner" class="logo">
                 </a>
 
@@ -66,7 +62,7 @@
                     <ul class="navbar-nav ms-md-auto   my-2 my-lg-0 fs-6 fw-bolder" style="--bs-scroll-height: 100px;">
                         <!-- 當選到的時候要在下面的li的class + active -->
                         <li class="nav-item my-auto">
-                            <a class="nav-link" aria-current="page" href="#">今天</a>
+                            <a class="nav-link" aria-current="page" href="~/RoomOwner/HostHomePageReservation">今天</a>
                         </li>
                         <li class="nav-item ms-md-4 my-auto">
                             <a class="nav-link" href="#">收件匣</a>
@@ -84,15 +80,15 @@
                                 選單
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown1">
-                                <li><a class="dropdown-item" href="#">房源</a></li>
-                                <li><a class="dropdown-item" href="#">預定</a></li>
+                                <li><a class="dropdown-item" href="~/RoomOwner/HostList">房源</a></li>
+                                <li><a class="dropdown-item" href="~/RoomOwner/HostReservation">預定</a></li>
                                 <li><a class="dropdown-item" href="#">建立新房源</a></li>
                                 <li>
                                     <!-- 分隔線 -->
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="#">在地指南</a></li>
-                                <li><a class="dropdown-item" href="#">交易紀錄</a></li>
+                                <li><a class="dropdown-item" href="~/Transaction/CompletedTransaction">交易紀錄</a></li>
                                 <li><a class="dropdown-item" href="#">瀏覽出租資源</a></li>
                                 <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>
                             </ul>
