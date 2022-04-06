@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Aircnc.FrontStage.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
 
 namespace Aircnc.FrontStage.Models.Dtos.Guest
 {
@@ -12,9 +14,11 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string OwnerPhoto { get; set; }
         public DateTime OwnerCreateTime { get; set; }
 
+        public int UserId { get; set; }
+
         public int RoomId { get; set; }
-        public int HouseType { get; set; }
-        public int RoomType { get; set; }
+        public HouseTypeEnum HouseType { get; set; }
+        public RoomTypeEnum RoomType { get; set; }
         public string Street { get; set; }
         public string District { get; set; }
         public string City { get; set; }
@@ -30,7 +34,9 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
 
-        public string CommentContent { get; set; }
-        public double Star { get; set; }
+        public List<RoomServiceLabel> ServiceLabels { get; set; }
+
+        public List<Comment> Reviews { get; set; }
+        public double AvgStars { get; set; } // Comment 評價平均分數
     }
 }
