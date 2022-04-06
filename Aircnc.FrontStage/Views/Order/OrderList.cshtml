@@ -36,9 +36,9 @@
             @foreach (var data in Model)
             {
                 <div class="row mb-5">
-                    <div class="col-10 col-md-8 my-3 p-4 ms-3 d-flex shadow order">
-                        <a href="#" class="order-detail-link">
-                            <div class="col-10 col-md-5 order-content">
+                    <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
+                        <a href="#" class="order-detail-link d-flex">
+                            <div class="col-10 col-md-5 order-content p-md-3 p-5">
                                 <!-- District -->
                                 <span class="fw-bold fs-3 d-block my-2 ">@data.District</span>
                                 <!-- 房源名稱 -->
@@ -54,8 +54,10 @@
                                     </div>
                                 </div>
                             </div>
-                        @*<img src="https://picsum.photos/200/100/?random=10" class="order-image ms-3 h-100 d-none d-md-block ">*@
-                        @*<img src="@data.RoomImg" class="order-image ms-3 h-100 d-none d-md-block ">*@
+                            @*<div class="col-md-3 room-picture-container w-100 h-100 ">
+                                <img src="https://picsum.photos/200/200/?random=10" class="room-picture img-fluid d-none d-md-block ">
+                                <img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">
+                            </div>*@
                         </a>
                     </div>
                 </div>

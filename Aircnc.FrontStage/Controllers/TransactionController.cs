@@ -10,10 +10,10 @@ namespace Aircnc.FrontStage.Controllers
 {
     public class TransactionController : Controller
     {
-        private readonly FutureTransactionService _futureTransactionService;
-        public TransactionController(FutureTransactionService futureTransactionService)
+        private readonly TransactionService _TransactionService;
+        public TransactionController(TransactionService TransactionService)
         {
-            _futureTransactionService = futureTransactionService;
+            _TransactionService = TransactionService;
         }
         /// <summary>
         /// 完成的交易
@@ -22,7 +22,7 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CompletedTransaction(int UserId) 
         {
             UserId = 1;
-            var transactionList = _futureTransactionService.GetAllOrderTransactionStatus().Select(x=>new TransactionViewModel
+            var transactionList = _TransactionService.GetAllOrderTransactionStatus().Select(x=>new TransactionViewModel
             {
                 CreateTime = x.CreateTime,
                 TotalAmount = x.TotalAmount,

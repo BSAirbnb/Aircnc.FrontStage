@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Services.Transaction
 {
-    public class FutureTransactionService
+    public class TransactionService
     {
         private readonly DBRepository _dbRepository;
-        public FutureTransactionService(DBRepository dBRepository)
+        public TransactionService(DBRepository dBRepository)
         {
             _dbRepository = dBRepository;
         }
