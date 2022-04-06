@@ -39,7 +39,7 @@ namespace Aircnc.FrontStage.Services.Guest
             {
                 var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
                 var star = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
-                var staravg = star.Count > 0 ? Math.Round(star.Average(),1) : 0;
+                var staravg = star.Count > 0 ? Math.Round(star.Average(),2) : 0;
                 room.Comments = comments;
                 room.Stars = staravg;
             }
