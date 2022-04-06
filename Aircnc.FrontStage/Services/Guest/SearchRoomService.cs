@@ -1,6 +1,7 @@
 ﻿using Aircnc.FrontStage.Models.Dtos.Guest;
 using Aircnc.FrontStage.Models.Entities;
 using AircncFrontStage.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,16 +32,16 @@ namespace Aircnc.FrontStage.Services.Guest
                 City = room.City,
                 District = room.District,
                 UnitPrice = room.UnitPrice,
-                Comments = room.Comments.Count,
+                
             }).ToList();
 
             foreach (var room in rooms)
             {
                 var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
-                var start = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
-                var startavg = start.Count() > 0 ? start.Average() : 0;
+                var star = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
+                var staravg = star.Count > 0 ? Math.Round(star.Average(),1) : 0;
                 room.Comments = comments;
-                room.Stars = startavg;
+                room.Stars = staravg;
             }
             return rooms;
         }

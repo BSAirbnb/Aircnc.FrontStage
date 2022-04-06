@@ -24,7 +24,6 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string RoomName { get; set; }
         public decimal UnitPrice { get; set; }
         public RoomStatusEnum Status { get; set; }
-        [Column(TypeName = "Double(2,1)")]
         public Double Stars { get; set; }
         public int Comments { get; set; }
         public List<string> RoomImgs { get; set; }

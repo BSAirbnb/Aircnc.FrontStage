@@ -21,7 +21,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
         public IActionResult Search(SearchVM input, string location, int id=1)
         {
-            //location = "台北市";
+            location = "台北市";
             int activePage = id;
             int pageRows = 8; // show rows per page
             if(totalRows == 0)
@@ -56,6 +56,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 District = SearchRoomDto.District,
                 UnitPrice = SearchRoomDto.UnitPrice,
                 Comments = SearchRoomDto.Comments,
+                Stars = SearchRoomDto.Stars,
             });
 
             var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
