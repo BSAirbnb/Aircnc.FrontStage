@@ -7,27 +7,23 @@
                 <div class="add-identity py-2">
                     <h4>選擇要新增的身分證件類型</h4>
                 </div>
-                <div class="dropdown" id="select-country">
-                    <button class="btn dropdown-toggle" type="button" id="select-country-dropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        <h5>核發國家 / 地區</h5>
-                        <i class="fas fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="select-country-dropdown">
-                        <li><a class="dropdown-item country" href="#">台灣</a></li>
-                        <li><a class="dropdown-item country" href="#">蘇聯</a></li>
-                        <li><a class="dropdown-item country" href="#">日本</a></li>
-                        <li><a class="dropdown-item country" href="#">法國</a></li>
-                        <li><a class="dropdown-item country" href="#">德國</a></li>
-                        <li><a class="dropdown-item country" href="#">英國</a></li>
-                        <li><a class="dropdown-item country" href="#">立陶宛</a></li>
-                        <li><a class="dropdown-item country" href="#">韓國</a></li>
-                        <li><a class="dropdown-item country" href="#">英國</a></li>
-                        <li><a class="dropdown-item country" href="#">以色列</a></li>
-                        <li><a class="dropdown-item country" href="#">新加坡</a></li>
-                        <li><a class="dropdown-item country" href="#">中國</a></li>
-                    </ul>
-                </div>
+                <!-- <div class="dropdown" id="country-selector"> -->
+                <span>核發國家 / 地區</span>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>台灣</option>
+                    <option value="1">蘇聯</option>
+                    <option value="2">日本</option>
+                    <option value="3">法國</option>
+                    <option value="3">德國</option>
+                    <option value="3">英國</option>
+                    <option value="3">立陶宛</option>
+                    <option value="3">韓國</option>
+                    <option value="3">英國</option>
+                    <option value="3">以色列</option>
+                    <option value="3">新加坡</option>
+                    <option value="3">中國</option>
+                </select>
+                <!-- </div> -->
                 <div class="select-one mt-5">
                     <div class="form-check" id="list">
                         <label id="form-check-label" for="radio">
@@ -56,28 +52,23 @@
                     <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"></li>
-                            <li class="breadcrumb-item active go-back" aria-current="page"><a href="#">返回</a></li>
+                            <li class="breadcrumb-item active go-back" aria-current="page">
+                                <a href="https://localhost:44327/Member/Personal_Details">返回</a>
+                            </li>
                         </ol>
                     </nav>
-                    <div class="btn-group" id="keep-on-btn" role="group" aria-label="Basic example">
-                        <button type="button" class="btn px-0">
-                            <div class="keep-on">
-                                <div class="icon">
-                                    <i class="bi bi-lock-fill"></i>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                         fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                    </svg>
-                                </div>
-                                &nbsp;
-                                <span>繼續</span>
-                            </div>
-                        </button>
-                    </div>
+                    <a class="keep-on" href="https://localhost:44327/Member/Upload_ID_Photo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-lock-fill keep-on-icon" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                        </svg>
+                        &nbsp;
+                        繼續
+                    </a>
                 </div>
             </div>
         </div>
-    </div>>
+    </div>
 </section>
 
 @section topCSS{
