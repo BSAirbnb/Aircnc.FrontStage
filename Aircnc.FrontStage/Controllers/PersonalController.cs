@@ -1,6 +1,7 @@
 ﻿using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.Member;
 using Aircnc.FrontStage.Models.ViewModels.Personal;
+using AircncFrontStage.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace Aircnc.FrontStage.Controllers
 {
     public class PersonalController : Controller
     {
-        private readonly AircncContext _db;
+        private readonly DBRepository _db;
 
-        public PersonalController(AircncContext db) 
+        public PersonalController(DBRepository db) 
         {
             _db = db;
         
@@ -23,7 +24,7 @@ namespace Aircnc.FrontStage.Controllers
         {
             //假設現在房東是1
             int userid = 1;
-            var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
+            var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new MemberViewModel
             {
                 Name = target.Name,
@@ -39,7 +40,7 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult Personaldata(int userid) //個人資料
         {
             userid = 2;
-            var target = _db.Users.FirstOrDefault(user => user.UserId == userid);
+            var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new PersonalViewModel
             {
                 Name=target.Name,
@@ -100,9 +101,15 @@ namespace Aircnc.FrontStage.Controllers
             return View();
         }
 
-        public IActionResult PersonalBox() //帳號首頁
+        public IActionResult PersonalBox(int userId) //帳號首頁
         {
-            return View();
+            userId = 1;
+            var person = _db.GetAll<User>().Where(x=>x.UserId == userId).Select(x=>new PersonalViewModel
+            {
+                Name = x.Name,
+                Email = x.Email
+            });
+            return View(person);
         }
 
     }
