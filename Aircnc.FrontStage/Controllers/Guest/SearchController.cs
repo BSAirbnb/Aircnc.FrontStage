@@ -21,7 +21,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
         //[HttpPost]
         public IActionResult Search(SearchVM input,string location, int id=1)
         {
-            location = "台北市";
+            //location = "台北市";
             //input.NavSearch.Location = "台北";
             //input.NavSearch.NumberOfGuests = 1;
             int activePage = id;
