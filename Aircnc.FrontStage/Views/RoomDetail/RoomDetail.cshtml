@@ -43,8 +43,8 @@
                     <h3 class="fw-bold">@Model.RoomDetailVM.RoomName</h3>
                     <div class="my-2">
                         <i class="fas fa-star"></i>
-                        <span>5.0&nbsp;</span>
-                        <a href="">9則評價</a>
+                        <span>@Model.RoomDetailVM.AvgStars.ToString("N1")&nbsp;</span>
+                        <a href="#reviews">@Model.RoomDetailVM.ReviewsCount 則評價</a>
                         <span>@Model.RoomDetailVM.District&nbsp;@Model.RoomDetailVM.City&nbsp;</span>
                         <button class="btn btn-secondary">加入願望清單</button>
                     </div>
@@ -136,12 +136,22 @@
         <div class="my-3" id="reviews">
             <p class="fs-4">
                 <i class="fas fa-star"></i>
-                <span class="px-1">4.91</span>
-                <span class="px-1">500則評價</span>
+                <span class="px-1">@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
+                <span class="px-1">@Model.RoomDetailVM.ReviewsCount 則評價</span>
             </p>
             <div class="container">
                 <div class="row">
                     <div class="col-6 my-2 d-flex justify-content-between">
+                        <div id="review-bar">
+                            @{ 
+                                string scorePercentage = (@Model.RoomDetailVM.AvgStars / 5.0 * 100).ToString("N1") + "%";
+                                <div id="review-bar-dark" style="width: @scorePercentage;"></div>
+                            }
+                            
+                        </div>
+                        <span>@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
+                    </div>
+                    @*<div class="col-6 my-2 d-flex justify-content-between">
                         <span class="fs-6 px-2">乾淨度</span>
                         <div id="review-bar" class="">
                             <div id="review-bar-dark"></div>
@@ -175,75 +185,31 @@
                             <div id="review-bar-dark"></div>
                         </div>
                         <span>4.9</span>
-                    </div>
-                    <div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
+        
         <div class="border-bottom border-2 my-3 d-flex flex-column">
             <div class="d-flex flex-wrap">
-                <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                    <div class="row g-0 flex-column">
-                        <div class="col-12 d-flex">
-                            <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                            <span class="align-self-center px-2">小莊</span>
-                            <span class="align-self-center px-2">2022年3月</span>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                @foreach (var review in Model.RoomDetailVM.Reviews)
+                {
+                    <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
+                        <div class="row g-0 flex-column">
+                            <div class="col-12 d-flex">
+                                <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
+                                <span class="align-self-center px-2">@review.Reviewer.Name</span>
+                                <span class="align-self-center px-2">@review.ReviewTime.ToLongDateString()</span>
+                            </div>
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <p class="card-text">@review.ReviewContent</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                    <div class="row g-0 flex-column">
-                        <div class="col-12 d-flex">
-                            <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                            <span class="align-self-center px-2">小莊</span>
-                            <span class="align-self-center px-2">2022年3月</span>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                    <div class="row g-0 flex-column">
-                        <div class="col-12 d-flex">
-                            <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                            <span class="align-self-center px-2">小莊</span>
-                            <span class="align-self-center px-2">2022年3月</span>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                    <div class="row g-0 flex-column">
-                        <div class="col-12 d-flex">
-                            <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                            <span class="align-self-center px-2">小莊</span>
-                            <span class="align-self-center px-2">2022年3月</span>
-                        </div>
-                        <div class="col-12">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
+               
             </div>
 
             <!-- Button trigger reviews 評價 modal -->
@@ -307,62 +273,24 @@
             </div>
             <div class="modal-body">
                 <div class="my-3 d-flex flex-wrap">
-                    <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                        <div class="row g-0 flex-column">
-                            <div class="col-12 d-flex">
-                                <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                                <span class="align-self-center px-2">小莊</span>
-                                <span class="align-self-center px-2">2022年3月</span>
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    @foreach (var review in Model.RoomDetailVM.Reviews)
+                    {
+                        <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
+                            <div class="row g-0 flex-column">
+                                <div class="col-12 d-flex">
+                                    <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
+                                    <span class="align-self-center px-2">@review.Reviewer.Name</span>
+                                    <span class="align-self-center px-2">@review.ReviewTime.ToLongDateString()</span>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card-body">
+                                        <p class="card-text">@review.ReviewContent</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                        <div class="row g-0 flex-column">
-                            <div class="col-12 d-flex">
-                                <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                                <span class="align-self-center px-2">小莊</span>
-                                <span class="align-self-center px-2">2022年3月</span>
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                        <div class="row g-0 flex-column">
-                            <div class="col-12 d-flex">
-                                <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                                <span class="align-self-center px-2">小莊</span>
-                                <span class="align-self-center px-2">2022年3月</span>
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 col-12 col-md-6 g-3 border-0" style="min-width: 350px;">
-                        <div class="row g-0 flex-column">
-                            <div class="col-12 d-flex">
-                                <img src="https://fakeimg.pl/50x50/200" class="img-fluid rounded-circle m-3" alt="customers">
-                                <span class="align-self-center px-2">小莊</span>
-                                <span class="align-self-center px-2">2022年3月</span>
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
+                    
                 </div>
             </div>
         </div>

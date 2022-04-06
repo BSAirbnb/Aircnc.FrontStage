@@ -1,6 +1,8 @@
-﻿using Aircnc.FrontStage.Models.Entities;
+﻿using Aircnc.FrontStage.Models.Dtos.Guest;
+using Aircnc.FrontStage.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
@@ -34,8 +36,10 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
 
         public List<RoomServiceLabel> ServiceLabels { get; set; }
 
-        public List<Comment> Reviews { get; set; }
+        public List<ReviewsDto> Reviews { get; set; } //評價 (參考 ReviewsDto)
+        [RegularExpression(@"^\d+\.\d{0,2}$")]
         public double AvgStars { get; set; } // Comment 評價平均分數
+        public int ReviewsCount { get; set; } //總共幾則評價
 
     }
 }
