@@ -39,4 +39,19 @@ footer h4{
     color: #faa;
     transition: 0.3s ease;
 }
+/*modal­Ì*/
+.sns-sign-in button, .sns-login button {
+    border: 1px solid black;
+}
+
+.dropdown-menu li a:hover {
+    border-bottom: none;
+}
+
+.enroll-btn {
+    background-color: rgb(227,29,89);
+    border-radius: 7px;
+}
+
+
 
