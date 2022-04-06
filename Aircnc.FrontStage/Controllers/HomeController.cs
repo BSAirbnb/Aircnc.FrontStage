@@ -24,7 +24,7 @@ namespace Aircnc.FrontStage.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("SearchRoom", "Search", input);
+                return RedirectToAction("Search", "Search", input);
             }
             
             return NotFound();
