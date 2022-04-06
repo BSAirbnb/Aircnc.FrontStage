@@ -15,9 +15,11 @@ namespace Aircnc.FrontStage.Services.Guest
         {
             _dbRepository = dbRepository;
         }
-        public IEnumerable<SearchRoomDto> GetRoom(SearchVM input)
+        //public IEnumerable<SearchRoomDto> GetRoom(SearchVM input, string location)
+        public IEnumerable<SearchRoomDto> GetRoom(string location)
         {
-            var rooms = _dbRepository.GetAll<Room>().Where(room => room.City.Contains(input.NavSearch.Location) && room.Pax >= input.NavSearch.NumberOfGuests && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
+            //var rooms = _dbRepository.GetAll<Room>().Where(room => room.City.Contains(input.NavSearch.Location) && room.Pax >= input.NavSearch.NumberOfGuests && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
+            var rooms = _dbRepository.GetAll<Room>().Where(room => room.City.Contains(location) && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,

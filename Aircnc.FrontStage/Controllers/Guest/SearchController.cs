@@ -18,17 +18,17 @@ namespace Aircnc.FrontStage.Controllers.Guest
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Search(SearchVM input, int id=1)
+        //[HttpPost]
+        public IActionResult Search(SearchVM input,string location, int id=1)
         {
-            //location = "台北市";
+            location = "台北市";
             //input.NavSearch.Location = "台北";
             //input.NavSearch.NumberOfGuests = 1;
             int activePage = id;
             int pageRows = 8; // show rows per page
             if(totalRows == 0)
             {
-                totalRows = _searchRoomService.GetRoom(input).Count();
+                totalRows = _searchRoomService.GetRoom(location).Count();
             }
             int pages = 0; //計算總頁數
             if(totalRows % pageRows == 0)
@@ -41,7 +41,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
             }
             int startRow = (activePage - 1) * pageRows;
 
-            var getRooms = _searchRoomService.GetRoom(input).Select(SearchRoomDto => new SearchRoomViewModel
+            var getRooms = _searchRoomService.GetRoom(location).Select(SearchRoomDto => new SearchRoomViewModel
             {
                 RoomId = SearchRoomDto.RoomId,
                 UserId = SearchRoomDto.UserId,
@@ -71,9 +71,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View(viewResult);
         }
 
-        public IActionResult Search()
-        {
-            return View();
-        }
+        //public IActionResult Search()
+        //{
+        //    return View();
+        //}
     }
 }
