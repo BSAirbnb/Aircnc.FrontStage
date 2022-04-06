@@ -1,6 +1,6 @@
 ﻿using Aircnc.FrontStage.Models.Dtos.Guest;
 using Aircnc.FrontStage.Models.Entities;
-using Aircnc.FrontStage.Models.ViewModels;
+using Aircnc.FrontStage.Models.ViewModels.Guest;
 using AircncFrontStage.Repositories;
 using System;
 using System.Collections.Generic;
