@@ -25,9 +25,20 @@
                         登入
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
+                        @* 登入前的區塊 *@
                         <li><a class="dropdown-item sign" href="#" data-bs-toggle="modal" data-bs-target="#SignupModal">註冊</a></li>
                         <li><a class="dropdown-item login" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">登入</a></li>
-                        <li><a class="dropdown-item rent" href="#">出租房源</a></li>
+                        <li><a class="dropdown-item rent" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">出租房源</a></li>
+                        @* 登入後才會有的區塊 *@
+                        <li><a class="dropdown-item" id="message" href="#">訊息</a></li>
+                        <li><a class="dropdown-item" id="notification" href="#">通知</a></li>
+                        <li><a class="dropdown-item" id="travel" href="~/Order/OrderList">旅程</a></li>
+                        <li><a class="dropdown-item" id="wishlist" href="#">心願單</a></li>
+                        <li><a class="dropdown-item" id="manage-room" href="~/RoomOwner/HostHomePageReservation">管理房源</a></li>
+                        <li><a class="dropdown-item" id="account" href="~/Personal/PersonalBox">帳號</a></li>
+                        <li><a class="dropdown-item" id="help" href="#">協助</a></li>
+                        <li><a class="dropdown-item" id="logout" href="#">登出</a></li>
+
                     </ul>
                 </div>
             </div>
