@@ -51,8 +51,6 @@ namespace Aircnc.FrontStage.Controllers
                     RoomCount = RoomOwnerDto.RoomCount,
                     CreateTime = RoomOwnerDto.CreateTime,
                     LastChangeTime = RoomOwnerDto.LastChangeTime
-
-
                 }) ;
 
             return View(result);
@@ -89,10 +87,11 @@ namespace Aircnc.FrontStage.Controllers
             Hostid = 1;
             var reservation = _hostHomePageService.GetHostHomePagesReservation(Hostid).Select(homePageReservation => new HostHomePageViewModel
             {
-                Status = homePageReservation.Status,
+                State = homePageReservation.CheckInState <= DateTime.Now ? "即將入住" : homePageReservation.CheckOutState > DateTime.Now ? "即將退房" : "目前接待中",
+                //State = int.Parse((DateTime.Now - homePageReservation.CheckInState).ToString("yyyy/MM/dd")) <= 7 ? "即將入住" : homePageReservation.CheckOutState > DateTime.Now ? "即將退房" : "目前接待中",
                 RoomName = homePageReservation.RoomName,
                 GuestName = homePageReservation.GuestName,
-                During = $"{homePageReservation.CkeckIn} - {homePageReservation.CkeckOut}"
+                During = $"{homePageReservation.CheckIn} - {homePageReservation.CheckOut}"
             });
             return View(reservation);
         }
