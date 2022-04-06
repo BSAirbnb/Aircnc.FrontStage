@@ -36,7 +36,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
 
         public List<RoomServiceLabel> ServiceLabels { get; set; }
 
-        public List<Comment> Reviews { get; set; }
+        public List<ReviewsDto> Reviews { get; set; } //評價 (參考 ReviewsDto)
         public double AvgStars { get; set; } // Comment 評價平均分數
     }
 }
