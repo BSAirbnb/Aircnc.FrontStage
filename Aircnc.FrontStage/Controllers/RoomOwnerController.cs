@@ -51,7 +51,7 @@ namespace Aircnc.FrontStage.Controllers
                     RoomCount = RoomOwnerDto.RoomCount,
                     CreateTime = RoomOwnerDto.CreateTime,
                     LastChangeTime = RoomOwnerDto.LastChangeTime
-                }) ;
+                });
 
             return View(result);
         }
@@ -87,8 +87,7 @@ namespace Aircnc.FrontStage.Controllers
             Hostid = 1;
             var reservation = _hostHomePageService.GetHostHomePagesReservation(Hostid).Select(homePageReservation => new HostHomePageViewModel
             {
-                State = homePageReservation.CheckInState <= DateTime.Now ? "即將入住" : homePageReservation.CheckOutState > DateTime.Now ? "即將退房" : "目前接待中",
-                //State = int.Parse((DateTime.Now - homePageReservation.CheckInState).ToString("yyyy/MM/dd")) <= 7 ? "即將入住" : homePageReservation.CheckOutState > DateTime.Now ? "即將退房" : "目前接待中",
+                State = DiffDays(Convert.ToDateTime(homePageReservation.CheckIn).Ticks, DateTime.Now.Ticks) >= 1 ? "即將入住" : DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) < 1 && DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) > -1 ? "目前接待中" : "即將退房",
                 RoomName = homePageReservation.RoomName,
                 GuestName = homePageReservation.GuestName,
                 During = $"{homePageReservation.CheckIn} - {homePageReservation.CheckOut}"
@@ -146,6 +145,18 @@ namespace Aircnc.FrontStage.Controllers
             }
 
             return new JsonResult("加入房源成功");
+        }
+
+
+        //public static string HostHomePageYourReservation()
+        //{
+            
+        //    if(DiffDays(Convert.ToDateTime(homePageReservation.CheckIn).Ticks, DateTime.Now.Ticks) >= 1)
+        //}
+
+        private static int DiffDays(long first, long second)
+        {
+            return new TimeSpan(first - second).Days;
         }
     }
 }

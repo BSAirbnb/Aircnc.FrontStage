@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -44,6 +45,11 @@ namespace Aircnc.FrontStage.Models.Entities
     }
     public enum OrderStatusEnum
     {
-        Past = 1 , Cancel = 2 , Future = 3
+        [Description("已完成")]
+        Past = 1 ,
+        [Description("已取消")]
+        Cancel = 2 ,
+        [Description("將至旅程")]
+        Future = 3
     }
 }
