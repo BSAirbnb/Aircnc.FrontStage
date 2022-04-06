@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.HostReservationViewModel>
+﻿@using Aircnc.FrontStage.Common
+@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.RoomOwner.HostReservationViewModel>
 @{
     ViewData["Title"] = "預定";
 
@@ -61,17 +62,20 @@
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
+        @*將至旅程*@
         <div class="tab-pane fade show active" id="nav-upcoming" role="tabpanel" aria-labelledby="nav-upcoming-tab">
             <div class="tab_pane_text_upcoming">
                 <p>為全體用戶提供健康和安全指引</p>
                 <span>隨著旅遊業回溫，我們希望能保障全體社區的安全。如果和旅客會有互動，請遵守健康和安全指引。<a href="https://www.airbnb.com.tw/help/article/2839/airbnb-%E4%BD%8F%E5%AE%BF%E7%9A%84%E5%81%A5%E5%BA%B7%E5%92%8C%E5%AE%89%E5%85%A8%E8%A6%81%E6%B1%82" target="_blank">參閱指引</a> </span>
             </div>
-            <div class="upcoming_check_all_reservations">
-                <p>您接下來沒有預訂</p>
-                <a href="#">查看所有預訂</a>
-            </div>
+            @if (@Model.Select(x => x.Status).Count() == 0)
+            {
+                <div class="upcoming_check_all_reservations">
+                    <p>您接下來沒有預訂</p>
+                    <a href="#">查看所有預訂</a>
+                </div>
+            }
 
-            <!-- 動態生成 -->
             <div class="reservations_upcoming">
                 <table class="table table-striped">
                     <thead>
@@ -85,10 +89,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Where(x => x.Status.GetDescriptionText() == "將至旅程"))
                         {
                             <tr>
-                                <th scope="row">@item.Status</th>
+                                <th scope="row">@item.Status.GetDescriptionText()</th>
+                                <td>@item.GuestName</td>
+                                <td>@item.BookingDateTime</td>
+                                <td>@item.CkeckIn</td>
+                                <td>@item.CkeckOut</td>
+                                <td><button class="btn btn_host_reservation_detail text-white">詳細</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+        </div>
+
+        @*已完成*@
+    <div class="tab-pane fade" id="nav-finished" role="tabpanel" aria-labelledby="nav-finished-tab">
+            @if (@Model.Select(x => x.Status).Count() == 0)
+            {
+                <div class="tab_pane_text">
+                    <p>找不到結果</p>
+                    <span>請嘗試不同的篩選條件。</span>
+                </div>
+            }
+
+            <div class="reservations_upcoming">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">訂單狀態</th>
+                            <th scope="col">房客姓名</th>
+                            <th scope="col">訂房日期</th>
+                            <th scope="col">入住日期</th>
+                            <th scope="col">退房日期</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.Status.GetDescriptionText() == "已完成"))
+                        {
+                            <tr>
+                                <th scope="row">@item.Status.GetDescriptionText()</th>
                                 <td>@item.GuestName</td>
                                 <td>@item.BookingDateTime</td>
                                 <td>@item.CkeckIn</td>
@@ -100,28 +145,92 @@
                 </table>
             </div>
             <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
-        </div>
+    </div>
 
-        <div class="tab-pane fade" id="nav-finished" role="tabpanel" aria-labelledby="nav-finished-tab">
-            <div class="tab_pane_text">
-                <p>找不到結果</p>
-                <span>請嘗試不同的篩選條件。</span>
+        @*已取消*@
+    <div class="tab-pane fade" id="nav-canceled" role="tabpanel" aria-labelledby="nav-canceled-tab">
+            @if (@Model.Select(x => x.Status).Count() == 0)
+            {
+                <div class="tab_pane_text">
+                    <p>找不到結果</p>
+                    <span>請嘗試不同的篩選條件。</span>
+                </div>
+            }
+
+            <div class="reservations_upcoming">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">訂單狀態</th>
+                            <th scope="col">房客姓名</th>
+                            <th scope="col">訂房日期</th>
+                            <th scope="col">入住日期</th>
+                            <th scope="col">退房日期</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.Status.GetDescriptionText() == "已取消"))
+                        {
+                            <tr>
+                                <th scope="row">@item.Status.GetDescriptionText()</th>
+                                <td>@item.GuestName</td>
+                                <td>@item.BookingDateTime</td>
+                                <td>@item.CkeckIn</td>
+                                <td>@item.CkeckOut</td>
+                                <td><button class="btn btn_host_reservation_detail text-white">詳細</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
             <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
-        </div>
-        <div class="tab-pane fade" id="nav-canceled" role="tabpanel" aria-labelledby="nav-canceled-tab">
-            <div class="tab_pane_text">
-                <p>找不到結果</p>
-                <span>請嘗試不同的篩選條件。</span>
-            </div>
-            <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
-        </div>
+    </div>
+
+        @*全部*@
         <div class="tab-pane fade" id="nav-All-result" role="tabpanel" aria-labelledby="nav-All-result-tab">
-            <div class="tab_pane_text">
-                <p>找不到結果</p>
-                <span>請嘗試不同的篩選條件。</span>
-            </div>
+
+            @if (@Model.Select(x => x.Status).Count() == 0)
+            {
+                <div class="tab_pane_text">
+                    <p>找不到結果</p>
+                    <span>請嘗試不同的篩選條件。</span>
+                </div>
+            }
+
+            @if (@Model.Select(x => x.Status).Count() != 0)
+            {
+                <!-- 動態生成 -->
+                <div class="reservations_all_result">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">訂單狀態</th>
+                                <th scope="col">房客姓名</th>
+                                <th scope="col">訂房日期</th>
+                                <th scope="col">入住日期</th>
+                                <th scope="col">退房日期</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Status.GetDescriptionText()</th>
+                                    <td>@item.GuestName</td>
+                                    <td>@item.BookingDateTime</td>
+                                    <td>@item.CkeckIn</td>
+                                    <td>@item.CkeckOut</td>
+                                    <td><button class="btn btn_host_reservation_detail text-white">詳細</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
             <p class="share_your_oppinions">我們可以提供哪些協助，讓您管理預訂時更加輕鬆？<a href="#">分享您的意見</a> </p>
+
         </div>
     </div>
 </section>

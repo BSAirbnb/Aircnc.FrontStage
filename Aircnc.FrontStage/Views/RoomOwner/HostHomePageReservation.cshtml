@@ -63,44 +63,50 @@
 <section class="container host_order_details_container mt-5 mb-5">
     <div class="d-flex justify-content-between host_order_details_text">
         <p>你的預定</p>
-        <a href="#">所有預定(0)</a>
+        <a href="#">所有預定(@Model.Select(x => x.State).Count())</a>
     </div>
     <div>
-        <button class="btn">目前接待中(0)</button>
-        <button class="btn">即將入住(0)</button>
-        <button class="btn">即將退房(0)</button>
+        <button class="btn">目前接待中(@Model.Where(x => x.State == "目前接待中").Count())</button>
+        <button class="btn">即將入住(@Model.Where(x => x.State == "即將入住").Count())</button>
+        <button class="btn">即將退房(@Model.Where(x => x.State == "即將退房").Count())</button>
         <!-- <button class="btn">即將開始的住宿(0)</button> -->
     </div>
 
     @*沒資料的畫面*@
-     @*<div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
-          <p class="p_host_your_orders_status">目前沒有任何旅客入住。</p>
-     </div>*@ 
+    @if (@Model.Select(x => x.State).Count() == 0)
+    {
+         <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
+              <p class="p_host_your_orders_status">目前沒有任何旅客入住。</p>
+         </div> 
 
-    <!-- Swiper -->
-    @*動態生成*@
-    <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                @foreach (var item in Model)
-        {
-            <div class="swiper-slide">
-                <div class="card host_your_orders_card">
-                    <div class="card-body">
-                        <p class="card-title p_currently_hosting">@item.State</p>
-                        <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
-                        <p class="card-text text-black p_guest_name">@item.GuestName</p>
-                        <p class="card-text text-black">@item.During</p>
+    }
+    else
+    {
+        <!-- Swiper -->
+        @*動態生成*@
+        <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model)
+                    {
+                <div class="swiper-slide">
+                    <div class="card host_your_orders_card">
+                        <div class="card-body">
+                            <p class="card-title p_currently_hosting">@item.State</p>
+                            <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
+                            <p class="card-text text-black p_guest_name">@item.GuestName</p>
+                            <p class="card-text text-black">@item.During</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+                    }
 
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
-    </div>
+    }
 
 </section>
 
