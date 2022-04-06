@@ -3,94 +3,283 @@
 
 <section>
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 left-container">
-                <div class="d-flex justify-content-center profile">
-                    <div class="profile-picture-container">
-                        <img src="@Model.Photo" class="rounded-circle profile-picture">
-                    </div>
+        <div class="row ms-4">
+            <div class="col-12 col-md-3 left-container">
+                <div class="drop-zone mt-4 mb-5">
+                    <span class="drop-zone__prompt">
+                        @*<img src="./user_pic-225x225.png" class="rounded-circle profile-picture">*@
+                         <img src="@Model.Photo" class="rounded-circle profile-picture"> 
+                        <a href="" id="update-photo">更新相片</a>
+                    </span>
+                    <input type="file" name="myFile" class="drop-zone__input">
                 </div>
-                <div class="update-photo">
-                    <a href="">更新相片</a>
-                </div>
-                <div class="review my-4">
-                    <i class="bi bi-star"></i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                <div class="review-container my-4 d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                          class="bi bi-star" viewBox="0 0 16 16">
                         <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                     </svg>
-                    1則評價
-                </div>
-                <hr id="hr-sm-display">
-                <div class="security-badge">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="identiy-check">
-                    <h4>身分驗證</h4>
-                    <p>透過身分驗證徽章展示你真的是本人。</p>
-                </div>
-                <div class="d-grid gap-2 d-md-block get-badge">
-                    <button class="btn btn-outline-dark my-2" type="button">取得徽章</button>
+                    <span class="reviews-amount ms-2">11則評價</span>
                 </div>
                 <hr>
-                <div class="confirm-already">
+                <hr id="hr-sm-display">
+                <i class="bi bi-shield-check"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                     class="bi bi-shield-check" viewBox="0 0 16 16">
+                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                    <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                </svg>
+                <div class="identiy-check">
+                    <h4 class="title my-3">身分驗證</h4>
+                    <p>透過身分驗證徽章展示你真的是本人。</p>
+                </div>
+                <a class="get-badge my-2" href="https://localhost:44327/Member/Upload_Identification">
+                    取得徽章
+                </a>
+                <hr>
+                <div class="confirm-already mb-5">
                     <h4 class="my-4">@Model.Name 已確認</h4>
                     <div class="checklist my-2">
-                        <i class="fas fa-check"></i>
+                        <i class="fas fa-check">&nbsp;</i>
                         電子郵件地址
                     </div>
                     <div class="checklist my-2">
-                        <i class="fas fa-check"></i>
+                        <i class="fas fa-check">&nbsp;</i>
                         電話號碼
                     </div>
                     <div class="checklist my-2">
-                        <i class="fas fa-check"></i>
+                        <i class="fas fa-check">&nbsp;</i>
                         工作用電子郵件
                     </div>
                 </div>
             </div>
             <!-- <hr id="hr-sm-display"> -->
-            <div class="col-12 col-md-7 my-5 right-container">
+            <div class="right-container col-12 col-md-7 py-md-auto d-none d-md-block ms-md-5">
                 <div class="title">
-                    <h2>嗨！我是 @Model.Name</h2>
+                     <h2>嗨！我是 @Model.Name</h2> 
                 </div>
-                <div class="regist-date">加入時間：2015</div>
-                <div class="edit-personal-data my-1">
-                    <a href="#">編輯個人資料</a>
+                <div class="year-date">加入時間：2015</div>
+                <div>
+                    <button class="btn edit-personal-data my-1" data-bs-toggle="collapse" href="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample">
+                        編輯個人資料
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="location my-4">
+                            <h5 class="modal-title">位置</h5>
+                            <input class="input-frame my-1" type="text">
+                        </div>
+                        <div class="language my-4">
+                            <h5 class="modal-title">我使用的語言</h5>
+                            <input class="input-frame my-1" type="text">
+                        </div>
+                        <div class="location my-4">
+                            <h5 class="modal-title">工作單位</h5>
+                            <input class="input-frame my-1" type="text">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between cancel_save">
+                        <button class="btn edit-personal-data" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            取消
+                        </button>
+                        <button class="btn edit-personal-data" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            儲存
+                        </button>
+                    </div>
                 </div>
-                <div class="about-me my-4">
-                    <h5>關於我</h5>
+                <div class="show_personal_data">
+                    <div class="about-me my-4">
+                        <h5>關於我</h5>
+                    </div>
+                    <div class="say-something my-2">
+                        <p>
+                            Native Kuala Lumpur boy who loves meeting new people and learn about different cultures.
+                            Hope
+                            to be able to travel the world someday. Food lover and Avid fan of photography
+                            specifically
+                            in Street Photography.
+                        </p>
+                    </div>
+                    <div class="residency my-2"><i class="fas fa-home"></i> 住在台北, 臺灣</div>
+                    <!-- <div class="residency my-2"><i class="fas fa-home"></i> 住在 @Model.Address</div> -->
+                    <div class="language my-3"><i class="fas fa-comment-alt"></i> 使用語言：English、 中文、 日本語</div>
                 </div>
-                <div class="say-something my-2">Hello, I'm @Model.Name</div>
-                <div class="residency my-2"><i class="fas fa-home"></i> 住在 @Model.Address</div>
-                <div class="language my-3"><i class="fas fa-comment-alt"></i> 使用語言：English、 中文、 日本語</div>
                 <hr>
                 <div class="user-property my-3">
-                    <h4>Yu Cheng的房源</h4>
+                    <h4>@Model.Name 的房源</h4> 
                 </div>
                 <div class="property-photo my-2">
-                    <img src="@Model.Photo" class="my-2">
+                    <img src="~/css/Personal_Details/Photos/room.jpg" class="my-2">
                 </div>
                 <hr>
                 <div class="review-container">
-                    <i class="fas fa-star"></i>
-                    <span class="review-amount">1則評價</span>
-                    <div class="comment-date">七月 2016</div>
-                    <div class="comment my-2">
-                        Yu was a nice guest. He informed me of any problems he has during his stay. Coomunication
-                        was really clear. My apartment was clean when he left
+                    <div class="my-4 d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        &nbsp;
+                        <i class="bi bi-star-fill reviews-amount">11則評價</i>
                     </div>
-                    <div class="commenter-profile-container my-5">
-                        <div class="commenter-picture">
-                            <img src="@Model.Photo">
+
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button onclick="click_tenant_review()" class="nav-link active" id="tenant_review"
+                                    data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab"
+                                    aria-controls="pills-home" aria-selected="true">
+                                來自房客的評價
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button onclick="click_landlord_review()" class="nav-link" id="landlord_review"
+                                    data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false">
+                                來自房東的評價
+                            </button>
+                        </li>
+                    </ul>
+                    <hr class="m-0">
+                    <div class="tab-content mt-5" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                             aria-labelledby="pills-home-tab">
+                            <div>
+                                <div class="year-date mb-3">一月 2016</div>
+                                <div class="comment">
+                                    Yu was a nice guest. He informed me of any problems he has during his stay.
+                                    Coomunication was really clear. My apartment was clean when he left
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Thomas</div>
+                                        <div class="year-date">加入時間：2015</div>
+                                    </div>
+                                </div>
+                                <div class="year-date mb-3">七月 2016</div>
+                                <div class="comment">
+                                    <p>
+                                        Really good appartment with amazing swimmingpool in rooftop. Adi reply quick
+                                        all doubts you can have and he is very helpfully. During the night not so
+                                        much to do in these area, but there is a metro…
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Philipp</div>
+                                        <div class="year-date">加入時間：2014</div>
+                                    </div>
+                                </div>
+                                <div class="year-date mb-3">九月 2015</div>
+                                <div class="comment">
+                                    <p>
+                                        My stay at Adi's apartment was very enjoyable and comfortable. Apartment was
+                                        clean and has good facilities. Pool is gorgeous. He was very attentive to my
+                                        stay, always a (Hidden by Airbnb) away when I needed help finding places.
+                                        Attention to detail and customer-focused, I strongly recommend a stay at his
+                                        apartment - makes KL a perfect place!
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Wan Jia-Cheng</div>
+                                        <div class="year-date">加入時間：2009</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="commenter mx-2">
-                            <div class="user">Adi</div>
-                            <div class="regist-date">加入時間：@Model.CreateTime</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                             aria-labelledby="pills-profile-tab">
+                            <div>
+                                <div class="year-date mb-3">二月 2012</div>
+                                <div class="comment">
+                                    <p>
+                                        Murat checked into my apartment earlier by 2 hours (at 1 pm versus normal
+                                        arrival time at 3 pm). The issue was found at 5 am when I was doing the
+                                        cleaning. Could not find a plumber working at 5 in the morning. The issue
+                                        was resolved when I finally found a plumber able to do the fixing at 2 pm
+                                        and completed in 30 minutes. Could have fixed the plumbing issue if Murat
+                                        arrived in normal time. Which is not the case. Thanks Murat for your
+                                        valuable feedbacks!
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Adi</div>
+                                        <div class="year-date">加入時間：2015</div>
+                                    </div>
+                                </div>
+                                <div class="year-date mb-3">七月 2022</div>
+                                <div class="comment">
+                                    <p>
+                                        Stayed in the apartment for 2 nights. Adi was very accommodating let us do a
+                                        late check out to accommodate our late flight. The condo was perfect just as
+                                        the pictures and the pool on the 37th floor…
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Akiko Kishishita</div>
+                                        <div class="year-date">加入時間：2025</div>
+                                    </div>
+                                </div>
+                                <div class="year-date mb-3">八月 2016</div>
+                                <div class="comment">
+                                    <p>
+                                        Adi was a very good host. Always responds right away. The place is beutiful
+                                        and spacious. Definitely recommend staying here. Also great view of the
+                                        downtown area.
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Ashton</div>
+                                        <div class="year-date">加入時間：2020</div>
+                                    </div>
+                                </div>
+                                <div class="year-date mb-3">十一月 2013</div>
+                                <div class="comment">
+                                    <p>
+                                        Adi fue un buen anfitrión, pese a no poder estar cuando llegamos, nos envió
+                                        unas instrucciones perfectas que nos hicieron muy cómodo entrar al piso y
+                                        estuvo atento en todo momento. La ubicación de los apartamentos esta un poco
+                                        alejada del centro pero no esta mal comunicada, claro que todo se arregla
+                                        con las maravillosas vistas desde la piscina.
+                                    </p>
+                                </div>
+                                <div class="commenter-profile-container mt-1 mb-5">
+                                    <div class="commenter-picture">
+                                        <img src="~/css/Personal_Details/Photos/user_pic-225x225.png">
+                                    </div>
+                                    <div class="commenter ms-2 mb-2">
+                                        <div class="user">Mike Lee</div>
+                                        <div class="year-date">加入時間：2021</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <a href="" class="my-5">你寫的評價</a>
                     <hr>
                 </div>
             </div>
@@ -98,9 +287,93 @@
     </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous">
+<script>
+    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+        const dropZoneElement = inputElement.closest(".drop-zone");
+        console.log(dropZoneElement);
+        dropZoneElement.addEventListener("click", (e) => {
+            inputElement.click();
+        });
+
+        inputElement.addEventListener("change", (e) => {
+            if (inputElement.files.length) {
+                updateThumbnail(dropZoneElement, inputElement.files[0]);
+            }
+        });
+
+        dropZoneElement.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropZoneElement.classList.add("drop-zone--over");
+        });
+
+        ["dragleave", "dragend"].forEach((type) => {
+            dropZoneElement.addEventListener(type, (e) => {
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        dropZoneElement.addEventListener("drop", (e) => {
+            e.preventDefault();
+
+            if (e.dataTransfer.files.length) {
+                inputElement.files = e.dataTransfer.files;
+                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+            }
+
+            dropZoneElement.classList.remove("drop-zone--over");
+        });
+    });
+
+    function updateThumbnail(dropZoneElement, file) {
+        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+            dropZoneElement.querySelector(".drop-zone__prompt").remove();
+        }
+
+        if (!thumbnailElement) {
+            thumbnailElement = document.createElement("div");
+            thumbnailElement.classList.add("drop-zone__thumb");
+            dropZoneElement.appendChild(thumbnailElement);
+        }
+
+        thumbnailElement.dataset.label = file.name;
+
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+            };
+        } else {
+            thumbnailElement.style.backgroundImage = null;
+        }
+    }
+
+
+    function click_tenant_review() {
+        document.getElementById('landlord_review').style.borderBottomColor = "#ffffff";
+        document.getElementById('tenant_review').style.borderBottom = "medium solid #222222";
+    }
+
+    function click_landlord_review() {
+        document.getElementById('tenant_review').style.borderBottomColor = "#ffffff";
+        document.getElementById('landlord_review').style.borderBottom = "medium solid #222222";
+    }
+
+    // 編輯個人資訊 //
+    document.querySelector('.edit-personal-data').addEventListener("click", () => {
+        document.querySelector('.edit-personal-data').disabled = true;
+        document.querySelector('.cancel_save').style.visibility = 'visible';
+        document.querySelector('.show_personal_data').style.display = 'none';
+    });
+
+    document.querySelector('.cancel_save').addEventListener("click", () => {
+        document.querySelector('.cancel_save').style.visibility = 'hidden';
+        document.querySelector('.edit-personal-data').disabled = false;
+        document.querySelector('.show_personal_data').style.display = 'inline';
+    });
 
 </script>
 
