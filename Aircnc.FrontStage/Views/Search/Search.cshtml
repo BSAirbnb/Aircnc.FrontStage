@@ -1,8 +1,12 @@
-﻿@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Guest.SearchRoomViewModel>
+﻿@*@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Guest.SearchRoomViewModel>*@
+@model Aircnc.FrontStage.Models.ViewModels.Guest.SearchVM
 
 @{
 	ViewData["Title"] = "AirCnC-Search";
 	Layout = "Guest/_GuestLayout";
+	int activePage = (int)ViewData["ActivePage"];
+	int pages = (int)ViewData["Pages"];
+	int totalRows = (int)ViewData["TotalRows"];
 }
 
 <div class="container-fluid advance-search d-flex justify-content-center">
@@ -74,28 +78,31 @@
 		<!-- 房源列表 -->
 		<div class="col-12 col-md-7 room-list mt-1">
 			<!-- card -->
-			@foreach (var room in Model)
+			@foreach (var room in Model.SearRoom)
 			{
-				@await Html.PartialAsync("_Search_RoomCardPartial",room)
+				@await Html.PartialAsync("_Search_RoomCardPartial", room)
 			}
 			<!-- pagination -->
 			<nav aria-label="Page navigation">
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous">
+						<a class="page-link" href=@(activePage == 1 ? "#" : $"/search/search/{activePage - 1}") aria-label="Previous">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					@for(int i = 1; i<= pages; i++)
+					{
+						<li class="page-item @(i == activePage ? "active" : "")">
+							<a class="page-link" href="/search/search/@i">@i</a>
+						</li>
+					}
 					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next">
+						<a class="page-link" href=@(activePage == pages ? "#" : $"/search/search/{activePage + 1}") aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>
 				</ul>
-				<p class="text-center">第 1 項至第 8 項，共 20 多間房源</p>
+				<p class="text-center">第 @(activePage == 1 ? "1" : activePage * 8 - 8) 項至第 @(activePage == pages ? totalRows : activePage * 8) 項，共 @totalRows 間房源</p>
 			</nav>
 		</div>
 

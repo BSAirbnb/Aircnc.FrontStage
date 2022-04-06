@@ -20,20 +20,20 @@ namespace Aircnc.FrontStage.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult NavSearch(NavSearchViewModel input)
-        {
-            var viewModelSearch = new NavSearchViewModel()
-            {
-                Location = input.Location,
-                StartDate = input.StartDate,
-                EndDate = input.EndDate,
-                NumberOfGuests = input.NumberOfGuests
-            };
+        //[HttpPost]
+        //public IActionResult NavSearch(NavSearchViewModel input)
+        //{
+        //    var viewModelSearch = new NavSearchViewModel()
+        //    {
+        //        Location = input.Location,
+        //        StartDate = input.StartDate,
+        //        EndDate = input.EndDate,
+        //        NumberOfGuests = input.NumberOfGuests
+        //    };
 
-            var result = _navSearchService.GetResult(viewModelSearch);
-            return RedirectToAction("SearchRoom", "SearchController", result);
-        }
+        //    var result = _navSearchService.GetResult(viewModelSearch);
+        //    return RedirectToAction("SearchRoom", "SearchController", result);
+        //}
 
         public IActionResult RecommendedDestination()
         {

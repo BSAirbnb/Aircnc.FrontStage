@@ -9,6 +9,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
     public class SearchController : Controller
     {
         private readonly SearchRoomService _searchRoomService;
+        private static int totalRows; //搜尋結果總筆數
         public SearchController(SearchRoomService searchRoomService)
         {
             _searchRoomService = searchRoomService;
@@ -18,10 +19,27 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View();
         }
 
-        public IActionResult Search(string location)
+        public IActionResult Search(SearchVM input, string location, int id=1)
         {
-            location = "台北市";
-            var result = _searchRoomService.GetRoom(location).Select(SearchRoomDto => new SearchRoomViewModel
+            //location = "台北市";
+            int activePage = id;
+            int pageRows = 8; // show rows per page
+            if(totalRows == 0)
+            {
+                totalRows = _searchRoomService.GetRoom(location).Count();
+            }
+            int pages = 0; //計算總頁數
+            if(totalRows % pageRows == 0)
+            {
+                pages = totalRows / pageRows;
+            }
+            else
+            {
+                pages = (totalRows / pageRows) + 1;
+            }
+            int startRow = (activePage - 1) * pageRows;
+
+            var getRooms = _searchRoomService.GetRoom(location).Select(SearchRoomDto => new SearchRoomViewModel
             {
                 RoomId = SearchRoomDto.RoomId,
                 UserId = SearchRoomDto.UserId,
@@ -37,8 +55,17 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 City = SearchRoomDto.City,
                 District = SearchRoomDto.District,
                 UnitPrice = SearchRoomDto.UnitPrice,
+                Comments = SearchRoomDto.Comments,
             });
-            return View(result);
+
+            var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
+            var viewResult = new SearchVM { SearRoom = result };
+
+            ViewData["ActivePage"] = id;
+            ViewData["Pages"] = pages;
+            ViewData["TotalRows"] = totalRows;
+
+            return View(viewResult);
         }
     }
 }
