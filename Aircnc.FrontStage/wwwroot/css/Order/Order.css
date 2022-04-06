@@ -76,13 +76,26 @@
 .order-image {
     /* outline: 1px solid red; */
     /* border-radius: 25px; */
-    border-radius: 0 25px 25px 0;
+/*    border-radius: 0 25px 25px 0;
     min-width: 56%;
     min-height: 124%;
     position: relative;
     top: -25px;
     left: 22px;
+*/}
+.room-picture {
+    border-radius: 0 25px 25px 0;
+/*    outline: 1px solid red;
+*/    /*    float: right;*/
 }
+.room-picture-container {
+    /*justify-content:end;*/
+/*    min-height:min-content;
+    min-width:min-content;
+*/}
+.order-content{
+/*    outline:1px solid blue;
+*/}
 
 /*.order-room-detail {
     border-bottom: 1px solid lightgray;

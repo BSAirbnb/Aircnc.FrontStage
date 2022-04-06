@@ -48,7 +48,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<OrderService, OrderService>();
             services.AddTransient<RoomDetailService, RoomDetailService>();
             services.AddTransient<NavSearchService, NavSearchService>();
-            services.AddTransient<FutureTransactionService, FutureTransactionService>();
+            services.AddTransient<TransactionService, TransactionService>();
             services.AddTransient<IAccountService, AccountService>();
 
             services.AddTransient<SearchRoomService, SearchRoomService>();
