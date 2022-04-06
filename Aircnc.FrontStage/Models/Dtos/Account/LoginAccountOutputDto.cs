@@ -15,12 +15,15 @@ namespace Aircnc.FrontStage.Models.Dtos.Account
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public UserData User { get; set; }
+        
 
         public class UserData
         {
             public int UserId { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
+
+            public string Photo { get; set; }
 
         }
     }

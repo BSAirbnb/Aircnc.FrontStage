@@ -3,6 +3,7 @@ using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
 using Aircnc.FrontStage.Services;
 using Aircnc.FrontStage.Services.RoomOwner;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -128,6 +129,7 @@ namespace Aircnc.FrontStage.Controllers
 
         [HttpGet]
         //int Hostid = 1
+        [Authorize]
         public IActionResult CreateRoom()
         {
 

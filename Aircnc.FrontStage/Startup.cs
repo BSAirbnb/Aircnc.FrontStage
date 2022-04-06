@@ -18,6 +18,7 @@ using Aircnc.FrontStage.Services.Transaction;
 using Aircnc.FrontStage.Services.Account.Interface;
 using Aircnc.FrontStage.Services.Account;
 using Aircnc.FrontStage.Services.Common;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Aircnc.FrontStage
 {
@@ -56,6 +57,9 @@ namespace Aircnc.FrontStage
             
             services.AddHttpContextAccessor();
             services.AddTransient<HostRoomEditService, HostRoomEditService>();
+
+            //設定驗證方式
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +84,8 @@ namespace Aircnc.FrontStage
             app.UseAuthorization();
             //跨域
             app.UseCors();
+
+
 
             app.UseEndpoints(endpoints =>
             {
