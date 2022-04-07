@@ -16,10 +16,10 @@ namespace Aircnc.FrontStage.Controllers.Account
         {
             _accountService = accountService;
         }
-        public IActionResult Signup()
-        {
-            return View();
-        }
+        //public IActionResult Signup()
+        //{
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult Signup(SignupDataModel request)
