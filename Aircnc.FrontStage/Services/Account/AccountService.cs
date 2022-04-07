@@ -123,7 +123,7 @@ namespace Aircnc.FrontStage.Services.Account
                     new Claim(ClaimTypes.Name, result.User.UserId.ToString()),
                     new Claim(ClaimTypes.Email, result.User.Email),
                     new Claim("UserName", result.User.Name),//自訂欄位(聲明)
-                    new Claim("UserPhoto", result.User.Photo)
+                    //new Claim("UserPhoto", result.User.Photo)
                 };
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 _httpContextAccessor.HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));

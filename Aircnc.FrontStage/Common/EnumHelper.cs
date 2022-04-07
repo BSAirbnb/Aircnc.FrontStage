@@ -6,7 +6,7 @@ namespace Aircnc.FrontStage.Common
     public static class EnumHelper
     {
 
-        public static string GetDescriptionText<T>(this T source)
+        public static string GetDescriptionText(this Enum source)
         {
             var field = source.GetType().GetField(source.ToString());
             DescriptionAttribute[] attributes = (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), false);
