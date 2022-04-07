@@ -34,10 +34,12 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
-        public IActionResult HostList(int hostId)
+        /// 
+        [Authorize]
+        public IActionResult HostList()
         {
             //先假設user1的房源
-            hostId = 1;
+            int hostId = int.Parse(User.Identity.Name);
             var result =
                 _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto => new HostListViewModel
                 {
@@ -135,11 +137,12 @@ namespace Aircnc.FrontStage.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         //int Hostid = 1 
         public IActionResult CreateRoom([FromBody] CreateRoomDataModel request)
         {
-
-            var result = _createRoomService.CreateRoom(request);
+            var userid = int.Parse(User.Identity.Name);
+            var result = _createRoomService.CreateRoom(request, userid);
 
             if (!result.IsSuccess)
             {

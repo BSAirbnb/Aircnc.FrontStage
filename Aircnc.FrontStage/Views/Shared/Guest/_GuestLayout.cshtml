@@ -16,16 +16,18 @@
     <title>@ViewData["Title"]</title>
     <style>
         .img-ctrl {
-            max-width: 50px;
-            max-height: 50px;
+            width: 50px;
+            height: 50px;
             border: 1px double #E4E4E4;
             border-radius: 50%;
             padding: 5px;
+            overflow: hidden;
         }
         .guest_layout_usericon {
             border: 1px double #E4E4E4;
             border-radius: 50%;
         }
+
     </style>
 </head>
 <body>
@@ -48,15 +50,15 @@
                     }
                     else
                     {
-                        <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="img-ctrl">
-                                <!-- 放使用者頭像 -->
-                                <img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">
-                                @*<img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
-                        alt="UserPhoto" />*@
-                                @*@User.Claims.*@
-                            </div>
-                        </button>
+                <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <div class="img-ctrl">
+                        <!-- 放使用者頭像 -->
+                        @*<img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">*@
+                        <img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
+                              alt="UserPhoto" class="img-fluid userimg"/>
+                        
+                    </div>
+                </button>
                     }
 
                     <ul class="dropdown-menu dropdown-menu-end">
