@@ -1,6 +1,8 @@
 ﻿using Aircnc.FrontStage.Models.Dtos.Guest;
 using Aircnc.FrontStage.Models.Entities;
+using Aircnc.FrontStage.Models.ViewModels.Guest;
 using AircncFrontStage.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,8 +15,10 @@ namespace Aircnc.FrontStage.Services.Guest
         {
             _dbRepository = dbRepository;
         }
+        //public IEnumerable<SearchRoomDto> GetRoom(SearchVM input, string location)
         public IEnumerable<SearchRoomDto> GetRoom(string location)
         {
+            //var rooms = _dbRepository.GetAll<Room>().Where(room => room.City.Contains(input.NavSearch.Location) && room.Pax >= input.NavSearch.NumberOfGuests && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
             var rooms = _dbRepository.GetAll<Room>().Where(room => room.City.Contains(location) && room.Status == RoomStatusEnum.Online).Select(room => new SearchRoomDto
             {
                 RoomId = room.RoomId,
@@ -31,16 +35,16 @@ namespace Aircnc.FrontStage.Services.Guest
                 City = room.City,
                 District = room.District,
                 UnitPrice = room.UnitPrice,
-                Comments = room.Comments.Count,
+                
             }).ToList();
 
             foreach (var room in rooms)
             {
                 var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
-                var start = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
-                var startavg = start.Count() > 0 ? start.Average() : 0;
+                var star = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.Stars).ToList();
+                var staravg = star.Count > 0 ? Math.Round(star.Average(),2) : 0;
                 room.Comments = comments;
-                room.Stars = startavg;
+                room.Stars = staravg;
             }
             return rooms;
         }

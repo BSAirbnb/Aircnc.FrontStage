@@ -21,12 +21,13 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View();
         }
 
-        // 以下測試
+        
         public IActionResult RoomDetail(int roomId)
         {
             var room = _roomDetailService.GetRoomDetailById(roomId);
             var detail = new RoomDetailViewModel()
             {
+                OwnerName = room.OwnerName,
                 RoomId = room.RoomId,
                 RoomType = room.RoomType,
                 HouseType = room.HouseType,
@@ -37,7 +38,10 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 BedCount = room.BedCount,
                 BathroomCount = room.BathroomCount,
                 RoomDescription = room.RoomDescription,
-                ServiceLabels = room.ServiceLabels
+                ServiceLabels = room.ServiceLabels,
+                Reviews = room.Reviews,
+                AvgStars = room.AvgStars,
+                ReviewsCount = room.Reviews.Count()
             };
             var result = new SearchVM() { RoomDetailVM = detail };
             return View(result);

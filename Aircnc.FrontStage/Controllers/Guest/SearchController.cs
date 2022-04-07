@@ -18,10 +18,12 @@ namespace Aircnc.FrontStage.Controllers.Guest
         {
             return View();
         }
-
-        public IActionResult Search(SearchVM input, string location, int id=1)
+        //[HttpPost]
+        public IActionResult Search(SearchVM input,string location, int id=1)
         {
             //location = "台北市";
+            //input.NavSearch.Location = "台北";
+            //input.NavSearch.NumberOfGuests = 1;
             int activePage = id;
             int pageRows = 8; // show rows per page
             if(totalRows == 0)
@@ -56,6 +58,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 District = SearchRoomDto.District,
                 UnitPrice = SearchRoomDto.UnitPrice,
                 Comments = SearchRoomDto.Comments,
+                Stars = SearchRoomDto.Stars,
             });
 
             var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
@@ -67,5 +70,10 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
             return View(viewResult);
         }
+
+        //public IActionResult Search()
+        //{
+        //    return View();
+        //}
     }
 }

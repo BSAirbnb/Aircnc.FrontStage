@@ -37,8 +37,9 @@ namespace Aircnc.FrontStage.Services.Guest
                 BathroomCount = room.BathroomCount,
                 RoomDescription = room.RoomDescription,
                 ServiceLabels = roomServiceLabel,
+
+                Reviews = GetReviews(reviews),
                 AvgStars = ReviewsTotalScore(reviews)
-                
             };
         
             return result;
@@ -46,13 +47,33 @@ namespace Aircnc.FrontStage.Services.Guest
 
         public double ReviewsTotalScore(List<Comment> reviews)
         {
-            var totalScore = 0d;
-            foreach (var review in reviews)
+            if (reviews.Count() != 0)
             {
-                totalScore += review.Stars;
+                var totalScore = 0d;
+                foreach (var review in reviews)
+                {
+                    totalScore += review.Stars;
+                }
+                double average = totalScore / reviews.Count();
+                return average;
             }
-            double average = totalScore / reviews.Count();
-            return average;
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public List<ReviewsDto> GetReviews(List<Comment> reviews)
+        {
+            var result = reviews.Select(review => new ReviewsDto()
+            {
+                RoomId = review.RoomId,
+                Reviewer = _dbRepository.GetAll<User>().FirstOrDefault(reviewer => reviewer.UserId == review.UserId),
+                ReviewContent = review.CommentContent,
+                ReviewTime = review.CreateTime
+            }).ToList();
+            return result;
         }
     }
 }
