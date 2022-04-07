@@ -19,14 +19,14 @@ namespace Aircnc.FrontStage.Services.RoomOwner
 
         }
 
-        public CreateRoomOutputDto CreateRoom(CreateRoomDataModel request)
+        public CreateRoomOutputDto CreateRoom(CreateRoomDataModel request,int userid)
         {
             //mapping
             var result = new CreateRoomOutputDto
             {
                 //之後要換
                 IsSuccess = false,
-                UserId = 1,
+                UserId = userid,
                 CreateTime =DateTime.Now,
                 Status = RoomStatusEnum.Online,
                 HouseType = (HouseTypeEnum)request.HouseType,
@@ -52,7 +52,7 @@ namespace Aircnc.FrontStage.Services.RoomOwner
             Room room = new Room
             {
 
-                UserId = 1,
+                UserId = userid,
                 CreateTime = DateTime.Now,
                 Status = RoomStatusEnum.Online,
                 HouseType = (HouseTypeEnum)request.HouseType,
