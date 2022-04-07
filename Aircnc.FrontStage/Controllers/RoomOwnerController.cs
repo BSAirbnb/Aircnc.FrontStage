@@ -142,7 +142,8 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CreateRoom([FromBody] CreateRoomDataModel request)
         {
             var userid = int.Parse(User.Identity.Name);
-            var result = _createRoomService.CreateRoom(request, userid);
+            
+                var result = _createRoomService.CreateRoom(request, userid);
 
             if (!result.IsSuccess)
             {

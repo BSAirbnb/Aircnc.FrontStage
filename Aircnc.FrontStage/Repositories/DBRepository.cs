@@ -9,7 +9,7 @@ namespace AircncFrontStage.Repositories
 {
     public class DBRepository
     {
-        private readonly AircncContext _DbContext;
+        public readonly AircncContext _DbContext;
         public DBRepository(AircncContext DbContext) {
 
             _DbContext = DbContext;
