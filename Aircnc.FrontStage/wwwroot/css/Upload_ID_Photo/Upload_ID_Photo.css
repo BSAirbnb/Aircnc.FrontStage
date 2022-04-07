@@ -16,8 +16,9 @@ a {
 .navbar-brand:hover {
     border: none;
 }
-.logo{
-    width: 100px;
+
+.logo {
+    width: 50px;
 }
 
 li {

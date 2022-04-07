@@ -9,7 +9,9 @@
                 <div class=" title">
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="~/Personal/PersonalBox">帳號</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="https://localhost:44327/Personal/PersonalBox">帳號</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">隱私與分享</li>
                         </ol>
                     </nav>
@@ -36,12 +38,12 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">你的隱私</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
+                                    <h5 class="modal-title" id="exampleModalLabel">你的隱私</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>
+                                    <p class="mb-5">
                                         當您造訪網站時，多數網站可能會透過Cookie來獲取或存取您瀏覽器上的資訊。
                                         這些資訊可能與您本人、您的偏好設置或您的裝置有關，主要用來使網站依照您想要的方式運行。
                                         這些訊息通常不會直接識別您的身份，而是為您提供更個人化的網站瀏覽體驗。
@@ -55,45 +57,49 @@
                                         您可以將瀏覽器設定為封鎖Cookie或收到Cookie安裝通知，不過這可能會導致網站的部分功能無法正常運作。
                                     </p>
                                     <h5>效能Cookie</h5>
-                                    <p>
+                                    <p class="mb-3">
                                         這些 Cookie
                                         能讓我們計算造訪次數和追蹤流量來源，藉以評估並改善我們網站的效能。此外，還能讓我們了解最受歡迎和最不受歡迎的頁面，同時查看訪客如何使用網站。若你不允許瀏覽器使用
                                         Cookie，這些資訊將不會用於提升網站表現。
                                     </p>
                                     <div class="form-check form-switch">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">
-                                            Google
-                                            Analytics (分析)
+                                        <label class="form-check-label" for="turn_off_all" id="show_on_off">
+                                            全部關閉
                                         </label>
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                               id="flexSwitchCheckDefault">
+                                        <input onclick="turnOnOff()" class="modal-form-check-input form-check-input"
+                                               type="checkbox" role="switch" id="turn_off_all" checked>
                                     </div>
                                     <hr>
                                     <div class="form-check form-switch">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">
-                                            Google
-                                            marketo.com
+                                        <label class="form-check-label" for="Google_Analytics">
+                                            Google Analytics (分析)
                                         </label>
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                               id="flexSwitchCheckDefault">
+                                        <input class="modal-form-check-input form-check-input" type="checkbox"
+                                               role="switch" id="Google_Analytics">
                                     </div>
                                     <hr>
                                     <div class="form-check form-switch">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">
-                                            Google
-                                            Airbnb 分析
+                                        <label class="form-check-label" for="Google_marketo_com">
+                                            Google marketo.com
                                         </label>
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                               id="flexSwitchCheckDefault">
+                                        <input class="modal-form-check-input form-check-input" type="checkbox"
+                                               role="switch" id="Google_marketo_com">
                                     </div>
                                     <hr>
                                     <div class="form-check form-switch">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">
-                                            Google
+                                        <label class="form-check-label" for="Google_Airbnb_Analysis">
+                                            Google Airbnb 分析
+                                        </label>
+                                        <input class="modal-form-check-input form-check-input" type="checkbox"
+                                               role="switch" id="Google_Airbnb_Analysis">
+                                    </div>
+                                    <hr>
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label" for="Google_Universal_Analytics">
                                             Google Universal Analytics
                                         </label>
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                               id="flexSwitchCheckDefault">
+                                        <input class="modal-form-check-input form-check-input" type="checkbox"
+                                               role="switch" id="Google_Universal_Analytics">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -112,7 +118,8 @@
                             <p>我們透過 Cookie 提供個人化內容、根據用戶偏好投放廣告，並提供更安全的使用體驗。</p>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                   id="flexSwitchCheckDefault1">
                             <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
                         </div>
                     </div>
@@ -123,7 +130,8 @@
                             <p>開啟此功能代表你的心願單會自動發布到 Facebook。</p>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                   id="flexSwitchCheckDefault2">
                             <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
                         </div>
                     </div>
@@ -134,7 +142,8 @@
                             <p>開啟此功能代表你的個人資料和房源頁面會出現在 Google 等搜尋引擎的搜尋結果中。</p>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault3">
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                   id="flexSwitchCheckDefault3">
                             <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
                         </div>
                     </div>
@@ -153,7 +162,24 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
+
+<script>
+    function turnOnOff() {
+        let first_status = document.getElementById("turn_off_all").checked
+        let select_all_radio_btn = document.querySelectorAll(".modal-form-check-input")
+        select_all_radio_btn.forEach(element => {
+            element.checked = first_status
+        })
+        if (!first_status) {
+            document.getElementById("show_on_off").innerText = "全部開啟";
+        } else {
+            document.getElementById("show_on_off").innerText = "全部關閉";
+        }
+    }
+
+</script>
 
 @section topCSS{
     <link href="~/css/Notification/normalize.css" rel="stylesheet" />

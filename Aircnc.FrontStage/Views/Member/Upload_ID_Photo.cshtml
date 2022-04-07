@@ -1,133 +1,71 @@
 ﻿@model Aircnc.FrontStage.Models.ViewModels.Member.MemberViewModel
-@{ Layout ="_perLayout"; ViewData["Title"] = "上傳照片";}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="left-container col-12 col-md-6 ps-5">
-                    <div class="add-identity-title">
-                        <h4>上傳你的駕照相片</h4>
-                        <p>請確保相片畫面清晰，且駕照的正面照能清楚顯示你的臉孔。</p>
+@{ Layout = "_perLayout"; ViewData["Title"] = "上傳照片";}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="left-container col-12 col-md-6 ps-5">
+                <div class="add-identity-title">
+                    <h4>上傳你的駕照相片</h4>
+                    <p>請確保相片畫面清晰，且駕照的正面照能清楚顯示你的臉孔。</p>
+                </div>
+                <div class="upload_area">
+                    <div class="drop-zone">
+                        <span class="drop-zone__prompt">
+                            <i class="far fa-id-card"></i>
+                            <h5>上傳正面</h5>
+                            <p>僅限 JPEG 或 PNG 檔</p>
+                        </span>
+                        <input type="file" name="myFile" class="drop-zone__input">
                     </div>
-                    <div class="upload_area">
-                        <div class="drop-zone">
-                            <span class="drop-zone__prompt">
-                                <i class="far fa-id-card"></i>
-                                <h5>上傳正面</h5>
-                                <p>僅限 JPEG 或 PNG 檔</p>
-                            </span>
-                            <input type="file" name="myFile" class="drop-zone__input">
-                        </div>
-                        <div class="drop-zone">
-                            <span class="drop-zone__prompt">
-                                <i class="far fa-id-card"></i>
-                                <h5>上傳背面</h5>
-                                <p>僅限 JPEG 或 PNG 檔</p>
-                            </span>
-                            <input type="file" name="myFile" class="drop-zone__input">
-                        </div>
+                    <div class="drop-zone">
+                        <span class="drop-zone__prompt">
+                            <i class="far fa-id-card"></i>
+                            <h5>上傳背面</h5>
+                            <p>僅限 JPEG 或 PNG 檔</p>
+                        </span>
+                        <input type="file" name="myFile" class="drop-zone__input">
                     </div>
-                    <div class="our-devotion mt-5">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                                 class="bi bi-lock-fill our-devotion-icon" viewBox="0 0 16 16">
-                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                            </svg>
-                        </div>
-                        &nbsp;
-                        <i class="bi bi-lock-fill our-devotion-text">
-                            我們致力於讓你在此過程中分享的資料保有隱私、安全且保密。
-                        </i>
+                </div>
+                <div class="our-devotion mt-5">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                             class="bi bi-lock-fill our-devotion-icon" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                        </svg>
                     </div>
-                    <hr class="my-4">
-                    <div class="directions">
-                        <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb" class="ggyy">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"></li>
-                                <li class="breadcrumb-item active go-back" aria-current="page"><a href="#">返回</a></li>
-                            </ol>
-                        </nav>
-                        <div class="btn-group" id="keep-on-btn" role="group" aria-label="Basic example">
-                            <button type="button" class="btn px-0">
-                                <div class="keep-on">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-lock-fill keep-on-icon" viewBox="0 0 16 16">
-                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                    </svg>
-                                    &nbsp;
-                                    <i class="bi bi-lock-fill keep-on-text">繼續</i>
-                                </div>
-                            </button>
-                        </div>
+                    &nbsp;
+                    <i class="bi bi-lock-fill our-devotion-text">
+                        我們致力於讓你在此過程中分享的資料保有隱私、安全且保密。
+                    </i>
+                </div>
+                <hr class="my-4">
+                <div class="directions">
+                    <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb" class="ggyy">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"></li>
+                            <li class="breadcrumb-item active go-back" aria-current="page">
+                                <a href="https://localhost:44327/Member/Select_IdentificationType">返回</a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <div class="btn-group" id="keep-on-btn" role="group" aria-label="Basic example">
+                        <button type="button" class="btn px-0">
+                            <div class="keep-on">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-lock-fill keep-on-icon" viewBox="0 0 16 16">
+                                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                </svg>
+                                &nbsp;
+                                <i class="bi bi-lock-fill keep-on-text">繼續</i>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-<script>
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
-
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-            }
-
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
-    });
-
-    function updateThumbnail(dropZoneElement, file) {
-        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-            dropZoneElement.querySelector(".drop-zone__prompt").remove();
-        }
-
-        if (!thumbnailElement) {
-            thumbnailElement = document.createElement("div");
-            thumbnailElement.classList.add("drop-zone__thumb");
-            dropZoneElement.appendChild(thumbnailElement);
-        }
-
-        thumbnailElement.dataset.label = file.name;
-
-        if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-            };
-        } else {
-            thumbnailElement.style.backgroundImage = null;
-        }
-    }
-</script>
+    </div>
+</section>
 
 <script>
     document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
