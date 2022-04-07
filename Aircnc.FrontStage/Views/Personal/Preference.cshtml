@@ -1,5 +1,6 @@
 ﻿@model Aircnc.FrontStage.Models.ViewModels.Member.MemberViewModel
 @{     ViewData["Title"] = "全域偏好 - 帳號設定";}
+
 <section>
     <div class="container">
         <div class="row">
@@ -7,7 +8,9 @@
                 <div class=" title">
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="~/Personal/PersonalBox">帳號</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="https://localhost:44327/Personal/PersonalBox">帳號</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">全球偏好設定</li>
                         </ol>
                     </nav>
@@ -28,25 +31,21 @@
                     <div class="collapse" id="language-selector">
                         <div class="mb-3">這會更新您在 Airbnb 上看到的內容，以及我們與您的溝通方式。</div>
                         <div class="dropdown" id="select-language">
-                            <button class="btn dropdown-toggle" type="button" id="select-language-dropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                中文 (繁體)
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="select-language-dropdown">
-                                <li><a class="dropdown-item language" href="#">中文 (繁體)</a></li>
-                                <li><a class="dropdown-item language" href="#">中文 (简体)</a></li>
-                                <li><a class="dropdown-item language" href="#">English (UK)</a></li>
-                                <li><a class="dropdown-item language" href="#">English (Canada)</a></li>
-                                <li><a class="dropdown-item language" href="#">English (Australia)</a></li>
-                                <li><a class="dropdown-item language" href="#">Ślůnski</a></li>
-                                <li><a class="dropdown-item language" href="#">العربية</a></li>
-                                <li><a class="dropdown-item language" href="#">Español</a></li>
-                                <li><a class="dropdown-item language" href="#">한국어</a></li>
-                                <li><a class="dropdown-item language" href="#">ภาษาไทย</a></li>
-                                <li><a class="dropdown-item language" href="#">हिन्दी</a></li>
-                                <li><a class="dropdown-item language" href="#">Français</a></li>
-                                <li><a class="dropdown-item language" href="#">日本語</a></li>
-                            </ul>
+                            <select class="form-select" aria-label="select-language">
+                                <option value="Chinese_Simplified" selected>中文 (繁體)</option>
+                                <option value="Chinese_Traditional">中文 (简体)</option>
+                                <option value="Indian">हिन्दी</option>
+                                <option value="French">Français</option>
+                                <option value="Arabic">العربية</option>
+                                <option value="Korean">한국어</option>
+                                <option value="Thai">ภาษาไทย</option>
+                                <option value="Silesian">Ślůnski</option>
+                                <option value="Japanese">日本語</option>
+                                <option value="Spanish">Español</option>
+                                <option value="English_UK">English (UK)</option>
+                                <option value="English_Canada">English (Canada)</option>
+                                <option value="English_Australia">English (Australia)</option>
+                            </select>
                         </div>
                     </div>
                     <hr>
@@ -59,25 +58,21 @@
                     </div>
                     <div class="collapse" id="currency-selector">
                         <div class="dropdown" id="select-currency">
-                            <button class="btn dropdown-toggle" type="button" id="select-currency-dropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                新台幣
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="select-currency-dropdown">
-                                <li><a class="dropdown-item currency" href="#">新台幣</a></li>
-                                <li><a class="dropdown-item currency" href="#">美金</a></li>
-                                <li><a class="dropdown-item currency" href="#">日元</a></li>
-                                <li><a class="dropdown-item currency" href="#">澳元</a></li>
-                                <li><a class="dropdown-item currency" href="#">新加坡幣</a></li>
-                                <li><a class="dropdown-item currency" href="#">俄羅斯盧布</a></li>
-                                <li><a class="dropdown-item currency" href="#">人民幣</a></li>
-                                <li><a class="dropdown-item currency" href="#">港紙</a></li>
-                                <li><a class="dropdown-item currency" href="#">瑞士法郎</a></li>
-                                <li><a class="dropdown-item currency" href="#">捷克克朗</a></li>
-                                <li><a class="dropdown-item currency" href="#">泰銖</a></li>
-                                <li><a class="dropdown-item currency" href="#">英鎊</a></li>
-                                <li><a class="dropdown-item currency" href="#">歐元</a></li>
-                            </ul>
+                            <select class="form-select" aria-label="select-currency">
+                                <option value="TWD" selected>新台幣</option>
+                                <option value="HKD">港紙</option>
+                                <option value="JPY">日元</option>
+                                <option value="SGD">新加坡幣</option>
+                                <option value="AUD">澳元</option>
+                                <option value="RUB">俄羅斯盧布</option>
+                                <option value="CNY">人民幣</option>
+                                <option value="CHF">瑞士法郎</option>
+                                <option value="THB">泰銖</option>
+                                <option value="EUR">歐元</option>
+                                <option value="NOK">捷克克朗</option>
+                                <option value="GBP">英鎊</option>
+                                <option value="USD">美金</option>
+                            </select>
                         </div>
                     </div>
                     <hr>
@@ -90,23 +85,19 @@
                     </div>
                     <div class="collapse" id="time-zone-selector">
                         <div class="dropdown" id="select-time-zone">
-                            <button class="btn dropdown-toggle" type="button" id="select-time-zone-dropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                新台幣
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="select-time-zone-dropdown">
-                                <li><a class="dropdown-item time-zone" href="#">(GMT-11:00) Istanbul</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT-11:00) Istanbul</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+02:00) Europe</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+03:00) Moscow</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+04:00) Indian</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+06:00) Astana</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+07:00) Dhaka</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+07:00) Jakarta</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Taiwan</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Hong Kong</a></li>
-                                <li><a class="dropdown-item time-zone" href="#">(GMT+08:00) Singapore</a></li>
-                            </ul>
+                            <select class="form-select" aria-label="select-time-zone">
+                                <option value="Istanbul" selected>(GMT-11:00) Istanbul</option>
+                                <option value="Europe">(GMT+02:00) Europe</option>
+                                <option value="Moscow">(GMT+03:00) Moscow</option>
+                                <option value="India">(GMT+04:00) Indian</option>
+                                <option value="Astana">(GMT+06:00) Astana</option>
+                                <option value="Dhaka">(GMT+07:00) Dhaka</option>
+                                <option value="Jakarta">(GMT+07:00) Jakarta</option>
+                                <option value="Taipei">(GMT+08:00) Taipei</option>
+                                <option value="Hong Kong">(GMT+08:00) Hong Kong</option>
+                                <option value="Singapore">(GMT+08:00) Singapore</option>
+                                <option value="Tokyo">(GMT+09:00) Tokyo</option>
+                            </select>
                         </div>
                     </div>
                 </div>

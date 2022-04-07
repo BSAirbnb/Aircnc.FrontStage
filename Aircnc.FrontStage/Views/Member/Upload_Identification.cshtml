@@ -1,50 +1,49 @@
 ﻿@model Aircnc.FrontStage.Models.ViewModels.Member.MemberViewModel
 @{ Layout = "_perLayout"; ViewData["Title"] = "身分驗證";}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-7 left-container ps-5">
-                    <div class="add-identity">
-                        <h4>請新增政府核發的身分證件</h4>
-                        <p>請新增政府核發的身分證件。這個步驟有助確認你的真實身分。</p>
-                    </div>
-                    <div class="form-check" id="list">
-                        <label id="form-check-label" for="radio">
-                            上傳現有的相片
-                        </label>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" checked>
-                    </div>
-                    <span>建議做法</span>
-                    <hr>
-                    <div class="form-check" id="list">
-                        <label id="form-check-label" for="radio">
-                            使用你的網路攝影機拍照
-                        </label>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
-                    </div>
-                    <hr>
-                    <div class="form-check" id="list">
-                        <label id="form-check-label" for="radio">
-                            使用Airbnb行動應用程式拍照
-                        </label>
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
-                    </div>
-                    <div class="blank"></div>
-                    <hr>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary" id="keep-on-btn">
-                            <span>繼續</span>
-                        </button>
-                    </div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 left-container ps-5">
+                <div class="add-identity">
+                    <h4>請新增政府核發的身分證件</h4>
+                    <p>請新增政府核發的身分證件。這個步驟有助確認你的真實身分。</p>
                 </div>
-                <div class="right-container col-12 col-md-3 py-md-auto d-none d-md-block ms-md-5">
-                    <h6>你的隱私</h6>
-                    <p>我們的目標是讓你在此過程中分享的資料保有隱私、安全且保密。詳情請參閱我們的<a href="#" class="link-dark">《隱私權政策》</a>。</p>
-                    <div>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="link-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            運作方式
-                        </button>
+                <div class="form-check" id="list">
+                    <label id="form-check-label" for="radio">
+                        上傳現有的相片
+                    </label>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" checked>
+                </div>
+                <span>建議做法</span>
+                <hr>
+                <div class="form-check" id="list">
+                    <label id="form-check-label" for="radio">
+                        使用你的網路攝影機拍照
+                    </label>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
+                </div>
+                <hr>
+                <div class="form-check" id="list">
+                    <label id="form-check-label" for="radio">
+                        使用Airbnb行動應用程式拍照
+                    </label>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio">
+                </div>
+                <div class="blank"></div>
+                <hr>
+                <a id="keep-on-btn" href="https://localhost:44327/Member/Select_IdentificationType">
+                    繼續
+                </a>
+            </div>
+            <div class="right-container col-12 col-md-3 py-md-auto d-none d-md-block ms-md-5">
+                <h6>你的隱私</h6>
+                <p>我們的目標是讓你在此過程中分享的資料保有隱私、安全且保密。詳情請參閱我們的<a href="#" class="link-dark">《隱私權政策》</a>。</p>
+                <div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="link-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        運作方式
+                    </button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -82,7 +81,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 @section topCSS{
