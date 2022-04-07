@@ -72,7 +72,7 @@
                             <a class="nav-link" href="#">日曆</a>
                         </li>
                         <li class="nav-item ms-md-4 my-auto">
-                            <a class="nav-link" href="#">深入分析</a>
+                            <a class="nav-link" href="~/Transaction/CompletedTransaction">交易紀錄</a>
                         </li>
                         <!-- 選單下拉 -->
                         <li class="nav-item dropdown ms-md-4 my-auto">
@@ -84,14 +84,14 @@
                                 <li><a class="dropdown-item" href="~/RoomOwner/HostList">房源</a></li>
                                 <li><a class="dropdown-item" href="~/RoomOwner/HostReservation">預定</a></li>
                                 <li><a class="dropdown-item" href="~/RoomOwner/CreateRoom">建立新房源</a></li>
-                                <li>
+                                <!--<li>-->
                                     <!-- 分隔線 -->
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">在地指南</a></li>
-                                <li><a class="dropdown-item" href="~/Transaction/CompletedTransaction">交易紀錄</a></li>
-                                <li><a class="dropdown-item" href="#">瀏覽出租資源</a></li>
-                                <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>
+                                    <!--<hr class="dropdown-divider">
+                                </li>-->
+                                @*<li><a class="dropdown-item" href="#">在地指南</a></li>*@
+                                @*<li>*@@*<a class="dropdown-item" href="~/Transaction/CompletedTransaction">交易紀錄</a>*@@*</li>*@
+                                @*<li><a class="dropdown-item" href="#">瀏覽出租資源</a></li>
+                                <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>*@
                             </ul>
                         </li>
                         <li class="nav-item dropdown text-end  " id="user_icon">
@@ -105,9 +105,9 @@
                                 </div>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown2">
-                                <li><a class="dropdown-item" href="#">個人資料</a></li>
-                                <li><a class="dropdown-item" href="#">帳號</a></li>
-                                <li><a class="dropdown-item" href="#">尋求協助</a></li>
+                                <li><a class="dropdown-item" href="~/Personal/Personal_Details">個人資料</a></li>
+                                <li><a class="dropdown-item" href="~/Personal/PersonalBox">帳號</a></li>
+                                @*<li><a class="dropdown-item" href="#">尋求協助</a></li>*@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -115,16 +115,16 @@
                                     <a class="dropdown-item" href="#">繁體中文(TW)</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">$USDT</a>
+                                    <a class="dropdown-item" href="#">$TWD</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fw-bolder" href="#">切換至旅行模式</a>
+                                    <a class="dropdown-item fw-bolder" href="/">切換至旅行模式</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item " href="#">登出</a>
+                                    <a class="dropdown-item " href="~/Account/Logout">登出</a>
                                 </li>
                             </ul>
                         </li>
