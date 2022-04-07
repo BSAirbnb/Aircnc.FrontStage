@@ -24,9 +24,9 @@ namespace Aircnc.FrontStage.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Search", "Search", input);
+                TempData["input"] = input;
+                return RedirectToAction("Search", "Search");
             }
-            
             return NotFound();
         }
 
@@ -34,11 +34,6 @@ namespace Aircnc.FrontStage.Controllers
         {
             return View();
         }
-
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

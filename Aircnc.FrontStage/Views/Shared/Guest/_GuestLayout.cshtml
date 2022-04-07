@@ -33,11 +33,12 @@
     <header>
         <nav class="navbar navbar-light bg-white border-bottom container-fluid">
             <div class="container flex-nowrap">
-                <!-- 以下 logo 的連結記得要換 -->
                 <a href="~/Home/Index" class="navbar-brand col-1">
                     <img src="~/Img/logo.jpg" class="logo" alt="logo" />
                 </a>
-
+                <button type="button" class="btn btn-outline-primary rounded-pill search-bar" data-bs-toggle="modal" data-bs-target="#nav-search">
+                    你想去哪裡?
+                </button>
                 <div class="btn-group">
                     @if (!isLogin)
                     {
@@ -47,15 +48,15 @@
                     }
                     else
                     {
-                <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                    <div class="img-ctrl">
-                        <!-- 放使用者頭像 -->
-                        <img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">
-                        @*<img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
-                              alt="UserPhoto" />*@
-                        @*@User.Claims.*@
-                    </div>
-                </button>
+                        <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <div class="img-ctrl">
+                                <!-- 放使用者頭像 -->
+                                <img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">
+                                @*<img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
+                        alt="UserPhoto" />*@
+                                @*@User.Claims.*@
+                            </div>
+                        </button>
                     }
 
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -67,7 +68,6 @@
                             <li><a class="dropdown-item rent" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">出租房源</a></li>
 
                         }
-
 
                         @* 登入後才會有的區塊 *@
                         else
@@ -109,6 +109,8 @@
         </div>
     </nav>-->
     @*@await Html.PartialAsync("Guest/_NavSearchModalPartial")*@
+
+    <!-- navigation搜尋功能 modal -->
     <div class="modal fade" id="nav-search" tabindex="-1" aria-labelledby="nav-searchLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -208,8 +210,6 @@
             </div>
         </div>
     </footer>
-
-
 
 
     <!-- login modal-->
