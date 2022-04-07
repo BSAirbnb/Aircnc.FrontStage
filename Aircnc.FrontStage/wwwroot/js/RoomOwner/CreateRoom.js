@@ -396,7 +396,9 @@ btn_CreateRoom.addEventListener('click', () => {
         .then(jsonData => {
             console.log(jsonData)
             //the url need to be changed
-            let url = "HostList"　
+/*            window.location.href = "/controller/action"*/
+            let url = "/RoomOwner/HostList"
+            
             
             location.href = url
 
