@@ -53,6 +53,7 @@ namespace Aircnc.FrontStage.Services.RoomOwner
                 //要加入roomimg(尚未)
             };
             var room = new Room();
+            //transaction 
             using (var transaction = _repository._DbContext.Database.BeginTransaction())
             {
                 try
