@@ -2,6 +2,7 @@
 using Aircnc.FrontStage.Models.ViewModels.Guest;
 using Aircnc.FrontStage.Services.Guest;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 namespace Aircnc.FrontStage.Controllers.Guest
@@ -19,8 +20,12 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View();
         }
         //[HttpPost]
-        public IActionResult Search(SearchVM input,string location, int id=1)
+        public IActionResult Search(string location, int id=1)
         {
+            location = (string)TempData["location"];
+            if (TempData["startDate"] != null) { var startDate = DateTime.Parse(TempData["startDate"].ToString()); }
+            if (TempData["endDate"] != null) { var endDate = DateTime.Parse(TempData["endDate"].ToString()); }
+            if (TempData["numberofGuests"] != null) { var numberOfGuests = (int)TempData["numberOfGuests"]; }
             //location = "台北市";
             //input.NavSearch.Location = "台北";
             //input.NavSearch.NumberOfGuests = 1;
@@ -67,6 +72,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
             ViewData["ActivePage"] = id;
             ViewData["Pages"] = pages;
             ViewData["TotalRows"] = totalRows;
+
+            TempData.Keep();
 
             return View(viewResult);
         }
