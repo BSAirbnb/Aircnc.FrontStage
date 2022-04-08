@@ -35,6 +35,7 @@ namespace Aircnc.FrontStage.Controllers
 
         public IActionResult Index()
         {
+            int userId = int.Parse(User.Identity.Name);
             return View();
         }
 
