@@ -30,67 +30,77 @@
                 </div>
             </div>
         }
+        
+        
         else
         {
             @* 有資料的版面 *@
             @foreach (var data in Model)
             {
-                <div class="row mb-5">
-                    <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
-                        <a href="#" class="order-detail-link d-flex">
-                            <div class="col-10 col-md-5 order-content p-md-3 p-5">
-                                <!-- District -->
-                                <span class="fw-bold fs-3 d-block my-2 ">@data.District</span>
-                                <!-- 房源名稱 -->
-                                <span class="order-room-detail fs-5">@data.RoomName</span>
-                                <div class="date-address-content d-flex mt-4">
-                                    <!-- 入退房日期 -->
-                                    <div class="col-6  pe-md-5 check-in-out-date">
-                                        <span class="fs-5">@data.CkeckIn - @data.CkeckOut</span>
-                                    </div>
-                                    <!-- 入住地址 -->
-                                    <div class="col-6 col-md-6 stay-address ">
-                                        <span class="fs-5">@data.City@data.District@data.Street</span>
+                DateTime now = DateTime.Now;
+                DateTime checkinDate = DateTime.Parse(data.CkeckIn);
+                int result = DateTime.Compare(now, checkinDate);
+                if(result <= 0)
+                {
+                    <div class="row mb-5">
+                        <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
+                            <a href="#" class="order-detail-link d-flex">
+                                <div class="col-10 col-md-5 order-content p-md-3 p-5">
+                                    <!-- District -->
+                                    <span class="fw-bold fs-3 d-block my-2 ">@data.District</span>
+                                    <!-- 房源名稱 -->
+                                    <span class="order-room-detail fs-5">@data.RoomName</span>
+                                    <div class="date-address-content d-flex mt-4">
+                                        <!-- 入退房日期 -->
+                                        <div class="col-6  pe-md-5 check-in-out-date">
+                                            <span class="fs-5">@data.CkeckIn - @data.CkeckOut</span>
+                                        </div>
+                                        <!-- 入住地址 -->
+                                        <div class="col-6 col-md-6 stay-address ">
+                                            <span class="fs-5">@data.City@data.District@data.Street</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @*<div class="col-md-3 room-picture-container w-100 h-100 ">
-                                <img src="https://picsum.photos/200/200/?random=10" class="room-picture img-fluid d-none d-md-block ">
-                                <img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">
-                            </div>*@
-                        </a>
+                                <div class="col-md-3 room-picture-container w-100 h-100 ">
+                                    @*<img src="https://picsum.photos/200/200/?random=10" class="room-picture img-fluid d-none d-md-block ">*@
+                                    <img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                }
             }
         }
 
         <!-- 歷史紀錄區塊 -->
         <div class="row history mt-3">
             <span class="fs-5 fw-bold mt-2">你去過的地方</span>
-            @foreach(var data in Model)
+            @foreach (var data in Model)
             {
-                <div class="row mt-2">
-                    <div class="col-10">
-                        <a href="#">
-                            <div class="d-flex">
-                                <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
-                                <!-- 這裡的內容之後要動態生成 -->
-                                <div class="history-detail-img">
-                                    <img src="https://picsum.photos/300/200/?random=10" class="rounded-3">
+                DateTime now = DateTime.Now;
+                DateTime checkinDate = DateTime.Parse(data.CkeckIn);
+                int result = DateTime.Compare(now, checkinDate);
+                if (result > 0)
+                {
+                    <div class="row mt-2">
+                        <div class="col-10">
+                            <a href="#">
+                                <div class="d-flex">
+                                    <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
+                                    <!-- 這裡的內容之後要動態生成 -->
+                                    <div class="history-detail-img">
+                                        <img src="https://picsum.photos/300/200/?random=10" class="rounded-3">
+                                    </div>
+                                    <div class="ms-3 history-detail-content">
+                                        <span class="d-block">@data.City</span>
+                                        <span class="d-block">房東:@data.RoomOwnerName</span>
+                                        <span>@data.CkeckIn - @data.CkeckOut</span>
+                                    </div>
                                 </div>
-                                <div class="ms-3 history-detail-content">
-                                    @*<span class="d-block">福岡市</span>*@
-                                    <span class="d-block">@data.City</span>
-                                    <span class="d-block">@*房東:ABC*@</span>
-                                    <span class="d-block">房東:@data.RoomOwnerName</span>
-                                    @*<span>2018/5月/13日— 2018/5月/17日</span>*@
-                                    <span>@data.CkeckIn - @data.CkeckOut</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
-
+                }
             }
         </div>
 
@@ -110,18 +120,14 @@
                                     <img src="@cancel.RoomImg" class="rounded-3">
                                 </div>
                                 <div class="ms-3 cancel-detail-content">
-                                    @*<span class="d-block">中正區</span>*@
                                     <span class="d-block">@cancel.District</span>
-                                    @*<span class="d-block">房東:ABC</span>*@
                                     <span class="d-block">房東:@cancel.RoomOwnerName</span>
                                     <span>@cancel.CkeckIn - @cancel.CkeckOut</span>
-                                    <span>@*2022/3月/27日— 2022/3月/28日*@</span>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-
             }
 
             <!-- 找不到預定區塊 -->

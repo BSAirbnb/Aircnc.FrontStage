@@ -29,6 +29,24 @@
 .search_btn a:hover {
     border-bottom: none;
 }
+
+/*訂單圖片*/
+.room-picture {
+    border-radius: 0 25px 25px 0;
+    /*    outline: 1px solid red;
+*/ 
+    max-width:auto;
+}
+
+.room-picture-container {
+    overflow:hidden;
+}
+
+.order-content {
+    /*    outline:1px solid blue;
+*/
+}
+
 /* 歷史紀錄區塊 */
 .history {
     margin-bottom: 25px;
@@ -73,36 +91,6 @@
     border-radius: 25px;
 }
 
-.order-image {
-    /* outline: 1px solid red; */
-    /* border-radius: 25px; */
-/*    border-radius: 0 25px 25px 0;
-    min-width: 56%;
-    min-height: 124%;
-    position: relative;
-    top: -25px;
-    left: 22px;
-*/}
-.room-picture {
-    border-radius: 0 25px 25px 0;
-/*    outline: 1px solid red;
-*/    /*    float: right;*/
-}
-.room-picture-container {
-    /*justify-content:end;*/
-/*    min-height:min-content;
-    min-width:min-content;
-*/}
-.order-content{
-/*    outline:1px solid blue;
-*/}
-
-/*.order-room-detail {
-    border-bottom: 1px solid lightgray;
-    color: rgb(72, 72, 72);
-    padding-bottom: 20px;
-}
-*/
 /* 入退房日期 */
 .check-in-out-date {
     border-right: 1px solid lightgray;

@@ -30,8 +30,30 @@ namespace Aircnc.FrontStage.Services
                 Street = order.Street,
                 RoomImg = _dbRepository.GetAll<RoomImg>()
                 .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x=>x.ImageUrl).FirstOrDefault(),
-                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name
+                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name,
+                Status = order.Status
             }) ;
+        }
+        //想撈出取消的訂單
+        public IEnumerable<OrderDto> GetOrderStatus()
+        {
+
+            return _dbRepository.GetAll<Order>().Where(x => x.Status == OrderStatusEnum.Cancel).Select(order => new OrderDto
+            {
+                OrderId = order.OrderId,
+                RoomName = order.RoomName,
+                CkeckIn = order.CkeckIn,
+                CkeckOut = order.CkeckOut,
+                Country = order.Country,
+                City = order.City,
+                District = order.District,
+                Street = order.Street,
+                RoomImg = _dbRepository.GetAll<RoomImg>()
+                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).FirstOrDefault(),
+                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name,
+                Status = order.Status
+
+            });
         }
 
     }
