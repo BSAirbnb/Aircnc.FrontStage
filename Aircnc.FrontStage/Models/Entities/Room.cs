@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -63,25 +64,35 @@ namespace Aircnc.FrontStage.Models.Entities
     public enum RoomStatusEnum
     {
         //1已上架 2已下架 3建立中 
+        [Description("已上架")]
         Online = 1,
+        [Description("已下架")]
         Offline = 2,
+        [Description("建立中")]
         Pending = 3
     }
 
     public enum HouseTypeEnum
     {
         //1公寓 2獨棟房屋 3獨特房源 4家庭式旅館 
+        [Description("公寓")]
         Apartment = 1 ,
+        [Description("獨棟房屋")]
         OneBuild = 2,
+        [Description("獨特房源")]
         Special = 3,
+        [Description("家庭式旅館")]
         Family = 4
     }
     
     public enum RoomTypeEnum
     {
         //1 整套房源 2獨立房間 3 合住房間
+        [Description("整套房源")]
         FullHouse =1,
+        [Description("獨立房間")]
         Solo =2 ,
+        [Description("合住房間")]
         Share =3
         
     }

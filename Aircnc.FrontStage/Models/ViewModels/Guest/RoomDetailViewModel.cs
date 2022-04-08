@@ -15,6 +15,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public string OwnerName { get; set; }
         public string OwnerPhoto { get; set; }
         public DateTime OwnerCreateTime { get; set; }
+        public int OwnerReviewsCount { get; set; } //留給該房東的所有評價數量
 
         public int RoomId { get; set; }
         public HouseTypeEnum HouseType { get; set; }
