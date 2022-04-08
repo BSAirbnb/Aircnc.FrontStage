@@ -22,6 +22,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
         //[HttpPost]
         public IActionResult Search(string location, int id=1)
         {
+            int userId = int.Parse(User.Identity.Name);
             location = (string)TempData["location"];
             if (TempData["startDate"] != null) { var startDate = DateTime.Parse(TempData["startDate"].ToString()); }
             if (TempData["endDate"] != null) { var endDate = DateTime.Parse(TempData["endDate"].ToString()); }
