@@ -9,35 +9,30 @@ namespace Aircnc.FrontStage.Controllers.Guest
 {
     public class SearchController : Controller
     {
-        private readonly SearchRoomService _searchRoomService;
+        private readonly SearchControllerService _searchControllerService;
         private static int totalRows; //搜尋結果總筆數
-        public SearchController(SearchRoomService searchRoomService)
+        public SearchController(SearchRoomService searchRoomService, SearchControllerService searchControllerService)
         {
-            _searchRoomService = searchRoomService;
+            _searchControllerService = searchControllerService;
         }
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Search(string location, int id = 1)
         {
-            return View();
-        }
-        //[HttpPost]
-        public IActionResult Search(string location, int id=1)
-        {
-            int userId = int.Parse(User.Identity.Name);
-            location = (string)TempData["location"];
-            if (TempData["startDate"] != null) { var startDate = DateTime.Parse(TempData["startDate"].ToString()); }
-            if (TempData["endDate"] != null) { var endDate = DateTime.Parse(TempData["endDate"].ToString()); }
-            if (TempData["numberofGuests"] != null) { var numberOfGuests = (int)TempData["numberOfGuests"]; }
-            //location = "台北市";
-            //input.NavSearch.Location = "台北";
-            //input.NavSearch.NumberOfGuests = 1;
+            SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost() };
+
+            if (location != null) { searchVM.NavSearch.Location = location; } else { searchVM.NavSearch.Location = (string)TempData["location"]; }
+            if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
+            if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
+            if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
+            var rooms = _searchControllerService.searchContorller(searchVM);
             int activePage = id;
             int pageRows = 8; // show rows per page
-            if(totalRows == 0)
+            if (totalRows == 0)
             {
-                totalRows = _searchRoomService.GetRoom(location).Count();
+                totalRows = rooms.Count();
             }
             int pages = 0; //計算總頁數
-            if(totalRows % pageRows == 0)
+            if (totalRows % pageRows == 0)
             {
                 pages = totalRows / pageRows;
             }
@@ -46,29 +41,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 pages = (totalRows / pageRows) + 1;
             }
             int startRow = (activePage - 1) * pageRows;
-
-            var getRooms = _searchRoomService.GetRoom(location).Select(SearchRoomDto => new SearchRoomViewModel
-            {
-                RoomId = SearchRoomDto.RoomId,
-                UserId = SearchRoomDto.UserId,
-                HouseType = SearchRoomDto.HouseType,
-                RoomType = SearchRoomDto.RoomType,
-                Status = SearchRoomDto.Status,
-                RoomName = SearchRoomDto.RoomName,
-                Pax = SearchRoomDto.Pax,
-                RoomCount = SearchRoomDto.RoomCount,
-                BedCount = SearchRoomDto.BedCount,
-                BathroomCount = SearchRoomDto.BathroomCount,
-                Country = SearchRoomDto.Country,
-                City = SearchRoomDto.City,
-                District = SearchRoomDto.District,
-                UnitPrice = SearchRoomDto.UnitPrice,
-                Comments = SearchRoomDto.Comments,
-                Stars = SearchRoomDto.Stars,
-            });
-
-            var result = getRooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
-            var viewResult = new SearchVM { SearRoom = result };
+            var result = rooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
+            searchVM.SearchRoom = result;
 
             ViewData["ActivePage"] = id;
             ViewData["Pages"] = pages;
@@ -76,12 +50,67 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
             TempData.Keep();
 
-            return View(viewResult);
+            return View(searchVM);
+        }
+        [HttpPost]
+        public IActionResult Search(int id=1)
+        {
+            //int userId = int.Parse(User.Identity.Name);
+            SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
+
+            searchVM.NavSearch.Location = (string)TempData["location"];
+            if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
+            if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
+            if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
+            var rooms = _searchControllerService.searchContorller(searchVM);
+            //var getRooms = _searchRoomService.GetRoom(searchVM).Select(SearchRoomDto => new SearchRoomViewModel
+            //{
+            //    RoomId = SearchRoomDto.RoomId,
+            //    UserId = SearchRoomDto.UserId,
+            //    HouseType = SearchRoomDto.HouseType,
+            //    RoomType = SearchRoomDto.RoomType,
+            //    Status = SearchRoomDto.Status,
+            //    RoomName = SearchRoomDto.RoomName,
+            //    Pax = SearchRoomDto.Pax,
+            //    RoomCount = SearchRoomDto.RoomCount,
+            //    BedCount = SearchRoomDto.BedCount,
+            //    BathroomCount = SearchRoomDto.BathroomCount,
+            //    Country = SearchRoomDto.Country,
+            //    City = SearchRoomDto.City,
+            //    District = SearchRoomDto.District,
+            //    UnitPrice = SearchRoomDto.UnitPrice,
+            //    Comments = SearchRoomDto.Comments,
+            //    Stars = SearchRoomDto.Stars,
+            //});
+            int activePage = id;
+            int pageRows = 8; // show rows per page
+            if (totalRows == 0)
+            {
+                //totalRows = _searchRoomService.GetRoom(location).Count();
+                totalRows = rooms.Count();
+            }
+            int pages = 0; //計算總頁數
+            if (totalRows % pageRows == 0)
+            {
+                pages = totalRows / pageRows;
+            }
+            else
+            {
+                pages = (totalRows / pageRows) + 1;
+            }
+            int startRow = (activePage - 1) * pageRows;
+            var result = rooms.OrderBy(x => x.RoomId).Skip(startRow).Take(pageRows);
+            searchVM.SearchRoom = result ;
+
+            ViewData["ActivePage"] = id;
+            ViewData["Pages"] = pages;
+            ViewData["TotalRows"] = totalRows;
+
+            TempData.Keep();
+
+            return View(searchVM);
         }
 
-        //public IActionResult Search()
-        //{
-        //    return View();
-        //}
+        
     }
 }
