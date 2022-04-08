@@ -65,49 +65,139 @@
         <p>你的預定</p>
         <a href="#">所有預定(@Model.Select(x => x.State).Count())</a>
     </div>
-    <div>
-        <button class="btn">目前接待中(@Model.Where(x => x.State == "目前接待中").Count())</button>
-        <button class="btn">即將入住(@Model.Where(x => x.State == "即將入住").Count())</button>
-        <button class="btn">即將退房(@Model.Where(x => x.State == "即將退房").Count())</button>
-        <!-- <button class="btn">即將開始的住宿(0)</button> -->
-    </div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="btn nav-link active" id="nav-currently-receiving-tab" data-bs-toggle="tab" data-bs-target="#nav-currently-receiving" type="button" role="tab" aria-controls="nav-currently-receiving" aria-selected="true">目前接待中(@Model.Where(x => x.State == "目前接待中").Count())</button>
+            <button class="btn nav-link" id="nav-upcoming-tab" data-bs-toggle="tab" data-bs-target="#nav-upcoming" type="button" role="tab" aria-controls="nav-upcoming" aria-selected="true">即將入住(@Model.Where(x => x.State == "即將入住").Count())</button>
+            <button class="btn nav-link" id="nav-checkOut-soon-tab" data-bs-toggle="tab" data-bs-target="#nav-checkOut-soon" type="button" role="tab" aria-controls="nav-checkOut-soon" aria-selected="true">即將退房(@Model.Where(x => x.State == "即將退房").Count())</button>
+            <!-- <button class="btn">即將開始的住宿(0)</button> -->
+        </div>
+    </nav>
 
-    @*沒資料的畫面*@
-    @if (@Model.Select(x => x.State).Count() == 0)
-    {
-         <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
-              <p class="p_host_your_orders_status">目前沒有任何旅客入住。</p>
-         </div> 
+    <div class="tab-content" id="nav-tabContent">
+        @*目前接待中*@
+        <div class="tab-pane fade show active" id="nav-currently-receiving" role="tabpanel" aria-labelledby="nav-currently-receiving-tab">
+            @*沒資料的畫面*@
+            @if (@Model.Where(x => x.State == "目前接待中").Count() == 0)
+            {
+                <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
+                    <p class="p_host_your_orders_status">目前沒有任何旅客入住。</p>
+                </div>
+            }
+            else
+            {
+                <!-- Swiper -->
+                <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            @foreach (var item in Model)
+                            {
+                                if (DateTime.Now < Convert.ToDateTime(item.CheckOut))
+                                {
+                                    <div class="swiper-slide">
+                                        <div class="card host_your_orders_card">
+                                            <div class="card-body">
+                                                <p class="card-title p_currently_hosting">@item.State</p>
+                                                <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
+                                                <p class="card-text text-black p_guest_name">@item.GuestName</p>
+                                                <p class="card-text text-black">@item.During</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-    }
-    else
-    {
-        <!-- Swiper -->
-        @*動態生成*@
-        <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    @foreach (var item in Model)
-                    {
-                <div class="swiper-slide">
-                    <div class="card host_your_orders_card">
-                        <div class="card-body">
-                            <p class="card-title p_currently_hosting">@item.State</p>
-                            <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
-                            <p class="card-text text-black p_guest_name">@item.GuestName</p>
-                            <p class="card-text text-black">@item.During</p>
+                                }
+                            }
+
                         </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
-                    }
-
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+            }
         </div>
-    }
 
+        @*即將入住*@
+        <div class="tab-pane fade" id="nav-upcoming" role="tabpanel" aria-labelledby="nav-upcoming-tab">
+            @*沒資料的畫面*@
+            @if (@Model.Where(x => x.State == "即將入住").Count() == 0)
+            {
+                <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
+                    <p class="p_host_your_orders_status">今天或明天都不會有任何旅客入住。</p>
+                </div>
+            }
+            else
+            {
+                <!-- Swiper -->
+                <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            @foreach (var item in Model)
+                            {
+                                if (DateTime.Now < Convert.ToDateTime(item.CheckOut))
+                                {
+                                    <div class="swiper-slide">
+                                        <div class="card host_your_orders_card">
+                                            <div class="card-body">
+                                                <p class="card-title p_currently_hosting">@item.State</p>
+                                                <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
+                                                <p class="card-text text-black p_guest_name">@item.GuestName</p>
+                                                <p class="card-text text-black">@item.During</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @*即將退房*@
+        <div class="tab-pane fade" id="nav-checkOut-soon" role="tabpanel" aria-labelledby="nav-checkOut-soon-tab">
+            @*沒資料的畫面*@
+            @if (@Model.Where(x => x.State == "即將退房").Count() == 0)
+            {
+                <div class="host_your_orders mx-auto d-flex justify-content-center align-items-md-center">
+                    <p class="p_host_your_orders_status">今天或明天不會有任何旅客退房。</p>
+                </div>
+            }
+            else
+            {
+                <!-- Swiper -->
+                <div class="host_your_orders mx-auto d-flex mx-auto justify-content-center align-items-md-center">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            @foreach (var item in Model)
+                            {
+                                if (DateTime.Now < Convert.ToDateTime(item.CheckOut))
+                                {
+                                    <div class="swiper-slide">
+                                        <div class="card host_your_orders_card">
+                                            <div class="card-body">
+                                                <p class="card-title p_currently_hosting">@item.State</p>
+                                                <h2 class="card-subtitle mb-2 h2_host_room_title">@item.RoomName</h2>
+                                                <p class="card-text text-black p_guest_name">@item.GuestName</p>
+                                                <p class="card-text text-black">@item.During</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </section>
 
 <section class="container-fluid tips_and_news_container mt-5 pb-5">
@@ -167,4 +257,3 @@
     <script src="~/Swiper/swiper-bundle.min.js"></script>
     <script src="~/js/RoomOwner/HostHomePage.js"></script>
 }
-    

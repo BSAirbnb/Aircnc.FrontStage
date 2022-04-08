@@ -48,5 +48,16 @@ footer h4{
     border-radius: 7px;
 }
 
+/*footer*/
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+@media screen and (min-width: 767px) {
+    .p_room_owner_copyRight {
+        font-size:14px;
+    }
+}
 
 

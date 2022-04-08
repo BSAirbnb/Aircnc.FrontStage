@@ -90,10 +90,11 @@ namespace Aircnc.FrontStage.Controllers
             Hostid = 1;
             var reservation = _hostHomePageService.GetHostHomePagesReservation(Hostid).Select(homePageReservation => new HostHomePageViewModel
             {
-                State = DiffDays(Convert.ToDateTime(homePageReservation.CheckIn).Ticks, DateTime.Now.Ticks) >= 1 ? "即將入住" : DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) < 1 && DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) > -1 ? "目前接待中" : "即將退房",
+                State = DiffDays(Convert.ToDateTime(homePageReservation.CheckIn).Ticks, DateTime.Now.Ticks) >= 1 ? "即將入住" : DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) < 1 && DiffDays(Convert.ToDateTime(homePageReservation.CheckOut).Ticks, DateTime.Now.Ticks) > -1 ? "目前接待中" : DiffDays(DateTime.Now.Ticks, Convert.ToDateTime(homePageReservation.CheckOut).Ticks) > 1 ? "已退房" :"即將退房",
                 RoomName = homePageReservation.RoomName,
                 GuestName = homePageReservation.GuestName,
-                During = $"{homePageReservation.CheckIn} - {homePageReservation.CheckOut}"
+                During = $"{homePageReservation.CheckIn} - {homePageReservation.CheckOut}",
+                CheckOut = homePageReservation.CheckOut
             });
             return View(reservation);
         }
