@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - Aircnc</title>
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/Room_Owner/Footer.css" rel="stylesheet" />
+    <link href="~/css/Nav_Footer/normalize.css" rel="stylesheet" />
     @RenderSection("topCSS", required: false)
     @RenderSection("topJS", required: false)
     <style>
@@ -39,10 +41,9 @@
             #user_icon {
                 margin-left: calc(35vw - 50px);
             }
+
             .dropdown-menu[data-bs-popper] {
-
-            left: -7rem;
-
+                left: -7rem;
             }
         }
     </style>
@@ -139,11 +140,80 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Aircnc.FrontStage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    @if(ViewData["Title"].ToString() != "預定" && ViewData["Title"].ToString() != "控制面板")
+    {
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - Aircnc.FrontStage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    }else
+    {
+    <footer class="bg-light w-100 mt-5">
+        <div class="container my-3 mx-auto w-75">
+            <div class="row justify-content-space-between">
+                <div class="col-12 col-md-3 border-bottom">
+                    <ul>
+                        <li><h4 class="my-3">用戶支援</h4></li>
+                        <li class="my-2"><a href="">說明中心</a></li>
+                        <li class="my-2"><a href="">安全資訊</a></li>
+                        <li class="my-2"><a href="">退訂選項</a></li>
+                        <li class="my-2"><a href="">我們的新冠肺炎因應措施</a></li>
+                        <li class="my-2"><a href="">支援身心障礙人士</a></li>
+                        <li class="my-2"><a href="">回報社區問題</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 border-bottom">
+                    <ul>
+                        <li><h4 class="my-3">社區</h4></li>
+                        <li class="my-2"><a href="">救災住宿</a></li>
+                        <li class="my-2"><a href="">支援阿富汗難民</a></li>
+                        <li class="my-2"><a href="">消弭歧視</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 border-bottom">
+                    <ul>
+                        <li><h4 class="my-3">出租房源和舉辦體驗</h4></li>
+                        <li class="my-2"><a href="">開始出租／舉辦體驗</a></li>
+                        <li class="my-2"><a href="">保障房東和體驗達人</a></li>
+                        <li class="my-2"><a href="">瀏覽待客資源</a></li>
+                        <li class="my-2"><a href="">前往我們的社區論壇</a></li>
+                        <li class="my-2"><a href="">落實負責任出租和舉辦體驗的方法</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 border-bottom">
+                    <ul>
+                        <li><h4 class="my-3">關於</h4></li>
+                        <li class="my-2"><a href="">新聞中心</a></li>
+                        <li class="my-2"><a href="">了解新功能</a></li>
+                        <li class="my-2"><a href="">創辦人的信</a></li>
+                        <li class="my-2"><a href="">工作機會</a></li>
+                        <li class="my-2"><a href="">投資人</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid fs-6">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="text-center">
+                        &copy; 2022 Creatures of Corner, Inc.&nbsp;
+                        <a href="">隱私</a>·
+                        <a href="">相關條款</a>·
+                        <a href="">網站地圖</a>
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <a href="https://facebook.com" class="social"><i class="fab fa-facebook-square fs-3 mx-2"></i></a>
+                    <a href="https://line.com" class="social"><i class="fab fa-line fs-3 mx-2"></i></a>
+                    <a href="https://instagram.com" class="social"><i class="fab fa-instagram-square fs-3 mx-2"></i></a>
+                    <a href="https://twitter.com" class="social"><i class="fab fa-twitter-square fs-3 mx-2"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
+    }
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
