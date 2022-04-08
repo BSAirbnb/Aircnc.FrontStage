@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -17,11 +18,17 @@ namespace Aircnc.FrontStage.Models.Entities
 
         public enum TypeOfLabelEnum
         { 
+            [Description("Wi-Fi")]
             Wifi =1 ,
-            Kitchen=2,
+            [Description("廚房")]
+            Kitchen =2,
+            [Description("電視 TV")]
             TV = 3,
+            [Description("洗衣機")]
             Washing = 4,
+            [Description("空調")]
             Aircon = 5,
+            [Description("停車位")]
             Parking =6
         }
     }

@@ -30,6 +30,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
             var detail = new RoomDetailViewModel()
             {
                 OwnerName = room.OwnerName,
+                OwnerCreateTime = room.OwnerCreateTime,
+                OwnerReviewsCount = room.OwnerReviewsCount,
+
                 RoomId = room.RoomId,
                 RoomType = room.RoomType,
                 HouseType = room.HouseType,
@@ -40,6 +43,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 BedCount = room.BedCount,
                 BathroomCount = room.BathroomCount,
                 RoomDescription = room.RoomDescription,
+
                 ServiceLabels = room.ServiceLabels,
                 Reviews = room.Reviews,
                 AvgStars = room.AvgStars,

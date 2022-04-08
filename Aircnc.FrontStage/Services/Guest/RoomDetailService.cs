@@ -26,6 +26,9 @@ namespace Aircnc.FrontStage.Services.Guest
 
             var result = new RoomDetailDto() {
                 OwnerName = owner.Name,
+                OwnerCreateTime = owner.CreateTime,
+                OwnerReviewsCount = _dbRepository.GetAll<Comment>().Where(x => x.UserId == owner.UserId).Count(),
+
                 RoomId = room.RoomId,
                 RoomType = room.RoomType,
                 HouseType = room.HouseType,

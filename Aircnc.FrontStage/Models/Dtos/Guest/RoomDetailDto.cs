@@ -13,8 +13,9 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public string OwnerName { get; set; }
         public string OwnerPhoto { get; set; }
         public DateTime OwnerCreateTime { get; set; }
+        public int OwnerReviewsCount { get; set; } //留給該房東的所有評價數量
 
-        public int UserId { get; set; }
+        //public int UserId { get; set; } 好像不需要
 
         public int RoomId { get; set; }
         public HouseTypeEnum HouseType { get; set; }
