@@ -64,9 +64,9 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IActionResult HostReservation(int hostid)
+        public IActionResult HostReservation()
         {
-            hostid = 1;
+            var hostid = int.Parse(User.Identity.Name);
             var reservation = _hostReservationService.GetHostReservation(hostid).Select(HostReservation => new HostReservationViewModel
             {
                 RoomId = HostReservation.RoomId,
