@@ -7,6 +7,12 @@ a{
     color:#000;
 }
 
+p {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1em;
+}
+
 a:hover{
     color: #000;
 }
@@ -70,10 +76,19 @@ a:hover{
 /* 房源資訊圖片 */
 
 .host_list_house_img img {
-    width: 100px;
+    width: 80px;
+    border-radius:5px;
 }
 
 .tr_roomlist {
     line-height: 2rem;
     margin: auto 0;
+}
+
+.hostList_room_name{
+    width:25%;
+}
+
+.hostList_room_name p{
+    width:60%;
 }
