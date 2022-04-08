@@ -123,18 +123,18 @@
                 <div class="modal-body">
                     <section class="container">
                         <form method="post" asp-controller="Home" asp-action="Index" class="row flex-column">
-                            <div class="my-2"><input asp-for="NavSearch.Location" placeholder="位置" class="form-control"></div>
+                            <div class="my-2"><input asp-for="NavSearch.Location" placeholder="位置" class="form-control" value="@TempData["location"]"></div>
                             <label for="date" class="col-2 col-form-label">日期</label>
                             <div class="d-flex my-2" id="datepicker">
-                                <input asp-for="NavSearch.StartDate" type="date" class="form-control">
+                                <input asp-for="NavSearch.StartDate" type="date" class="form-control" value="@TempData["startDate"]">
                                 <span class="px-2 fs-5">至</span>
-                                <input asp-for="NavSearch.EndDate" type="date" class="form-control">
+                                <input asp-for="NavSearch.EndDate" type="date" class="form-control" value="@TempData["endDate"]">
                             </div>
                             <div class="d-flex justify-content-start align-items-center my-3">
                                 <span class="fs-5">人數</span>
                                 <div class="d-flex justify-content-center col-6">
                                     <div id="minus-guests" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
-                                    <input asp-for="NavSearch.NumberOfGuests" type="text" id="guestNumbers" class="form-control w-25 text-center">
+                                    <input asp-for="NavSearch.NumberOfGuests" type="text" id="guestNumbers" class="form-control w-25 text-center" value="@TempData["numberOfGuests"]">
                                     <div id="add-guests" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
                                 </div>
                             </div>

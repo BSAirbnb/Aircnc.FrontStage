@@ -24,6 +24,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
         
         public IActionResult RoomDetail(int roomId)
         {
+            int userId = int.Parse(User.Identity.Name);
+
             var room = _roomDetailService.GetRoomDetailById(roomId);
             var detail = new RoomDetailViewModel()
             {

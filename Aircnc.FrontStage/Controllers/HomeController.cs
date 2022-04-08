@@ -24,7 +24,10 @@ namespace Aircnc.FrontStage.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempData["input"] = input;
+                TempData["location"] = input.NavSearch.Location;
+                TempData["startDate"] = input.NavSearch.StartDate;
+                TempData["endDate"] = input.NavSearch.EndDate;
+                TempData["numberOfGuests"] = input.NavSearch.NumberOfGuests;
                 return RedirectToAction("Search", "Search");
             }
             return NotFound();
@@ -32,6 +35,7 @@ namespace Aircnc.FrontStage.Controllers
 
         public IActionResult Index()
         {
+            int userId = int.Parse(User.Identity.Name);
             return View();
         }
 
