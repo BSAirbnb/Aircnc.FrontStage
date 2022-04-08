@@ -125,18 +125,18 @@
                     <div class="modal-body">
                         <section class="container">
                             <form class="row flex-column">
-                                <div class="my-2"><input placeholder="位置" class="form-control"></div>
+                                <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]"></div>
                                 <label for="date" class="col-4 col-form-label">日期</label>
                                 <div class="d-flex my-2 flex-wrap">
-                                    <input type="date" class="form-control">
+                                    <input type="date" class="form-control" value="@TempData["startDate"]">
                                     <span class="px-2 fs-5">至</span>
-                                    <input type="date" class="form-control" name="" id="reserve-datepicker">
+                                    <input type="date" class="form-control"  value="@TempData["endDate"]">
                                 </div>
                                 <div class="d-flex justify-content-evenly align-items-center my-2">
                                     <span class="col-4">人數</span>
                                     <div class="d-flex justify-content-center">
                                         <div id="minus" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
-                                        <input id="guestNum" type="text" class="form-control w-25 text-center">
+                                        <input id="guestNum" type="text" class="form-control w-25 text-center"  value="@TempData["numberOfGuests"]">
                                         <div id="add" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
                                     </div>
                                 </div>
