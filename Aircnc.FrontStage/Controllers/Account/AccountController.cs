@@ -39,7 +39,7 @@ namespace Aircnc.FrontStage.Controllers.Account
             }
             else 
             {
-                return View("Signup", inputDto);
+                return new  JsonResult("Sign up Failed");
             }
 
             
