@@ -45,25 +45,25 @@
                     <div class="row mb-5">
                         <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
                             <a href="#" class="order-detail-link d-flex">
-                                <div class="col-10 col-md-5 order-content p-md-3 p-5">
+                                <div class="col-10 col-md-6 order-content p-md-3 p-3">
                                     <!-- District -->
                                     <span class="fw-bold fs-3 d-block my-2 ">@data.District</span>
                                     <!-- 房源名稱 -->
                                     <span class="order-room-detail fs-5">@data.RoomName</span>
-                                    <div class="date-address-content d-flex mt-4">
+                                    <div class="col-md-12 date-address-content d-flex mt-4">
                                         <!-- 入退房日期 -->
-                                        <div class="col-6  pe-md-5 check-in-out-date">
+                                        <div class="col-6 col-md-6 pe-md-5 check-in-out-date">
                                             <span class="fs-5">@data.CkeckIn - @data.CkeckOut</span>
                                         </div>
                                         <!-- 入住地址 -->
-                                        <div class="col-6 col-md-6 stay-address ">
+                                        <div class="col-6 col-md-5 stay-address ">
                                             <span class="fs-5">@data.City@data.District@data.Street</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 room-picture-container w-100 h-100 ">
-                                    @*<img src="https://picsum.photos/200/200/?random=10" class="room-picture img-fluid d-none d-md-block ">*@
-                                    <img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">
+                                <div class="col-md-7 room-picture-container">
+                                    <img src="https://picsum.photos/200/300/?random=10" class="room-picture img-fluid d-none d-md-block ">
+                                    @*<img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">*@
                                 </div>
                             </a>
                         </div>

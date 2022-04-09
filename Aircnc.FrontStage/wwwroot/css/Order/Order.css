@@ -33,9 +33,9 @@
 /*訂單圖片*/
 .room-picture {
     border-radius: 0 25px 25px 0;
-    /*    outline: 1px solid red;
-*/ 
+    outline: 1px solid red;
     max-width:auto;
+    max-height:auto;
 }
 
 .room-picture-container {
@@ -94,12 +94,14 @@
 /* 入退房日期 */
 .check-in-out-date {
     border-right: 1px solid lightgray;
-    padding-right:50%
+    padding-right:5%;
+    /*outline:1px solid red;*/
+    box-sizing:content-box;
 }
 
 /* 入住地址 */
 .stay-address {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .date-address-content {
     border-top: 1px solid lightgray;
