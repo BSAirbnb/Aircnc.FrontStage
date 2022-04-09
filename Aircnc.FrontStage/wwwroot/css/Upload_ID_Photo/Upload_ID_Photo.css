@@ -60,15 +60,10 @@ section {
     font-size: 14px;
 }
 
-.upload_area {
-    display: flex;
-    justify-content: space-between;
-}
-
 .drop-zone {
     border: #484848 dotted;
-    width: 250px;
-    height: 150px;
+    width: 100%;
+    height: 250px;
     border-radius: 5px;
     display: flex;
     align-items: center;

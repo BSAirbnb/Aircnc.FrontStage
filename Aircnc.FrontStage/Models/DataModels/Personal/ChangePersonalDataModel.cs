@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aircnc.FrontStage.Models.ViewModels.Personal
+namespace Aircnc.FrontStage.Models.DataModels.Personal
 {
-    public class PersonalViewModel
+    public class ChangePersonalDataModel
     {
         public string Name { get; set; }
-        public string Address{ get; set; }
+        public bool? Gender { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public bool? Gender { get; set; }
         public DateTime? Birthday { get; set; }
+        public string Address { get; set; }
 
-        public string EmergencyContactName { get; set; }
     }
 }
