@@ -1,7 +1,6 @@
 ﻿@{
     var isLogin = User.Identity.IsAuthenticated;  //判斷是否有登入
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,22 @@
     <link href="~/css/Order/normalize.css" rel="stylesheet" />
     <link href="~/css/Order/index-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        .img-ctrl {
+            width: 50px;
+            height: 50px;
+            border: 1px double #E4E4E4;
+            border-radius: 50%;
+            padding: 5px;
+            overflow: hidden;
+        }
 
+        .guest_layout_usericon {
+            border: 1px double #E4E4E4;
+            border-radius: 50%;
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -37,8 +51,7 @@
                             <div class="img-ctrl">
                                 <!-- 放使用者頭像 -->
                                 @*<img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">*@
-                                @*<img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
-                                    alt="UserPhoto" class="img-fluid userimg" />*@
+                                <img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value" alt="user_icon" class="img-fluid">
 
                             </div>
                         </button>
