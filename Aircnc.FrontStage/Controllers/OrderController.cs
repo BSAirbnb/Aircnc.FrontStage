@@ -19,10 +19,10 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [Authorize]
-        public IActionResult OrderList() //透過使用者ID去找他的訂單們
+        public IActionResult OrderList(int userId) //透過使用者ID去找他的訂單們
         {
-            //userId = 1;
-            int userId = int.Parse(User.Identity.Name);
+            userId = 1;
+            //int userId = int.Parse(User.Identity.Name);
             var orderList = _orderService.GetAllOrderByUserId(userId).Select(x => new OrderViewModel
             {
                 CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),

@@ -34,12 +34,13 @@
 .room-picture {
     border-radius: 0 25px 25px 0;
     outline: 1px solid red;
-    max-width:auto;
-    max-height:auto;
+/*    max-width:100%;
+*/    min-height:100%;
+    object-fit:cover;
 }
 
 .room-picture-container {
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .order-content {
@@ -89,6 +90,8 @@
 }
 .order {
     border-radius: 25px;
+    height:350px;
+    overflow:hidden;
 }
 
 /* 入退房日期 */
