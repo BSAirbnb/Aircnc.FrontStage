@@ -1,5 +1,6 @@
 ﻿using Aircnc.FrontStage.Models.ViewModels.Transaction;
 using Aircnc.FrontStage.Services.Transaction;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,11 @@ namespace Aircnc.FrontStage.Controllers
         /// 完成的交易
         /// </summary>
         /// <returns></returns>
-        public IActionResult CompletedTransaction(int UserId) 
+        /// 
+        [Authorize]
+        public IActionResult CompletedTransaction() 
         {
-            UserId = 1;
+            var UserId = int.Parse(User.Identity.Name) ;
             var transactionList = _TransactionService.GetAllOrderTransactionStatus().Select(x=>new TransactionViewModel
             {
                 CreateTime = x.CreateTime,
@@ -35,6 +38,8 @@ namespace Aircnc.FrontStage.Controllers
         /// 將至的交易
         /// </summary>
         /// <returns></returns>
+        /// 
+        [Authorize]
         public IActionResult FutureTransaction() 
         {
             return View();
@@ -44,6 +49,8 @@ namespace Aircnc.FrontStage.Controllers
         /// 總收益
         /// </summary>
         /// <returns></returns>
+        /// 
+        [Authorize]
         public IActionResult GrossEarnings() 
         {
             return View();

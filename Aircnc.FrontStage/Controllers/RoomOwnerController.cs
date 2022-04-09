@@ -130,7 +130,6 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [HttpGet]
-        //int Hostid = 1
         [Authorize]
         public IActionResult CreateRoom()
         {
@@ -139,7 +138,6 @@ namespace Aircnc.FrontStage.Controllers
         }
         [HttpPost]
         [Authorize]
-        //int Hostid = 1 
         public IActionResult CreateRoom([FromBody] CreateRoomDataModel request)
         {
             var userid = int.Parse(User.Identity.Name);

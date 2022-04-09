@@ -2,6 +2,7 @@
 using Aircnc.FrontStage.Models.ViewModels.Member;
 using Aircnc.FrontStage.Models.ViewModels.Personal;
 using AircncFrontStage.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,27 @@ namespace Aircnc.FrontStage.Controllers
     {
         private readonly DBRepository _db;
 
-        public PersonalController(DBRepository db) 
+        public PersonalController(DBRepository db)
         {
             _db = db;
-        
+
+        }
+        [Authorize]
+        public IActionResult PersonalBox() //帳號首頁
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var person = _db.GetAll<User>().Where(x => x.UserId == userid).Select(x => new PersonalViewModel
+            {
+                Name = x.Name,
+                Email = x.Email
+            });
+            return View(person);
         }
         //帳號九宮格前往個人資料的連結
+        [Authorize] 
         public IActionResult Personal_Details()
         {
-            //假設現在房東是1
-            int userid = 1;
+            var userid = int.Parse(User.Identity.Name);
             var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new MemberViewModel
             {
@@ -36,10 +48,10 @@ namespace Aircnc.FrontStage.Controllers
 
             return View(result);
         }
-
-        public IActionResult Personaldata(int userid) //個人資料
+        [Authorize]
+        public IActionResult Personaldata() //個人資料
         {
-            userid = 2;
+            var userid = int.Parse(User.Identity.Name);
             var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new PersonalViewModel
             {
@@ -55,62 +67,53 @@ namespace Aircnc.FrontStage.Controllers
             };
             return View(result);
         }
-
+        [Authorize]
         public IActionResult LoginSecurity() //登入與安全
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult PaymentIndex() //付款方式頁面
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult PayoutMethod() //收款方式頁面
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Notification() //通知
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy_and_Share() //隱私分享
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Preference() //全域偏好設定
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Trip() //差旅
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult RentTool() //專業出租工具
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult Invitecoupon() //邀請好友旅行基金
         {
             return View();
         }
+        
 
-        public IActionResult PersonalBox(int userId) //帳號首頁
-        {
-            userId = 1;
-            var person = _db.GetAll<User>().Where(x=>x.UserId == userId).Select(x=>new PersonalViewModel
-            {
-                Name = x.Name,
-                Email = x.Email
-            });
-            return View(person);
-        }
 
     }
 }

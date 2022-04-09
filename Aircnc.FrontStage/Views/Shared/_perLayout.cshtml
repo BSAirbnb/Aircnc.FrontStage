@@ -1,52 +1,86 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+    <link href="~/css/Nav_Footer/normalize.css" rel="stylesheet" />
+    <link href="~/css/Nav_Footer/homepage.css" rel="stylesheet" />
+    <link href="~/css/Guest_Module/nav-search-btn.css" rel="stylesheet" />
+    @await RenderSectionAsync("topCSS", required: false)
     <title>@ViewData["Title"] - Aircnc</title>
+    <style>
+        .img-ctrl {
+            width: 50px;
+            height: 50px;
+            border: 1px double #E4E4E4;
+            border-radius: 50%;
+            padding: 5px;
+            overflow: hidden;
+        }
 
-    <script src="~/bootstrap/js/bootstrap.js"></script>
-    <link href="~/Personal/index-style.css" rel="stylesheet" />
-    <link href="~/Personal/normalize.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    @RenderSection("topCss", required: false);
-    @RenderSection("topJs", required: false);
+        .guest_layout_usericon {
+            border: 1px double #E4E4E4;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-white border-bottom container-fluid">
-        <div class="container flex-nowrap">
-            <!-- 以下 logo 的連結記得要換 -->
-            <a href="~/Home/Index" class="navbar-brand col-1">
-                <img src="~/Img/logo.jpg" alt="logo" class="logo"/>
-            </a>
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown"
-                        data-bs-display="static" aria-expanded="false">
-                    登入
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">註冊</a>
-                    </li>
-                    <li><a class="dropdown-item" href="#">登入</a></li>
-                    <li><a class="dropdown-item" href="#">出租房源</a></li>
-                </ul>
+    <header>
+        <nav class="navbar navbar-light bg-white border-bottom container-fluid">
+            <div class="container flex-nowrap">
+                <a href="~/Home/Index" class="navbar-brand col-1">
+                    <img src="~/Img/logo.jpg" class="logo" alt="logo" />
+                </a>
+                <div class="btn-group">
+ 
+                   
+                        <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <div class="img-ctrl">
+                                <!-- 放使用者頭像 -->
+                                @*<img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">*@
+                                <img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
+                                     alt="UserPhoto" class="img-fluid userimg" />
+
+                            </div>
+                        </button>
+                    
+
+                    <ul class="dropdown-menu dropdown-menu-end overflow-hidden">
+
+
+                        @* 登入後才會有的區塊 *@
+                   
+                            <li><a class="dropdown-item" id="message" href="#">訊息</a></li>
+                            <li><a class="dropdown-item" id="notification" href="#">通知</a></li>
+                            <li><a class="dropdown-item" id="travel" href="~/Order/OrderList">旅程</a></li>
+                            <li><a class="dropdown-item" id="wishlist" href="#">心願單</a></li>
+                            <li><a class="dropdown-item" id="manage-room" href="~/RoomOwner/HostHomePageReservation">管理房源</a></li>
+                            <li><a class="dropdown-item" id="account" href="~/Personal/PersonalBox">帳號</a></li>
+                            <li><a class="dropdown-item" id="help" href="#">協助</a></li>
+                            <li><a class="dropdown-item" id="logout" href="~/Account/Logout">登出</a></li>
+                        
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
+
+
+
     @RenderBody()
-    <footer class="bg-light w-100">
-        <div class="container-fluid my-3">
+
+    <!-- footer -->
+    <footer class="bg-light w-100 mt-5">
+        <div class="container my-3 mx-auto w-75">
             <div class="row justify-content-space-between">
                 <div class="col-12 col-md-3 border-bottom">
                     <ul>
-                        <li>
-                            <h4 class="my-3">用戶支援</h4>
-                        </li>
+                        <li><h4 class="my-3">用戶支援</h4></li>
                         <li class="my-2"><a href="">說明中心</a></li>
                         <li class="my-2"><a href="">安全資訊</a></li>
                         <li class="my-2"><a href="">退訂選項</a></li>
@@ -57,9 +91,7 @@
                 </div>
                 <div class="col-12 col-md-3 border-bottom">
                     <ul>
-                        <li>
-                            <h4 class="my-3">社區</h4>
-                        </li>
+                        <li><h4 class="my-3">社區</h4></li>
                         <li class="my-2"><a href="">救災住宿</a></li>
                         <li class="my-2"><a href="">支援阿富汗難民</a></li>
                         <li class="my-2"><a href="">消弭歧視</a></li>
@@ -67,9 +99,7 @@
                 </div>
                 <div class="col-12 col-md-3 border-bottom">
                     <ul>
-                        <li>
-                            <h4 class="my-3">出租房源和舉辦體驗</h4>
-                        </li>
+                        <li><h4 class="my-3">出租房源和舉辦體驗</h4></li>
                         <li class="my-2"><a href="">開始出租／舉辦體驗</a></li>
                         <li class="my-2"><a href="">保障房東和體驗達人</a></li>
                         <li class="my-2"><a href="">瀏覽待客資源</a></li>
@@ -79,9 +109,7 @@
                 </div>
                 <div class="col-12 col-md-3 border-bottom">
                     <ul>
-                        <li>
-                            <h4 class="my-3">關於</h4>
-                        </li>
+                        <li><h4 class="my-3">關於</h4></li>
                         <li class="my-2"><a href="">新聞中心</a></li>
                         <li class="my-2"><a href="">了解新功能</a></li>
                         <li class="my-2"><a href="">創辦人的信</a></li>
@@ -111,12 +139,17 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/bootstrap/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+
+ 
+
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNUeaLH8za5eiC7S-fwsQ5tJjqCnusKb0&callback=initMap"></script>
+    <script src="~/js/GuestModule/navSearchAndBookingModal.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+
+   
 </body>
 </html>
+
