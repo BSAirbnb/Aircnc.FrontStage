@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "你的旅程 - 帳號設定";
+    ViewData["Title"] = "你的旅程";
     Layout = "OrderListLayout";
 }
 @model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Order.OrderViewModel>
@@ -8,7 +8,10 @@
     <div class="container">
         <div class="row topic">
             <h1 class="topic fw-bold fs-2 ms-2 mt-3">旅程</h1>
-            <span class=" fw-bold fs-4 ms-2 mt-3">即將開始的預定</span>
+            @if (Model.Count() > 0)
+            {
+                <span class=" fw-bold fs-4 ms-2 mt-3">即將開始的預定</span>
+            }
         </div>
     </div>
 </div>
@@ -74,7 +77,10 @@
 
         <!-- 歷史紀錄區塊 -->
         <div class="row history mt-3">
-            <span class="fs-5 fw-bold mt-2">你去過的地方</span>
+            @if(Model.Count() > 0)
+            {
+                <span class="fs-5 fw-bold mt-2">你去過的地方</span>
+            }
             @foreach (var data in Model)
             {
                 DateTime now = DateTime.Now;
@@ -106,7 +112,10 @@
 
         <!-- 已取消區塊 -->
         <div class="row cancel mt-3">
-            <span class="fs-5 fw-bold mt-2">已取消的旅程</span>
+            @if (Model.Count() > 0)
+            {
+                <span class="fs-5 fw-bold mt-2">已取消的旅程</span>
+            }
             @foreach (var cancel in Model)
             {
                 <div class="row mt-3">
