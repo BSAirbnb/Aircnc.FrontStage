@@ -6,27 +6,18 @@
         <div class="row">
             <div class="left-container col-12 col-md-6 ps-5">
                 <div class="add-identity-title">
-                    <h4>上傳你的駕照相片</h4>
+                    <h4>上傳你的證件相片</h4>
                     <p>請確保相片畫面清晰，且駕照的正面照能清楚顯示你的臉孔。</p>
                 </div>
-                <div class="upload_area">
-                    <div class="drop-zone">
-                        <span class="drop-zone__prompt">
-                            <i class="far fa-id-card"></i>
-                            <h5>上傳正面</h5>
-                            <p>僅限 JPEG 或 PNG 檔</p>
-                        </span>
-                        <input type="file" name="myFile" class="drop-zone__input">
-                    </div>
-                    <div class="drop-zone">
-                        <span class="drop-zone__prompt">
-                            <i class="far fa-id-card"></i>
-                            <h5>上傳背面</h5>
-                            <p>僅限 JPEG 或 PNG 檔</p>
-                        </span>
-                        <input type="file" name="myFile" class="drop-zone__input">
-                    </div>
+                <div class="drop-zone">
+                    <span class="drop-zone__prompt">
+                        <i class="far fa-id-card"></i>
+                        <h5>上傳證件照片</h5>
+                        <p>僅限 JPEG 或 PNG 檔</p>
+                    </span>
+                    <input type="file" name="myFile" class="drop-zone__input" id="drop-zone__input">
                 </div>
+                <p id="url"></p>
                 <div class="our-devotion mt-5">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
@@ -44,9 +35,7 @@
                     <nav style="--bs-breadcrumb-divider: '<';" aria-label="breadcrumb" class="ggyy">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"></li>
-                            <li class="breadcrumb-item active go-back" aria-current="page">
-                                <a href="https://localhost:44327/Member/Select_IdentificationType">返回</a>
-                            </li>
+                            <li class="breadcrumb-item active go-back" aria-current="page"><a href="/Member/Select_IdentificationType">返回</a></li>
                         </ol>
                     </nav>
                     <div class="btn-group" id="keep-on-btn" role="group" aria-label="Basic example">
@@ -130,6 +119,22 @@
             thumbnailElement.style.backgroundImage = null;
         }
     }
+
+    const file = document.getElementById('drop-zone__input');
+    const url = document.getElementById('url');
+    file.addEventListener('change', ev => {
+        const formdata = new FormData()
+        formdata.append('image', ev.target.files[0])
+        fetch('https://api.imgur.com/3/image/', {
+            method: "post",
+            headers: {
+                Authorization: 'Client-ID 967369ae5856c25'
+            }
+            , body: formdata
+        }).then(data => data.json()).then(data => {
+            url.innerText = data.data.link
+        })
+    })
 </script>
 
 @section topCSS{

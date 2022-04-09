@@ -1,4 +1,5 @@
-﻿using Aircnc.FrontStage.Models.Entities;
+﻿using Aircnc.FrontStage.Models.DataModels.Personal;
+using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.Member;
 using Aircnc.FrontStage.Models.ViewModels.Personal;
 using AircncFrontStage.Repositories;
@@ -31,6 +32,7 @@ namespace Aircnc.FrontStage.Controllers
             });
             return View(person);
         }
+
         //帳號九宮格前往個人資料的連結
         [Authorize] 
         public IActionResult Personal_Details()
@@ -48,6 +50,7 @@ namespace Aircnc.FrontStage.Controllers
 
             return View(result);
         }
+
         [Authorize]
         public IActionResult Personaldata() //個人資料
         {
@@ -55,18 +58,69 @@ namespace Aircnc.FrontStage.Controllers
             var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new PersonalViewModel
             {
-                Name=target.Name,
-                Address=target.Address,
-                Email=target.Email,
-                Gender= (bool)target.Gender,
-                Phone=target.Phone,
+                Name = target.Name,
+                Address = target.Address,
+                Email = target.Email,
+                //Gender = (bool)target.Gender,
+                Phone = target.Phone,
                 //Birthday = target.Birthday.ToString("yyyy/MM/dd"),
-                EmergencyContactName=target.EmergencyContactName,
-
-
+                EmergencyContactName = target.EmergencyContactName,
             };
             return View(result);
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PostChangeName([FromBody] ChangePersonalDataModel request) //個人資料 - 更新名字
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _db.GetEntityById<User>(userid);
+            target.Name = request.Name;
+            _db.Update<User>(target);
+            _db.Save();
+
+            return new JsonResult("");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PostChangeEmail([FromBody] ChangePersonalDataModel request) //個人資料 - 更新email
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _db.GetEntityById<User>(userid);
+            target.Email = request.Email;
+            _db.Update<User>(target);
+            _db.Save();
+
+            return new JsonResult("");
+        }
+
+        //[HttpPost]
+        //[Authorize]
+        //public IActionResult PostChangeGender([FromBody] ChangePersonalDataModel request) //個人資料 - 更新性別
+        //{
+        //    var userid = int.Parse(User.Identity.Name);
+        //    var target = _db.GetEntityById<User>(userid);
+        //    target.Gender = request.Gender;
+        //    _db.Update<User>(target);
+        //    _db.Save();
+
+        //    return new JsonResult("");
+        //}
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PostChangePhone([FromBody] ChangePersonalDataModel request) //個人資料 - 更新電話
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _db.GetEntityById<User>(userid);
+            target.Phone = request.Phone;
+            _db.Update<User>(target);
+            _db.Save();
+
+            return new JsonResult("");
+        }
+
         [Authorize]
         public IActionResult LoginSecurity() //登入與安全
         {
@@ -112,7 +166,10 @@ namespace Aircnc.FrontStage.Controllers
         {
             return View();
         }
+
         
+
+
 
 
     }

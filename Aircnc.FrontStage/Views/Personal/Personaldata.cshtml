@@ -9,7 +9,7 @@
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="https://localhost:44327/Personal/PersonalBox">帳號</a>
+                                <a href="/Personal/PersonalBox">帳號</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">個人資料</li>
                         </ol>
@@ -23,46 +23,41 @@
                 <div class="left-container col-12 col-md-7">
                     <div class="each-item">
                         <h5>法定名稱</h5>
-                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#name" role="button"
-                           aria-expanded="false" aria-controls="name">
+                        <button class="btn edit-btn" data-bs-toggle="collapse" href="#name" role="button"
+                                aria-expanded="false" aria-controls="name" id="btn_edit_name">
                             編輯
-                        </a>
+                        </button>
                     </div>
-                    <span>Yu Cheng Lin</span>
+                    <span id="show_name">@Model.Name</span>
                     <div class="collapse" id="name">
                         <div class="full-name d-flex">
                             <div class="form-floating w-50">
-                                <input type="email" class="form-control" placeholder="name@example.com">
+                                <input type="text" class="form-control" id="input_name">
                                 <label for="name">名字</label>
-                            </div>
-                            <div class="form-floating w-50">
-                                <input type="email" class="form-control" placeholder="name@example.com">
-                                <label for="name">姓氏</label>
                             </div>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_name">
                         </div>
                     </div>
                     <hr>
                     <div class="each-item">
                         <h5>性別</h5>
                         <a class="btn edit-btn" data-bs-toggle="collapse" href="#gender" role="button"
-                           aria-expanded="false" aria-controls="currency-selector">
+                           aria-expanded="false" aria-controls="currency-selector" id="btn_edit_gender">
                             編輯
                         </a>
                     </div>
-                    <span>男性</span>
+                    <span id="show_gender">男性</span>
                     <div class="collapse" id="gender">
                         <div class="dropdown" id="select-gender">
-                            <select class="form-select" aria-label="select-gender">
-                                <option value="TWD" selected>男性</option>
-                                <option value="HKD">女性</option>
-                                <option value="JPY">其他</option>
+                            <select class="form-select" aria-label="select-gender" id="select_gender">
+                                <option value="true" selected>男性</option>
+                                <option value="false">女性</option>
                             </select>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_gender">
                         </div>
                     </div>
                     <hr>
@@ -84,26 +79,32 @@
                     <div class="each-item">
                         <h5>電子郵件地址</h5>
                         <span></span>
-                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#email" role="button"
-                           aria-expanded="false" aria-controls="email">
+                        <button class="btn edit-btn" data-bs-toggle="collapse" href="#email" role="button"
+                                aria-expanded="false" aria-controls="email" id="btn_edit_email">
                             編輯
-                        </a>
+                        </button>
                     </div>
+                    <span id="span_email">@Model.Email</span>
                     <div class="collapse" id="email">
-                        <input type="email" class="form-control" placeholder="Email address">
+                        <div class="full-name d-flex">
+                            <div class="form-floating w-50">
+                                <input type="text" class="form-control" id="show_email">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_email">
                         </div>
                     </div>
                     <hr>
                     <div class="each-item">
                         <h5>電話號碼</h5>
-                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#phone_number" role="button"
-                           aria-expanded="false" aria-controls="phone_number">
-                            新增
-                        </a>
+                        <button class="btn edit-btn" data-bs-toggle="collapse" href="#phone_number" role="button"
+                           aria-expanded="false" aria-controls="phone_number" id="btn_edit_phone">
+                            編輯
+                        </button>
                     </div>
-                    <span>0945-767-471</span>
+                    <span id="show_phone">@Model.Phone</span>
                     <div class="dropdown collapse" id="phone_number">
                         <div class="form-floating mt-2 w-100">
                             <select class="form-select" id="floatingSelect"
@@ -111,6 +112,7 @@
                                 <option selected>台灣 (+886)</option>
                                 <option value="1">美國 (+1)</option>
                                 <option value="2">日本 (+81)</option>
+                                <option value="1">蘇聯 (+7)</option>
                                 <option value="3">挪威 (+47)</option>
                                 <option value="1">新加坡 (+65)</option>
                                 <option value="1">英國 (+44)</option>
@@ -122,15 +124,20 @@
                             </select>
                             <label for="floatingSelect">國家 / 地區代碼</label>
                         </div>
-                        <input type="text" class="form-control inp mt-2 w-100" placeholder="電話號碼">
+                        <div class="full-name d-flex">
+                            <div class="form-floating w-100">
+                                <input type="text" class="form-control" id="input_phone">
+                                <label for="phone">電話號碼</label>
+                            </div>
+                        </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_phone">
                         </div>
                     </div>
                     <hr>
                     <div class="each-item">
                         <h5>政府核發的身分文件</h5>
-                        <a class="btn edit-btn" href="https://localhost:44327/Member/Upload_Identification">
+                        <a class="btn edit-btn" href="/Member/Upload_Identification">
                             新增
                         </a>
                     </div>
@@ -175,7 +182,7 @@
                         <h5>緊急聯絡人</h5>
                         <a class="btn edit-btn" data-bs-toggle="collapse" href="#emergency_contact" role="button"
                            aria-expanded="false" aria-controls="emergency_contact">
-                            編輯
+                            新增
                         </a>
                     </div>
                     <span>尚未提供</span>
@@ -218,10 +225,9 @@
                     </div>
                     <div class="output_container"></div>
                     <div class="todo_wrap">
-                        <div class="todo_div input-group mb-3">
-                            <input type="text" id="todo_input" class="form-control"
-                                   aria-label="Text input with checkbox">
-                            <button type="button" id="delete_btn" class="btn">刪除</button>
+                        <div class="todo_div input-group mb-3 d-flex justify-content-between">
+                            <label type="text" id="todo_input"></label>
+                            <button type="button" id="delete_btn" class="btn p-0">刪除</button>
                         </div>
                     </div>
                     <div id="travel_china" class="collapse">
@@ -235,12 +241,12 @@
                         </div>
                         <div>
                             <!-- <div class="todo_wrap">
-                            <div class="todo_div input-group mb-3">
-                                <input type="text" id="todo_input" class="form-control"
-                                    aria-label="Text input with checkbox">
-                                <button type="button" id="delete_btn" class="btn">刪除</button>
-                            </div>
-                        </div> -->
+                                <div class="todo_div input-group mb-3">
+                                    <input type="text" id="todo_input" class="form-control"
+                                        aria-label="Text input with checkbox">
+                                    <button type="button" id="delete_btn" class="btn">刪除</button>
+                                </div>
+                            </div> -->
                             <input type="text" class="todo_input form-control form-control-lg"
                                    id="exampleFormControlInput1" placeholder="填入您的姓名">
                             <button type="button" id="add_btn" class="save_btn">儲存</button>
@@ -272,74 +278,7 @@
     </div>
 </section>
 
-<script>
-        const add_btn = document.querySelector('#add_btn')
-        const todo_input = document.querySelector('.todo_input')
-        const todoWrap = document.querySelector('.todo_wrap')
-        const output = document.querySelector('.output')
-        let todolist = [] //先在全域宣告一個空的todolist 便於從localstorage裡面取資料放進來
-
-        add_btn.addEventListener('click', addtodo) //按下去後, 即啟動addtodo這個function
-
-        window.onload = function () {
-            load_to_do_list() //每次載入網頁時, 同時啟動localstorage
-        }
-        function addtodo(event) {
-            let todoobj = { title: todo_input.value }
-            //宣告一個物件內容為 : title就是我輸入的事項, checked:false為不打勾
-            if (todolist == null) todolist = []
-            todolist.push(todoobj)
-            localStorage.setItem("datalist", JSON.stringify(todolist))
-            load_to_do_list()
-        }
-
-        function addtodolist(d, i) //d = data, i = index
-        {
-            const todo_wrap = document.createElement('div')
-            todo_wrap.classList.add('todo_wrap', 'd-flex', 'flex-row', 'align-items-center')
-            const todo_div = document.createElement('div')
-            todo_div.classList.add('todo_div', 'input-group', 'mb-3')
-
-            const show_input = document.createElement('input')
-            show_input.classList.add('form-control', 'show_input', 'bg-white', 'text-dark', 'border-white')
-            show_input.type = 'text'
-            show_input.setAttribute('style', 'font-size: 16px')
-            show_input.setAttribute('style', 'padding: 0px')
-            show_input.setAttribute('style', 'color: rgb(34, 34, 34')
-            show_input.value = d.title
-            show_input.disabled = true
-            todo_div.append(show_input)
-
-            const delete_btn = document.createElement('button')
-            delete_btn.classList.add('btn', 'edit-btn')
-            delete_btn.id = `delete_btn`
-            delete_btn.type = 'button'
-            delete_btn.innerText = '刪除'
-            delete_btn.addEventListener('click', () => { delete_btnfn(i) })
-            todo_div.append(delete_btn)
-            todoWrap.append(todo_div)
-        }
-
-        function delete_btnfn(ii) {
-            todolist.splice(ii, 1)
-            console.log(todolist)
-            localStorage.setItem("datalist", JSON.stringify(todolist)) //update最新資料onto localStorage
-            load_to_do_list()
-        }
-
-        function load_to_do_list() {
-            todolist = JSON.parse(localStorage.getItem('datalist'))
-            console.log(todolist);
-            todoWrap.innerHTML = ""
-            if (todolist != null)        //給todolist一個空值, 如果todolist不是空值, 將資料逐筆迭代出來然後裝進addtodolist
-            {
-                todolist.forEach((data, index) => {
-                    addtodolist(data, index)
-                })
-            }
-            console.log(addtodolist)
-        }
-</script>
+<script src="~/js/GuestModule/Personaldata.js"></script>
 
 @section topCss{
     <link href="~/css/Personal/index-style.css" rel="stylesheet" />
