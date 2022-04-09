@@ -38,9 +38,6 @@
                 <a href="~/Home/Index" class="navbar-brand col-1">
                     <img src="~/Img/logo.jpg" class="logo" alt="logo" />
                 </a>
-                <button type="button" class="btn btn-outline-primary rounded-pill search-bar" data-bs-toggle="modal" data-bs-target="#nav-search">
-                    你想去哪裡?
-                </button>
                 <div class="btn-group">
                     @if (!isLogin)
                     {
@@ -173,10 +170,11 @@
 
                     <div class="input-group flex-nowrap w-100 mt-3">
                         <input type="email" class="form-control" placeholder="電子郵件" aria-label="Email"
-                               aria-describedby="addon-wrapping" name="Email" id="input_login_email">
+                               aria-describedby="addon-wrapping" name="Email" id="input_login_email" required>
                     </div>
                     <div class="input-group flex-nowrap w-100 mt-3">
-                        <input type="password" class="form-control" placeholder="密碼" aria-label="Password"
+                        
+                        <input type="password" class="form-control" placeholder="密碼" required aria-label="Password"
                                aria-describedby="addon-wrapping" name="Password" id="input_login_password">
                     </div>
                     <span class="login-message-show"></span>
@@ -216,7 +214,7 @@
                         <span class="fs-4 fw-bold">Aircnc 歡迎您</span>
                         <div class="input-group flex-nowrap w-100 name mt-3">
                             <input type="text" class="form-control" placeholder="姓名" aria-label="Text"
-                                   aria-describedby="addon-wrapping" name="Name">
+                                   aria-describedby="addon-wrapping" name="Name" required>
                         </div>
 
                         <!-- <div class="input-group flex-nowrap w-75 mt-3">
@@ -226,11 +224,11 @@
 
                         <div class="input-group flex-nowrap w-100 mt-3">
                             <input type="email" class="form-control" placeholder="電子郵件" aria-label="Email"
-                                   aria-describedby="addon-wrapping" name="Email">
+                                   aria-describedby="addon-wrapping" name="Email" required>
                         </div>
                         <div class="input-group flex-nowrap w-100 mt-3">
                             <input type="password" class="form-control" placeholder="密碼" aria-label="Password"
-                                   aria-describedby="addon-wrapping" name="Password">
+                                   aria-describedby="addon-wrapping" minlength="8" name="Password" required>
                         </div>
                         <div class="d-flex justify-content-center mt-4 mb-5 align-items-center">
                             <button class="btn btn-lg w-100 text-white enroll-btn" type="submit">註冊</button>
