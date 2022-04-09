@@ -25,24 +25,47 @@
                 </a>
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                        登入
-                    </button>
+                    @if (!isLogin)
+                    {
+                        <button type="button" class="btn btn-primary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            登入
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="guest_layout_usericon" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <div class="img-ctrl">
+                                <!-- 放使用者頭像 -->
+                                @*<img src="/Img/UserImgSample.jpeg" alt="" class="img-fluid">*@
+                                @*<img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value"
+                                     alt="UserPhoto" class="img-fluid userimg" />*@
+
+                            </div>
+                        </button>
+                    }
+
                     <ul class="dropdown-menu dropdown-menu-end">
                         @* 登入前的區塊 *@
-                        <li><a class="dropdown-item sign" href="#" data-bs-toggle="modal" data-bs-target="#SignupModal">註冊</a></li>
-                        <li><a class="dropdown-item login" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">登入</a></li>
-                        <li><a class="dropdown-item rent" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">出租房源</a></li>
-                        @* 登入後才會有的區塊 *@
-                        <li><a class="dropdown-item" id="message" href="#">訊息</a></li>
-                        <li><a class="dropdown-item" id="notification" href="#">通知</a></li>
-                        <li><a class="dropdown-item" id="travel" href="~/Order/OrderList">旅程</a></li>
-                        <li><a class="dropdown-item" id="wishlist" href="#">心願單</a></li>
-                        <li><a class="dropdown-item" id="manage-room" href="~/RoomOwner/HostHomePageReservation">管理房源</a></li>
-                        <li><a class="dropdown-item" id="account" href="~/Personal/PersonalBox">帳號</a></li>
-                        <li><a class="dropdown-item" id="help" href="#">協助</a></li>
-                        <li><a class="dropdown-item" id="logout" href="#">登出</a></li>
+                        @if (!isLogin)
+                        {
+                            <li><a class="dropdown-item sign" href="#" data-bs-toggle="modal" data-bs-target="#SignupModal">註冊</a></li>
+                            <li><a class="dropdown-item login" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">登入</a></li>
+                            <li><a class="dropdown-item rent" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">出租房源</a></li>
 
+                        }
+
+                        @* 登入後才會有的區塊 *@
+                        else
+                        {
+                            <li><a class="dropdown-item" id="message" href="#">訊息</a></li>
+                            <li><a class="dropdown-item" id="notification" href="#">通知</a></li>
+                            <li><a class="dropdown-item" id="travel" href="~/Order/OrderList">旅程</a></li>
+                            <li><a class="dropdown-item" id="wishlist" href="#">心願單</a></li>
+                            <li><a class="dropdown-item" id="manage-room" href="~/RoomOwner/HostHomePageReservation">管理房源</a></li>
+                            <li><a class="dropdown-item" id="account" href="~/Personal/PersonalBox">帳號</a></li>
+                            <li><a class="dropdown-item" id="help" href="#">協助</a></li>
+                            <li><a class="dropdown-item" id="logout" href="~/Account/Logout">登出</a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -223,5 +246,53 @@
     <script src="~/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        //loginfetch
+        const btn_login_submit = document.querySelector('#btn_login_submit')
+        const input_login_email = document.querySelector('#input_login_email')
+        const input_login_password = document.querySelector('#input_login_password')
+        const loginMessageShow = document.querySelector('.login-message-show')
+
+
+        btn_login_submit.addEventListener('click', () => {
+            let data = {
+                Email: input_login_email.value,
+                Password: input_login_password.value
+            }
+
+            fetch('/Account/FetchLogin', {
+                headers: {
+                    'Accept': 'application/json, text/plain',
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                method: 'POST',
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(jsonData => {
+                    console.log(jsonData)
+                    if (jsonData.isSuccess) {
+                        //關閉Modal
+                        $('#LoginModal').modal('hide')
+
+                        window.location.reload()
+
+
+                        //更新 UserInfo (PartialView)
+                        //fetch('/Account/UserInfo')
+                        //    .then(response => response.text())
+                        //    .then(textData => {
+                        //        userInfoArea.innerHTML = textData
+                        //    })
+                    }
+                    else {
+                        loginMessageShow.innerHTML = `<span class='message-show text-danger'>${jsonData.message}</span>`
+                    }
+                })
+
+        })
+    </script>
+
 </body>
 </html>
