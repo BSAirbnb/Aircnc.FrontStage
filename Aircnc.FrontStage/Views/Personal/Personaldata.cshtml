@@ -1,157 +1,344 @@
 ﻿@model Aircnc.FrontStage.Models.ViewModels.Personal.PersonalViewModel;
 @{ ViewData["Title"] = "個人資料 - 帳號設定";}
 
-<section class="section1">
+<section>
     <div class="container">
         <div class="row">
-            <div class="col-10">
-                <a href="~/Personal/PersonalBox" class="fw-bold account">帳號</a>
-                <span class="fw-bold mx-2">></span>
-                <span class="fw-bold">個人資料</span>
+            <div class="topper-content ps-5 col-md-12">
+                <div class=" title">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="https://localhost:44327/Personal/PersonalBox">帳號</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">個人資料</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="title mb-5">
+                    <h4>個人資料</h4>
+                </div>
             </div>
-            <div class="col-10">
-                <span class="fs-2 fw-bold">個人資料</span>
+            <div class="lower-container d-flex justify-content-around">
+                <div class="left-container col-12 col-md-7">
+                    <div class="each-item">
+                        <h5>法定名稱</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#name" role="button"
+                           aria-expanded="false" aria-controls="name">
+                            編輯
+                        </a>
+                    </div>
+                    <span>Yu Cheng Lin</span>
+                    <div class="collapse" id="name">
+                        <div class="full-name d-flex">
+                            <div class="form-floating w-50">
+                                <input type="email" class="form-control" placeholder="name@example.com">
+                                <label for="name">名字</label>
+                            </div>
+                            <div class="form-floating w-50">
+                                <input type="email" class="form-control" placeholder="name@example.com">
+                                <label for="name">姓氏</label>
+                            </div>
+                        </div>
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>性別</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#gender" role="button"
+                           aria-expanded="false" aria-controls="currency-selector">
+                            編輯
+                        </a>
+                    </div>
+                    <span>男性</span>
+                    <div class="collapse" id="gender">
+                        <div class="dropdown" id="select-gender">
+                            <select class="form-select" aria-label="select-gender">
+                                <option value="TWD" selected>男性</option>
+                                <option value="HKD">女性</option>
+                                <option value="JPY">其他</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>出生日期</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#birthday" role="button"
+                           aria-expanded="false" aria-controls="birthday">
+                            編輯
+                        </a>
+                    </div>
+                    <span>1971/6/4</span>
+                    <div class="collapse" id="birthday">
+                        <input type="date" class="form-control" id="date" name="date">
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>電子郵件地址</h5>
+                        <span></span>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#email" role="button"
+                           aria-expanded="false" aria-controls="email">
+                            編輯
+                        </a>
+                    </div>
+                    <div class="collapse" id="email">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>電話號碼</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#phone_number" role="button"
+                           aria-expanded="false" aria-controls="phone_number">
+                            新增
+                        </a>
+                    </div>
+                    <span>0945-767-471</span>
+                    <div class="dropdown collapse" id="phone_number">
+                        <div class="form-floating mt-2 w-100">
+                            <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                <option selected>台灣 (+886)</option>
+                                <option value="1">美國 (+1)</option>
+                                <option value="2">日本 (+81)</option>
+                                <option value="3">挪威 (+47)</option>
+                                <option value="1">新加坡 (+65)</option>
+                                <option value="1">英國 (+44)</option>
+                                <option value="1">南韓 (+82)</option>
+                                <option value="1">德國 (+49)</option>
+                                <option value="1">中國 (+86)</option>
+                                <option value="1">中國香港 (+852)</option>
+                                <option value="1">中非共和國 (+236)</option>
+                            </select>
+                            <label for="floatingSelect">國家 / 地區代碼</label>
+                        </div>
+                        <input type="text" class="form-control inp mt-2 w-100" placeholder="電話號碼">
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>政府核發的身分文件</h5>
+                        <a class="btn edit-btn" href="https://localhost:44327/Member/Upload_Identification">
+                            新增
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>地址</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#adress" role="button"
+                           aria-expanded="false" aria-controls="adress">
+                            編輯
+                        </a>
+                    </div>
+                    <span>新北市新店區</span>
+                    <div class="collapse" id="adress">
+                        <div class="form-floating mt-2 w-50">
+                            <select class="form-select" id="countrySelect"
+                                    aria-label="Floating label select example">
+                                <option selected>台灣</option>
+                                <option value="1">中非共和國</option>
+                                <option value="1">美國</option>
+                                <option value="3">挪威</option>
+                                <option value="1">泰國</option>
+                                <option value="1">英國</option>
+                                <option value="1">南韓</option>
+                                <option value="2">日本</option>
+                                <option value="1">德國</option>
+                                <option value="1">中國</option>
+                                <option value="1">新加坡</option>
+                            </select>
+                            <label for="countrySelect">國家 / 地區</label>
+                        </div>
+                        <input type="text" class="form-control inp mt-2 " placeholder="街道地址">
+                        <input type="text" class="form-control inp mt-2" placeholder="公寓、套房">
+                        <input type="text" class="form-control inp mt-2" placeholder="城市">
+                        <input type="text" class="form-control inp mt-2" placeholder="州/省/郡/區">
+                        <input type="text" class="form-control inp mt-2" placeholder="郵遞區號">
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>緊急聯絡人</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#emergency_contact" role="button"
+                           aria-expanded="false" aria-controls="emergency_contact">
+                            編輯
+                        </a>
+                    </div>
+                    <span>尚未提供</span>
+                    <div id="emergency_contact" class="collapse">
+                        <input type="text" class="form-control inp mt-2" placeholder="名稱">
+                        <input type="text" class="form-control inp mt-2" placeholder="關係">
+                        <input type="text" class="form-control inp mt-2" placeholder="偏好語言">
+                        <input type="text" class="form-control inp mt-2" placeholder="電子郵件">
+                        <div class="d-flex">
+                            <div class="form-floating mt-2 w-25">
+                                <select class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                    <option selected>台灣 (+886)</option>
+                                    <option value="1">美國 (+1)</option>
+                                    <option value="2">日本 (+81)</option>
+                                    <option value="3">挪威 (+47)</option>
+                                    <option value="1">新加坡 (+65)</option>
+                                    <option value="1">英國 (+44)</option>
+                                    <option value="1">南韓 (+82)</option>
+                                    <option value="1">德國 (+49)</option>
+                                    <option value="1">中國 (+86)</option>
+                                    <option value="1">中國香港 (+852)</option>
+                                    <option value="1">中非共和國 (+236)</option>
+                                </select>
+                                <label for="floatingSelect">國家 / 地區代碼</label>
+                            </div>
+                            <input type="text" class="form-control inp mt-2 w-75" placeholder="電話號碼">
+                        </div>
+                        <div>
+                            <input class="save_btn" type="button" value="儲存">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="each-item">
+                        <h5>中國旅遊的護照資訊</h5>
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#travel_china" role="button"
+                           aria-expanded="false" aria-controls="travel_china">
+                            編輯
+                        </a>
+                    </div>
+                    <div class="output_container"></div>
+                    <div class="todo_wrap">
+                        <div class="todo_div input-group mb-3">
+                            <input type="text" id="todo_input" class="form-control"
+                                   aria-label="Text input with checkbox">
+                            <button type="button" id="delete_btn" class="btn">刪除</button>
+                        </div>
+                    </div>
+                    <div id="travel_china" class="collapse">
+                        <div class="description w-75">
+                            <p>
+                                只有前往中國的旅客才須要填寫。這些資訊將用於完成你對中國房源的預訂。完成中國房源的預訂，即代表你同意 Airbnb
+                                中國可向中國政府部門透露你的資訊，無須另行通知。你的姓名、電話號碼、電子郵件地址、身分證件／護照資料、預訂資訊，以及與房東之間的訊息都會傳送給 Airbnb
+                                中國，由其儲存和處理。
+                            </p>
+                            <span>你在上方提供的資料不會與房東分享。系統會儲存房客的個人資料，方便你下次使用。</span>
+                        </div>
+                        <div>
+                            <!-- <div class="todo_wrap">
+                                <div class="todo_div input-group mb-3">
+                                    <input type="text" id="todo_input" class="form-control"
+                                        aria-label="Text input with checkbox">
+                                    <button type="button" id="delete_btn" class="btn">刪除</button>
+                                </div>
+                            </div> -->
+                            <input type="text" class="todo_input form-control form-control-lg"
+                                   id="exampleFormControlInput1" placeholder="填入您的姓名">
+                            <button type="button" id="add_btn" class="save_btn">儲存</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-container col-12 col-md-3 ms-md-5">
+                    <div class="mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                             class="bi bi-bag-heart-fill mb-4" viewBox="0 0 16 16">
+                            <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                        </svg>
+                        <h5>哪些詳細資訊可以編輯？</h5>
+                        <p>Airbnb 用於驗證你身分的詳細資訊無法更改。你可以編輯聯絡資訊和部分個人資料，但我們可能會在你下次預訂或建立房源／體驗時要求你驗證身分。</p>
+                    </div>
+                    <hr class="hr-sm-display">
+                    <div class="mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                             class="bi bi-eye-fill mb-4" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                        </svg>
+                        <h5>哪些資訊會提供給其他人？</h5>
+                        <p>只有在預訂確認後，Airbnb 才會提供聯絡資訊給房東、體驗達人和旅客。</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-6 mt-5">
-                <div class="sec-1">
-                    <p class="title">法定名稱</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.Name</p>
-                <div class="input-group d-flex justify-content-between">
-                    <input type="text" class="form-control inp " placeholder="名字">
-                    <input type="text" class="form-control inp " placeholder="姓氏">
-                </div>
-
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-                <div class="sec-1">
-                    <p class="title">性別</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@(Model.Gender==true?"男性":"女性")</p>
-                <select class="form-select form-select-lg mb-3 inp" aria-label=".form-select-lg example">
-                    <option selected>性別</option>
-                    <option value="1">男性</option>
-                    <option value="2">女性</option>
-                    <option value="3">其他</option>
-                </select>
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">出生日期</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.Birthday</p>
-                <input type="date" class="form-control inp" id="date" name="date">
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">電子郵件地址</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.Email</p>
-                <input type="text" class="form-control inp " placeholder="電子郵件地址">
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">電話號碼</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.Phone</p>
-                @*<p>新增電話號碼，以便旅客和 Airbnb 能夠與你聯絡。你可以新增其他號碼並選擇其使用方式。</p>*@
-
-                <input type="text" class="form-control inp " placeholder="電話號碼">
-                <div>
-                    <input class="btnss mt-3" type="button" value="驗證">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">政府核發的身分文件</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>未提供</p>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">地址</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.Address</p>
-                <select class="form-select form-select-lg mt-3 inp" aria-label=".form-select-lg example">
-                    <option selected>國家</option>
-                    <option value="1">台灣</option>
-                    <option value="2">美國</option>
-                    <option value="3">日本</option>
-                </select>
-                <input type="text" class="form-control inp mt-2 " placeholder="街道地址">
-                <input type="text" class="form-control inp mt-2" placeholder="公寓、套房">
-                <input type="text" class="form-control inp mt-2" placeholder="城市">
-                <input type="text" class="form-control inp mt-2" placeholder="州/省/郡/區">
-                <input type="text" class="form-control inp mt-2" placeholder="郵遞區號">
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">緊急聯絡人</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>@Model.EmergencyContactName</p>
-                <input type="text" class="form-control inp mt-2" placeholder="名稱">
-                <input type="text" class="form-control inp mt-2" placeholder="關係">
-                <input type="text" class="form-control inp mt-2" placeholder="語言">
-                <input type="text" class="form-control inp mt-2" placeholder="電子郵件">
-                <select class="form-select form-select-lg mt-2 inp" aria-label=".form-select-lg example">
-                    <option selected>國家</option>
-                    <option value="1">台灣</option>
-                    <option value="2">美國</option>
-                    <option value="3">日本</option>
-                </select>
-                <input type="text" class="form-control inp mt-2" placeholder="電話號碼">
-                <div>
-                    <input class="btnss mt-3" type="button" value="儲存">
-                </div>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-
-                <div class="sec-1">
-                    <p class="title">中國旅遊的護照資訊</p>
-                    <button class="btt">編輯</button>
-                </div>
-                <p>未提供</p>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-            </div>
-            <div class="col-12 col-md-2 mt-5">
-
-            </div>
-            <div class="col-12 col-md-4 rightbox">
-                <i class="fas fa-shield-alt fs-1"></i>
-                <h2 class="rbh">哪些詳細資訊可以編輯？</h2>
-                <p class="rbht">Airbnb 用於驗證你身分的詳細資訊無法更改。你可以編輯聯絡資訊和部分個人資料，但我們可能會在你下次預訂或建立房源／體驗時要求你驗證身分。</p>
-                <hr style="border : 0.3px solid grey;" class="mt-5" />
-                <i class="fas fa-shield-alt fs-1 mt-3"></i>
-                <h2 class="rbh">哪些資訊會提供給其他人？</h2>
-                <p class="rbht">只有在預訂確認後，Airbnb 才會提供聯絡資訊給房東、體驗達人和旅客。</p>
-            </div>
-        </div>
-    </div>
 </section>
+
+<script>
+        const add_btn = document.querySelector('#add_btn')
+        const todo_input = document.querySelector('.todo_input')
+        const todoWrap = document.querySelector('.todo_wrap')
+        const output = document.querySelector('.output')
+        let todolist = [] //先在全域宣告一個空的todolist 便於從localstorage裡面取資料放進來
+
+        add_btn.addEventListener('click', addtodo) //按下去後, 即啟動addtodo這個function
+
+        window.onload = function () {
+            load_to_do_list() //每次載入網頁時, 同時啟動localstorage
+        }
+        function addtodo(event) {
+            let todoobj = { title: todo_input.value }
+            //宣告一個物件內容為 : title就是我輸入的事項, checked:false為不打勾
+            if (todolist == null) todolist = []
+            todolist.push(todoobj)
+            localStorage.setItem("datalist", JSON.stringify(todolist))
+            load_to_do_list()
+        }
+
+        function addtodolist(d, i) //d = data, i = index
+        {
+            const todo_wrap = document.createElement('div')
+            todo_wrap.classList.add('todo_wrap', 'd-flex', 'flex-row', 'align-items-center')
+            const todo_div = document.createElement('div')
+            todo_div.classList.add('todo_div', 'input-group', 'mb-3')
+
+            const show_input = document.createElement('input')
+            show_input.classList.add('form-control', 'show_input', 'bg-white', 'text-dark', 'border-white')
+            show_input.type = 'text'
+            show_input.setAttribute('style', 'font-size: 16px')
+            show_input.setAttribute('style', 'padding: 0px')
+            show_input.setAttribute('style', 'color: rgb(34, 34, 34')
+            show_input.value = d.title
+            show_input.disabled = true
+            todo_div.append(show_input)
+
+            const delete_btn = document.createElement('button')
+            delete_btn.classList.add('btn', 'edit-btn')
+            delete_btn.id = `delete_btn`
+            delete_btn.type = 'button'
+            delete_btn.innerText = '刪除'
+            delete_btn.addEventListener('click', () => { delete_btnfn(i) })
+            todo_div.append(delete_btn)
+            todoWrap.append(todo_div)
+        }
+
+        function delete_btnfn(ii) {
+            todolist.splice(ii, 1)
+            console.log(todolist)
+            localStorage.setItem("datalist", JSON.stringify(todolist)) //update最新資料onto localStorage
+            load_to_do_list()
+        }
+
+        function load_to_do_list() {
+            todolist = JSON.parse(localStorage.getItem('datalist'))
+            console.log(todolist);
+            todoWrap.innerHTML = ""
+            if (todolist != null)        //給todolist一個空值, 如果todolist不是空值, 將資料逐筆迭代出來然後裝進addtodolist
+            {
+                todolist.forEach((data, index) => {
+                    addtodolist(data, index)
+                })
+            }
+            console.log(addtodolist)
+        }
+</script>
 
 @section topCss{
     <link href="~/css/Personal/index-style.css" rel="stylesheet" />
