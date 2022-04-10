@@ -34,11 +34,10 @@ namespace Aircnc.FrontStage.Services.RoomOwner
             {
                 RoomCalendarId = x.RoomCalendarId,
                 Datetime = x.Date,
-                Year = x.Date.ToString("yyyy"),
-                Month = x.Date.ToString("MM"),
                 Date = x.Date.ToString("d"),
                 Note = x.Note ?? "",
-                UnitPrice = x.UnitPrice
+                UnitPrice = x.UnitPrice,
+                RoomCalendarStatus = (int)x.RoomCalendarStatus
             }
             ).ToList();
         }

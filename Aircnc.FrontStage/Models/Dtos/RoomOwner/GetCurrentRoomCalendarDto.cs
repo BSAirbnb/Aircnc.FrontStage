@@ -11,11 +11,9 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int RoomCalendarId { get; set; }
         
         public DateTime Datetime { get; set; }
-        public string Year { get; set; }
-        public string Month { get; set; }
         public string Date { get; set;}
         
-        public RoomCalendarStatusEnum RoomCalendarStatus { get; set; }
+        public int RoomCalendarStatus { get; set; }
         public decimal UnitPrice { get; set; }
         public string Note { get; set; }
     }

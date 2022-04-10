@@ -82,7 +82,7 @@
             </div>
 
             <!-- 選項 -->
-            <div class="col-3 border-start" id="Change_area">
+            @*<div class="col-3 border-start" id="Change_area">
                 <div class="row mt-5  ">
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
 
         </div>
@@ -144,9 +144,6 @@
             console.log(dropSourse)
             initDropMenu()
         }
-        function initdropdown() {
-            //把下拉選單改成該userid有的所有房源
-        }
         function init() {
             //要傳進日曆使用的data
             ///room roomcalendar
@@ -179,6 +176,7 @@
                         td.innerText = `${previousOfMonth - firstDay + 1}`
                         previousOfMonth++
                         td.classList.add('opacity-25')
+
                     } else {
                         if (day <= dayOfMonth) {
                             //這個月

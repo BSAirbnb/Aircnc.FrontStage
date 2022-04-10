@@ -102,8 +102,8 @@
         <script>
 
         //抓今天日期
-        const today = new Date()
-
+            const today = new Date()
+            
         let year = today.getFullYear()
         //month0開始
         let month = today.getMonth()
@@ -134,10 +134,15 @@
             init()
             console.log(dropSourse)
             initDropMenu()
-        }
-        function initdropdown() {
-            //把下拉選單改成該userid有的所有房源
-        }
+            }
+            let jsonCalendar = []
+            //轉成js datetime
+            jsonCalendar = @jsonCalendar
+                jsonCalendar.forEach(x => {
+                    x.DateTime = new Date(x.Date)
+                    
+                })
+            console.log(jsonCalendar)
         function init() {
             //要傳進日曆使用的data
             ///room roomcalendar
@@ -165,15 +170,41 @@
                 let tr = document.createElement('tr')
                 for (let col = 0; col < 7; col++) {
                     let td = document.createElement('td')
+                    //價格標籤
+                    let div = document.createElement('div')
+                    div.classList.add("mt-3")
+                    div.classList.add("mb-3")
                     if (row == 0 && col < firstDay) {
                         //上個月
-                        td.innerText = `${previousOfMonth - firstDay + 1}`
+                       /* td.innerText = `${previousOfMonth - firstDay + 1}`*/
                         previousOfMonth++
                         td.classList.add('opacity-25')
                     } else {
                         if (day <= dayOfMonth) {
                             //這個月
                             td.innerText = day
+                            div.innerText = "$" + @Model.CurrentRoom.UnitPrice+ " TWD";
+                            jsonCalendar.forEach(x => {
+                                if (x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year)
+                                {
+                                            
+                                    div.innerText = "$" + x.UnitPrice + " TWD"
+
+                                    //    Booked = 1,
+                                    //    Hided = 2,
+                                    //    Able = 3
+                                    if (x.RoomCalendarStatus == 1)
+                                    {
+                                        td.setAttribute('style','background-color: #ccc')
+                                    }
+                                    if (x.RoomCalendarStatus == 2) {
+                                        td.classList.add('bg-secondary')
+                                    }
+                                    
+                                }
+
+                            })
+                            
                             //今天之前的日子
                             if (day < today.getDate() && month == today.getMonth() && year == today.getFullYear() ||
                                 month < today.getMonth() && year <= today.getFullYear() || year < today.getFullYear()) {
@@ -190,7 +221,8 @@
                             }
                             //今天和之後 邏輯寫在這邊
                             if (day >= today.getDate() && month == today.getMonth() && year ==
-                                today.getFullYear()) {
+                                today.getFullYear())
+                            {
                                 //生成右側選項
                                 //將值接過去
                                 //找出有沒有這天的資料from calendar
@@ -202,7 +234,7 @@
 
                             }
 
-
+                            td.appendChild(div)
 
 
                         } else {
