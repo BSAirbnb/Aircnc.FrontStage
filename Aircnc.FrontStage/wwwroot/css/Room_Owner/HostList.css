@@ -69,12 +69,110 @@ a:hover{
     border-radius: 8px;
 }
 
+/* 房間與床鋪 */
+.dropdown-menu {
+    border-radius: 10px;
+    top: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown_room_and_bed_count,
+.dropdown_equipment_and_service,
+.dropdown_roomStatus {
+    width: 250px;
+    margin: 1em 1.5em;
+}
+
+.dropdown_equipment_and_service {
+    width: 400px;
+}
+
+.p_dropdown_edit_room,
+.p_dropdown_edit_bed,
+.p_dropdown_edit_bathroom,
+.p_dropdown_edit_clear {
+    width: 150px;
+    margin-bottom: 0;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+/*清除btn*/
+.btn_dropdown_edit_clear {
+    padding: 0;
+}
+
+/* 套用btn */
+.btn_edit_apply {
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.dropdown_edit_apply_and_delete_section {
+    margin: 1em 1.5em;
+    margin-top: 2.5em;
+}
+
+/* 建立房源icon */
 .fa-plus {
     padding-right: 5px;
 }
 
-/* 房源資訊圖片 */
+/* 房間與床鋪加減btn*/
+.btn_edit {
+    padding: 0;
+}
 
+/* 房間與床鋪加減icon*/
+.fa-minus,
+.room_plus {
+    color: #6c6c6c;
+    border: 1px solid #979797;
+    border-radius: 100%;
+    padding: 5px 7px;
+    font-size: 15px;
+}
+
+.edit_room_count,
+.edit_bed_count,
+.edit_bathroom_count {
+    line-height: 40px;
+    width: 65px;
+    text-align: center;
+}
+
+
+.form_check_equipment_and_service,
+.form_check_roomStatus {
+    width: 200px;
+}
+
+.form-check {
+    margin-bottom: 15px;
+}
+
+.form-check-input:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: #000;
+    border-color: #484848;
+}
+
+/*新增房源*/
+.btn_create_house {
+    border: 1px solid #6c6c6c;
+    color: #222222;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* 房源資訊圖片 */
 .host_list_house_img img {
     width: 80px;
     border-radius:5px;
