@@ -151,5 +151,13 @@ namespace Aircnc.FrontStage.Controllers
 
             return new JsonResult("加入房源成功");
         }
+
+
+        public IActionResult Calendar()
+        {
+            var userid = int.Parse(User.Identity.Name);
+            
+            return View();
+        }
     }
 }
