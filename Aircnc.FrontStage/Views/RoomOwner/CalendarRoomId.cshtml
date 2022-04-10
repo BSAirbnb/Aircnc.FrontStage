@@ -1,10 +1,12 @@
-﻿@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarViewModel
+﻿
+@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarViewModel
 @{
     ViewData["Title"] = "編輯月曆";
 
     Layout = "RoomOwnerNavbar.cshtml";
     var jsonDrop = Html.Raw(ViewData["JsonUpDown"]);
 }
+
 
 @section topCSS{
     <style>
@@ -45,7 +47,8 @@
                                 @p;
 
                             }
-                            else {
+                            else
+                            {
                                 var p = "尚未有房源";
                                 @p;
 
@@ -54,8 +57,8 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="RoomNameDropMenu">
                             @*<li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -107,8 +110,8 @@
     </div>
 
 
-    @section endJS{ 
-    <script>
+    @section endJS{
+        <script>
 
         //抓今天日期
         const today = new Date()
@@ -260,7 +263,7 @@
                 let a = document.createElement('a')
                 a.innerText = room.RoomName
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('href', `/RoomOwner/CalendarRoomId/${room.RoomId}`)
+                a.setAttribute ('src', `/RoomOwner/CalendarRoomId/${room.RoomId}`)
                 li.appendChild(a)
                 //要寫超連結src
                 RoomNameDropMenu.appendChild(li)
@@ -272,6 +275,8 @@
                 //<li><a class="dropdown-item" href="#">Something else here</a></li>
 
         }
-    </script>
+        </script>
     }
 </body>
+
+

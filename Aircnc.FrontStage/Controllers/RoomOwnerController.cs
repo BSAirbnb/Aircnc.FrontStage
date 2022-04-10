@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Aircnc.FrontStage.Controllers
@@ -18,15 +19,17 @@ namespace Aircnc.FrontStage.Controllers
         private readonly HostReservationService _hostReservationService;
         private readonly HostHomePageService _hostHomePageService;
         private readonly CreateRoomService _createRoomService;
+        private readonly CalendarService _calendarService;
 
         private readonly HostRoomEditService _hostRoomEditService;
-        public RoomOwnerController(HostListService hostListService, HostReservationService hostReservationService, HostHomePageService hostHomePageService, CreateRoomService createRoomService, HostRoomEditService hostRoomEditService)
+        public RoomOwnerController(HostListService hostListService, HostReservationService hostReservationService, HostHomePageService hostHomePageService, CreateRoomService createRoomService, HostRoomEditService hostRoomEditService, CalendarService calendarService)
         {
             _hostListService = hostListService;
             _hostReservationService = hostReservationService;
             _hostHomePageService = hostHomePageService;
             _hostRoomEditService = hostRoomEditService;
             _createRoomService = createRoomService;
+            _calendarService = calendarService;
         }
 
         /// <summary>
@@ -156,8 +159,26 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult Calendar()
         {
             var userid = int.Parse(User.Identity.Name);
-            
-            return View();
+            var result = new CalendarViewModel();
+            var rooms = _calendarService.GetAllRoomByUserId(userid);
+            string json1 = JsonSerializer.Serialize(rooms);
+            ViewData["JsonUpDown"] = json1;
+            result.UserAllRooms = rooms;
+
+            return View(result);
+        }
+
+        public IActionResult CalendarRoomId(int roomid)
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var result = new CalendarViewModel();
+            var rooms = _calendarService.GetAllRoomByUserId(userid);
+            string json1 = JsonSerializer.Serialize(rooms);
+            ViewData["JsonUpDown"] = json1;
+            result.UserAllRooms = rooms;
+
+            return View(result);
+
         }
     }
 }
