@@ -42,7 +42,7 @@ namespace Aircnc.FrontStage.Services.Guest
             {
                 rooms = rooms.Where(room => room.Pax >= input.NavSearch.NumberOfGuests.Value).ToList();
             }
-            //篩選日期
+            //篩選日期與計算平均房價
             if (input.NavSearch.StartDate.HasValue)
             {
                 var bookedRooms = _dbRepository.GetAll<Order>().Where(room => room.City.Contains(input.NavSearch.Location)).ToList();
@@ -67,6 +67,11 @@ namespace Aircnc.FrontStage.Services.Guest
                         rooms.Remove(room);
                     }
                 }
+                //查RoomCalendar是否有特別設定價格並算出平均房價
+                //foreach (var room in rooms.ToList())
+                //{
+                //    var totalBookDays = 3;
+                //}
             }
             //找出評價則數,平均星等
             foreach (var room in rooms)
