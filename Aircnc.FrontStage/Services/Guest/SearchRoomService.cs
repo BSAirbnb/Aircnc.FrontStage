@@ -70,7 +70,7 @@ namespace Aircnc.FrontStage.Services.Guest
                 //查RoomCalendar是否有特別設定價格並算出平均房價
                 //foreach (var room in rooms.ToList())
                 //{
-                //    var totalBookDays = 3;
+                //    var totalBookDays = 3m;
                 //}
             }
             //找出評價則數,平均星等
