@@ -260,7 +260,7 @@
                 let a = document.createElement('a')
                 a.innerText = room.RoomName
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('href', `/RoomOwner/CalendarRoomId/${room.RoomId}`)
+                a.setAttribute ('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
                 li.appendChild(a)
                 //要寫超連結src
                 RoomNameDropMenu.appendChild(li)

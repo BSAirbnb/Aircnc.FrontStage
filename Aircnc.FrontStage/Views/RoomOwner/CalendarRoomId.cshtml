@@ -1,10 +1,11 @@
 ﻿
-@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarViewModel
+@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarRoomIdViewModel
 @{
     ViewData["Title"] = "編輯月曆";
 
     Layout = "RoomOwnerNavbar.cshtml";
     var jsonDrop = Html.Raw(ViewData["JsonUpDown"]);
+    var jsonCalendar = Html.Raw(ViewData["JsonCalendar"]);
 }
 
 
@@ -40,20 +41,7 @@
                     <div class="dropdown ms-auto my-auto">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            @if (Model.UserAllRooms.Count() > 0)
-                            {
-                                @*@Model.UserAllRooms[0].RoomName;*@
-                                var p = "請選擇房源";
-                                @p;
-
-                            }
-                            else
-                            {
-                                var p = "尚未有房源";
-                                @p;
-
-                            }
-
+                            @Model.CurrentRoom.RoomName
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="RoomNameDropMenu">
                             @*<li><a class="dropdown-item" href="#">Action</a></li>
@@ -263,7 +251,7 @@
                 let a = document.createElement('a')
                 a.innerText = room.RoomName
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('src', `/RoomOwner/CalendarRoomId/${room.RoomId}`)
+                a.setAttribute('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
                 li.appendChild(a)
                 //要寫超連結src
                 RoomNameDropMenu.appendChild(li)

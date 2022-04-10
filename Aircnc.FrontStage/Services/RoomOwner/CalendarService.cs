@@ -28,5 +28,19 @@ namespace Aircnc.FrontStage.Services.RoomOwner
             return _dBRepository.GetEntityById<Room>(roomid);
 
         }
+        public List<GetCurrentRoomCalendarDto> GetCurrentRoomCalendar(int roomid)
+        {
+            return _dBRepository.GetAll<RoomCalendar>().Where(x=>x.RoomId == roomid).Select(x => new GetCurrentRoomCalendarDto
+            {
+                RoomCalendarId = x.RoomCalendarId,
+                Datetime = x.Date,
+                Year = x.Date.ToString("yyyy"),
+                Month = x.Date.ToString("MM"),
+                Date = x.Date.ToString("d"),
+                Note = x.Note ?? "",
+                UnitPrice = x.UnitPrice
+            }
+            ).ToList();
+        }
     }
 }

@@ -171,11 +171,26 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CalendarRoomId(int roomid)
         {
             var userid = int.Parse(User.Identity.Name);
-            var result = new CalendarViewModel();
+            var result = new CalendarRoomIdViewModel();
             var rooms = _calendarService.GetAllRoomByUserId(userid);
+            result.UserAllRooms = rooms;
+            var currentRoom = _calendarService.GetCurrentRoom(roomid);
+            result.CurrentRoom = currentRoom;
+            var CurrentRoomCalendar = _calendarService.GetCurrentRoomCalendar(roomid);
+            result.CurrentRoomCalendar = CurrentRoomCalendar;
+
+
+
+
+
+
+
+
             string json1 = JsonSerializer.Serialize(rooms);
             ViewData["JsonUpDown"] = json1;
-            result.UserAllRooms = rooms;
+            string json2 = JsonSerializer.Serialize(CurrentRoomCalendar);
+            ViewData["JsonCalendar"] = json2;
+
 
             return View(result);
 
