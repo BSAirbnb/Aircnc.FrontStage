@@ -68,7 +68,7 @@ namespace Aircnc.FrontStage.Services.Guest
                     }
                 }
             }
-
+            //找出評價則數,平均星等
             foreach (var room in rooms)
             {
                 var comments = _dbRepository.GetAll<Comment>().Where(x => x.RoomId == room.RoomId).Select(y => y.CommentId).Count();
