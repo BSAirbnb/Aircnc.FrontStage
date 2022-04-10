@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Room Detail";
     Layout = "Guest/_GuestLayout";
+    TempData["roomId"] = @Model.RoomDetailVM.RoomId;
 }
 
 <div id="room-img-carousel" class="carousel slide w-50 mx-auto" data-bs-ride="carousel">
@@ -47,7 +48,8 @@
                         <span>@Model.RoomDetailVM.AvgStars.ToString("N1")&nbsp;</span>
                         <a href="#reviews">@Model.RoomDetailVM.ReviewsCount 則評價</a>
                         <span>@Model.RoomDetailVM.District&nbsp;@Model.RoomDetailVM.City&nbsp;</span>
-                        <button class="btn btn-secondary">加入願望清單</button>
+                        <form method="post" asp-controller="RoomDetail" asp-action="AddToWishList"><button type="submit" class="btn btn-secondary">加入願望清單</button></form>
+                        <span class="text-danger">@TempData["AddWishListResult"]</span>
                     </div>
                 </div>
 
@@ -125,7 +127,7 @@
                     <div class="modal-body">
                         <section class="container">
                             <form class="row flex-column">
-                                <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]"></div>
+                                @*<div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]"></div>*@
                                 <label for="date" class="col-4 col-form-label">日期</label>
                                 <div class="d-flex my-2 flex-wrap">
                                     <input type="date" class="form-control" value="@TempData["startDate"]">

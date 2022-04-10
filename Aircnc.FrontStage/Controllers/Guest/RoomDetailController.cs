@@ -52,5 +52,16 @@ namespace Aircnc.FrontStage.Controllers.Guest
             var result = new SearchVM() { RoomDetailVM = detail };
             return View(result);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Route("RoomDetail/RoomDetail")]
+        public IActionResult AddToWishList()
+        {
+            int roomId = (int)TempData["roomId"];
+            int userId = int.Parse(User.Identity.Name);
+            TempData["AddWishListResult"] = _roomDetailService.AddToWishListService(userId, roomId);
+            return RedirectToAction(nameof(RoomDetail), new { roomId = roomId });
+        }
     }
 }

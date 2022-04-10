@@ -78,5 +78,40 @@ namespace Aircnc.FrontStage.Services.Guest
             }).ToList();
             return result;
         }
+
+        public string AddToWishListService(int userId, int roomId)
+        {
+            bool isExisted = _dbRepository.GetAll<WishList>().Any(x => x.UserId == userId && x.RoomId == roomId);
+            if (isExisted) 
+            { 
+                return "已經在您的願望清單內"; 
+            }
+            else
+            {
+                using (var transaction = _dbRepository._DbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var wishList = new WishList()
+                        {
+                            UserId = userId,
+                            RoomId = roomId,
+                            CreateTime = DateTime.Now
+                        };
+                        _dbRepository.Create(wishList);
+                        _dbRepository.Save();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+            }
+            bool isAdded = _dbRepository.GetAll<WishList>().Any(x => x.UserId == userId && x.RoomId == roomId);
+            if (isAdded) { return "已加入到您的願望清單"; }
+
+            return "請再試一次";
+        }
     }
 }
