@@ -77,6 +77,12 @@ namespace Aircnc.FrontStage.Services.Guest
                 room.Comments = comments;
                 room.Stars = staravg;
             }
+            //找出房源設備
+            foreach (var room in rooms)
+            {
+                var roomServices = _dbRepository.GetAll<RoomServiceLabel>().Where(x => x.RoomId == room.RoomId).Select(y => y.TypeOfLabel).ToList();
+                room.RoomServiceLabels = roomServices;
+            }
             return rooms;
         }
 

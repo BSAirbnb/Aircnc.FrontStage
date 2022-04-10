@@ -1,5 +1,4 @@
 ﻿using Aircnc.FrontStage.Models.ViewModels.Guest;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +31,7 @@ namespace Aircnc.FrontStage.Services.Guest
                 UnitPrice = SearchRoomDto.UnitPrice,
                 Comments = SearchRoomDto.Comments,
                 Stars = SearchRoomDto.Stars,
+                RoomServiceLabels = SearchRoomDto.RoomServiceLabels,
             });
             return getRooms;
         }
