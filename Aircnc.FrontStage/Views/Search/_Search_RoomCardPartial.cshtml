@@ -1,20 +1,48 @@
-﻿@using Aircnc.FrontStage.Models.ViewModels.Guest
+﻿@using Aircnc.FrontStage.Common
+@using Aircnc.FrontStage.Models.ViewModels.Guest
 @using Aircnc.FrontStage.Models.Entities;
+@using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel
 @model SearchRoomViewModel
 
 @{
 	string roomtype;
+	List<string> roomservices = new List<string>();
 	switch (@Model.RoomType)
 	{
 		case RoomTypeEnum.FullHouse :
-			roomtype = "整套房源";
+			roomtype = RoomTypeEnum.FullHouse.GetDescriptionText();
 			break;
 		case RoomTypeEnum.Solo :
-			roomtype = "獨立房間";
+			roomtype = RoomTypeEnum.Solo.GetDescriptionText();
 			break;
 		default :
-			roomtype = "合住房間";
+			roomtype = RoomTypeEnum.Share.GetDescriptionText();
 			break;
+	}
+
+	foreach(var label in Model.RoomServiceLabels)
+	{
+		switch (label)
+		{
+			case TypeOfLabelEnum.Wifi:
+				roomservices.Add(TypeOfLabelEnum.Wifi.GetDescriptionText());
+				break;
+			case TypeOfLabelEnum.Kitchen:
+				roomservices.Add(TypeOfLabelEnum.Kitchen.GetDescriptionText());
+				break;
+			case TypeOfLabelEnum.TV:
+				roomservices.Add(TypeOfLabelEnum.TV.GetDescriptionText());
+				break;
+			case TypeOfLabelEnum.Washing:
+				roomservices.Add(TypeOfLabelEnum.Washing.GetDescriptionText());
+				break;
+			case TypeOfLabelEnum.Aircon:
+				roomservices.Add(TypeOfLabelEnum.Aircon.GetDescriptionText());
+				break;
+			default:
+				roomservices.Add(TypeOfLabelEnum.Parking.GetDescriptionText());
+				break;
+		}
 	}
 }
 
@@ -67,20 +95,20 @@
 							<input type="checkbox" class="btn-check" id="WishList" autocomplete="off">
 							<label class="btn labelHeart" for="WishList" data-bs-toggle="modal"
 								   data-bs-target="#WishListModal">
-								<i class="far fa-heart"></i><i class="fas fa-heart"></i>
+								<i class="far fa-heart"></i>@*<i class="fas fa-heart"></i>*@
 							</label>
 
 						</div>
 						<h5 class="card-title">@Model.RoomName</h5>
 						<p class="card-text">
 							<small class="text-muted">
-								@Model.Pax 位.@Model.RoomCount 間臥室.@Model.BedCount 張床.@Model.BathroomCount 間共用衛浴<br>
-								廚房.空調設備
+								@Model.Pax 位,@Model.RoomCount 間臥室,@Model.BedCount 張床,@Model.BathroomCount 間共用衛浴<br>
+								@string.Join(",",roomservices)
 							</small>
 						</p>
 					</div>
 					<div class="d-flex mt-auto">
-						<p class="card-text "><small class="text-muted">@Model.Stars (@Model.Comments 則評價)</small></p>
+						<p class="card-text "><small class="text-muted"><i class="fas fa-star"></i> @Model.Stars (@Model.Comments 則評價)</small></p>
 						<p class="card-text ms-auto">$@Model.UnitPrice / 晚</p>
 					</div>
 				</div>

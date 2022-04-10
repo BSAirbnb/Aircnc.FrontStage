@@ -1,8 +1,7 @@
 ﻿using Aircnc.FrontStage.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
 
 namespace Aircnc.FrontStage.Models.ViewModels.Guest
 {
@@ -27,7 +26,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public Double Stars { get; set; }
         public int Comments { get; set; }
         public List<string> RoomImgs { get; set; }
-        public List<int> RoomServiceLabels { get; set; }
+        public List<TypeOfLabelEnum> RoomServiceLabels { get; set; }
         public List<string> WishLists { get; set; }
 
     }

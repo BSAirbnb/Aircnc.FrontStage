@@ -30,6 +30,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
             var detail = new RoomDetailViewModel()
             {
                 OwnerName = room.OwnerName,
+                OwnerCreateTime = room.OwnerCreateTime,
+                OwnerReviewsCount = room.OwnerReviewsCount,
+
                 RoomId = room.RoomId,
                 RoomType = room.RoomType,
                 HouseType = room.HouseType,
@@ -40,6 +43,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 BedCount = room.BedCount,
                 BathroomCount = room.BathroomCount,
                 RoomDescription = room.RoomDescription,
+
                 ServiceLabels = room.ServiceLabels,
                 Reviews = room.Reviews,
                 AvgStars = room.AvgStars,
@@ -47,6 +51,17 @@ namespace Aircnc.FrontStage.Controllers.Guest
             };
             var result = new SearchVM() { RoomDetailVM = detail };
             return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Route("RoomDetail/RoomDetail")]
+        public IActionResult AddToWishList()
+        {
+            int roomId = (int)TempData["roomId"];
+            int userId = int.Parse(User.Identity.Name);
+            TempData["AddWishListResult"] = _roomDetailService.AddToWishListService(userId, roomId);
+            return RedirectToAction(nameof(RoomDetail), new { roomId = roomId });
         }
     }
 }

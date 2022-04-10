@@ -52,6 +52,7 @@ namespace Aircnc.FrontStage
             services.AddTransient<IAccountService, AccountService>();
 
             services.AddTransient<SearchRoomService, SearchRoomService>();
+            services.AddTransient<SearchControllerService, SearchControllerService>();
             services.AddTransient<MailService, MailService>();
             services.AddTransient<CalendarService, CalendarService>();
             services.AddTransient<CreateRoomService, CreateRoomService>();

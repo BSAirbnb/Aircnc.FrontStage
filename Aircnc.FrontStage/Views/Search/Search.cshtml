@@ -78,7 +78,7 @@
 		<!-- 房源列表 -->
 		<div class="col-12 col-md-7 room-list mt-1">
 			<!-- card -->
-			@foreach (var room in Model.SearRoom)
+			@foreach (var room in Model.SearchRoom)
 			{
 				@await Html.PartialAsync("_Search_RoomCardPartial", room)
 			}
