@@ -1,10 +1,13 @@
-﻿@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarViewModel
+﻿
+@model Aircnc.FrontStage.Models.ViewModels.RoomOwner.CalendarRoomIdViewModel
 @{
     ViewData["Title"] = "編輯月曆";
 
     Layout = "RoomOwnerNavbar.cshtml";
     var jsonDrop = Html.Raw(ViewData["JsonUpDown"]);
+    var jsonCalendar = Html.Raw(ViewData["JsonCalendar"]);
 }
+
 
 @section topCSS{
     <style>
@@ -38,24 +41,12 @@
                     <div class="dropdown ms-auto my-auto">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            @if (Model.UserAllRooms.Count() > 0)
-                            {
-                                @*@Model.UserAllRooms[0].RoomName;*@
-                                var p = "請選擇房源";
-                                @p;
-
-                            }
-                            else {
-                                var p = "尚未有房源";
-                                @p;
-
-                            }
-
+                            @Model.CurrentRoom.RoomName
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="RoomNameDropMenu">
                             @*<li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>*@
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -82,7 +73,7 @@
             </div>
 
             <!-- 選項 -->
-            @*<div class="col-3 border-start" id="Change_area">
+            <div class="col-3 border-start" id="Change_area">
                 <div class="row mt-5  ">
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
@@ -100,19 +91,19 @@
                         </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
 
 
         </div>
     </div>
 
 
-    @section endJS{ 
-    <script>
+    @section endJS{
+        <script>
 
         //抓今天日期
-        const today = new Date()
-
+            const today = new Date()
+            
         let year = today.getFullYear()
         //month0開始
         let month = today.getMonth()
@@ -143,7 +134,15 @@
             init()
             console.log(dropSourse)
             initDropMenu()
-        }
+            }
+            let jsonCalendar = []
+            //轉成js datetime
+            jsonCalendar = @jsonCalendar
+                jsonCalendar.forEach(x => {
+                    x.DateTime = new Date(x.Date)
+                    
+                })
+            console.log(jsonCalendar)
         function init() {
             //要傳進日曆使用的data
             ///room roomcalendar
@@ -171,16 +170,41 @@
                 let tr = document.createElement('tr')
                 for (let col = 0; col < 7; col++) {
                     let td = document.createElement('td')
+                    //價格標籤
+                    let div = document.createElement('div')
+                    div.classList.add("mt-3")
+                    div.classList.add("mb-3")
                     if (row == 0 && col < firstDay) {
                         //上個月
-                        td.innerText = `${previousOfMonth - firstDay + 1}`
+                       /* td.innerText = `${previousOfMonth - firstDay + 1}`*/
                         previousOfMonth++
                         td.classList.add('opacity-25')
-
                     } else {
                         if (day <= dayOfMonth) {
                             //這個月
                             td.innerText = day
+                            div.innerText = "$" + @Model.CurrentRoom.UnitPrice+ " TWD";
+                            jsonCalendar.forEach(x => {
+                                if (x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year)
+                                {
+                                            
+                                    div.innerText = "$" + x.UnitPrice + " TWD"
+
+                                    //    Booked = 1,
+                                    //    Hided = 2,
+                                    //    Able = 3
+                                    if (x.RoomCalendarStatus == 1)
+                                    {
+                                        td.setAttribute('style','background-color: #ccc')
+                                    }
+                                    if (x.RoomCalendarStatus == 2) {
+                                        td.classList.add('bg-secondary')
+                                    }
+                                    
+                                }
+
+                            })
+                            
                             //今天之前的日子
                             if (day < today.getDate() && month == today.getMonth() && year == today.getFullYear() ||
                                 month < today.getMonth() && year <= today.getFullYear() || year < today.getFullYear()) {
@@ -197,7 +221,8 @@
                             }
                             //今天和之後 邏輯寫在這邊
                             if (day >= today.getDate() && month == today.getMonth() && year ==
-                                today.getFullYear()) {
+                                today.getFullYear())
+                            {
                                 //生成右側選項
                                 //將值接過去
                                 //找出有沒有這天的資料from calendar
@@ -209,7 +234,7 @@
 
                             }
 
-
+                            td.appendChild(div)
 
 
                         } else {
@@ -258,7 +283,7 @@
                 let a = document.createElement('a')
                 a.innerText = room.RoomName
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
+                a.setAttribute('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
                 li.appendChild(a)
                 //要寫超連結src
                 RoomNameDropMenu.appendChild(li)
@@ -270,6 +295,8 @@
                 //<li><a class="dropdown-item" href="#">Something else here</a></li>
 
         }
-    </script>
+        </script>
     }
 </body>
+
+
