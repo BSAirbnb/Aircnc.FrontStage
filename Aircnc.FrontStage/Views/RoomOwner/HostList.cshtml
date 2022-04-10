@@ -28,41 +28,131 @@
     </div>
     <!-- 房間與床鋪 -->
     <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink_room" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink_room" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
             房間與床鋪
         </a>
+        <!-- 臥室 -->
+        <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink_room">
+            <div class="d-flex justify-content-between dropdown_room_and_bed_count">
+                <p class="p_dropdown_edit_room">臥室</p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn_edit btn_edit_room_minus" onclick="room_minus('edit_room_count')"> <i class="fas fa-minus"></i> </button>
+                    <span class="d-block edit_room_count">@Model.Select(x => x.RoomCount).Count()</span>
+                    <button class="btn btn_edit btn_edit_room_plus" onclick="room_plus('edit_room_count')"> <i class="fas fa-plus room_plus"></i></button>
+                </div>
+            </div>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink_room">
-            <li><a class="dropdown-item" href="#"></a></li>
+            <!-- 床鋪 -->
+            <div class="d-flex justify-content-between dropdown_room_and_bed_count">
+                <p class="p_dropdown_edit_bed">床鋪</p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn_edit btn_edit_room_minus" onclick="room_minus('edit_bed_count')"> <i class="fas fa-minus"></i> </button>
+                    <span class="d-block edit_bed_count">@Model.Select(x => x.BedCount).Count()</span>
+                    <button class="btn btn_edit btn_edit_room_plus" onclick="room_plus('edit_bed_count')"> <i class="fas fa-plus room_plus"></i></button>
+                </div>
+            </div>
 
-        </ul>
+            <!-- 浴室 -->
+            <div class="d-flex justify-content-between dropdown_room_and_bed_count">
+                <p class="p_dropdown_edit_bathroom">浴室</p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn_edit btn_edit_room_minus" onclick="room_minus('edit_bathroom_count')"> <i class="fas fa-minus"></i> </button>
+                    <span class="d-block edit_bathroom_count">@Model.Select(x => x.BathroomCount).Count()</span>
+                    <button class="btn btn_edit btn_edit_room_plus" onclick="room_plus('edit_bathroom_count')"> <i class="fas fa-plus room_plus"></i></button>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between dropdown_edit_apply_and_delete_section">
+                <button class="btn btn_dropdown_edit_clear" onclick="edit_clear('clear_room')">清除</button>
+                <button class="btn btn-dark btn_edit_apply">套用</button>
+            </div>
+        </div>
     </div>
+
     <!-- 設備與服務 -->
     <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
             設備與服務
         </a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        </ul>
+        <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
+            <div class="d-flex justify-content-between dropdown_equipment_and_service flex-wrap">
+            @foreach(var item in Model)
+            {
+                <div class="form-check form_check_equipment_and_service">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        廚房
+                    </label>
+                </div>
+            }
+
+                @*<div class="form-check form_check_equipment_and_service">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        空調設備
+                    </label>
+                </div>
+
+                <div class="form-check form_check_equipment_and_service">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        WiFi
+                    </label>
+                </div>
+
+                <div class="form-check form_check_equipment_and_service">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        洗衣機
+                    </label>
+                </div>*@
+            </div>
+
+            <!-- 清除 -->
+            <div class="d-flex justify-content-between dropdown_edit_apply_and_delete_section">
+                <button class="btn btn_dropdown_edit_clear" onclick="edit_clear('clear_equipment_and_service')">清除</button>
+                <button class="btn btn-dark btn_edit_apply">套用</button>
+            </div>
+        </div>
     </div>
+
     <!-- 房源狀態 -->
     <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
             房源狀態
         </a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        </ul>
-    </div>
-    <!-- 更多篩選條件 -->
-    <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            更多篩選條件
-        </a>
+        <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
+            <div class="d-flex justify-content-between dropdown_roomStatus flex-wrap">
+                <div class="form-check form_check_roomStatus">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        已發布
+                    </label>
+                </div>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        </ul>
+                <div class="form-check form_check_roomStatus">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        取消發布
+                    </label>
+                </div>
+
+                <div class="form-check form_check_roomStatus">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        建立中
+                    </label>
+                </div>
+            </div>
+
+            <!-- 清除 -->
+            <div class="d-flex justify-content-between dropdown_edit_apply_and_delete_section">
+                <button class="btn btn_dropdown_edit_clear" onclick="edit_clear('clear_roomStatus')">清除</button>
+                <button class="btn btn-dark btn_edit_apply">套用</button>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -122,4 +212,8 @@
         </tbody>
     </table>
 </section>
+
+@section endJS{ 
+<script src="~/js/RoomOwner/HostList.js"></script>
+}
 
