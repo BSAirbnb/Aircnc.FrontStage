@@ -63,30 +63,11 @@ namespace Aircnc.FrontStage.Controllers.Guest
             if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
-            //var getRooms = _searchRoomService.GetRoom(searchVM).Select(SearchRoomDto => new SearchRoomViewModel
-            //{
-            //    RoomId = SearchRoomDto.RoomId,
-            //    UserId = SearchRoomDto.UserId,
-            //    HouseType = SearchRoomDto.HouseType,
-            //    RoomType = SearchRoomDto.RoomType,
-            //    Status = SearchRoomDto.Status,
-            //    RoomName = SearchRoomDto.RoomName,
-            //    Pax = SearchRoomDto.Pax,
-            //    RoomCount = SearchRoomDto.RoomCount,
-            //    BedCount = SearchRoomDto.BedCount,
-            //    BathroomCount = SearchRoomDto.BathroomCount,
-            //    Country = SearchRoomDto.Country,
-            //    City = SearchRoomDto.City,
-            //    District = SearchRoomDto.District,
-            //    UnitPrice = SearchRoomDto.UnitPrice,
-            //    Comments = SearchRoomDto.Comments,
-            //    Stars = SearchRoomDto.Stars,
-            //});
+            
             int activePage = id;
             int pageRows = 8; // show rows per page
             if (totalRows == 0)
             {
-                //totalRows = _searchRoomService.GetRoom(location).Count();
                 totalRows = rooms.Count();
             }
             int pages = 0; //計算總頁數
