@@ -37,6 +37,37 @@ namespace Aircnc.FrontStage.Services.Guest
                 UnitPrice = room.UnitPrice,
                 
             }).ToList();
+            //篩選入住人數
+            if (input.NavSearch.NumberOfGuests.HasValue)
+            {
+                rooms = rooms.Where(room => room.Pax >= input.NavSearch.NumberOfGuests.Value).ToList();
+            }
+            //篩選日期
+            if (input.NavSearch.StartDate.HasValue)
+            {
+                var bookedRooms = _dbRepository.GetAll<Order>().Where(room => room.City.Contains(input.NavSearch.Location)).ToList();
+                var bRsByDate = bookedRooms.Where(room => 
+                                (room.CkeckOut > input.NavSearch.StartDate && room.CkeckOut <= input.NavSearch.EndDate) ||
+                                (room.CkeckIn >= input.NavSearch.StartDate && room.CkeckIn < input.NavSearch.EndDate) ||
+                                (room.CkeckIn <= input.NavSearch.StartDate && room.CkeckOut >= input.NavSearch.EndDate)).Select(room => room.RoomId).ToList();
+                //排除日期上已被預訂的房源
+                foreach (var room in rooms.ToList())
+                {
+                    if (bRsByDate.Contains(room.RoomId))
+                    {
+                        rooms.Remove(room);
+                    }
+                }
+                //排除日期上被房東設為不出租的房源
+                foreach (var room in rooms.ToList())
+                {
+                    var notBook = _dbRepository.GetAll<RoomCalendar>().Where(x => x.RoomId == room.RoomId && (x.Date >= input.NavSearch.StartDate && x.Date <= input.NavSearch.EndDate) && x.RoomCalendarStatus == RoomCalendarStatusEnum.Hided).Select(x => x.RoomId).ToList();
+                    if (notBook.Contains(room.RoomId))
+                    {
+                        rooms.Remove(room);
+                    }
+                }
+            }
 
             foreach (var room in rooms)
             {
