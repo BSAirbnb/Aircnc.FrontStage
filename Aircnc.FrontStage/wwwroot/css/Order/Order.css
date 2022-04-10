@@ -33,20 +33,19 @@
 /*訂單圖片*/
 .room-picture {
     border-radius: 0 25px 25px 0;
-    outline: 1px solid red;
-/*    max-width:100%;
-*/    min-height:100%;
+    /*outline: 1px solid red;*/
+    min-height:100%;
     object-fit:cover;
 }
 
 .room-picture-container {
-    overflow: hidden;
+    min-height:400px;
+    position:relative;
+    top:-25px;
+    left:30px;
+    overflow:hidden;
 }
 
-.order-content {
-    /*    outline:1px solid blue;
-*/
-}
 
 /* 歷史紀錄區塊 */
 .history {
