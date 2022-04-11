@@ -1,8 +1,8 @@
 ﻿@{
     ViewData["Title"] = "你的旅程";
     Layout = "OrderListLayout";
-    int activePage = (int)ViewData["ActivePage"];
-    int pages = (int)ViewData["Pages"];
+    //int activePage = (int)ViewData["ActivePage"];
+    //int pages = (int)ViewData["Pages"];
 
 }
 @model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Order.OrderViewModel>
@@ -11,17 +11,17 @@
     <div class="container">
         <div class="row topic">
             <h1 class="topic fw-bold fs-2 ms-2 mt-3">旅程</h1>
-            @if (Model.Count() > 0)
-            {
+            @if (Model.Where(x=>x.Status==Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Future).Count()> 0)
+             {
                 <span class=" fw-bold fs-4 ms-2 mt-3">即將開始的預定</span>
-            }
+             }
         </div>
     </div>
 </div>
 
 <div class="container-fluid content-box mt-5">
     <div class="container">
-        @if (Model.Count() == 0)
+        @if (Model.Where(x => x.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Future).Count() == 0)
         {
             @*沒有資料的版面*@
             <div class="row  reservation rounded-2 mt-2">
@@ -75,8 +75,9 @@
                     </div>
                 }
             }
+            
             @*頁面切換按鈕*@
-            <nav aria-label="Page navigation example">
+            @*<nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
                         <a class="page-link" href=@(activePage == 1? "#":$"/Order/OrderList/{activePage-1}")>上一頁</a>
@@ -91,79 +92,83 @@
                         <a class="page-link" href=@(activePage == pages? "#":$"/Order/OrderList/{activePage+1}")>下一頁</a>
                     </li>
                 </ul>
-            </nav>
+            </nav>*@
         }
 
         <!-- 歷史紀錄區塊 -->
-        <div class="row history mt-3">
-            @if (Model.Count() > 0)
-            {
+        @if (Model.Where(x => x.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Past).Count() > 0)
+        {
+            <div class="row history mt-3">
                 <span class="fs-5 fw-bold mt-2">你去過的地方</span>
-            }
-            @foreach (var data in Model)
-            {
-                DateTime now = DateTime.Now;
-                DateTime checkinDate = DateTime.Parse(data.CkeckIn);
-                int result = DateTime.Compare(now, checkinDate);
-                if (result > 0)
+                @foreach (var data in Model)
                 {
-                    <div class="row mt-2">
-                        <div class="col-10">
-                            <a href="#">
-                                <div class="d-flex">
-                                    <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
-                                    <!-- 這裡的內容之後要動態生成 -->
-                                    <div class="history-detail-img">
-                                        <img src="https://picsum.photos/300/200/?random=10" class="rounded-3">
+                    DateTime now = DateTime.Now;
+                    DateTime checkinDate = DateTime.Parse(data.CkeckIn);
+                    int result = DateTime.Compare(now, checkinDate);
+                    if (result > 0)
+                    {
+                        <div class="row mt-2">
+                            <div class="col-10">
+                                <a href="#">
+                                    <div class="d-flex">
+                                        <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
+                                        <!-- 這裡的內容之後要動態生成 -->
+                                        <div class="history-detail-img">
+                                            <img src="https://picsum.photos/300/200/?random=10" class="rounded-3">
+                                        </div>
+                                        <div class="ms-3 history-detail-content">
+                                            <span class="d-block">@data.District</span>
+                                            <span class="d-block">房東:@data.RoomOwnerName</span>
+                                            <span>@data.CkeckIn - @data.CkeckOut</span>
+                                        </div>
                                     </div>
-                                    <div class="ms-3 history-detail-content">
-                                        <span class="d-block">@data.District</span>
-                                        <span class="d-block">房東:@data.RoomOwnerName</span>
-                                        <span>@data.CkeckIn - @data.CkeckOut</span>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
-        </div>
+            </div>
+        }
 
         <!-- 已取消區塊 -->
-        <div class="row cancel mt-3">
-            @if (Model.Count() > 0)
-            {
+        @if (Model.Where(x => x.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Cancel).Count() > 0)
+         {
+            <div class="row cancel mt-3">
                 <span class="fs-5 fw-bold mt-2">已取消的旅程</span>
-            }
-            @foreach (var cancel in Model)
-            {
-                <div class="row mt-3">
-                    <div class="col-10">
-                        <a href="#">
-                            <div class="d-flex">
-                                <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
-                                <!-- 這裡的內容之後要動態生成 -->
-                                <div class="cancel-detail-img">
-                                    @*<img src="https://picsum.photos/300/200/?random=20" class="rounded-3">*@
-                                    <img src="@cancel.RoomImg" class="rounded-3">
-                                </div>
-                                <div class="ms-3 cancel-detail-content">
-                                    <span class="d-block">@cancel.District</span>
-                                    <span class="d-block">房東:@cancel.RoomOwnerName</span>
-                                    <span>@cancel.CkeckIn - @cancel.CkeckOut</span>
-                                </div>
+                @foreach (var cancel in Model)
+                 {
+                    if(cancel.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Cancel)
+                    {
+                        <div class="row mt-3">
+                            <div class="col-10">
+                                <a href="#">
+                                    <div class="d-flex">
+                                        <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
+                                        <!-- 這裡的內容之後要動態生成 -->
+                                        <div class="cancel-detail-img">
+                                            @*<img src="https://picsum.photos/300/200/?random=20" class="rounded-3">*@
+                                            <img src="@cancel.RoomImg" class="rounded-3">
+                                        </div>
+                                        <div class="ms-3 cancel-detail-content">
+                                            <span class="d-block">@cancel.District</span>
+                                            <span class="d-block">房東:@cancel.RoomOwnerName</span>
+                                            <span>@cancel.CkeckIn - @cancel.CkeckOut</span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </div>
-            }
+                        </div>
+                    }
+                 }
 
-            <!-- 找不到預定區塊 -->
-            <div class="not-found mt-3">
-                <span>在這裡找不到預訂？</span>
-                <a href="#" class="fw-bold info">前往說明中心</a>
+                <!-- 找不到預定區塊 -->
+                <div class="not-found mt-3">
+                    <span>在這裡找不到預訂？</span>
+                    <a href="#" class="fw-bold info">前往說明中心</a>
+                </div>
             </div>
-        </div>
+
+        }
     </div>
 </div>
 
