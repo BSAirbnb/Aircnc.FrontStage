@@ -4,19 +4,22 @@
     const addGuestsBtn = document.getElementById('add-guests')
     const guestNumbers = document.getElementById('guestNumbers')
 
-    let guests = 0
+    let guests = guestNumbers.value
 
+    guestNumbers.addEventListener('keydown', function(e) {
+        e.preventDefault()
+    })
     minusGuestsBtn.addEventListener('click', function () {
         if (guests > 0) {
             guests--
-            guestNumbers.value = `${guests}`
+            guestNumbers.setAttribute('value', guests)
         }
     })
 
     addGuestsBtn.addEventListener('click', function () {
         if (guests < 50) {
             guests++
-            guestNumbers.value = `${guests}`
+            guestNumbers.setAttribute('value', guests)
         }
     })
 
@@ -25,22 +28,23 @@
     const addBtn = document.getElementById('add')
     const guestNum = document.getElementById('guestNum')
 
-    console.log(minusBtn)
-    console.log(addBtn)
-    console.log(guestNum)
-    let guestForBooking = 0
+    let guestForBooking = guestNum.value
+
+    guestNum.addEventListener('keydown', function (e) {
+        e.preventDefault()
+    })
 
     minusBtn.addEventListener('click', function () {
         if (guestForBooking > 0) {
             guestForBooking--
-            guestNum.value = `${guestForBooking}`
+            guestNum.setAttribute('value', guestForBooking)
         }
     })
 
     addBtn.addEventListener('click', function () {
         if (guestForBooking < 50) {
             guestForBooking++
-            guestNum.value = `${guestForBooking}`
+            guestNum.setAttribute('value', guestForBooking)
         }
     })
 }

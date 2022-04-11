@@ -6,6 +6,7 @@
     ViewData["Title"] = "Room Detail";
     Layout = "Guest/_GuestLayout";
     TempData["roomId"] = @Model.RoomDetailVM.RoomId;
+    var isLoggedIn = User.Identity.IsAuthenticated;
 }
 
 <div id="room-img-carousel" class="carousel slide w-50 mx-auto" data-bs-ride="carousel">
@@ -48,8 +49,14 @@
                         <span>@Model.RoomDetailVM.AvgStars.ToString("N1")&nbsp;</span>
                         <a href="#reviews">@Model.RoomDetailVM.ReviewsCount 則評價</a>
                         <span>@Model.RoomDetailVM.District&nbsp;@Model.RoomDetailVM.City&nbsp;</span>
-                        <form method="post" asp-controller="RoomDetail" asp-action="AddToWishList"><button type="submit" class="btn btn-secondary">加入願望清單</button></form>
-                        <span class="text-danger">@TempData["AddWishListResult"]</span>
+                        @if (isLoggedIn)
+                        {
+                            <div class="d-flex">
+                                <form method="post" asp-controller="RoomDetail" asp-action="AddToWishList"><button type="submit" class="btn btn-secondary">加入願望清單</button></form>
+                                <span class="text-danger align-self-center mx-3">@TempData["AddWishListResult"]</span>
+                            </div>
+                        }
+
                     </div>
                 </div>
 
@@ -138,7 +145,7 @@
                                     <span class="col-4">人數</span>
                                     <div class="d-flex justify-content-center">
                                         <div id="minus" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
-                                        <input id="guestNum" type="text" class="form-control w-25 text-center"  value="@TempData["numberOfGuests"]">
+                                        <input id="guestNum" type="text" class="form-control w-25 text-center"  value="@TempData["numberOfGuests"]" onkeypress="keyPressDisabled(e)">
                                         <div id="add" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
                                     </div>
                                 </div>
@@ -169,41 +176,7 @@
                         </div>
                         <span>@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
                     </div>
-                    @*<div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>
-                    <div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>
-                    <div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>
-                    <div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>
-                    <div class="col-6 my-2 d-flex justify-content-between">
-                        <span class="fs-6 px-2">乾淨度</span>
-                        <div id="review-bar" class="">
-                            <div id="review-bar-dark"></div>
-                        </div>
-                        <span>4.9</span>
-                    </div>*@
+                    
                 </div>
             </div>
         </div>
