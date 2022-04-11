@@ -1,4 +1,8 @@
-﻿.logo {
+﻿.btn:focus {
+     box-shadow:none;
+}
+
+.logo {
     margin-left: 25px;
 }
 
@@ -12,7 +16,7 @@ a {
 }
 
 /* 今天 */
-.host_HomePage_today_container {
+    .host_HomePage_today_container {
     width: 100%;
     height: 10hv;
     background: linear-gradient(to right, #42299d, #d02377);
@@ -90,7 +94,7 @@ a {
 }
 
 /* 你的預定 */
-.host_your_orders {
+.host_your_orders { 
     min-height: 50vh;
     background-color: #f7f7f7;
     border-radius: 10px;
@@ -115,9 +119,31 @@ a {
     font-weight: 600;
 }
 
+/*tabs*/
+.nav-tabs {
+    border-bottom:none
+}
+
+.nav-link {
+     color: #000; 
+}
+
+.nav-link:hover{
+    color: #000
+}
+
+.nav-tabs .nav-link.active{
+    font-weight:600;
+    color:#000
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+
 /* 出租秘訣與最新消息  */
 .tips_and_news_container {
-    background-color: #000;
+background-color: transparent;
 }
 
 .p_tips_and_news {
