@@ -39,7 +39,7 @@ namespace Aircnc.FrontStage.Services.RoomOwner
             {
                 return "即將入住";
             }
-            if (new TimeSpan(now.Ticks - data.CkeckIn.Ticks).Days > 0 && new TimeSpan(data.CkeckOut.Ticks - now.Ticks).Days > 0)
+            if (new TimeSpan(now.Ticks - data.CkeckIn.Ticks).Days == 0 && new TimeSpan(data.CkeckOut.Ticks - now.Ticks).Hours > 0)
             {
                 return "目前接待中";
             }
