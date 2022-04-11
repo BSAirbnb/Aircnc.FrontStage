@@ -39,34 +39,35 @@ namespace Aircnc.FrontStage.Controllers
                 Status = x.Status
 
             });
-
-
-            #region//分頁功能
-            if (totalRows == 0)
-            {
-                totalRows = _orderService.GetAllOrderByUserId(userId).Count();
-            }
-
-            int activePage = id; //目前所在分頁
-            int pageRows = 2; //每頁幾筆資料
-
-            //計算頁數
-            if (totalRows % pageRows == 0)
-            {
-                Pages = totalRows / pageRows;
-            }
-            else
-            {
-                Pages = (totalRows / pageRows) + 1;
-            }
-            int startRow = (activePage - 1) * pageRows; //紀錄起始index
-            var result = orderList.OrderBy(x => x.CkeckIn).Skip(startRow).Take(pageRows);
-            
-            ViewData["ActivePage"] = id; //active分頁碼
-            ViewData["Pages"] = Pages; //總頁數
-            #endregion
-
+            var result = orderList.OrderBy(x => x.CkeckIn);
             return View(result);
+
+
+            //#region//分頁功能
+            //if (totalRows == 0)
+            //{
+            //    totalRows = _orderService.GetAllOrderByUserId(userId).Count();
+            //}
+
+            //int activePage = id; //目前所在分頁
+            //int pageRows = 2; //每頁幾筆資料
+
+            ////計算頁數
+            //if (totalRows % pageRows == 0)
+            //{
+            //    Pages = totalRows / pageRows;
+            //}
+            //else
+            //{
+            //    Pages = (totalRows / pageRows) + 1;
+            //}
+            //int startRow = (activePage - 1) * pageRows; //紀錄起始index
+            //var result = orderList.OrderBy(x => x.CkeckIn).Skip(startRow).Take(pageRows);
+
+            //ViewData["ActivePage"] = id; //active分頁碼
+            //ViewData["Pages"] = Pages; //總頁數
+            //#endregion
+
         }
 
         //public IActionResult HistoryList() //撈歷史訂單
