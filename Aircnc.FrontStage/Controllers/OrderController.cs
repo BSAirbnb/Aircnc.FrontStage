@@ -40,6 +40,8 @@ namespace Aircnc.FrontStage.Controllers
 
             });
 
+
+            #region//分頁功能
             if (totalRows == 0)
             {
                 totalRows = _orderService.GetAllOrderByUserId(userId).Count();
@@ -62,9 +64,37 @@ namespace Aircnc.FrontStage.Controllers
             
             ViewData["ActivePage"] = id; //active分頁碼
             ViewData["Pages"] = Pages; //總頁數
+            #endregion
 
             return View(result);
         }
+
+        //public IActionResult HistoryList() //撈歷史訂單
+        //{
+        //    int userId = int.Parse(User.Identity.Name);
+        //    var historyList = _orderService.GetAllOrderByUserId(userId).Where(x => x.Status == OrderStatusEnum.Past).Select(x => new OrderViewModel
+        //    {
+        //        CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
+        //        CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
+        //        RoomName = x.RoomName,
+        //        City = x.City,
+        //        District = x.District,
+        //        Street = x.Street,
+        //        RoomImg = x.RoomImg,
+        //        RoomOwnerName = x.RoomOwnerName,
+        //        Status = x.Status
+
+        //    });
+        //    return View(historyList);
+        //}
+
+        //public IActionResult CancelList()
+        //{
+        //    int userId = int.Parse(User.Identity.Name);
+        //    var cancelList = _orderService.GetOrderStatus();
+
+        //    return View(cancelList);
+        //}
 
     }
 }
