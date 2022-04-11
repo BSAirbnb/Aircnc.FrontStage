@@ -1,4 +1,5 @@
-﻿using Aircnc.FrontStage.Models.DataModels.Personal;
+﻿using Aircnc.FrontStage.Models.DataModels.Account.Personal;
+using Aircnc.FrontStage.Models.DataModels.Personal;
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.Member;
 using Aircnc.FrontStage.Models.ViewModels.Personal;
@@ -14,18 +15,18 @@ namespace Aircnc.FrontStage.Controllers
 {
     public class PersonalController : Controller
     {
-        private readonly DBRepository _db;
+        private readonly DBRepository _dBRepository;
 
-        public PersonalController(DBRepository db)
+        public PersonalController(DBRepository dBRepository)
         {
-            _db = db;
+            _dBRepository = dBRepository;
 
         }
         [Authorize]
         public IActionResult PersonalBox() //帳號首頁
         {
             var userid = int.Parse(User.Identity.Name);
-            var person = _db.GetAll<User>().Where(x => x.UserId == userid).Select(x => new PersonalViewModel
+            var person = _dBRepository.GetAll<User>().Where(x => x.UserId == userid).Select(x => new PersonalViewModel
             {
                 Name = x.Name,
                 Email = x.Email
@@ -38,7 +39,7 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult Personal_Details()
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
+            var target = _dBRepository.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new MemberViewModel
             {
                 Name = target.Name,
@@ -51,17 +52,30 @@ namespace Aircnc.FrontStage.Controllers
             return View(result);
         }
 
+        [HttpPost]
+        [Authorize]
+        public IActionResult SendtoDatabase([FromBody] SendUrlDataModel request)
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _dBRepository.GetEntityById<User>(userid);
+            target.Photo = request.Photo;
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
+
+            return new JsonResult("");
+        }
+
         [Authorize]
         public IActionResult Personaldata() //個人資料
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _db.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
+            var target = _dBRepository.GetAll<User>().FirstOrDefault(user => user.UserId == userid);
             var result = new PersonalViewModel
             {
                 Name = target.Name,
                 Address = target.Address,
                 Email = target.Email,
-                //Gender = (bool)target.Gender,
+                Gender = target.Gender == false ? "女性" : "男性",
                 Phone = target.Phone,
                 //Birthday = target.Birthday.ToString("yyyy/MM/dd"),
                 EmergencyContactName = target.EmergencyContactName,
@@ -74,10 +88,36 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult PostChangeName([FromBody] ChangePersonalDataModel request) //個人資料 - 更新名字
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _db.GetEntityById<User>(userid);
+            var target = _dBRepository.GetEntityById<User>(userid);
             target.Name = request.Name;
-            _db.Update<User>(target);
-            _db.Save();
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
+
+            return new JsonResult("");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PostChangeGender([FromBody] ChangePersonalDataModel request) //個人資料 - 更新性別
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _dBRepository.GetEntityById<User>(userid);
+            target.Gender = request.Gender == "男性" ? true : false;
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
+
+            return new JsonResult("");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PostChangeBirthday([FromBody] ChangePersonalDataModel request) //個人資料 - 更新生日
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _dBRepository.GetEntityById<User>(userid);
+            target.Birthday = request.Birthday;
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
 
             return new JsonResult("");
         }
@@ -87,36 +127,23 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult PostChangeEmail([FromBody] ChangePersonalDataModel request) //個人資料 - 更新email
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _db.GetEntityById<User>(userid);
+            var target = _dBRepository.GetEntityById<User>(userid);
             target.Email = request.Email;
-            _db.Update<User>(target);
-            _db.Save();
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
 
             return new JsonResult("");
         }
-
-        //[HttpPost]
-        //[Authorize]
-        //public IActionResult PostChangeGender([FromBody] ChangePersonalDataModel request) //個人資料 - 更新性別
-        //{
-        //    var userid = int.Parse(User.Identity.Name);
-        //    var target = _db.GetEntityById<User>(userid);
-        //    target.Gender = request.Gender;
-        //    _db.Update<User>(target);
-        //    _db.Save();
-
-        //    return new JsonResult("");
-        //}
 
         [HttpPost]
         [Authorize]
         public IActionResult PostChangePhone([FromBody] ChangePersonalDataModel request) //個人資料 - 更新電話
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _db.GetEntityById<User>(userid);
+            var target = _dBRepository.GetEntityById<User>(userid);
             target.Phone = request.Phone;
-            _db.Update<User>(target);
-            _db.Save();
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
 
             return new JsonResult("");
         }

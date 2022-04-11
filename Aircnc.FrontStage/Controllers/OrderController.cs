@@ -39,54 +39,56 @@ namespace Aircnc.FrontStage.Controllers
                 Status = x.Status
 
             });
-
-
-            #region//分頁功能
-            if (totalRows == 0)
-            {
-                totalRows = _orderService.GetAllOrderByUserId(userId).Count();
-            }
-
-            int activePage = id; //目前所在分頁
-            int pageRows = 2; //每頁幾筆資料
-
-            //計算頁數
-            if (totalRows % pageRows == 0)
-            {
-                Pages = totalRows / pageRows;
-            }
-            else
-            {
-                Pages = (totalRows / pageRows) + 1;
-            }
-            int startRow = (activePage - 1) * pageRows; //紀錄起始index
-            var result = orderList.OrderBy(x => x.CkeckIn).Skip(startRow).Take(pageRows);
-            
-            ViewData["ActivePage"] = id; //active分頁碼
-            ViewData["Pages"] = Pages; //總頁數
-            #endregion
-
+            var result = orderList.OrderBy(x => x.CkeckIn);
             return View(result);
+
+
+            //#region//分頁功能
+            //if (totalRows == 0)
+            //{
+            //    totalRows = _orderService.GetAllOrderByUserId(userId).Count();
+            //}
+
+            //int activePage = id; //目前所在分頁
+            //int pageRows = 2; //每頁幾筆資料
+
+            ////計算頁數
+            //if (totalRows % pageRows == 0)
+            //{
+            //    Pages = totalRows / pageRows;
+            //}
+            //else
+            //{
+            //    Pages = (totalRows / pageRows) + 1;
+            //}
+            //int startRow = (activePage - 1) * pageRows; //紀錄起始index
+            //var result = orderList.OrderBy(x => x.CkeckIn).Skip(startRow).Take(pageRows);
+
+            //ViewData["ActivePage"] = id; //active分頁碼
+            //ViewData["Pages"] = Pages; //總頁數
+            //#endregion
+
         }
 
-        //public IActionResult HistoryList() //撈歷史訂單
-        //{
-        //    int userId = int.Parse(User.Identity.Name);
-        //    var historyList = _orderService.GetAllOrderByUserId(userId).Where(x => x.Status == OrderStatusEnum.Past).Select(x => new OrderViewModel
-        //    {
-        //        CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
-        //        CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
-        //        RoomName = x.RoomName,
-        //        City = x.City,
-        //        District = x.District,
-        //        Street = x.Street,
-        //        RoomImg = x.RoomImg,
-        //        RoomOwnerName = x.RoomOwnerName,
-        //        Status = x.Status
+        public IActionResult HistoryList() //撈歷史訂單
+        {
+            int userId = int.Parse(User.Identity.Name);
+            var historyList = _orderService.GetHistoryList(userId).Select(x => new HistoryListViewModel
+            {
+                CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
+                CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
+                RoomName = x.RoomName,
+                City = x.City,
+                District = x.District,
+                Street = x.Street,
+                RoomImg = x.RoomImg,
+                RoomOwnerName = x.RoomOwnerName,
+                Status = x.Status
 
-        //    });
-        //    return View(historyList);
-        //}
+            });
+            var result = historyList.OrderBy(x => x.CkeckIn).Take(3);
+            return View(result);
+        }
 
         //public IActionResult CancelList()
         //{

@@ -11,7 +11,8 @@ namespace Aircnc.FrontStage.Models.ViewModels.Personal
         public string Address{ get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public bool? Gender { get; set; }
+        public string Gender { get; set; }
+        
         public DateTime? Birthday { get; set; }
 
         public string EmergencyContactName { get; set; }

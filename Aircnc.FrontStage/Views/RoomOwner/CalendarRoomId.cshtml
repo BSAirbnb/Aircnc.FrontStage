@@ -26,6 +26,12 @@
             border-radius: 5px;
             padding-left: 2rem;
         }
+        .chosed{
+            color :red;
+        }
+        .btn:focus {
+            box-shadow:none;
+        }
     </style>
 }
 
@@ -74,12 +80,12 @@
 
             <!-- 選項 -->
             <div class="col-3 border-start" id="Change_area">
-                <div class="row mt-5  ">
+                @*<div class="row mt-5"  >
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
                         <div class="fs-5 mt-auto mb-auto fw-bolder">可供預定</div>
                         <div>
-                            <button class="btn fs-2"><i class="far fa-check-circle"></i></button>
+                            <button class="btn fs-2 "><i class="far fa-check-circle"></i></button>
                             <button class="btn fs-2"><i class="far fa-times-circle"></i></button>
                         </div>
                     </div>
@@ -90,7 +96,7 @@
                                    onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
 
 
@@ -127,7 +133,7 @@
         const editTitleInput = document.querySelector('#edit-title')
 
         const todoModalText = document.querySelector('.todo-modal-text')
-
+        const Change_area = document.querySelector('#Change_area')
         let count = document.querySelector('.count')
 
         window.onload = function () {
@@ -170,6 +176,7 @@
                 let tr = document.createElement('tr')
                 for (let col = 0; col < 7; col++) {
                     let td = document.createElement('td')
+                    td.setAttribute('id',`td_${year}_${month + 1}_${day}`)
                     //價格標籤
                     let div = document.createElement('div')
                     div.classList.add("mt-3")
@@ -195,11 +202,15 @@
                                     //    Able = 3
                                     if (x.RoomCalendarStatus == 1)
                                     {
-                                        td.setAttribute('style','background-color: #ccc')
+                                        td.setAttribute('style', 'background-color: #FCE6E4')
                                     }
                                     if (x.RoomCalendarStatus == 2) {
-                                        td.classList.add('bg-secondary')
+                                        td.setAttribute('style', 'background-color: #ccc')
+                                        div.setAttribute('class', 'd-none')
+
                                     }
+                                    //今天和之後 邏輯寫在這邊
+
                                     
                                 }
 
@@ -219,20 +230,211 @@
                                 td.appendChild(TodaySpan)
 
                             }
-                            //今天和之後 邏輯寫在這邊
-                            if (day >= today.getDate() && month == today.getMonth() && year ==
-                                today.getFullYear())
-                            {
+                            if (day >= today.getDate() && month >= today.getMonth() && year >=
+                                today.getFullYear() || day >= today.getDate() && month == today.getMonth() && year ==
+                                today.getFullYear() ) {
                                 //生成右側選項
                                 //將值接過去
                                 //找出有沒有這天的資料from calendar
                                 //沒有的話價格跟預定都帶預設值
                                 //有的話要帶calendar表的值
                                 //寫Crud功能
+                                
+                                    
+                                //日期
+                                let row = document.createElement('div')
+                                    
+                                row.setAttribute('class', 'row mt-5 d-none')
+                                row.setAttribute('id', `row_${year}_${month + 1}_${day}`)
+                                    let datediv = document.createElement('div')
+                                    datediv.setAttribute('class', 'col-12 fs-3 fw-bolder mt-5 ')
+                                    datediv.innerText = `${month+1}月 ${day}日`
+                                    //調整房源狀態
+                                    let hidediv = document.createElement('div')
+                                    hidediv.setAttribute('class', 'col-12 d-flex justify-content-between mt-5 pb-5 border-bottom')
+                                    let bookablediv = document.createElement('div')
+                                    bookablediv.setAttribute('class', "fs-5 mt-auto mb-auto fw-bolder")
+                                    bookablediv.innerText = '可供預定'
+                                    let buttondiv = document.createElement('div')
+                                    let btn_unable = document.createElement('button')
+
+
+
+                                    let i_x = document.createElement('i')
+                                    i_x.setAttribute('class', 'far fa-times-circle')
+                                    
+                                    let i_v = document.createElement('i')
+
+                                    i_v.setAttribute('class', 'far fa-check-circle')
+                                    let btn_able = document.createElement('button')
+                                    btn_able.setAttribute('class', 'btn fs-2')
+                                    
+                                    /*buttondiv.setAttribute('id', `buttondiv_${year}${month + 1}${day}`)*/
+                                    btn_unable.setAttribute('id', `btn_unable_${year}_${month + 1}_${day}`)
+                                    btn_able.setAttribute('id', `btn_able_${year}_${month + 1}_${day}`)
+
+
+                                //fetch
+                                //當點回可預訂要顯示平日樣子
+                                btn_able.addEventListener('click', () => {
+                                    let d = btn_able.id.replace('btn_able_','')
+                                    
+                                    let tdTarget = document.querySelector(`#td_${d}`)
+                                    let divtarget = tdTarget.querySelector('div')
+                                    divtarget.setAttribute('class','mb-3 mt-3')
+                                    
+                                    
+                                    tdTarget.setAttribute('style','background-color: white')
+                                })
+                                
+                                //fetch
+                                //當點到不可預定要屏蔽
+                                    btn_unable.addEventListener('click', () => {
+                                    let d = btn_unable.id.replace('btn_unable_', '')
+                                    
+                                    let tdTarget = document.querySelector(`#td_${d}`)
+                                    console.log(tdTarget)
+                                    let divtarget = tdTarget.querySelector('div')
+                                    divtarget.setAttribute('class', 'd-none')
+                                    
+
+                                    tdTarget.setAttribute('style', 'background-color: #ccc')
+                                })
+                                
+                                   
+ 
+                                btn_unable.setAttribute('class', 'btn fs-2')
+                               
+
+                                btn_unable.appendChild(i_x)
+
+                                btn_able.appendChild(i_v)
+                                buttondiv.appendChild(btn_unable)
+                                buttondiv.appendChild(btn_able)
+                                //按鍵選取到的反應
+                                let btns = buttondiv.querySelectorAll('button')
+                                console.log(btns)
+                                btns.forEach(btn => {
+                                    btn.addEventListener('click', () => {
+                                        btns.forEach(btn => {
+                                            btn.setAttribute('class', "btn fs-2")
+                                        })
+                                        btn.setAttribute('class', "btn fs-2 chosed")
+                                    })
+                                })
+                                    hidediv.appendChild(bookablediv)
+                                    hidediv.appendChild(buttondiv)
+                                    row.appendChild(datediv)
+                                    row.appendChild(hidediv)
+
+                                let pricearea = document.createElement('div')
+                                pricearea.setAttribute('class', 'col-12 border-bottom')
+                                let pricetext = document.createElement('div')
+                                pricetext.setAttribute('class', 'mt-3 fs-5 fw-bolder')
+                                pricetext.innerText = "每晚訂價"
+                                let input_ctrl = document.createElement('div')
+                                input_ctrl.setAttribute('class', "w-100 mt-3 mb-5")
+                                let input = document.createElement('input')
+                                input.type = "text"
+                                input.id = `priceinput_${year}_${month + 1}_${day}`
+
+                                let priceinputbtn = document.createElement('button')
+                                priceinputbtn.setAttribute('class', "btn btn-dark mt-1 mb-3")
+                                priceinputbtn.innerText = "儲存"
+                                priceinputbtn.setAttribute('id', `priceinputbtn_${year}_${month + 1}_${day}`)
+
+                                
+                    
+
+                                input.value = parseInt(div.innerText.replace('$', '').replace('TWD', '').trim())
+                                input.setAttribute('class', 'w-75 input_price')
+                                /*input.setAttribute('oninput', "value=value.replace(/^(0+)|[^\d]+/g,'')")*/
+                                input.setAttribute('oninput', "this.value = this.value.replace(/[^0-9]/g, '');")
+                                //儲存改變價格
+
+                                //這邊 要寫改變價格
+                                priceinputbtn.addEventListener('click', () => {
+                                    let d = priceinputbtn.id.replace('priceinputbtn_', '')
+                                    let currentinput = document.querySelector(`#priceinput_${d}`)
+                                    let tdTarget = document.querySelector(`#td_${d}`)
+                                    let divtarget = tdTarget.querySelector('div')
+                                    divtarget.innerText = "$" + parseInt(currentinput.value) + " TWD"
+
+
+                                    tdTarget.setAttribute('style', 'background-color: white')
+                                })
+                                input_ctrl.appendChild(input)
+                                pricearea.appendChild(pricetext)
+                                pricearea.appendChild(input_ctrl)
+                                pricearea.appendChild(priceinputbtn)
+                                row.appendChild(pricearea)
+
+
+
+
+
+
+
+
+                                    //< div class="col-12 border-bottom" >
+                                //    <div class="mt-3 fs-5 fw-bolder">每晚訂價</div>
+                                //    <div id="input_ctrl " class="w-100 mt-3 mb-5">
+                                //        <input type="text" value="500" class="w-75 input_price"
+                                //            onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+
+                                //    </div>
+
+
+
+
+                                             //<div class="col-12 fs-3 fw-bolder mt-5 ">{{ 4月9日 週六 }}</div>datediv
+                                //<div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">hidediv
+                                //    <div class="fs-5 mt-auto mb-auto fw-bolder">可供預定</div>bookablediv
+                                //    <div>buttondiv
+                                //        <button class="btn fs-2"><i class="far fa-check-circle"></i></button>
+                                //        <button class="btn fs-2"><i class="far fa-times-circle"></i></button>
+                                //    </div>
+                                //</div>
+                                //
+
+
+
+
+
+                                Change_area.appendChild(row)
+                                 //如果日期跟今天一樣且狀態為被屏蔽 要點進去就顯示已經被取消
+                                jsonCalendar.forEach(x => {
+                                    if (x.RoomCalendarStatus == 2 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
+                                        btn_unable.setAttribute('class', 'btn fs-2 chosed')
+                                    }
+                                    if (x.RoomCalendarStatus == 1 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
+                                        row.innerText = ''
+                                    }
+                                })
+                                td.addEventListener('click', () => {
+                                    let rows = Change_area.querySelectorAll('.row')
+                                    
+                                    rows.forEach(r => {
+                                        r.setAttribute('class','row mt-5 d-none')
+                                    })
+                                    row.setAttribute('class' ,'row mt-5 d-block')
+                                })
+
+
+
+                                
+
+
+
+
+
+                   
+
 
 
 
                             }
+
 
                             td.appendChild(div)
 
@@ -251,7 +453,8 @@
                 dateArea.append(tr)
             }
 
-        }
+            }
+
 
         function lastMonth() {
             month--
@@ -290,9 +493,6 @@
 
             })
 
-                //< li > <a class="dropdown-item" href="#">Action</a></li >
-                //<li><a class="dropdown-item" href="#">Another action</a></li>
-                //<li><a class="dropdown-item" href="#">Something else here</a></li>
 
         }
         </script>

@@ -155,6 +155,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
 
+        [Authorize]
         public IActionResult Calendar()
         {
             var userid = int.Parse(User.Identity.Name);

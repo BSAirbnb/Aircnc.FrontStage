@@ -35,5 +35,26 @@ namespace Aircnc.FrontStage.Services
             }) ;
         }
 
+
+        public IEnumerable<HistoryListDto> GetHistoryList(int userId)
+        {
+            return (IEnumerable<HistoryListDto>)_dbRepository.GetAll<Order>().Where(order => order.Status == OrderStatusEnum.Past).Select(order => new OrderDto
+            {
+                OrderId = order.OrderId,
+                RoomName = order.RoomName,
+                CkeckIn = order.CkeckIn,
+                CkeckOut = order.CkeckOut,
+                Country = order.Country,
+                City = order.City,
+                District = order.District,
+                Street = order.Street,
+                RoomImg = _dbRepository.GetAll<RoomImg>()
+                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).FirstOrDefault(),
+                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name,
+                Status = order.Status
+            });
+
+        }
+
     }
 }

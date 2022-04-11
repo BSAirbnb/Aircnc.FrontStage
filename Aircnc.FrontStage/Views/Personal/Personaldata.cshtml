@@ -29,9 +29,9 @@
                         </button>
                     </div>
                     <span id="show_name">@Model.Name</span>
-                    <div class="collapse" id="name">
+                    <div class="collapse mt-2" id="name">
                         <div class="full-name d-flex">
-                            <div class="form-floating w-50">
+                            <div class="form-floating w-100">
                                 <input type="text" class="form-control" id="input_name">
                                 <label for="name">名字</label>
                             </div>
@@ -48,12 +48,12 @@
                             編輯
                         </a>
                     </div>
-                    <span id="show_gender">男性</span>
-                    <div class="collapse" id="gender">
+                    <span id="show_gender">@Model.Gender</span>
+                    <div class="collapse mt-2" id="gender">
                         <div class="dropdown" id="select-gender">
                             <select class="form-select" aria-label="select-gender" id="select_gender">
-                                <option value="true" selected>男性</option>
-                                <option value="false">女性</option>
+                                <option value="男性">男性</option>
+                                <option value="女性">女性</option>
                             </select>
                         </div>
                         <div>
@@ -64,15 +64,15 @@
                     <div class="each-item">
                         <h5>出生日期</h5>
                         <a class="btn edit-btn" data-bs-toggle="collapse" href="#birthday" role="button"
-                           aria-expanded="false" aria-controls="birthday">
+                           aria-expanded="false" aria-controls="birthday" id="btn_edit_birthday">
                             編輯
                         </a>
                     </div>
-                    <span>1971/6/4</span>
-                    <div class="collapse" id="birthday">
+                    <span>@Model.Birthday</span>
+                    <div class="collapse mt-2" id="birthday">
                         <input type="date" class="form-control" id="date" name="date">
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_birthday">
                         </div>
                     </div>
                     <hr>
@@ -85,7 +85,7 @@
                         </button>
                     </div>
                     <span id="span_email">@Model.Email</span>
-                    <div class="collapse" id="email">
+                    <div class="collapse mt-2" id="email">
                         <div class="full-name d-flex">
                             <div class="form-floating w-50">
                                 <input type="text" class="form-control" id="show_email">
@@ -105,7 +105,7 @@
                         </button>
                     </div>
                     <span id="show_phone">@Model.Phone</span>
-                    <div class="dropdown collapse" id="phone_number">
+                    <div class="dropdown collapse mt-2" id="phone_number">
                         <div class="form-floating mt-2 w-100">
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
@@ -149,8 +149,8 @@
                             編輯
                         </a>
                     </div>
-                    <span>新北市新店區</span>
-                    <div class="collapse" id="adress">
+                    <span id="show_address">新北市新店區</span>
+                    <div class="collapse mt-2" id="adress">
                         <div class="form-floating mt-2 w-50">
                             <select class="form-select" id="countrySelect"
                                     aria-label="Floating label select example">
@@ -185,8 +185,8 @@
                             新增
                         </a>
                     </div>
-                    <span>尚未提供</span>
-                    <div id="emergency_contact" class="collapse">
+                    <span id="show_emergency_contact">尚未提供</span>
+                    <div id="emergency_contact" class="collapse mt-2">
                         <input type="text" class="form-control inp mt-2" placeholder="名稱">
                         <input type="text" class="form-control inp mt-2" placeholder="關係">
                         <input type="text" class="form-control inp mt-2" placeholder="偏好語言">
@@ -212,7 +212,7 @@
                             <input type="text" class="form-control inp mt-2 w-75" placeholder="電話號碼">
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input class="save_btn" type="button" value="儲存" id="btn_save_name">
                         </div>
                     </div>
                     <hr>

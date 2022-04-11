@@ -9,10 +9,11 @@
                 <div class="drop-zone mt-4 mb-5">
                     <span class="drop-zone__prompt">
                         <img src="@Model.Photo" class="rounded-circle profile-picture">
-                        <a href="" id="update-photo">更新相片</a>
                     </span>
-                    <input type="file" name="myFile" class="drop-zone__input">
+                    <input type="file" name="myFile" class="drop-zone__input" id="drop-zone__input">
                 </div>
+                <h5 id="update-photo">更新相片</h5>
+                <p id="url"></p>
                 <div class="review-container my-4 d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                          class="bi bi-star" viewBox="0 0 16 16">
@@ -93,7 +94,7 @@
                         <h5>關於我</h5>
                     </div>
                     <div class="my-2" id="about_me_output">
-                        Native Kuala Lumpur boy who loves meeting new people and learn about different cultures. Hope to be able to travel the world someday. Food lover and Avid fan of photography specifically in Street Photography.
+                        <p>Food lover and Avid fan of photography specifically in Street Photography.</p>
                     </div>
                     <div class="residency my-3">
                         <i class="fas fa-home"></i>
@@ -283,120 +284,7 @@
     </div>
 </section>
 
-<script>
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
-        console.log(dropZoneElement);
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-            }
-
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
-    });
-
-    function updateThumbnail(dropZoneElement, file) {
-        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-            dropZoneElement.querySelector(".drop-zone__prompt").remove();
-        }
-
-        if (!thumbnailElement) {
-            thumbnailElement = document.createElement("div");
-            thumbnailElement.classList.add("drop-zone__thumb");
-            dropZoneElement.appendChild(thumbnailElement);
-        }
-
-        thumbnailElement.dataset.label = file.name;
-
-        if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-            };
-        } else {
-            thumbnailElement.style.backgroundImage = null;
-        }
-    }
-
-
-    function click_tenant_review() {
-        document.getElementById('landlord_review').style.borderBottomColor = "#ffffff";
-        document.getElementById('tenant_review').style.borderBottom = "medium solid #222222";
-    }
-
-    function click_landlord_review() {
-        document.getElementById('tenant_review').style.borderBottomColor = "#ffffff";
-        document.getElementById('landlord_review').style.borderBottom = "medium solid #222222";
-    }
-
-    // 編輯個人資訊 //
-    const about_me_input = document.querySelector('#about_me_input');
-    const about_me_output = document.querySelector('#about_me_output');
-    const location_input = document.querySelector('#location_input');
-    const location_output = document.querySelector('#location_output');
-    const language_input = document.querySelector('#language_input');
-    const language_output = document.querySelector('#language_output');
-    const cancel_btn = document.querySelector('#cancel_btn');
-    const save_btn = document.querySelector('#save_btn');
-
-    document.querySelector('.edit-personal-data').addEventListener("click", () => {
-        document.querySelector('.edit-personal-data').disabled = true;
-        cancel_btn.style.visibility = 'visible';
-        save_btn.style.visibility = 'visible';
-        document.querySelector('.show_personal_data').style.display = 'none';
-        about_me_input.value = about_me_output.innerText;
-        location_input.value = location_output.innerText;
-        language_input.value = language_output.innerText;
-    });
-
-    save_btn.addEventListener("click", () => {
-        about_me_output.innerText = about_me_input.value;
-        location_output.innerText = location_input.value;
-        language_output.innerText = language_input.value;
-
-        cancel_btn.style.visibility = 'hidden';
-        save_btn.style.visibility = 'hidden';
-        document.querySelector('.edit-personal-data').disabled = false;
-        document.querySelector('.show_personal_data').style.display = 'inline';
-    });
-
-    cancel_btn.addEventListener("click", () => {
-        cancel_btn.style.visibility = 'hidden';
-        save_btn.style.visibility = 'hidden';
-        document.querySelector('.edit-personal-data').disabled = false;
-        document.querySelector('.show_personal_data').style.display = 'inline';
-    });
-
-</script>
+<script src="~/js/GuestModule/Personal_Details.js"></script>
 
 @section topCSS{
     <link href="~/css/Personal_Details/normalize.css" rel="stylesheet" />
