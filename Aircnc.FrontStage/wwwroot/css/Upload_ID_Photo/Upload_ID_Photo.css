@@ -97,6 +97,10 @@ img, svg {
     vertical-align: baseline;
 }
 
+#url {
+    display: none;
+}
+
 .our-devotion {
     display: flex;
 }

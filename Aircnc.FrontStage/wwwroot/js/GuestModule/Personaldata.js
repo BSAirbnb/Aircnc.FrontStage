@@ -24,20 +24,40 @@ btn_save_name.addEventListener('click', () => {
 })
 
 // 修改性別
-//const btn_edit_gender = document.querySelector('#btn_edit_gender')
-//const show_gender = document.querySelector('#show_gender')
-//const select_gender = document.querySelector('#select_gender')
-//const btn_save_gender = document.querySelector('#btn_save_gender')
-//btn_edit_gender.addEventListener('click', () => {
+const btn_edit_gender = document.querySelector('#btn_edit_gender')
+const show_gender = document.querySelector('#show_gender')
+const select_gender = document.querySelector('#select_gender')
+const btn_save_gender = document.querySelector('#btn_save_gender')
+btn_save_gender.addEventListener('click', () => {
+    show_gender.innerText = select_gender.options[select_gender.selectedIndex].text;
+    let result = {}
+    result.Gender = select_gender.options[select_gender.selectedIndex].value
 
-//    select_gender.value = show_gender.innerText
+    fetch('/Personal/PostChangeGender', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(result)
+    }).then(response => response.json())
+})
+
+// 修改生日
+//const btn_edit_birthday = document.querySelector('#btn_edit_birthday')
+//const show_birthday = document.querySelector('#show_birthday')
+//const btn_save_name = document.querySelector('#btn_save_name')
+//btn_edit_name.addEventListener('click', () => {
+
+//    input_name.value = show_name.innerText
 //})
-//btn_save_gender.addEventListener('click', () => {
-//    show_gender.innerText = select_gender.value
-//    let result = {}
-//    result.Gender = show_gender.value
 
-//    fetch('/Personal/PostChangeGender', {
+//btn_save_name.addEventListener('click', () => {
+
+//    show_name.innerText = input_name.value
+//    let result = {}
+//    result.Name = show_name.innerText
+
+//    fetch('/Personal/PostChangeName', {
 //        method: "POST",
 //        headers: {
 //            "Content-Type": "application/json"

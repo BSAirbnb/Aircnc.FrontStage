@@ -1,5 +1,7 @@
-﻿using Aircnc.FrontStage.Models.Entities;
+﻿using Aircnc.FrontStage.Models.DataModels.Account.Personal;
+using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.Member;
+using AircncFrontStage.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,11 +13,11 @@ namespace Aircnc.FrontStage.Controllers
 {
     public class MemberController : Controller
     {
-        private readonly AircncContext _db;
+        private readonly DBRepository _dBRepository;
 
-        public MemberController(AircncContext db)
+        public MemberController(DBRepository dBRepository)
         {
-            _db = db;
+            _dBRepository = dBRepository;
         }
 
         [Authorize]
@@ -23,12 +25,29 @@ namespace Aircnc.FrontStage.Controllers
         {
             return View();
         }
+
         [Authorize]
         public IActionResult Upload_ID_Photo()
         {
             return View();
         }
+
+        [HttpPost]
         [Authorize]
+        public IActionResult SendUrlToDatabase([FromBody] SendUrlDataModel request)
+        {
+            var userid = int.Parse(User.Identity.Name);
+            var target = _dBRepository.GetEntityById<User>(userid);
+            target.Photo = request.Photo;
+            _dBRepository.Update<User>(target);
+            _dBRepository.Save();
+
+            return new JsonResult("");
+        }
+
+
+
+    [Authorize]
         public IActionResult Select_IdentificationType()
         {
             return View();
