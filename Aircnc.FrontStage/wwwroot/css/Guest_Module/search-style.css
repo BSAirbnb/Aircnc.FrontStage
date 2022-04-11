@@ -4,27 +4,37 @@
     z-index: 3;
     background-color: #fff;
 }
-.room-list-map{
-    margin-top: 130px;
-    /* height: 80%; */
-}
+
 .mapbox{
     position:sticky;
     top: 130px;
 }
-#map{
-    height: 80vh;
-}
 
+/*¤â¾÷ªO*/
 @media screen and (max-width:767px){
     .carousel-item > img{
         height: 400px;
         }
+    .room-list-map {
+        margin-top: 200px;
+        /* height: 80%; */
+    }
+    #map {
+        height: 60vh;
+    }
 }
+/*¤j¿Ã¹õ*/
 @media screen and (min-width:768px){
     .carousel-item > img{
         height: 12vw;
         }
+    .room-list-map {
+        margin-top: 130px;
+        /* height: 80%; */
+    }
+    #map {
+        height: 80vh;
+    }
 }
 
 .card-body{
