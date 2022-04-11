@@ -70,24 +70,25 @@ namespace Aircnc.FrontStage.Controllers
 
         }
 
-        //public IActionResult HistoryList() //撈歷史訂單
-        //{
-        //    int userId = int.Parse(User.Identity.Name);
-        //    var historyList = _orderService.GetAllOrderByUserId(userId).Where(x => x.Status == OrderStatusEnum.Past).Select(x => new OrderViewModel
-        //    {
-        //        CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
-        //        CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
-        //        RoomName = x.RoomName,
-        //        City = x.City,
-        //        District = x.District,
-        //        Street = x.Street,
-        //        RoomImg = x.RoomImg,
-        //        RoomOwnerName = x.RoomOwnerName,
-        //        Status = x.Status
+        public IActionResult HistoryList() //撈歷史訂單
+        {
+            int userId = int.Parse(User.Identity.Name);
+            var historyList = _orderService.GetHistoryList(userId).Select(x => new HistoryListViewModel
+            {
+                CkeckIn = x.CkeckIn.ToString("yyyy/MM/dd"),
+                CkeckOut = x.CkeckOut.ToString("yyyy/MM/dd"),
+                RoomName = x.RoomName,
+                City = x.City,
+                District = x.District,
+                Street = x.Street,
+                RoomImg = x.RoomImg,
+                RoomOwnerName = x.RoomOwnerName,
+                Status = x.Status
 
-        //    });
-        //    return View(historyList);
-        //}
+            });
+            var result = historyList.OrderBy(x => x.CkeckIn).Take(3);
+            return View(result);
+        }
 
         //public IActionResult CancelList()
         //{
