@@ -3,7 +3,6 @@
     Layout = "OrderListLayout";
     //int activePage = (int)ViewData["ActivePage"];
     //int pages = (int)ViewData["Pages"];
-
 }
 @model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Order.OrderViewModel>
 <!-- 中間內容 -->
@@ -42,40 +41,44 @@
             @* 有資料的版面 *@
             @foreach (var data in Model)
             {
-                DateTime now = DateTime.Now;
-                DateTime checkinDate = DateTime.Parse(data.CkeckIn);
-                int result = DateTime.Compare(now, checkinDate);
-                if (result <= 0)
+                if (data.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Future)
                 {
-                    <div class="row mb-5">
-                        <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
-                            <a href="#" class="order-detail-link d-flex">
-                                <div class="col-10 col-md-6 order-content p-md-3 p-3 h-100">
-                                    <!-- District -->
-                                    <div class="fw-bold fs-3 my-2 mt-auto">@data.District</div>
-                                    <!-- 房源名稱 -->
-                                    <div class="order-room-detail fs-5 my-3">@data.RoomName</div>
-                                    <div class="w-100 date-address-content d-flex mt-auto">
-                                        <!-- 入退房日期 -->
-                                        <div class="col-6 col-md-4 pe-md-5 fs-5 check-in-out-date">
-                                            @data.CkeckIn - @data.CkeckOut
-                                        </div>
-                                        <!-- 入住地址 -->
-                                        <div class="col-6 col-md-6 stay-address ">
-                                            <span class="fs-5">@data.City@data.District@data.Street</span>
+                    DateTime now = DateTime.Now;
+                    DateTime checkinDate = DateTime.Parse(data.CkeckIn);
+                    int result = DateTime.Compare(now, checkinDate);
+                    if (result <= 0)
+                    {
+                        <div class="row mb-5">
+                            <div class="col-10 col-md-8 my-3 p-4 ms-3 shadow order">
+                                <a href="#" class="order-detail-link d-flex">
+                                    <div class="col-10 col-md-6 order-content p-md-3 p-3 h-100">
+                                        <!-- District -->
+                                        <div class="fw-bold fs-3 my-2 mt-auto">@data.District</div>
+                                        <!-- 房源名稱 -->
+                                        <div class="order-room-detail fs-5 my-3">@data.RoomName</div>
+                                        <div class="w-100 date-address-content d-flex mt-auto">
+                                            <!-- 入退房日期 -->
+                                            <div class="col-6 col-md-4 pe-md-5 fs-5 check-in-out-date">
+                                                @data.CkeckIn - @data.CkeckOut
+                                            </div>
+                                            <!-- 入住地址 -->
+                                            <div class="col-6 col-md-6 stay-address ">
+                                                <span class="fs-5">@data.City@data.District@data.Street</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="w-100 room-picture-container ms-md-2">
-                                    <img src="https://picsum.photos/1960/1463/?random=10" class="room-picture w-100 d-none d-md-block">
-                                    @*<img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">*@
-                                </div>
-                            </a>
+                                    <div class="w-100 room-picture-container ms-md-2">
+                                        <img src="https://picsum.photos/1960/1463/?random=10" class="room-picture w-100 d-none d-md-block">
+                                        @*<img src="@data.RoomImg" class="room-picture img-fluid d-none d-md-block ">*@
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 }
             }
-            
+
             @*頁面切換按鈕*@
             @*<nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -114,7 +117,9 @@
                                         <!-- 按這邊可以連接到過去訂單資訊所以用a tag表示 -->
                                         <!-- 這裡的內容之後要動態生成 -->
                                         <div class="history-detail-img">
-                                            <img src="https://picsum.photos/300/200/?random=10" class="rounded-3">
+                                            @*<img src="https://picsum.photos/300/200/?random=10" class="rounded-3">*@
+                                            <img src="@data.RoomImg" class="rounded-3">
+
                                         </div>
                                         <div class="ms-3 history-detail-content">
                                             <span class="d-block">@data.District</span>
@@ -126,18 +131,21 @@
                             </div>
                         </div>
                     }
+                    //Model.Take(3);
                 }
             </div>
         }
+        @*<partial name="HistoryList"/>*@
+
 
         <!-- 已取消區塊 -->
         @if (Model.Where(x => x.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Cancel).Count() > 0)
-         {
+        {
             <div class="row cancel mt-3">
                 <span class="fs-5 fw-bold mt-2">已取消的旅程</span>
                 @foreach (var cancel in Model)
-                 {
-                    if(cancel.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Cancel)
+                {
+                    if (cancel.Status == Aircnc.FrontStage.Models.Entities.OrderStatusEnum.Cancel)
                     {
                         <div class="row mt-3">
                             <div class="col-10">
@@ -159,7 +167,7 @@
                             </div>
                         </div>
                     }
-                 }
+                }
 
                 <!-- 找不到預定區塊 -->
                 <div class="not-found mt-3">
