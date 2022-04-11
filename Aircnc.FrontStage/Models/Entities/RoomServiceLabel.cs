@@ -18,7 +18,7 @@ namespace Aircnc.FrontStage.Models.Entities
 
         public enum TypeOfLabelEnum
         { 
-            [Description("Wi-Fi")]
+            [Description("WiFi")]
             Wifi =1 ,
             [Description("廚房")]
             Kitchen =2,

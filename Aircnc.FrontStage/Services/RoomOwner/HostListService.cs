@@ -18,11 +18,12 @@ namespace Aircnc.FrontStage.Services
         }
         public IEnumerable<HostListDto> GetAllRoomByOwnerId(int userid)
         {
-            return _DBRepository.GetAll<Room>().Where(room=>room.UserId == userid).Select(room=>new HostListDto
+            var result = _DBRepository.GetAll<Room>().Where(room=>room.UserId == userid).Select(room=>new HostListDto
             {
                 RoomId = room.RoomId,
                 UserId = room.UserId,
                 Status = room.Status,
+                TypeOfLabel = room.RoomServiceLabels.Where(x => x.RoomId == room.RoomId).Select(x => x.TypeOfLabel).ToList(),
                 RoomName = room.RoomName,
                 BathroomCount = room.BathroomCount,
                 Country = room.Country,
@@ -32,6 +33,7 @@ namespace Aircnc.FrontStage.Services
                 CreateTime = room.CreateTime,
                 LastChangeTime = room.LastChangeTime
             });
+            return result;
         }
 
 

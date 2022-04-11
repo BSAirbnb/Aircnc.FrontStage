@@ -43,8 +43,7 @@ namespace Aircnc.FrontStage.Controllers
         {
             //先假設user1的房源
             int hostId = int.Parse(User.Identity.Name);
-            var result =
-                _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto => new HostListViewModel
+            var result = _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto => new HostListViewModel
                 {
                     RoomId = RoomOwnerDto.RoomId,
                     UserId = RoomOwnerDto.UserId,
@@ -56,7 +55,8 @@ namespace Aircnc.FrontStage.Controllers
                     BedCount = RoomOwnerDto.BedCount,
                     RoomCount = RoomOwnerDto.RoomCount,
                     CreateTime = RoomOwnerDto.CreateTime,
-                    LastChangeTime = RoomOwnerDto.LastChangeTime
+                    LastChangeTime = RoomOwnerDto.LastChangeTime,
+                    TypeOfLabel = RoomOwnerDto.TypeOfLabel
                 });
 
             return View(result);
@@ -88,9 +88,9 @@ namespace Aircnc.FrontStage.Controllers
         /// </summary>
         /// <param name="Hostid"></param>
         /// <returns></returns>
-        public IActionResult HostHomePageReservation(int Hostid)
+        public IActionResult HostHomePageReservation()
         {
-            Hostid = 1;
+            var Hostid = int.Parse(User.Identity.Name);
             var reservation = _hostHomePageService.GetHostHomePagesReservation(Hostid).Select(homePageReservation => new HostHomePageViewModel
             {
                 State = homePageReservation.State,
@@ -110,7 +110,6 @@ namespace Aircnc.FrontStage.Controllers
         /// <returns></returns>
         public IActionResult HostRoomEditList(int roomId)
         {
-            roomId = 1;
             var result = _hostRoomEditService.GetRoomDetail(roomId).Select(roomEditList => new HostRoomEditViewModel
             {
                 RoomId = roomId,

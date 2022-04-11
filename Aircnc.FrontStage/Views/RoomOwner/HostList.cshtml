@@ -1,6 +1,7 @@
-﻿@{
+﻿@using Aircnc.FrontStage.Common
+@{
     ViewData["Title"] = "管理房源";
-   
+
     Layout = "RoomOwnerNavbar.cshtml";
 
 }
@@ -77,36 +78,13 @@
 
         <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
             <div class="d-flex justify-content-between dropdown_equipment_and_service flex-wrap">
-            @foreach(var item in Model)
-            {
-                <div class="form-check form_check_equipment_and_service">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        廚房
-                    </label>
-                </div>
-            }
-
-                @*<div class="form-check form_check_equipment_and_service">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        空調設備
-                    </label>
-                </div>
-
-                <div class="form-check form_check_equipment_and_service">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        WiFi
-                    </label>
-                </div>
-
-                <div class="form-check form_check_equipment_and_service">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        洗衣機
-                    </label>
-                </div>*@
+                @foreach (var item in Model.Select(x => x.TypeOfLabel).First())
+                {
+                    <div class="form_check_equipment_and_service">
+                        <input type="checkbox" id="@item" />
+                        <label for="@item">@item.GetDescriptionText()</label>
+                    </div>
+                }
             </div>
 
             <!-- 清除 -->
@@ -125,23 +103,23 @@
 
         <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
             <div class="d-flex justify-content-between dropdown_roomStatus flex-wrap">
-                <div class="form-check form_check_roomStatus">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        已發布
+                <div class="form_check_roomStatus">
+                    <input type="checkbox" value="" id="flexCheckDefault">
+                    <label for="flexCheckDefault">
+                        已上架
                     </label>
                 </div>
 
-                <div class="form-check form_check_roomStatus">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        取消發布
+                <div class="form_check_roomStatus">
+                    <input type="checkbox" value="" id="flexCheckDefault">
+                    <label for="flexCheckDefault">
+                        已下架
                     </label>
                 </div>
 
-                <div class="form-check form_check_roomStatus">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
+                <div class="form_check_roomStatus">
+                    <input type="checkbox" value="" id="flexCheckDefault">
+                    <label for="flexCheckDefault">
                         建立中
                     </label>
                 </div>
@@ -193,8 +171,9 @@
                         </div>
                     </td>
                     <td>
-                    @*<i class="fas fa-hourglass-half"></i>*@
-                    @Html.Raw(room.State)</td>
+                        @*<i class="fas fa-hourglass-half"></i>*@
+                        @Html.Raw(room.State)
+                    </td>
                     <td><button class="btn">完成</button></td>
                     <td><i class="fas fa-check-circle"></i>開</td>
                     <td>@room.RoomCount</td>
@@ -213,7 +192,7 @@
     </table>
 </section>
 
-@section endJS{ 
-<script src="~/js/RoomOwner/HostList.js"></script>
+@section endJS{
+    <script src="~/js/RoomOwner/HostList.js"></script>
 }
 

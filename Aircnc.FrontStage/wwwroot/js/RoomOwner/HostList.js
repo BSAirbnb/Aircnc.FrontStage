@@ -36,11 +36,11 @@ function edit_clear(clearType) {
       break;
     case 'clear_equipment_and_service':
       form_check_equipment_and_service.forEach((item) =>
-        item.removeAttribute('checked')
+        item.checked = false
       );
       break;
     case 'clear_roomStatus':
-      form_check_roomStatus.forEach((item) => item.removeAttribute('checked'));
+      form_check_roomStatus.forEach((item) => item.checked = false);
       break;
     default:
       break;

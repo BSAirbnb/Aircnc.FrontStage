@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
 
 namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
 {
@@ -15,6 +16,7 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public string Country { get; set; }
         public string City { get; set; }
         public RoomStatusEnum Status { get; set; }
+        public List<TypeOfLabelEnum> TypeOfLabel { get; set; }
         public string State { get; set; }
         public int BedCount { get; set; }
         public int RoomCount { get; set; }
