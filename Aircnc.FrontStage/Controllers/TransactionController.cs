@@ -25,13 +25,13 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CompletedTransaction() 
         {
             var UserId = int.Parse(User.Identity.Name) ;
-            var transactionList = _TransactionService.GetAllOrderTransactionStatus().Select(x=>new TransactionViewModel
+            var completedList = _TransactionService.GetAllCompletedTransaction(UserId).OrderBy(x => x.CreateTime).Select(x=>new TransactionViewModel
             {
                 CreateTime = x.CreateTime,
                 TotalAmount = x.TotalAmount,
                 StatusType = x.StatusType
             });
-            return View(transactionList);
+            return View(completedList);
         }
 
         /// <summary>
@@ -42,7 +42,15 @@ namespace Aircnc.FrontStage.Controllers
         [Authorize]
         public IActionResult FutureTransaction() 
         {
-            return View();
+            var UserId = int.Parse(User.Identity.Name);
+            var transactionList = _TransactionService.GetAllFutureTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
+            {
+                CreateTime = x.CreateTime,
+                TotalAmount = x.TotalAmount,
+                StatusType = x.StatusType,
+                RoomName = x.RoomName
+            });
+            return View(transactionList);
         }
 
         /// <summary>
@@ -53,7 +61,14 @@ namespace Aircnc.FrontStage.Controllers
         [Authorize]
         public IActionResult GrossEarnings() 
         {
-            return View();
+            var UserId = int.Parse(User.Identity.Name);
+            var grossList = _TransactionService.GetAllTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
+            {
+                CreateTime = x.CreateTime,
+                TotalAmount = x.TotalAmount,
+                StatusType = x.StatusType
+            });
+            return View(grossList);
         }
 
     }
