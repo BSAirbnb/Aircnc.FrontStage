@@ -16,6 +16,10 @@
     margin-top: 80px;
 }
 
+#location-msg{
+    height: 10px;
+}
+
 .search-bar{
     width: 200px;
 }

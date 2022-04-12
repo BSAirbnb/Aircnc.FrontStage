@@ -10,7 +10,7 @@
 }
 
 <div class="container-fluid advance-search d-flex justify-content-center">
-	<div class="justify-content-evenly d-flex flex-row my-2 w-75">
+	<div class="justify-content-evenly d-flex flex-row flex-wrap flex-md-nowrap my-2 w-75">
 		<!-- 價格Button trigger modal -->
 		<div>
 			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
@@ -18,58 +18,64 @@
 				價格&nbsp<i class="fas fa-angle-down"></i>
 			</button>
 		</div>
-
 		<!-- 房源類型Button trigger modal -->
 		<div>
 			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
-					data-bs-target="#roomTypeModal">
+					data-bs-target="#houseTypeModal">
 				房源類型&nbsp<i class="fas fa-angle-down"></i>
 			</button>
 		</div>
-
-		<!-- 免費退訂 -->
+		<!-- 房間類型Button trigger modal -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnFreeCancel" autocomplete="off">
-			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnFreeCancel">免費退訂</label>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
+					data-bs-target="#roomTypeModal">
+				房間類型&nbsp<i class="fas fa-angle-down"></i>
+			</button>
+		</div>
+		<!-- 臥室和床鋪Button trigger modal -->
+		<div>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
+					data-bs-target="#bedroomModal">
+				臥室和床鋪&nbsp<i class="fas fa-angle-down"></i>
+			</button>
 		</div>
 		<!-- WiFi -->
-		<div class="d-none d-md-block">
+		@*<div class="d-none d-md-block">*@
+		<div>
 			<input type="checkbox" class="btn-check" id="btnWifi" autocomplete="off">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWifi">WiFi</label>
 		</div>
 		<!-- 廚房 -->
-		<div class="d-none d-md-block">
+		<div>
 			<input type="checkbox" class="btn-check" id="btnKitchen" autocomplete="off">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnKitchen">廚房</label>
 		</div>
 		<!-- 空調設備 -->
-		<di class="d-none d-md-block" v>
+		<div>
 			<input type="checkbox" class="btn-check" id="btnAirConditioner" autocomplete="off">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnAirConditioner">空調設備</label>
-		</di>
+		</div>
 		<!-- 洗衣機 -->
-		<div class="d-none d-md-block">
+		<div>
 			<input type="checkbox" class="btn-check" id="btnWashMachine" autocomplete="off">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWashMachine">洗衣機</label>
 		</div>
 		<!-- 免費停車 -->
-		<div class="d-none d-md-block">
+		<div>
 			<input type="checkbox" class="btn-check" id="btnFreeParking" autocomplete="off">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnFreeParking">免費停車</label>
 		</div>
-		<!-- 自助入住 -->
-		<div class="d-none d-md-block">
-			<input type="checkbox" class="btn-check" id="btnSelf-Check-in" autocomplete="off">
-			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnSelf-Check-in">自助入住</label>
-		</div>
-		<!-- 篩選條件Button trigger modal -->
+		<!-- 電視 -->
 		<div>
-			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" data-bs-toggle="modal"
-					data-bs-target="#advancedSearchModal">
-				篩選條件
+			<input type="checkbox" class="btn-check" id="btnTV" autocomplete="off">
+			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnTV">電視</label>
+		</div>
+		<!-- 搜尋 -->
+		<div>
+			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item">
+				搜尋
 			</button>
 		</div>
-
 	</div>
 </div>
 <!-- 房源列表與地圖 -->
@@ -90,7 +96,7 @@
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
-					@for(int i = 1; i<= pages; i++)
+					@for (int i = 1; i <= pages; i++)
 					{
 						<li class="page-item @(i == activePage ? "active" : "")">
 							<a class="page-link" href="/search/search/@i">@i</a>
@@ -109,7 +115,7 @@
 		<!-- 地圖 -->
 		<div class="col-12 col-md-5 map-container d-md-block d-none">
 			<div class="mapbox">
-				<!-- <img class="mapimg w-100" src="./googlemap.png"> -->
+				@*<img class="mapimg w-100" src="./googlemap.png">*@
 				<div id="map"></div>
 			</div>
 		</div>
@@ -123,7 +129,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="priceModalLabel">平均每晚價格為</h5>
+				<h5 class="modal-title" id="priceModalLabel">每晚預算</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -142,38 +148,38 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
-				<button type="button" class="btn btn-dark">儲存</button>
+				<button type="button" id="priceClear" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" id="priceSave" class="btn btn-dark">儲存</button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 房源類型Modal -->
+<!-- 房間類型Modal -->
 <div class="modal fade" id="roomTypeModal" tabindex="-1" aria-labelledby="roomTypeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="roomTypeModalLabel">選擇房源類型</h5>
+				<h5 class="modal-title" id="roomTypeModalLabel">選擇房間類型</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label" for="flexCheckDefault">
+					<input class="form-check-input" type="checkbox" value="FullHouse" id="RoomTypeFullHouse">
+					<label class="form-check-label" for="RoomTypeFullHouse">
 						整個房源
 					</label>
 					<p>無需與他人分享共住，可以獨享整個房源</p>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-					<label class="form-check-label" for="flexCheckChecked">
+					<input class="form-check-input" type="checkbox" value="Solo" id="RoomTypeSolo">
+					<label class="form-check-label" for="RoomTypeSolo">
 						獨立房間
 					</label>
 					<p>擁有自己的房間，但與別人共用其他的空間</p>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-					<label class="form-check-label" for="flexCheckChecked">
+					<input class="form-check-input" type="checkbox" value="Share" id="RoomTypeShare">
+					<label class="form-check-label" for="RoomTypeShare">
 						合住房間
 					</label>
 					<p>入住共用房源，如公共休息室</p>
@@ -186,18 +192,58 @@
 		</div>
 	</div>
 </div>
-<!-- 篩選條件Modal -->
-<div class="modal fade" id="advancedSearchModal" tabindex="-1" aria-labelledby="advancedSearchModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-dialog-scrollable">
+<!-- 房源類型Modal -->
+<div class="modal fade" id="houseTypeModal" tabindex="-1" aria-labelledby="houseTypeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="advancedSearchModalLabel">更多篩選條件</h5>
+				<h5 class="modal-title" id="houseTypeModalLabel">選擇房源類型</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<div class="container-fluid filter-option border-bottom">
-					<p class="fs-5 fw-bold">臥室和床鋪</p>
+				<div class="form-check mb-3">
+					<input class="form-check-input" type="checkbox" value="Apartment" id="houseTypeApartment">
+					<label class="form-check-label" for="houseTypeApartment">
+						公寓
+					</label>
+				</div>
+				<div class="form-check mb-3">
+					<input class="form-check-input" type="checkbox" value="OneBuild" id="houseTypeOneBuild">
+					<label class="form-check-label" for="houseTypeOneBuild">
+						獨棟房屋
+					</label>
+				</div>
+				<div class="form-check mb-3">
+					<input class="form-check-input" type="checkbox" value="Special" id="houseTypeSpecial">
+					<label class="form-check-label" for="houseTypeSpecial">
+						獨特房源
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="Family" id="houseTypeFamily">
+					<label class="form-check-label" for="houseTypeFamily">
+						家庭式旅館
+					</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" class="btn btn-dark">儲存</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 臥室和床鋪Modal -->
+<div class="modal fade" id="bedroomModal" tabindex="-1" aria-labelledby="bedroomModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="bedroomModalLabel">臥室和床鋪</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid filter-option ">
 					<div class="d-flex align-items-center justify-content-between">
 						<div>床位</div>
 						<div class="d-flex justify-content-end">
@@ -232,123 +278,6 @@
 							<button type="button" class="btn">
 								<i class="fas fa-plus-circle fs-4"></i>
 							</button>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid filter-option border-bottom mt-4">
-					<p class="fs-5 fw-bold">更多選項</p>
-					<div class="row mb-4">
-						<div class="col-md-8">免費退訂</div>
-						<div class="col-md-4 d-flex justify-content-end">
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" id="SwitchFreeCancel">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid filter-option border-bottom  mt-4">
-					<p class="fs-5 fw-bold">設備與服務</p>
-					<div class="row mb-4">
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckWiFi">
-								<label class="form-check-label" for="CheckWiFi">
-									WiFi
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckKitchen">
-								<label class="form-check-label" for="CheckKitchen">
-									廚房
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckAirConditioner">
-								<label class="form-check-label" for="CheckAirConditioner">
-									空調設備
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckWashMachine">
-								<label class="form-check-label" for="CheckWashMachine">
-									洗衣機
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckFreeParking">
-								<label class="form-check-label" for="CheckFreeParking">
-									免費停車
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="Check-in-self">
-								<label class="form-check-label" for="Check-in-self">
-									自助入住
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid filter-option  mt-4">
-					<p class="fs-5 fw-bold">房源類型</p>
-					<div class="row">
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckApartment">
-								<label class="form-check-label" for="CheckApartment">
-									公寓
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckHouse">
-								<label class="form-check-label" for="CheckHouse">
-									獨棟房屋
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckLoft">
-								<label class="form-check-label" for="CheckLoft">
-									附屬建築
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckSpecial">
-								<label class="form-check-label" for="CheckSpecial">
-									獨特房源
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckGuesthouse">
-								<label class="form-check-label" for="CheckGuesthouse">
-									家庭式旅館
-								</label>
-							</div>
-						</div>
-						<div class="col-6 col-md-6">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="CheckHotel">
-								<label class="form-check-label" for="CheckHotel">
-									精品旅店
-								</label>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -408,5 +337,9 @@
 </div>
 
 
-@section topCSS{<link rel="stylesheet" href="~/css/Guest_Module/search-style.css">}
-@section endJS{<script src="~/js/Guest_Moduel/search.js"></script>}
+@section topCSS{
+<link rel="stylesheet" href="~/css/Guest_Module/search-style.css">
+}
+@section endJS{
+<script src="~/js/GuestModule/search.js"></script>
+}
