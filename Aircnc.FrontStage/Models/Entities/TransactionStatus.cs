@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -25,8 +26,13 @@ namespace Aircnc.FrontStage.Models.Entities
 
     public enum StatusTypeEnum
     {
+        [Description("還在系統中")]
         Pending = 1,
+
+        [Description("已轉帳給房東")]
         TransferredToOwner = 2,
+
+        [Description("已退款給旅客")]
         ReturnedToGuest = 3
     }
     // Pending = 還在系統中, TransferredToOwner = 已轉帳給房東, ReturnedToGuest = 已退款給旅客
