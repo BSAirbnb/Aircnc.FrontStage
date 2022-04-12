@@ -25,7 +25,6 @@ namespace Aircnc.FrontStage.Models.Entities
         Booked =1 ,
         Hided =2 ,
         Able = 3
-
     }
 
 }
