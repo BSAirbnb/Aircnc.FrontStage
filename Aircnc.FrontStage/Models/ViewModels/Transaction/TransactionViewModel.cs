@@ -15,7 +15,6 @@ namespace Aircnc.FrontStage.Models.ViewModels.Transaction
         public int AdminId { get; set; }
         public decimal TotalAmount { get; set; }
         public StatusTypeEnum StatusType { get; set; }
-        public IEnumerable<string> RoomName { get; set; }
 
     }
 }

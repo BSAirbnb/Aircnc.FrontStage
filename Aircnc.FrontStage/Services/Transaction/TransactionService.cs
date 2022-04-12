@@ -43,7 +43,6 @@ namespace Aircnc.FrontStage.Services.Transaction
                 AdminId = transaction.AdminId,
                 TotalAmount = transaction.TotalAmount,
                 StatusType = transaction.StatusType,
-                RoomName = _dbRepository.GetAll<Room>().Where(x => x.UserId == transaction.UserId).Select(x=>x.RoomName).ToList()
 
             });
         }

@@ -1,5 +1,6 @@
 ﻿@{ ViewData["Title"] = "交易紀錄"; Layout = "TransactionLayout.cshtml";}
 @model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Transaction.TransactionViewModel>
+@{ var roomName = (IEnumerable<string>)ViewData["RoomName"];}
 <!-- content -->
 <div class="container">
     <!-- 新增收款方式的按鈕區塊 -->
@@ -45,17 +46,10 @@
             <div class="input-group input-group-lg">
                 <select class="form-select mt-md-2" id="inputGroupSelect04" aria-label="Example select with button addon">
                     <option selected>所有房源</option>
-                    @foreach(var data in Model)
+                    @foreach(var room in roomName)
                      {
-                        @*<option>@data.RoomName</option>*@
-                        foreach (var room in data.RoomName)
-                        {
-                            <option>@room</option>
-                        }
-                    }
-                    @*<option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>*@
+                        <option>@room</option>
+                     }
                 </select>
             </div>
         </div>
