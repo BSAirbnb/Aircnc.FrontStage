@@ -16,7 +16,6 @@ namespace Aircnc.FrontStage.Models.Entities
         public RoomCalendarStatusEnum RoomCalendarStatus { get; set; }
         public decimal UnitPrice { get; set; }
         public string Note { get; set; }
-
         public virtual Room Room { get; set; }
     }
     public enum RoomCalendarStatusEnum

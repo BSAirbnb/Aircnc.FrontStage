@@ -1,4 +1,5 @@
-﻿using Aircnc.FrontStage.Models.Dtos.RoomOwner;
+﻿using Aircnc.FrontStage.Models.DataModels.RoomOwner;
+using Aircnc.FrontStage.Models.Dtos.RoomOwner;
 using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.RoomOwner;
 using Aircnc.FrontStage.Services;
@@ -179,13 +180,6 @@ namespace Aircnc.FrontStage.Controllers
             var CurrentRoomCalendar = _calendarService.GetCurrentRoomCalendar(roomid);
             result.CurrentRoomCalendar = CurrentRoomCalendar;
 
-
-
-
-
-
-
-
             string json1 = JsonSerializer.Serialize(rooms);
             ViewData["JsonUpDown"] = json1;
             string json2 = JsonSerializer.Serialize(CurrentRoomCalendar);
@@ -195,5 +189,34 @@ namespace Aircnc.FrontStage.Controllers
             return View(result);
 
         }
+        [HttpPost]
+        public IActionResult ChangeRoomStatusToDisable([FromBody] ChangeRoomStatusDataModel request)
+        {
+
+            _calendarService.ChangeStatusToHided(request);
+
+
+            return new JsonResult("修改成功"); 
+        }
+
+        [HttpPost]
+        public IActionResult ChangeRoomStatusToable([FromBody]ChangeRoomStatusDataModel request)
+        {
+
+            _calendarService.ChangeStatusToAble(request);
+
+            return new JsonResult("修改成功");
+        }
+
+        [HttpPost]
+        public IActionResult ChangeUnitPrice([FromBody] ChangeRoomStatusDataModel request)
+        {
+
+            _calendarService.ChangePrice(request);
+
+            return new JsonResult("修改成功");
+        }
+
+
     }
 }

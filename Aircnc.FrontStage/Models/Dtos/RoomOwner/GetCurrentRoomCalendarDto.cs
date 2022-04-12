@@ -8,6 +8,7 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
 {
     public class GetCurrentRoomCalendarDto
     {
+        public int RoomId { get; set; }
         public int RoomCalendarId { get; set; }
         
         public DateTime Datetime { get; set; }
