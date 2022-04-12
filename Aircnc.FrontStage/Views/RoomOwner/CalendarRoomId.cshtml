@@ -109,7 +109,7 @@
 
         //抓今天日期
             const today = new Date()
-            
+
         let year = today.getFullYear()
         //month0開始
         let month = today.getMonth()
@@ -146,7 +146,7 @@
             jsonCalendar = @jsonCalendar
                 jsonCalendar.forEach(x => {
                     x.DateTime = new Date(x.Date)
-                    
+
                 })
             console.log(jsonCalendar)
         function init() {
@@ -194,7 +194,7 @@
                             jsonCalendar.forEach(x => {
                                 if (x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year)
                                 {
-                                            
+
                                     div.innerText = "$" + x.UnitPrice + " TWD"
 
                                     //    Booked = 1,
@@ -211,11 +211,11 @@
                                     }
                                     //今天和之後 邏輯寫在這邊
 
-                                    
+
                                 }
 
                             })
-                            
+
                             //今天之前的日子
                             if (day < today.getDate() && month == today.getMonth() && year == today.getFullYear() ||
                                 month < today.getMonth() && year <= today.getFullYear() || year < today.getFullYear()) {
@@ -238,11 +238,11 @@
                                 //沒有的話價格跟預定都帶預設值
                                 //有的話要帶calendar表的值
                                 //寫Crud功能
-                                
-                                    
+
+
                                 //日期
                                 let row = document.createElement('div')
-                                    
+
                                 row.setAttribute('class', 'row mt-5 d-none')
                                 row.setAttribute('id', `row_${year}_${month + 1}_${day}`)
                                     let datediv = document.createElement('div')
@@ -261,20 +261,20 @@
 
                                     let i_x = document.createElement('i')
                                     i_x.setAttribute('class', 'far fa-times-circle')
-                                    
+
                                     let i_v = document.createElement('i')
 
                                     i_v.setAttribute('class', 'far fa-check-circle')
                                     let btn_able = document.createElement('button')
                                     btn_able.setAttribute('class', 'btn fs-2')
-                                    
+
                                     /*buttondiv.setAttribute('id', `buttondiv_${year}${month + 1}${day}`)*/
                                     btn_unable.setAttribute('id', `btn_unable_${year}_${month + 1}_${day}`)
                                     btn_able.setAttribute('id', `btn_able_${year}_${month + 1}_${day}`)
 
 
                                 btn_unable.setAttribute('class', 'btn fs-2')
-                               
+
 
                                 btn_unable.appendChild(i_x)
 
@@ -283,7 +283,7 @@
                                 buttondiv.appendChild(btn_able)
                                 //按鍵選取到的反應
                                 let btns = buttondiv.querySelectorAll('button')
-                                
+
                                 btns.forEach(btn => {
                                     btn.addEventListener('click', () => {
                                         btns.forEach(btn => {
@@ -334,14 +334,14 @@
                                     let dd = d.replace('_', '/').replace('_', "/")
                                     //要傳出去的資料
                                     let result = {}
-                                    
-                                    result.RoomId = jsonCalendar[0].RoomId
+
+                                    result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
                                     result.Date = new Date(dd)
-                        
+
                                     result.RoomCalendarStatus = 3
                                     result.UnitPrice = parseInt(parseInt(div.innerText.replace('$', '').replace('TWD', '').trim()))
 
-                                    
+
 
                                     fetch("/RoomOwner/ChangeRoomStatusToable", {
                                         method: "POST",
@@ -363,7 +363,7 @@
                                     let d = btn_unable.id.replace('btn_unable_', '')
 
                                     let tdTarget = document.querySelector(`#td_${d}`)
-                                    
+
                                     let divtarget = tdTarget.querySelector('div')
                                     divtarget.setAttribute('class', 'd-none')
                                     let priceareaTarget = document.querySelector(`#pricearea_${d}`)
@@ -374,14 +374,14 @@
                                     let dd = d.replace('_', '/').replace('_', "/")
                                     //要傳出去的資料
                                     let result = {}
-                                    
-                                    result.RoomId = jsonCalendar[0].RoomId
+
+                                    result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
                                     result.Date = new Date(dd)
-                                    
+
                                     result.RoomCalendarStatus = 3
                                     result.UnitPrice = parseInt(parseInt(divtarget.innerText.replace('$', '').replace('TWD', '').trim()))
 
-                                    
+
 
                                     fetch("/RoomOwner/ChangeRoomStatusToDisable", {
                                         method: "POST",
@@ -399,13 +399,13 @@
 
                                 })
 
-                                
-                    
 
-                         
+
+
+
                                 //儲存改變價格
 
-                                
+
                                 //fetch
                                 priceinputbtn.addEventListener('click', () => {
                                     let d = priceinputbtn.id.replace('priceinputbtn_', '')
@@ -422,7 +422,7 @@
                                         tdTarget.setAttribute('style', 'background-color: white')
                                         let result = {}
 
-                                        result.RoomId = jsonCalendar[0].RoomId
+                                        result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
                                         result.Date = new Date(dd)
                                         result.RoomCalendarStatus = 3
                                         result.UnitPrice = parseInt(div.innerText.replace('$', '').replace('TWD', '').trim())
@@ -439,7 +439,7 @@
                                                 console.log(jsonData)
                                             })
                                     }
-                                        
+
                                 })
 
 
@@ -463,7 +463,7 @@
                                 //控制右側顯示的是現在的日期
                                 td.addEventListener('click', () => {
                                     let rows = Change_area.querySelectorAll('.row')
-                                    
+
                                     rows.forEach(r => {
                                         r.setAttribute('class','row mt-5 d-none')
                                     })

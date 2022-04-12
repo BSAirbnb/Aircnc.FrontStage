@@ -168,7 +168,7 @@ namespace Aircnc.FrontStage.Controllers
 
             return View(result);
         }
-
+        [Authorize]
         public IActionResult CalendarRoomId(int roomid)
         {
             var userid = int.Parse(User.Identity.Name);
@@ -190,6 +190,7 @@ namespace Aircnc.FrontStage.Controllers
 
         }
         [HttpPost]
+        [Authorize]
         public IActionResult ChangeRoomStatusToDisable([FromBody] ChangeRoomStatusDataModel request)
         {
 
@@ -200,6 +201,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult ChangeRoomStatusToable([FromBody]ChangeRoomStatusDataModel request)
         {
 
@@ -209,6 +211,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult ChangeUnitPrice([FromBody] ChangeRoomStatusDataModel request)
         {
 
