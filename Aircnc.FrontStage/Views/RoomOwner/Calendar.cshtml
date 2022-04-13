@@ -253,17 +253,30 @@
         console.log(dropSourse)
         function initDropMenu() {
             RoomNameDropMenu.innerHTML = ''
-            dropSourse.forEach( room => {
+
+            if (dropSourse.length == 0) {
                 let li = document.createElement('li')
                 let a = document.createElement('a')
-                a.innerText = room.RoomName
+                a.innerText = "創建房源"
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
+                a.setAttribute('href', `/RoomOwner/CreateRoom`)
                 li.appendChild(a)
-                //要寫超連結src
                 RoomNameDropMenu.appendChild(li)
+            }
+            else {
+                dropSourse.forEach(room => {
+                    let li = document.createElement('li')
+                    let a = document.createElement('a')
+                    a.innerText = room.RoomName
+                    a.setAttribute('class', 'dropdown-item')
+                    a.setAttribute('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
+                    li.appendChild(a)
+                    //要寫超連結src
+                    RoomNameDropMenu.appendChild(li)
 
-            })
+                })
+            }
+
 
                 //< li > <a class="dropdown-item" href="#">Action</a></li >
                 //<li><a class="dropdown-item" href="#">Another action</a></li>
