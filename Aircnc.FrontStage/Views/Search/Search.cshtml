@@ -42,37 +42,37 @@
 		<!-- WiFi -->
 		@*<div class="d-none d-md-block">*@
 		<div>
-			<input type="checkbox" class="btn-check" id="btnWifi" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnWifi" autocomplete="off" value="Wifi" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWifi">WiFi</label>
 		</div>
 		<!-- 廚房 -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnKitchen" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnKitchen" autocomplete="off" value="Kitchen" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnKitchen">廚房</label>
 		</div>
 		<!-- 空調設備 -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnAirConditioner" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnAirConditioner" autocomplete="off" value="Aircon" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnAirConditioner">空調設備</label>
 		</div>
 		<!-- 洗衣機 -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnWashMachine" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnWashMachine" autocomplete="off" value="Washing" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnWashMachine">洗衣機</label>
 		</div>
 		<!-- 免費停車 -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnFreeParking" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnFreeParking" autocomplete="off" value="Parking" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnFreeParking">免費停車</label>
 		</div>
 		<!-- 電視 -->
 		<div>
-			<input type="checkbox" class="btn-check" id="btnTV" autocomplete="off">
+			<input type="checkbox" class="btn-check" id="btnTV" autocomplete="off" value="TV" name="roomService">
 			<label class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item" for="btnTV">電視</label>
 		</div>
 		<!-- 搜尋 -->
 		<div>
-			<button type="submit" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item">
+			<button type="submit" id="btnAdSearch" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item">
 				進階搜尋
 			</button>
 		</div>
@@ -165,21 +165,21 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="FullHouse" id="RoomTypeFullHouse">
+					<input class="form-check-input" name="roomtype" type="checkbox" value="FullHouse" id="RoomTypeFullHouse">
 					<label class="form-check-label" for="RoomTypeFullHouse">
 						整個房源
 					</label>
 					<p>無需與他人分享共住，可以獨享整個房源</p>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="Solo" id="RoomTypeSolo">
+					<input class="form-check-input" name="roomtype" type="checkbox" value="Solo" id="RoomTypeSolo">
 					<label class="form-check-label" for="RoomTypeSolo">
 						獨立房間
 					</label>
 					<p>擁有自己的房間，但與別人共用其他的空間</p>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="Share" id="RoomTypeShare">
+					<input class="form-check-input" name="roomtype" type="checkbox" value="Share" id="RoomTypeShare">
 					<label class="form-check-label" for="RoomTypeShare">
 						合住房間
 					</label>
@@ -187,8 +187,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
-				<button type="button" class="btn btn-dark">儲存</button>
+				<button type="button" id="roomTypeClear" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" id="roomTypeSave" class="btn btn-dark">儲存</button>
 			</div>
 		</div>
 	</div>
@@ -203,33 +203,33 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-check mb-3">
-					<input class="form-check-input" type="checkbox" value="Apartment" id="houseTypeApartment">
+					<input class="form-check-input" name="housetype" type="checkbox" value="Apartment" id="houseTypeApartment">
 					<label class="form-check-label" for="houseTypeApartment">
 						公寓
 					</label>
 				</div>
 				<div class="form-check mb-3">
-					<input class="form-check-input" type="checkbox" value="OneBuild" id="houseTypeOneBuild">
+					<input class="form-check-input" name="housetype" type="checkbox" value="OneBuild" id="houseTypeOneBuild">
 					<label class="form-check-label" for="houseTypeOneBuild">
 						獨棟房屋
 					</label>
 				</div>
 				<div class="form-check mb-3">
-					<input class="form-check-input" type="checkbox" value="Special" id="houseTypeSpecial">
+					<input class="form-check-input" name="housetype" type="checkbox" value="Special" id="houseTypeSpecial">
 					<label class="form-check-label" for="houseTypeSpecial">
 						獨特房源
 					</label>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="Family" id="houseTypeFamily">
+					<input class="form-check-input" name="housetype" type="checkbox" value="Family" id="houseTypeFamily">
 					<label class="form-check-label" for="houseTypeFamily">
 						家庭式旅館
 					</label>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
-				<button type="button" class="btn btn-dark">儲存</button>
+				<button type="button" id="houseTypeClear" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" id="houseTypeSave" class="btn btn-dark">儲存</button>
 			</div>
 		</div>
 	</div>
@@ -248,11 +248,11 @@
 					<div class="d-flex align-items-center justify-content-between">
 						<div>床位</div>
 						<div class="d-flex justify-content-end">
-							<button type="button" class="btn">
+							<button type="button" id="minus-bed" class="btn">
 								<i class="fas fa-minus-circle fs-4"></i>
 							</button>
 							<span class="my-auto" id="bed">0</span>
-							<button type="button" class="btn">
+							<button type="button" id="add-bed" class="btn">
 								<i class="fas fa-plus-circle fs-4"></i>
 							</button>
 						</div>
@@ -260,11 +260,11 @@
 					<div class="d-flex align-items-center justify-content-between">
 						<div>臥室</div>
 						<div class="d-flex justify-content-end">
-							<button type="button" class="btn">
+							<button type="button" id="minus-bedroom" class="btn">
 								<i class="fas fa-minus-circle fs-4"></i>
 							</button>
 							<span class="my-auto" id="bedroom">0</span>
-							<button type="button" class="btn">
+							<button type="button" id="add-bedroom" class="btn">
 								<i class="fas fa-plus-circle fs-4"></i>
 							</button>
 						</div>
@@ -272,11 +272,11 @@
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<div>衛浴</div>
 						<div class="d-flex justify-content-end">
-							<button type="button" class="btn">
+							<button type="button" id="minus-bathroom" class="btn">
 								<i class="fas fa-minus-circle fs-4"></i>
 							</button>
 							<span class="my-auto" id="bathroom">0</span>
-							<button type="button" class="btn">
+							<button type="button" id="add-bathroom" class="btn">
 								<i class="fas fa-plus-circle fs-4"></i>
 							</button>
 						</div>
@@ -284,8 +284,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
-				<button type="button" class="btn btn-dark">儲存</button>
+				<button type="button" id="bedroomClear" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
+				<button type="button" id="bedroomSave" class="btn btn-dark">儲存</button>
 			</div>
 		</div>
 	</div>
