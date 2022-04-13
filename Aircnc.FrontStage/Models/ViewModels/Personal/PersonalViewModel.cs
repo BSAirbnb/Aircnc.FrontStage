@@ -13,7 +13,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Personal
         public string Phone { get; set; }
         public string Gender { get; set; }
         
-        public DateTime? Birthday { get; set; }
+        public string Birthday { get; set; }
 
         public string EmergencyContactName { get; set; }
     }

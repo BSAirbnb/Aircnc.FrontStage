@@ -1,3 +1,11 @@
+////document.querySelector('.edit-btn').addEventListener("click", () => {
+////    document.querySelector('.edit-btn').innerText = "取消";
+////    document.querySelector('.edit-btn').addEventListener("click", () => {
+////        document.querySelector('.edit-btn').innerText = "編輯";
+////    })
+////});
+
+
 // 修改名字
 const btn_edit_name = document.querySelector('#btn_edit_name')
 const show_name = document.querySelector('#show_name')
@@ -43,28 +51,29 @@ btn_save_gender.addEventListener('click', () => {
 })
 
 // 修改生日
-//const btn_edit_birthday = document.querySelector('#btn_edit_birthday')
-//const show_birthday = document.querySelector('#show_birthday')
-//const btn_save_name = document.querySelector('#btn_save_name')
-//btn_edit_name.addEventListener('click', () => {
+const btn_edit_birthday = document.querySelector('#btn_edit_birthday')
+const show_birthday = document.querySelector('#show_birthday')
+const input_birthday = document.querySelector('#input_birthday')
+const btn_save_birthday = document.querySelector('#btn_save_birthday')
+btn_edit_birthday.addEventListener('click', () => {
 
-//    input_name.value = show_name.innerText
-//})
+    input_birthday.value = show_birthday.innerText
+})
 
-//btn_save_name.addEventListener('click', () => {
+btn_save_birthday.addEventListener('click', () => {
 
-//    show_name.innerText = input_name.value
-//    let result = {}
-//    result.Name = show_name.innerText
+    show_birthday.innerText = input_birthday.value
+    let result = {}
+    result.Birthday = show_birthday.innerText
 
-//    fetch('/Personal/PostChangeName', {
-//        method: "POST",
-//        headers: {
-//            "Content-Type": "application/json"
-//        },
-//        body: JSON.stringify(result)
-//    }).then(response => response.json())
-//})
+    fetch('/Personal/PostChangeBirthday', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(result)
+    }).then(response => response.json())
+})
 
 // 修改email
 const btn_edit_email = document.querySelector('#btn_edit_email')
@@ -94,6 +103,10 @@ const btn_edit_phone = document.querySelector('#btn_edit_phone')
 const show_phone = document.querySelector('#show_phone')
 const input_phone = document.querySelector('#input_phone')
 const btn_save_phone = document.querySelector('#btn_save_phone')
+btn_edit_phone.addEventListener('click', () => {
+
+    input_phone.value = show_phone.innerText
+})
 btn_save_phone.addEventListener('click', () => {
     show_phone.innerText = input_phone.value
     let result = {}
@@ -108,29 +121,27 @@ btn_save_phone.addEventListener('click', () => {
     }).then(response => response.json())
 })
 
-// 
+// 中國旅遊的護照資訊
 const add_btn = document.querySelector('#add_btn')
 const todo_input = document.querySelector('.todo_input')
 const todoWrap = document.querySelector('.todo_wrap')
 const output = document.querySelector('.output')
-let todolist = [] //先在全域宣告一個空的todolist 便於從localstorage裡面取資料放進來
+let todolist = []
 
-add_btn.addEventListener('click', addtodo) //按下去後, 即啟動addtodo這個function
+add_btn.addEventListener('click', addtodo)
 
 window.onload = function () {
-    load_to_do_list() //每次載入網頁時, 同時啟動localstorage
+    load_to_do_list()
 }
 function addtodo(event) {
     let todoobj = { title: todo_input.value }
-    //宣告一個物件內容為 : title就是我輸入的事項, checked:false為不打勾
     if (todolist == null) todolist = []
     todolist.push(todoobj)
     localStorage.setItem("datalist", JSON.stringify(todolist))
     load_to_do_list()
 }
 
-function addtodolist(d, i) //d = data, i = index
-{
+function addtodolist(d, i) {
     const todo_wrap = document.createElement('div')
     todo_wrap.classList.add('todo_wrap', 'd-flex', 'flex-row', 'align-items-center')
     const todo_div = document.createElement('div')
@@ -159,7 +170,7 @@ function addtodolist(d, i) //d = data, i = index
 function delete_btnfn(ii) {
     todolist.splice(ii, 1)
     console.log(todolist)
-    localStorage.setItem("datalist", JSON.stringify(todolist)) //update最新資料onto localStorage
+    localStorage.setItem("datalist", JSON.stringify(todolist))
     load_to_do_list()
 }
 
@@ -167,8 +178,7 @@ function load_to_do_list() {
     todolist = JSON.parse(localStorage.getItem('datalist'))
     console.log(todolist);
     todoWrap.innerHTML = ""
-    if (todolist != null)        //給todolist一個空值, 如果todolist不是空值, 將資料逐筆迭代出來然後裝進addtodolist
-    {
+    if (todolist != null) {
         todolist.forEach((data, index) => {
             addtodolist(data, index)
         })
