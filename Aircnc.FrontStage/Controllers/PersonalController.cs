@@ -35,7 +35,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         //帳號九宮格前往個人資料的連結
-        [Authorize] 
+        [Authorize]
         public IActionResult Personal_Details()
         {
             var userid = int.Parse(User.Identity.Name);
@@ -43,9 +43,11 @@ namespace Aircnc.FrontStage.Controllers
             var result = new MemberViewModel
             {
                 Name = target.Name,
+                Phone = target.Phone,
                 Address = target.Address,
-                CreateTime = target.CreateTime,
-                Photo = target.Photo
+                CreateTime = target.CreateTime.Year.ToString(),
+                Photo = target.Photo,
+                MailIsVerify = target.MailIsVerify
             };
 
 
@@ -77,7 +79,7 @@ namespace Aircnc.FrontStage.Controllers
                 Email = target.Email,
                 Gender = target.Gender == false ? "女性" : "男性",
                 Phone = target.Phone,
-                //Birthday = target.Birthday.ToString("yyyy/MM/dd"),
+                Birthday = target.Birthday.Value.ToString("MM/dd/yyyy"),
                 EmergencyContactName = target.EmergencyContactName,
             };
             return View(result);
@@ -113,13 +115,16 @@ namespace Aircnc.FrontStage.Controllers
         [Authorize]
         public IActionResult PostChangeBirthday([FromBody] ChangePersonalDataModel request) //個人資料 - 更新生日
         {
-            var userid = int.Parse(User.Identity.Name);
-            var target = _dBRepository.GetEntityById<User>(userid);
-            target.Birthday = request.Birthday;
-            _dBRepository.Update<User>(target);
-            _dBRepository.Save();
-
-            return new JsonResult("");
+            if (request != null)
+            {
+                var userid = int.Parse(User.Identity.Name);
+                var target = _dBRepository.GetEntityById<User>(userid);
+                target.Birthday = request.Birthday ?? DateTime.MinValue;
+                _dBRepository.Update<User>(target);
+                _dBRepository.Save();
+                return new JsonResult("修改成功");
+            }
+            else return new JsonResult("修改失敗");
         }
 
         [HttpPost]
@@ -194,7 +199,7 @@ namespace Aircnc.FrontStage.Controllers
             return View();
         }
 
-        
+
 
 
 

@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_name">
+                            <input data-bs-toggle="collapse" href="#name" class="save_btn" type="button" value="儲存" id="btn_save_name">
                         </div>
                     </div>
                     <hr>
@@ -57,7 +57,7 @@
                             </select>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_gender">
+                            <input data-bs-toggle="collapse" href="#gender" class="save_btn" type="button" value="儲存" id="btn_save_gender">
                         </div>
                     </div>
                     <hr>
@@ -68,11 +68,11 @@
                             編輯
                         </a>
                     </div>
-                    <span>@Model.Birthday</span>
+                    <span id="show_birthday">@Model.Birthday</span>
                     <div class="collapse mt-2" id="birthday">
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="input_birthday" name="date">
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_birthday">
+                            <input data-bs-toggle="collapse" href="#birthday" class="save_btn" type="button" value="儲存" id="btn_save_birthday">
                         </div>
                     </div>
                     <hr>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_email">
+                            <input data-bs-toggle="collapse" href="#email" class="save_btn" type="button" value="儲存" id="btn_save_email">
                         </div>
                     </div>
                     <hr>
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_phone">
+                            <input data-bs-toggle="collapse" href="#phone_number" class="save_btn" type="button" value="儲存" id="btn_save_phone">
                         </div>
                     </div>
                     <hr>
@@ -144,13 +144,13 @@
                     <hr>
                     <div class="each-item">
                         <h5>地址</h5>
-                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#adress" role="button"
+                        <a class="btn edit-btn" data-bs-toggle="collapse" href="#address" role="button"
                            aria-expanded="false" aria-controls="adress">
                             編輯
                         </a>
                     </div>
                     <span id="show_address">新北市新店區</span>
-                    <div class="collapse mt-2" id="adress">
+                    <div class="collapse mt-2" id="address">
                         <div class="form-floating mt-2 w-50">
                             <select class="form-select" id="countrySelect"
                                     aria-label="Floating label select example">
@@ -174,7 +174,7 @@
                         <input type="text" class="form-control inp mt-2" placeholder="州/省/郡/區">
                         <input type="text" class="form-control inp mt-2" placeholder="郵遞區號">
                         <div>
-                            <input class="save_btn" type="button" value="儲存">
+                            <input data-bs-toggle="collapse" href="#address" class="save_btn" type="button" value="儲存">
                         </div>
                     </div>
                     <hr>
@@ -212,7 +212,7 @@
                             <input type="text" class="form-control inp mt-2 w-75" placeholder="電話號碼">
                         </div>
                         <div>
-                            <input class="save_btn" type="button" value="儲存" id="btn_save_name">
+                            <input data-bs-toggle="collapse" href="#emergency_contact" class="save_btn" type="button" value="儲存" id="btn_save_name">
                         </div>
                     </div>
                     <hr>
@@ -249,7 +249,7 @@
                             </div> -->
                             <input type="text" class="todo_input form-control form-control-lg"
                                    id="exampleFormControlInput1" placeholder="填入您的姓名">
-                            <button type="button" id="add_btn" class="save_btn">儲存</button>
+                            <button data-bs-toggle="collapse" href="#travel_china" type="button" id="add_btn" class="save_btn">儲存</button>
                         </div>
                     </div>
                 </div>

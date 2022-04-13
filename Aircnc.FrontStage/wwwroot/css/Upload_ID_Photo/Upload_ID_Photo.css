@@ -175,7 +175,7 @@ img, svg {
     position: relative;
 }
 
-    .drop-zone__thumb::after {
+    /*.drop-zone__thumb::after {
         content: attr(data-label);
         position: absolute;
         bottom: 0;
@@ -186,4 +186,4 @@ img, svg {
         background: rgba(0, 0, 0, 0.75);
         font-size: 14px;
         text-align: center;
-    }
+    }*/

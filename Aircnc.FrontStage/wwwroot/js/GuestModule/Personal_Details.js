@@ -61,7 +61,7 @@ function updateThumbnail(dropZoneElement, file) {
     }
 }
 
-// 將上傳的圖片透過Imgur API轉成url, 並傳去資料庫
+// ↓↓↓↓↓↓↓↓ 轉成url後直接傳到資料庫
 const file = document.getElementById('drop-zone__input');
 const url = document.getElementById('url');
 file.addEventListener('change', ev => {
@@ -73,21 +73,23 @@ file.addEventListener('change', ev => {
             Authorization: 'Client-ID 967369ae5856c25'
         }
         , body: formdata
-    }).then(data => data.json()).then(data => {
-        url.innerText = data.data.link
     })
-    // ↑↑↑↑↑↑↑↑ 轉成url
-    // ↓↓↓↓↓↓↓↓ 傳到資料庫
-    const url = document.getElementById('url');
-    let result = {}
-    result.Photo = url.innerText
-    fetch('/Personal/SendtoDatabase', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(result)
-    }).then(response => response.json())
+        .then(data => data.json())
+        .then(data => {
+            url.innerText = data.data.link
+            console.log(url.innerText)
+            let result = {}
+            result.Photo = data.data.link
+            return fetch('/Personal/SendtoDatabase', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(result)
+            })
+        })
+        .then((res) => console.log(res))
+
 });
 
 // 編輯個人資訊 //
