@@ -72,8 +72,8 @@
 		</div>
 		<!-- 搜尋 -->
 		<div>
-			<button type="button" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item">
-				搜尋
+			<button type="submit" class="btn btn-outline-secondary rounded-pill text-nowrap text-dark advance-search-item">
+				進階搜尋
 			</button>
 		</div>
 	</div>
@@ -135,19 +135,20 @@
 			<div class="modal-body">
 				<div class="d-flex align-content-center">
 					<form class="form-floating">
-						<input type="text" class="form-control" id="minPrice" value="800">
+						<input type="text" class="form-control" id="minPrice" onkeyup="value=this.value.replace(/[^\d]/g,'')">
 						<label for="minPrice">最低價格</label>
 					</form>
 					<div class="m-2 my-auto">
 						<span>-</span>
 					</div>
 					<form class="form-floating">
-						<input type="text" class="form-control" id="maxPrice" value="2500">
+						<input type="text" class="form-control" id="maxPrice" onkeyup="value=this.value.replace(/[^\d]/g,'')">
 						<label for="maxPrice">最高價格</label>
 					</form>
 				</div>
 			</div>
 			<div class="modal-footer">
+				<div id="priceError" class="invisible text-danger">預算設定錯誤</div>
 				<button type="button" id="priceClear" class="btn btn-secondary" data-bs-dismiss="modal">清除</button>
 				<button type="button" id="priceSave" class="btn btn-dark">儲存</button>
 			</div>

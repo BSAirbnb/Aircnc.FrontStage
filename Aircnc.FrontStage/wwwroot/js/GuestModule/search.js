@@ -61,6 +61,7 @@ function initMap() {
     }
 //#endregion
 //advenceSearch
+let adSearchVM = new Object();
 //每日預算
 //#region
 const priceModal = new bootstrap.Modal(document.getElementById('priceModal'));
@@ -68,11 +69,22 @@ const minPrice = document.getElementById('minPrice');
 const maxPrice = document.getElementById('maxPrice');
 const btnpriceClear = document.getElementById('priceClear');
 const btnpriceSave = document.getElementById('priceSave');
+const priceError = document.getElementById('priceError');
 btnpriceClear.addEventListener('click', function () {
-    minPrice.setAttribute('value', '');
-    maxPrice.setAttribute('value', '');
+    minPrice.value='';
+    maxPrice.value='';
 });
 btnpriceSave.addEventListener('click', function () {
-    priceModal.hide();
+    if (parseInt(minPrice.value) > parseInt(maxPrice.value)) {
+        priceError.classList.remove('invisible');
+        priceError.classList.add('visible');
+    }
+    else {
+        adSearchVM.minPrice = minPrice.value;
+        adSearchVM.maxPrice = maxPrice.value;
+        priceModal.hide();
+    }
+    
+    console.log(adSearchVM)
 });
 //#endregion
