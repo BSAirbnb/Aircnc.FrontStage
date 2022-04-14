@@ -22,7 +22,7 @@ namespace Aircnc.FrontStage.Controllers
         [HttpPost]
         public IActionResult Index(SearchVM input)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && input.NavSearch.Location != null)
             {
                 TempData["location"] = input.NavSearch.Location;
                 TempData["startDate"] = input.NavSearch.StartDate;
