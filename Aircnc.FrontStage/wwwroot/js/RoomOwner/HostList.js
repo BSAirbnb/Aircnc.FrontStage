@@ -70,22 +70,22 @@ function filterBtn(Id) {
     //設備與服務
     searchResult.TypeOfLabel = []
     if (Aircon != null && Aircon.checked) {
-        searchResult.TypeOfLabel.push(Aircon.nodeValue)
+        searchResult.TypeOfLabel.push(Aircon.value)
     }
     if (Washing != null &&  Washing.checked) {
-        searchResult.TypeOfLabel.push(Washing.nodeValue)
+        searchResult.TypeOfLabel.push(Washing.value)
     }
     if (wifi != null &&  wifi.checked) {
-        searchResult.TypeOfLabel.push(wifi.nodeValue)
+        searchResult.TypeOfLabel.push(wifi.value)
     }
     if (Kitchen != null &&  Kitchen.checked) {
-        searchResult.TypeOfLabel.push(Kitchen.nodeValue)
+        searchResult.TypeOfLabel.push(Kitchen.value)
     }
     if (Parking != null &&  Parking.checked) {
-        searchResult.TypeOfLabel.push(Parking.nodeValue)
+        searchResult.TypeOfLabel.push(Parking.value)
     }
     if (TV != null &&  TV.checked) {
-        searchResult.TypeOfLabel.push(TV.nodeValue)
+        searchResult.TypeOfLabel.push(TV.value)
     }
     //房源狀態
     if (Online.checked) {

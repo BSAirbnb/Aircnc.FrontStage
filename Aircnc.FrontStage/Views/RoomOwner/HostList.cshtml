@@ -90,7 +90,7 @@
             <!-- 清除 -->
             <div class="d-flex justify-content-between dropdown_edit_apply_and_delete_section">
                 <button class="btn btn_dropdown_edit_clear" onclick="edit_clear('clear_equipment_and_service')">清除</button>
-                <button class="btn btn-dark btn_edit_apply" onclick="hostList_search('service_apply')">套用</button>
+                <button class="btn btn-dark btn_edit_apply" onclick="filterBtn(@Model.Select(x => x.UserId).First())">套用</button>
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@
             <!-- 清除 -->
             <div class="d-flex justify-content-between dropdown_edit_apply_and_delete_section">
                 <button class="btn btn_dropdown_edit_clear" onclick="edit_clear('clear_roomStatus')">清除</button>
-                <button class="btn btn-dark btn_edit_apply" onclick="hostList_search('status_apply')">套用</button>
+                <button class="btn btn-dark btn_edit_apply" onclick="filterBtn(@Model.Select(x => x.UserId).First())">套用</button>
             </div>
         </div>
     </div>
