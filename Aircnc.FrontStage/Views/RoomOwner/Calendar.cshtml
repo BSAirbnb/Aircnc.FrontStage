@@ -75,10 +75,10 @@
                         <!-- 動態生成 -->
                     </tbody>
                 </table>
-                <div class="col-12 d-flex ">
+                @*<div class="col-12 d-flex ">
                     <button class="btn btn-primary ms-auto" onclick="lastMonth()">上個月</button>
                     <button class="btn btn-primary ms-3" onclick="nextMonth()">下個月</button>
-                </div>
+                </div>*@
             </div>
 
             <!-- 選項 -->
@@ -110,130 +110,14 @@
     @section endJS{ 
     <script>
 
-        //抓今天日期
-        const today = new Date()
-
-        let year = today.getFullYear()
-        //month0開始
-        let month = today.getMonth()
-        let date = today.getDate()
-
-
         //Dom
         const RoomNameDropMenu = document.getElementById('RoomNameDropMenu')
 
-        const monthText = document.querySelector('#monthtext')
-
-        const dateArea = document.querySelector('tbody')
-
-        const addModal = document.querySelector('#add-modal')
-        const editModal = document.querySelector('#edit-modal')
-        const todoModal = document.querySelector('#todo-modal')
-
-        const addDateInput = document.querySelector('#add-date')
-        const addTitleInput = document.querySelector('#add-title')
-        const editDateInput = document.querySelector('#edit-date')
-        const editTitleInput = document.querySelector('#edit-title')
-
-        const todoModalText = document.querySelector('.todo-modal-text')
-
-        let count = document.querySelector('.count')
-
         window.onload = function () {
-            init()
+            
             console.log(dropSourse)
             initDropMenu()
-        }
-        function init() {
-            //要傳進日曆使用的data
-            ///room roomcalendar
-
-            dateArea.innerHTML = ''
-            monthText.innerText = `${year}年${month + 1}月`
-            // monthText.innerText = months[month]
-            // yearText.innerText = year
-
-            //這個月第一天禮拜幾
-            let firstDay = new Date(year, month, 1).getDay()
-            //這個月有幾天
-            let dayOfMonth = new Date(year, month + 1, 0).getDate()
-            //上個月有幾天
-            let previousOfMonth = new Date(year, month, 0).getDate()
-
-            let nextMonthDay = 1
-
-            let day = 1
-            let rows = Math.ceil((dayOfMonth + firstDay) / 7)
-
-
-
-            for (let row = 0; row < rows; row++) {
-                let tr = document.createElement('tr')
-                for (let col = 0; col < 7; col++) {
-                    let td = document.createElement('td')
-                    if (row == 0 && col < firstDay) {
-                        //上個月
-                        td.innerText = `${previousOfMonth - firstDay + 1}`
-                        previousOfMonth++
-                        td.classList.add('opacity-25')
-
-                    } else {
-                        if (day <= dayOfMonth) {
-                            //這個月
-                            td.innerText = day
-                            //今天之前的日子
-                            if (day < today.getDate() && month == today.getMonth() && year == today.getFullYear() ||
-                                month < today.getMonth() && year <= today.getFullYear() || year < today.getFullYear()) {
-                                td.classList.add('opacity-25')
-                            }
-                            //今天
-                            if (day == today.getDate() && month == today.getMonth() && year == today.getFullYear()) {
-                                let TodaySpan = document.createElement('span')
-                                TodaySpan.innerText = '今天'
-                                TodaySpan.classList.add('fw-bolder')
-                                TodaySpan.classList.add('ms-2')
-                                td.appendChild(TodaySpan)
-
-                            }
-
-
-
-                        } else {
-                            //下個月
-                            td.innerText = nextMonthDay
-                            nextMonthDay++
-                            td.classList.add('opacity-25')
-                        }
-                        day++
-                    }
-
-                    tr.append(td)
-                }
-                dateArea.append(tr)
-            }
-
-        }
-
-        function lastMonth() {
-            month--
-            if (month == -1) {
-                month = 11
-                year--
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
-
-        function nextMonth() {
-            month++
-            if (month == 12) {
-                month = 0
-                year++
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
-
+        }       
         let dropSourse = []
         dropSourse = @jsonDrop
         console.log(dropSourse)

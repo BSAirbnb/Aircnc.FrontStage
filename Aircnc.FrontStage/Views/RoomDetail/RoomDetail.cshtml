@@ -1,5 +1,5 @@
 ﻿@using Aircnc.FrontStage.Models.Entities
-@using Aircnc.FrontStage.Common 
+@using Aircnc.FrontStage.Common
 
 @model Aircnc.FrontStage.Models.ViewModels.Guest.SearchVM
 @{
@@ -40,8 +40,8 @@
 <div class="container w-75">
     <div class="row">
 
-        <div class="col-12 d-flex my-5 justify-content-between">
-            <div class="col-12 col-lg-6">
+        <div class="col-12 d-flex mt-5 justify-content-between roomDetail">
+            <div class="col-12 col-lg-6 mb-5">
                 <div class="room-title border-bottom border-2">
                     <h3 class="fw-bold">@Model.RoomDetailVM.RoomName</h3>
                     <div class="my-2">
@@ -95,34 +95,41 @@
                     <p class="fs-5 fw-bold">有提供的設備與服務</p>
                     <div class="container">
                         <div class="row">
-                             @foreach (var serviceLabel in Model.RoomDetailVM.ServiceLabels)
-                                {
-                                    <div class="col-6 my-2">
-                                        @switch (serviceLabel.TypeOfLabel)
-                                        {
-                                            case RoomServiceLabel.TypeOfLabelEnum.Wifi:
-                                                <i class="fas fa-wifi fs-4"></i>
-                                                break;
-                                            case RoomServiceLabel.TypeOfLabelEnum.Kitchen:
-                                                <i class="fas fa-sink fs-4"></i>
-                                                break;
-                                            case RoomServiceLabel.TypeOfLabelEnum.TV:
-                                                <i class="fas fa-tshirt fs-4"></i>
-                                                break;
-                                            case RoomServiceLabel.TypeOfLabelEnum.Aircon:
-                                                <i class="fas fa-thermometer-empty fs-4"></i>
-                                                break;
-                                            case RoomServiceLabel.TypeOfLabelEnum.Washing:
-                                                <i class="fas fa-parking fs-4"></i>
-                                                break;
-                                        }
-                                        <span class="fs-6 px-2">@serviceLabel.TypeOfLabel.GetDescriptionText()</span>
-                                    </div>
-                                }  
+                            @foreach (var serviceLabel in Model.RoomDetailVM.ServiceLabels)
+                            {
+                                <div class="col-6 my-2">
+                                    @switch (serviceLabel.TypeOfLabel)
+                                    {
+                                        case RoomServiceLabel.TypeOfLabelEnum.Wifi:
+                                            <i class="fas fa-wifi fs-4"></i>
+                                            break;
+                                        case RoomServiceLabel.TypeOfLabelEnum.Kitchen:
+                                            <i class="fas fa-sink fs-4"></i>
+                                            break;
+                                        case RoomServiceLabel.TypeOfLabelEnum.TV:
+                                            <i class="fas fa-tshirt fs-4"></i>
+                                            break;
+                                        case RoomServiceLabel.TypeOfLabelEnum.Aircon:
+                                            <i class="fas fa-thermometer-empty fs-4"></i>
+                                            break;
+                                        case RoomServiceLabel.TypeOfLabelEnum.Washing:
+                                            <i class="fas fa-parking fs-4"></i>
+                                            break;
+                                    }
+                                    <span class="fs-6 px-2">@serviceLabel.TypeOfLabel.GetDescriptionText()</span>
+                                </div>
+                            }
 
                         </div>
                     </div>
                 </div>
+
+                <div id="calendar">
+                    <p class="my-3 fs-5 fw-bold">選擇您的時間</p>
+                    <input id="start" type="text" name="start" value="" class="me-5"/>
+                    <input id="end" type="text" name="end" value="" class="ms-4" />
+                </div>
+
             </div>
 
             <!-- 右方 sticky 預訂欄 -->
@@ -139,13 +146,13 @@
                                 <div class="d-flex my-2 flex-wrap">
                                     <input type="date" class="form-control" value="@TempData["startDate"]">
                                     <span class="px-2 fs-5">至</span>
-                                    <input type="date" class="form-control"  value="@TempData["endDate"]">
+                                    <input type="date" class="form-control" value="@TempData["endDate"]">
                                 </div>
                                 <div class="d-flex justify-content-evenly align-items-center my-2">
                                     <span class="col-4">人數</span>
                                     <div class="d-flex justify-content-center">
                                         <div id="minus" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
-                                        <input id="guestNum" type="text" class="form-control w-25 text-center"  value="@TempData["numberOfGuests"]" onkeypress="keyPressDisabled(e)">
+                                        <input id="guestNum" type="text" class="form-control w-25 text-center" value="@TempData["numberOfGuests"]" onkeypress="keyPressDisabled(e)">
                                         <div id="add" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
                                     </div>
                                 </div>
@@ -157,7 +164,7 @@
             </div>
         </div>
 
-        <div class="my-3" id="reviews">
+        <div class="mb-3 mt-5" id="reviews">
             <p class="fs-4">
                 <i class="fas fa-star"></i>
                 <span class="px-1">@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
@@ -167,7 +174,7 @@
                 <div class="row">
                     <div class="col-6 my-2 d-flex justify-content-between">
                         <div id="review-bar">
-                            @{ 
+                            @{
                                 string scorePercentage = (@Model.RoomDetailVM.AvgStars / 5.0 * 100).ToString("N1") + "%";
                                 <div id="review-bar-dark" style="width: @scorePercentage;"></div>
                             }
@@ -176,7 +183,7 @@
                         </div>
                         <span>@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -234,7 +241,7 @@
                         <div class="col-12 col-md-6 mt-3">
                             <i class="fas fa-star fs-5"></i>
                             <span>@Model.RoomDetailVM.OwnerReviewsCount 則評價</span>
-                            <p class="pt-3 pe-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro autem quia laborum suscipit animi! Distinctio suscipit iure cum voluptate explicabo.<br />Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro autem quia laborum suscipit animi! Distinctio suscipit iure cum voluptate explicabo.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro autem quia laborum suscipit animi! Distinctio suscipit iure cum voluptate explicabo.</p>
+                            <p class="pt-3 pe-5">你不是我的顧客，你是我的朋友。我自己是個愛乾淨、愛整潔的人，所以你住的地方一定都是乾乾淨淨、清潔整齊。<br />希望你來的時候，是享受在這個環境中，感受如在家一樣的舒適。<br />有任何問題，可以馬上與我聯繫~~~</p>
                         </div>
                         <div class="col-12 col-md-6 my-3">
                             <span class="d-block py-2">語言：中文</span>
@@ -248,10 +255,6 @@
             </div>
         </div>
 
-
-        <div class="col-md-6">
-
-        </div>
     </div>
 </div>
 
@@ -332,8 +335,11 @@
 
 @section topCSS {
     <link href="~/css/Guest_Module/room-detail.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 }
-@section endJS { 
+@section endJS {
     <script src="~/js/GuestModule/RoomDetailBooking.js"></script>
+    <script src="https://unpkg.com/js-datepicker"></script>
+    <script src="~/js/GuestModule/datepicker.js"></script>
 }
 

@@ -9,6 +9,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
     public class SearchVM
     {
         public IEnumerable<SearchRoomViewModel> SearchRoom { get; set; }
+        public AdvancedSearchVM AdSearch { get; set; }
         public NavSearchVMPost NavSearch { get; set; }
         public RoomDetailViewModel RoomDetailVM { get; set; }
     }
