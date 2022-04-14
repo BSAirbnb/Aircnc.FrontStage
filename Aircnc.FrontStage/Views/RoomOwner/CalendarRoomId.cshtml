@@ -32,15 +32,27 @@
         .btn:focus {
             box-shadow:none;
         }
+        @@media screen and (min-width: 767px) {
+            #Change_area {
+                position: fixed;
+                top: 100px;
+                left: 75%;
+            }
+
+
+        }
+
+
+
     </style>
 }
 
 
 <body>
     <div class="contanire-fluid">
-        <div class="row ps-5">
+        <div class="row ps-md-5 CalendarRow ">
             <!-- 月曆區 -->
-            <div class="col-9">
+            <div class="col-md-9 col-12">
 
                 <div class="w-100 d-flex">
                     <div class="my-5 fs-2 ms-2 me-auto" id="monthtext"></div>
@@ -79,7 +91,7 @@
             </div>
 
             <!-- 選項 -->
-            <div class="col-3 border-start" id="Change_area">
+            <div class="col-12 col-md-3 border-start border-top mt-5 mt-md-0" id="Change_area">
                 @*<div class="row mt-5"  >
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
@@ -501,8 +513,10 @@
                 month = 11
                 year--
             }
-            init()
+            
+            location.reload
             monthText.innerText = `${year}年${month + 1}月`
+            init()
         }
 
         function nextMonth() {
@@ -511,8 +525,10 @@
                 month = 0
                 year++
             }
-            init()
+            
+            location.reload
             monthText.innerText = `${year}年${month + 1}月`
+            init()
         }
 
         let dropSourse = []
