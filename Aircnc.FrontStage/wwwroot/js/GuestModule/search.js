@@ -1,17 +1,5 @@
 
-// 日曆
-//#region 
-//$(function(){
-//    $('#datepicker-start').datepicker();
-//    $('#datepicker-end').datepicker();
-//});
-//#endregion
-
 //const bootstrap = require("../../bootstrap/js/bootstrap");
-
-//抓螢幕高度
-//let windowHeight = window.innerHeight;
-//    console.log(windowHeight);
 
 //地圖切換
 //#region
@@ -61,18 +49,169 @@ function initMap() {
     }
 //#endregion
 //advenceSearch
-//每日預算
+let navSearch = new Object();
+let adSearchVM = new Object();
+let searchVM = new Object();
+//每晚預算
 //#region
 const priceModal = new bootstrap.Modal(document.getElementById('priceModal'));
 const minPrice = document.getElementById('minPrice');
 const maxPrice = document.getElementById('maxPrice');
 const btnpriceClear = document.getElementById('priceClear');
 const btnpriceSave = document.getElementById('priceSave');
+const priceError = document.getElementById('priceError');
 btnpriceClear.addEventListener('click', function () {
-    minPrice.setAttribute('value', '');
-    maxPrice.setAttribute('value', '');
+    minPrice.value='';
+    maxPrice.value = '';
+    adSearchVM.minPrice = '';
+    adSearchVM.maxPrice = '';
 });
 btnpriceSave.addEventListener('click', function () {
-    priceModal.hide();
+    if (parseInt(minPrice.value) > parseInt(maxPrice.value)) {
+        priceError.classList.remove('invisible');
+        priceError.classList.add('visible');
+    }
+    else {
+        adSearchVM.minPrice = minPrice.value;
+        adSearchVM.maxPrice = maxPrice.value;
+        priceModal.hide();
+    }
+    
 });
+//#endregion
+//房源類型
+//#region
+const houseTypeModal = new bootstrap.Modal(document.getElementById('houseTypeModal'));
+const houseTypeClear = document.getElementById('houseTypeClear');
+const houseTypeSave = document.getElementById('houseTypeSave');
+houseTypeClear.addEventListener('click', function () {
+    let checkboxes = document.querySelectorAll('input[name="housetype"]:checked');
+    checkboxes.forEach((checkbox) => { checkbox.checked = false });
+    let values = [];
+    adSearchVM.houseTypes = values;
+});
+houseTypeSave.addEventListener('click', function () {
+    let values = [];
+    adSearchVM.houseTypes = values;
+    let checkboxes = document.querySelectorAll('input[name="housetype"]:checked');
+    checkboxes.forEach((checkbox) => { values.push(checkbox.value) });
+    adSearchVM.houseTypes = values;
+    houseTypeModal.hide();
+})
+//#endregion
+//房間類型
+//#region
+const roomTypeModal = new bootstrap.Modal(document.getElementById('roomTypeModal'));
+const roomTypeClear = document.getElementById('roomTypeClear');
+const roomTypeSave = document.getElementById('roomTypeSave');
+roomTypeClear.addEventListener('click', function () {
+    let checkboxes = document.querySelectorAll('input[name="roomtype"]:checked');
+    checkboxes.forEach((checkbox) => { checkbox.checked = false });
+    let values = [];
+    adSearchVM.roomTypes = values;
+});
+roomTypeSave.addEventListener('click', function () {
+    let values = [];
+    adSearchVM.roomTypes = values;
+    let checkboxes = document.querySelectorAll('input[name="roomtype"]:checked');
+    checkboxes.forEach((checkbox) => { values.push(checkbox.value) });
+    adSearchVM.roomTypes = values;
+    roomTypeModal.hide();
+})
+//#endregion
+//臥室床位浴室
+//#region
+const bedroomModal = new bootstrap.Modal(document.getElementById('bedroomModal'));
+const bedroomClear = document.getElementById('bedroomClear');
+const bedroomSave = document.getElementById('bedroomSave');
+const bedCount = document.getElementById('bed');
+const bedroomCount = document.getElementById('bedroom');
+const bathroomCount = document.getElementById('bathroom');
+const minusBed = document.getElementById('minus-bed');
+const minusBedroom = document.getElementById('minus-bedroom');
+const minusBathroom = document.getElementById('minus-bathroom');
+const addBed = document.getElementById('add-bed');
+const addBedroom = document.getElementById('add-bedroom');
+const addBathroom = document.getElementById('add-bathroom');
+//bed加減
+minusBed.addEventListener('click', function () {
+    if (parseInt(bedCount.innerText) > 0) {
+        bedCount.innerText = parseInt(bedCount.innerText) - 1;
+    }
+})
+
+addBed.addEventListener('click', function () {
+    if (parseInt(bedCount.innerText) < 100) {
+        bedCount.innerText = parseInt(bedCount.innerText) + 1;
+    }
+})
+//bedroom加減
+minusBedroom.addEventListener('click', function () {
+    if (parseInt(bedroomCount.innerText) > 0) {
+        bedroomCount.innerText = parseInt(bedroomCount.innerText) - 1;
+    }
+})
+
+addBedroom.addEventListener('click', function () {
+    if (parseInt(bedroomCount.innerText) < 100) {
+        bedroomCount.innerText = parseInt(bedroomCount.innerText) + 1;
+    }
+})
+//bathroom加減
+minusBathroom.addEventListener('click', function () {
+    if (parseInt(bathroomCount.innerText) > 0) {
+        bathroomCount.innerText = parseInt(bathroomCount.innerText) - 1;
+    }
+})
+
+addBathroom.addEventListener('click', function () {
+    if (parseInt(bathroomCount.innerText) < 100) {
+        bathroomCount.innerText = parseInt(bathroomCount.innerText) + 1;
+    }
+})
+
+bedroomClear.addEventListener('click', function () {
+    bedCount.innerText = "0";
+    bedroomCount.innerText = "0";
+    bathroomCount.innerText = "0";
+});
+bedroomSave.addEventListener('click', function () {
+    adSearchVM.bedCount = bedCount.innerText;
+    adSearchVM.roomCount = bedroomCount.innerText;
+    adSearchVM.bathroomCount = bathroomCount.innerText;
+    bedroomModal.hide();
+    //console.log(adSearchVM)
+})
+//#endregion
+//RoomService and advanceSearchBtn
+//#region
+const btnAdSearch = document.getElementById('btnAdSearch');
+
+
+btnAdSearch.addEventListener('click', function () {
+    let values = [];
+    adSearchVM.roomServiceLabels = values;
+    let checkboxes = document.querySelectorAll('input[name="roomService"]:checked');
+    checkboxes.forEach((checkbox) => { values.push(checkbox.value) });
+    adSearchVM.roomServiceLabels = values;
+
+
+    navSearch.Location = wantToGo.innerText;
+    navSearch.StartDate = startDate.value;
+    navSearch.EndDate = endDate.value;
+    navSearch.NumberOfGuests = guestNumbers.value;
+
+    searchVM.NavSearch = navSearch;
+    searchVM.AdSearch = adSearchVM;
+    console.log(searchVM);
+    fetch("/Search/Search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(searchVM)
+    })
+        .then(response => response.json())
+        .then(jsonData => {
+            console.log(jsonData)
+        })
+})
 //#endregion

@@ -53,15 +53,15 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View(searchVM);
         }
         [HttpPost]
-        public IActionResult Search(int id=1)
+        public IActionResult Search(SearchVM searchVM, int id = 1)
         {
             //int userId = int.Parse(User.Identity.Name);
-            SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
+            //SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
 
-            searchVM.NavSearch.Location = (string)TempData["location"];
-            if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
-            if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
-            if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
+            //searchVM.NavSearch.Location = (string)TempData["location"];
+            //if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
+            //if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
+            //if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
             
             int activePage = id;
