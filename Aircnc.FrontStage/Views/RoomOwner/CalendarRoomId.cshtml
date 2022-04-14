@@ -288,8 +288,10 @@
                                     btn.addEventListener('click', () => {
                                         btns.forEach(btn => {
                                             btn.setAttribute('class', "btn fs-2")
+                                            btn.disabled = false
                                         })
                                         btn.setAttribute('class', "btn fs-2 chosed")
+                                        btn.disabled = true
                                     })
                                 })
                                     hidediv.appendChild(bookablediv)
@@ -454,6 +456,7 @@
                                 jsonCalendar.forEach(x => {
                                     if (x.RoomCalendarStatus == 2 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
                                         btn_unable.setAttribute('class', 'btn fs-2 chosed')
+                                        btn_unable.disabled = true
                                         pricearea.setAttribute('class','col-12 border-bottom d-none')
                                     }
                                     if (x.RoomCalendarStatus == 1 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
