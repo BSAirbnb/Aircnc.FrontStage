@@ -1,6 +1,8 @@
 ﻿@{ ViewData["Title"] = "交易紀錄"; Layout = "TransactionLayout.cshtml";}
 @model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Transaction.TransactionViewModel>
-@{ var roomName = (IEnumerable<string>)ViewData["RoomName"];}
+@{ var roomName = (IEnumerable<string>)ViewData["RoomName"];
+    var transactionList = Html.Raw(ViewData["transactionList"]);
+}
 <!-- content -->
 <div class="container">
     <!-- 新增收款方式的按鈕區塊 -->
@@ -44,7 +46,7 @@
     <div class="row mt-1 ms-md-4">
         <div class="col-10 col-md-8 ms-md-4">
             <div class="input-group input-group-lg">
-                <select class="form-select mt-md-2" id="inputGroupSelect04" aria-label="Example select with button addon">
+                <select class="form-select mt-md-2" id="roomSelector" aria-label="Example select with button addon">
                     <option selected>所有房源</option>
                     @foreach(var room in roomName)
                      {
@@ -58,11 +60,11 @@
     <!-- 查詢結果區塊 -->
     <div class="row mt-5 ms-3 ms-md-2 query">
         <div class="col-8 col-md-5 ms-md-5">
-            <span class="has-paid-label fw-bold fs-5">待收款處理:</span>
-            <span class="has-paid-amount fw-bold fs-5">@Model.Select(x => x.TotalAmount).Sum()</span>
+            @*<span class="has-paid-label fw-bold fs-5">待收款處理:</span>*@
+            <span class="has-paid-amount fw-bold fs-5" id="amount-sum">@*@Model.Select(x => x.TotalAmount).Sum()*@</span>
         </div>
         <div class="col-2 col-md-3 submit">
-            <button class="btn border border-2 fw-bold query-submit">查詢</button>
+            <button class="btn border border-2 fw-bold query-submit" id="submit-btn">查詢</button>
         </div>
     </div>
 
@@ -78,49 +80,121 @@
 
     }
 
-    @* 資料顯示區塊 *@
-    @if (Model.Count() > 0)
-    {
-        <div class="row ms-2">
-            <div class="col-10 col-md-8 ms-md-5">
-                <table class="table">
-                    <thead>
+    <div class="row ms-2 show-row">
+        <div class="col-10 col-md-8 ms-md-5 show-div">
+            <table id="table">
+                <thead id="thead">
+                    <tr id="head-tr">
+                        <th id="create-time">
+                            <span>@*訂單生成時間*@</span>
+                        </th>
+                        <th id="total-amount">
+                            <span>@*總金額*@</span>
+                        </th>
+                    </tr>
+                </thead>
+                @*<tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th>
-                                <span>訂單生成時間</span>
-                            </th>
-                            <th>
-                                <span>總金額</span>
-                            </th>
-                            @*<th>
-                                    <span>交易狀態</span>
-                                </th>*@
+                            <td>
+                                @item.CreateTime
+                            </td>
+                            <td>
+                                @item.TotalAmount
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.CreateTime
-                                </td>
-                                <td>
-                                    @item.TotalAmount
-                                </td>
-                                @*<td>
-                                        @item.StatusType
-                                    </td>*@
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>*@
+            </table>
         </div>
-    }
-
+    </div>
 </div>
 
 
 @section CSS{
     <link href="~/css/Transaction/FutureTransaction.css" rel="stylesheet" />
+}
+@section endJS{ 
+    <script>
+        //selector DOM
+        const roomSelector = document.getElementById('roomSelector')
+        const submitBtn = document.getElementById('submit-btn')
+        let sum = document.getElementById('amount-sum')
+
+        //table DOM
+        let timeTh = document.getElementById('create-time')
+        let totalAmountTh = document.getElementById('total-amount')
+        const theadTr = document.getElementById('head-tr')
+        const thead = document.getElementById('thead')
+        const table = document.getElementById('table')
+        const showDiv = document.getElementById('show-div')
+        const showRow = document.getElementById('show-row')
+
+        //宣告
+        let data = []
+        data = @transactionList
+        //console.log(data)
+
+        let filterData = []
+        filterData = data
+        console.log(filterData)
+
+        submitBtn.addEventListener('click', function () {
+            //table.innerHTML = ''
+                FilterDataByRoom(filterData)
+
+        })
+        //function
+        function FilterDataByRoom(filterData) {
+            table.innerHTML = ''
+            let tbody = document.createElement('tbody')
+            let tbodyTr
+
+            filterData.forEach(content => {
+                //如果選到的房間沒有任何交易紀錄
+                if (!roomSelector.value == "所有房源" && !filterData.includes(roomSelector.value)) {
+                    table.innerText = "查無資料"
+                }
+
+                //如果條件為所有房源
+                else if (roomSelector.value == '所有房源') {
+                    timeTh.innerText = '生成時間'
+                    timeTh.classList.add("fs-4")
+                    totalAmountTh.innerText = '總金額'
+                    totalAmountTh.classList.add("fs-4")
+                    theadTr.append(timeTh, totalAmountTh)
+
+
+                    tbodyTr = document.createElement('tr')
+                    let createTimeTd = document.createElement('td')
+                    let totalAmountTd = document.createElement('td')
+                    createTimeTd.innerText = content.CreateTime
+                    totalAmountTd.innerText = content.TotalAmount
+                    tbodyTr.append(createTimeTd, totalAmountTd)
+
+                }
+                //如果條件為單一房源
+                else if (roomSelector.value == content.RoomName ) {
+                    timeTh.innerText = '生成時間'
+                    timeTh.classList.add("fs-4")
+                    totalAmountTh.innerText = '總金額'
+                    totalAmountTh.classList.add("fs-4")
+                    theadTr.append(timeTh, totalAmountTh)
+
+
+                    tbodyTr = document.createElement('tr')
+                    let createTimeTd = document.createElement('td')
+                    let totalAmountTd = document.createElement('td')
+                    createTimeTd.innerText = content.CreateTime
+                    totalAmountTd.innerText = content.TotalAmount
+                    tbodyTr.append(createTimeTd, totalAmountTd)
+                }
+                thead.append(theadTr)
+                tbody.append(tbodyTr)
+                table.append(thead, tbody)
+                table.classList.add("table")
+            })
+        }
+    </script>
 }
