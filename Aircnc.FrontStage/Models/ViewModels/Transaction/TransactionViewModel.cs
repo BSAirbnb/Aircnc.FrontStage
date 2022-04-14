@@ -11,10 +11,12 @@ namespace Aircnc.FrontStage.Models.ViewModels.Transaction
         public int TransactionStatusId { get; set; }
         public int UserId { get; set; }
         public int OrderId { get; set; }
-        public DateTime CreateTime { get; set; }
+        public string CreateTime { get; set; }
         public int AdminId { get; set; }
         public decimal TotalAmount { get; set; }
         public StatusTypeEnum StatusType { get; set; }
+
+        public string RoomName { get; set; }
 
     }
 }

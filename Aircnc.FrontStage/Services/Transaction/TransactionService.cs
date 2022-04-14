@@ -19,6 +19,9 @@ namespace Aircnc.FrontStage.Services.Transaction
         //撈全部完成的交易紀錄:錢已經轉給房東了
         public IEnumerable<TransactionDto> GetAllCompletedTransaction(int userId)
         {
+
+
+
             return _dbRepository.GetAll<TransactionStatus>().Where(x=>x.UserId == userId).Where(x=>x.StatusType ==StatusTypeEnum.TransferredToOwner ).Select(x=>new TransactionDto
             {
                 TransactionStatusId = x.TransactionStatusId,
@@ -27,7 +30,9 @@ namespace Aircnc.FrontStage.Services.Transaction
                 CreateTime = x.CreateTime,
                 AdminId = x.AdminId,
                 TotalAmount = x.TotalAmount,
-                StatusType = x.StatusType
+                StatusType = x.StatusType,
+                RoomName = x.Order.Room.RoomName
+                
             });
         }
 
@@ -43,6 +48,7 @@ namespace Aircnc.FrontStage.Services.Transaction
                 AdminId = transaction.AdminId,
                 TotalAmount = transaction.TotalAmount,
                 StatusType = transaction.StatusType,
+                RoomName = transaction.Order.Room.RoomName
 
             });
         }
@@ -58,7 +64,8 @@ namespace Aircnc.FrontStage.Services.Transaction
                 CreateTime = x.CreateTime,
                 AdminId = x.AdminId,
                 TotalAmount = x.TotalAmount,
-                StatusType = x.StatusType
+                StatusType = x.StatusType,
+                RoomName = x.Order.Room.RoomName
 
             });
 

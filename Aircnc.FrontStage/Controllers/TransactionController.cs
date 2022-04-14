@@ -4,10 +4,13 @@ using Aircnc.FrontStage.Services.Transaction;
 using AircncFrontStage.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+//using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+
 
 namespace Aircnc.FrontStage.Controllers
 {
@@ -29,14 +32,16 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CompletedTransaction() 
         {
             var UserId = int.Parse(User.Identity.Name) ;
+
             var completedList = _TransactionService.GetAllCompletedTransaction(UserId).OrderBy(x => x.CreateTime).Select(x=>new TransactionViewModel
             {
-                CreateTime = x.CreateTime,
+                CreateTime = x.CreateTime.ToString("yyyy-MM-dd"),
                 TotalAmount = x.TotalAmount,
-                StatusType = x.StatusType
+                StatusType = x.StatusType,
+                RoomName = x.RoomName
             });
             ViewData["RoomName"] = _dbRepository.GetAll<Room>().Where(x => x.UserId == UserId).Select(x => x.RoomName);
-
+            ViewData["completedList"] = JsonSerializer.Serialize(completedList);
             return View(completedList);
         }
 
@@ -51,14 +56,15 @@ namespace Aircnc.FrontStage.Controllers
             var UserId = int.Parse(User.Identity.Name);
             var transactionList = _TransactionService.GetAllFutureTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
             {
-                CreateTime = x.CreateTime,
+                CreateTime = x.CreateTime.ToString("yyyy/MM/dd"),
                 TotalAmount = x.TotalAmount,
                 StatusType = x.StatusType,
-                //RoomName = x.RoomName
+                RoomName = x.RoomName
             });
 
             //撈出該房東底下所有的房源要放進下拉式選單裡面
             ViewData["RoomName"] = _dbRepository.GetAll<Room>().Where(x => x.UserId == UserId).Select(x => x.RoomName);
+            ViewData["transactionList"] = JsonSerializer.Serialize(transactionList);
 
             return View(transactionList);
         }
@@ -74,9 +80,10 @@ namespace Aircnc.FrontStage.Controllers
             var UserId = int.Parse(User.Identity.Name);
             var grossList = _TransactionService.GetAllTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
             {
-                CreateTime = x.CreateTime,
+                CreateTime = x.CreateTime.ToString("yyyy/MM/dd"),
                 TotalAmount = x.TotalAmount,
-                StatusType = x.StatusType
+                StatusType = x.StatusType,
+                RoomName = x.RoomName
             });
             return View(grossList);
         }
