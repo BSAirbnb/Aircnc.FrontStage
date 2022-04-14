@@ -232,7 +232,7 @@ section {
     position: relative;
 }
 
-    .drop-zone__thumb::after {
+    /*.drop-zone__thumb::after {
         content: attr(data-label);
         position: absolute;
         bottom: 0;
@@ -243,4 +243,4 @@ section {
         background: rgba(0, 0, 0, 0.75);
         font-size: 14px;
         text-align: center;
-    }
+    }*/

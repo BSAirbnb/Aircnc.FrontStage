@@ -1,4 +1,5 @@
 ﻿@{ ViewData["Title"] = "交易紀錄"; Layout = "TransactionLayout.cshtml";}
+@model IEnumerable<Aircnc.FrontStage.Models.ViewModels.Transaction.TransactionViewModel>
 <!-- content -->
 <div class="container">
     <!-- 新增收款方式的按鈕區塊 -->
@@ -15,13 +16,13 @@
             </div>
             <div class="link-area mt-3 ms-5">
                 <a href="#" class="text-black fw-bold ms-3 know-detail">了解詳情</a>
-                <a href="#" class="text-black fw-bold start ms-2">開始吧</a>
+                <a href="~/Personal/PayoutMethod" class="text-black fw-bold start ms-2">開始吧</a>
             </div>
         </div>
     </div>
 
     <!-- 查詢交易紀錄區塊 -->
-    <div class="row mt-4 ms-md-3">
+    <div class="row mt-4 ms-md-4">
         <div class="col-10 col-md-8 ms-4 mt-5">
             <span class="fs-2 fw-bold transactions ms-md-3">交易紀錄</span>
         </div>
@@ -30,7 +31,7 @@
             <div class="options ms-md-2">
                 <ul class="nav-tabs">
                     <a href="~/Transaction/CompletedTransaction" class="completed-transactions">已完成的收款</a>
-                    <a href="~/Transaction/FutureTransaction" class="future-transactions">將至收款</a>
+                    <a href="~/Transaction/FutureTransaction" class="future-transactions">即將入帳的收款</a>
                     <a href="~/Transaction/GrossEarnings" class="gross-earnings">總收入</a>
                 </ul>
             </div>
@@ -39,7 +40,7 @@
 
     <!-- 篩選器區塊 -->
     <!-- 日期篩選區塊 -->
-    <div class="row mt-3">
+    <div class="row mt-3 ms-md-1">
         <!-- 起始月份 -->
         <div class="col-6 col-md-2 ms-md-5 mt-2">
             <div class="input-group input-group-lg">
@@ -85,28 +86,72 @@
                         <option value="@i">@i</option>
 
                     }
-
                 </select>
             </div>
         </div>
     </div>
 
     <!-- 查詢結果區塊 -->
-    <div class="row mt-5 query me-5">
+    <div class="row mt-md-5 mt-2 query me-5">
         <div class="col-2 col-md-3 me-5 submit">
             <button class="btn border border-2 fw-bold me-5 query-submit">查詢</button>
         </div>
     </div>
 
+
     <!-- reminder -->
-    <div class="row mt-3 ms-3 ms-md-5 mb-3 reminder">
-        <div class="col-10 col-md-8 ms-md-3 shadow py-4 px-3 border border-1">
-            <span class="fs-5">你沒有任何交易</span>
-            <span class="d-block fs-6">日期、房源及目前選擇的收款方式</span>
+    @if (Model.Count() == 0)
+    {
+        <div class="row mt-3 ms-3 ms-md-5 mb-3 reminder">
+            <div class="col-10 col-md-8 ms-md-3 shadow py-4 px-3 border border-1">
+                <span class="fs-5">你沒有任何交易</span>
+                <span class="d-block fs-6">日期、房源及目前選擇的收款方式</span>
+            </div>
         </div>
-    </div>
+    }
+
+    @* 資料顯示區塊 *@
+    @if (Model.Count() > 0)
+    {
+        <div class="row ms-2">
+            <div class="col-10 col-md-8 ms-md-5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>訂單生成時間</span>
+                            </th>
+                            <th>
+                                <span>總金額</span>
+                            </th>
+                            @*<th>
+                                    <span>交易狀態</span>
+                                </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.CreateTime
+                                </td>
+                                <td>
+                                    @item.TotalAmount
+                                </td>
+                                @*<td>
+                                        @item.StatusType
+                                    </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
 </div>
 
-@section CSS{ 
+@section CSS{
     <link href="~/css/Transaction/GrossEarnings.css" rel="stylesheet" />
 }

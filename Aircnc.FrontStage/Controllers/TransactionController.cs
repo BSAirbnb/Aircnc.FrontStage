@@ -1,5 +1,7 @@
-﻿using Aircnc.FrontStage.Models.ViewModels.Transaction;
+﻿using Aircnc.FrontStage.Models.Entities;
+using Aircnc.FrontStage.Models.ViewModels.Transaction;
 using Aircnc.FrontStage.Services.Transaction;
+using AircncFrontStage.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +14,11 @@ namespace Aircnc.FrontStage.Controllers
     public class TransactionController : Controller
     {
         private readonly TransactionService _TransactionService;
-        public TransactionController(TransactionService TransactionService)
+        private readonly DBRepository _dbRepository;
+        public TransactionController(TransactionService TransactionService , DBRepository dBRepository)
         {
             _TransactionService = TransactionService;
+            _dbRepository = dBRepository;
         }
         /// <summary>
         /// 完成的交易
@@ -25,13 +29,15 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult CompletedTransaction() 
         {
             var UserId = int.Parse(User.Identity.Name) ;
-            var transactionList = _TransactionService.GetAllOrderTransactionStatus().Select(x=>new TransactionViewModel
+            var completedList = _TransactionService.GetAllCompletedTransaction(UserId).OrderBy(x => x.CreateTime).Select(x=>new TransactionViewModel
             {
                 CreateTime = x.CreateTime,
                 TotalAmount = x.TotalAmount,
                 StatusType = x.StatusType
             });
-            return View(transactionList);
+            ViewData["RoomName"] = _dbRepository.GetAll<Room>().Where(x => x.UserId == UserId).Select(x => x.RoomName);
+
+            return View(completedList);
         }
 
         /// <summary>
@@ -42,7 +48,19 @@ namespace Aircnc.FrontStage.Controllers
         [Authorize]
         public IActionResult FutureTransaction() 
         {
-            return View();
+            var UserId = int.Parse(User.Identity.Name);
+            var transactionList = _TransactionService.GetAllFutureTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
+            {
+                CreateTime = x.CreateTime,
+                TotalAmount = x.TotalAmount,
+                StatusType = x.StatusType,
+                //RoomName = x.RoomName
+            });
+
+            //撈出該房東底下所有的房源要放進下拉式選單裡面
+            ViewData["RoomName"] = _dbRepository.GetAll<Room>().Where(x => x.UserId == UserId).Select(x => x.RoomName);
+
+            return View(transactionList);
         }
 
         /// <summary>
@@ -53,7 +71,14 @@ namespace Aircnc.FrontStage.Controllers
         [Authorize]
         public IActionResult GrossEarnings() 
         {
-            return View();
+            var UserId = int.Parse(User.Identity.Name);
+            var grossList = _TransactionService.GetAllTransaction(UserId).OrderBy(x => x.CreateTime).Select(x => new TransactionViewModel
+            {
+                CreateTime = x.CreateTime,
+                TotalAmount = x.TotalAmount,
+                StatusType = x.StatusType
+            });
+            return View(grossList);
         }
 
     }

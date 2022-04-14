@@ -22,6 +22,11 @@
         #navbar_host_layout {
             min-height: 100px;
             border-bottom: 1px solid #E4E4E4;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index :4;
         }
 
         .img-ctrl {
@@ -86,13 +91,13 @@
                                 <li><a class="dropdown-item" href="~/RoomOwner/HostReservation">預定</a></li>
                                 <li><a class="dropdown-item" href="~/RoomOwner/CreateRoom">建立新房源</a></li>
                                 <!--<li>-->
-                                    <!-- 分隔線 -->
-                                    <!--<hr class="dropdown-divider">
+                                <!-- 分隔線 -->
+                                <!--<hr class="dropdown-divider">
                                 </li>-->
                                 @*<li><a class="dropdown-item" href="#">在地指南</a></li>*@
                                 @*<li>*@@*<a class="dropdown-item" href="~/Transaction/CompletedTransaction">交易紀錄</a>*@@*</li>*@
                                 @*<li><a class="dropdown-item" href="#">瀏覽出租資源</a></li>
-                                <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>*@
+                                    <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>*@
                             </ul>
                         </li>
                         <li class="nav-item dropdown text-end  " id="user_icon">
@@ -140,77 +145,78 @@
         </main>
     </div>
 
-    @if(ViewData["Title"].ToString() != "預定" && ViewData["Title"].ToString() != "控制面板")
+    @if (ViewData["Title"].ToString() != "預定" && ViewData["Title"].ToString() != "控制面板")
     {
         <footer class="border-top footer text-muted">
             <div class="container">
                 &copy; 2022 - Aircnc.FrontStage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
-    }else
+    }
+    else
     {
-<footer class="bg-light w-100 mt-5">
-    <div class="container my-3 mx-auto w-75">
-        <div class="row justify-content-space-between">
-            <div class="col-12 col-md-3 border-bottom">
-                <ul>
-                    <li><h4 class="my-3">用戶支援</h4></li>
-                    <li class="my-2"><a href="">說明中心</a></li>
-                    <li class="my-2"><a href="">安全資訊</a></li>
-                    <li class="my-2"><a href="">退訂選項</a></li>
-                    <li class="my-2"><a href="">我們的新冠肺炎因應措施</a></li>
-                    <li class="my-2"><a href="">支援身心障礙人士</a></li>
-                    <li class="my-2"><a href="">回報社區問題</a></li>
-                </ul>
+        <footer class="bg-light w-100 mt-5">
+            <div class="container my-3 mx-auto w-75">
+                <div class="row justify-content-space-between">
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">用戶支援</h4></li>
+                            <li class="my-2"><a href="">說明中心</a></li>
+                            <li class="my-2"><a href="">安全資訊</a></li>
+                            <li class="my-2"><a href="">退訂選項</a></li>
+                            <li class="my-2"><a href="">我們的新冠肺炎因應措施</a></li>
+                            <li class="my-2"><a href="">支援身心障礙人士</a></li>
+                            <li class="my-2"><a href="">回報社區問題</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">社區</h4></li>
+                            <li class="my-2"><a href="">救災住宿</a></li>
+                            <li class="my-2"><a href="">支援阿富汗難民</a></li>
+                            <li class="my-2"><a href="">消弭歧視</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">出租房源和舉辦體驗</h4></li>
+                            <li class="my-2"><a href="">開始出租／舉辦體驗</a></li>
+                            <li class="my-2"><a href="">保障房東和體驗達人</a></li>
+                            <li class="my-2"><a href="">瀏覽待客資源</a></li>
+                            <li class="my-2"><a href="">前往我們的社區論壇</a></li>
+                            <li class="my-2"><a href="">落實負責任出租和舉辦體驗的方法</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">關於</h4></li>
+                            <li class="my-2"><a href="">新聞中心</a></li>
+                            <li class="my-2"><a href="">了解新功能</a></li>
+                            <li class="my-2"><a href="">創辦人的信</a></li>
+                            <li class="my-2"><a href="">工作機會</a></li>
+                            <li class="my-2"><a href="">投資人</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-3 border-bottom">
-                <ul>
-                    <li><h4 class="my-3">社區</h4></li>
-                    <li class="my-2"><a href="">救災住宿</a></li>
-                    <li class="my-2"><a href="">支援阿富汗難民</a></li>
-                    <li class="my-2"><a href="">消弭歧視</a></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-3 border-bottom">
-                <ul>
-                    <li><h4 class="my-3">出租房源和舉辦體驗</h4></li>
-                    <li class="my-2"><a href="">開始出租／舉辦體驗</a></li>
-                    <li class="my-2"><a href="">保障房東和體驗達人</a></li>
-                    <li class="my-2"><a href="">瀏覽待客資源</a></li>
-                    <li class="my-2"><a href="">前往我們的社區論壇</a></li>
-                    <li class="my-2"><a href="">落實負責任出租和舉辦體驗的方法</a></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-3 border-bottom">
-                <ul>
-                    <li><h4 class="my-3">關於</h4></li>
-                    <li class="my-2"><a href="">新聞中心</a></li>
-                    <li class="my-2"><a href="">了解新功能</a></li>
-                    <li class="my-2"><a href="">創辦人的信</a></li>
-                    <li class="my-2"><a href="">工作機會</a></li>
-                    <li class="my-2"><a href="">投資人</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="row row-cols-1 row-cols-md-2">
-        <div>
-            <p class="text-center p_room_owner_copyRight">
-                &copy; 2022 Creatures of Corner, Inc.&nbsp;
-                <a href="">隱私</a>·
-                <a href="">相關條款</a>·
-                <a href="">網站地圖</a>
-            </p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <a href="https://facebook.com" class="social"><i class="fab fa-facebook-square fs-3 mx-2"></i></a>
-            <a href="https://line.com" class="social"><i class="fab fa-line fs-3 mx-2"></i></a>
-            <a href="https://instagram.com" class="social"><i class="fab fa-instagram-square fs-3 mx-2"></i></a>
-            <a href="https://twitter.com" class="social"><i class="fab fa-twitter-square fs-3 mx-2"></i></a>
-        </div>
-    </div>
-</footer>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div>
+                    <p class="text-center p_room_owner_copyRight">
+                        &copy; 2022 Creatures of Corner, Inc.&nbsp;
+                        <a href="">隱私</a>·
+                        <a href="">相關條款</a>·
+                        <a href="">網站地圖</a>
+                    </p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://facebook.com" class="social"><i class="fab fa-facebook-square fs-3 mx-2"></i></a>
+                    <a href="https://line.com" class="social"><i class="fab fa-line fs-3 mx-2"></i></a>
+                    <a href="https://instagram.com" class="social"><i class="fab fa-instagram-square fs-3 mx-2"></i></a>
+                    <a href="https://twitter.com" class="social"><i class="fab fa-twitter-square fs-3 mx-2"></i></a>
+                </div>
+            </div>
+        </footer>
     }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -220,3 +226,4 @@
     @RenderSection("endJS", required: false)
 </body>
 </html>
+

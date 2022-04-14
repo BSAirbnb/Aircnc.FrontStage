@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Entities\u\" />
     <Folder Include="wwwroot\css\Select_IdentificationType\" />
     <Folder Include="wwwroot\css\Upload_ID_Photo\" />
     <Folder Include="wwwroot\css\Upload_Identification\" />

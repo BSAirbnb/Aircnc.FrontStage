@@ -24,13 +24,15 @@
 
 #review-bar{
     width: 80%;
-    height: 2px;
+    height: 10px;
+    border-radius: 5px;
     background: rgb(143, 143, 143);
     align-self: center;
 }
-#review-bar-dark{
+#review-bar-dark {
     width: 90%;
-    height: 2px;
+    height: 10px;
+    border-radius: 5px;
     background: #000;
     align-self: center;
 }

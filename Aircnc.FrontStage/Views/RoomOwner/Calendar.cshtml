@@ -195,20 +195,6 @@
                                 td.appendChild(TodaySpan)
 
                             }
-                            //今天和之後 邏輯寫在這邊
-                            if (day >= today.getDate() && month == today.getMonth() && year ==
-                                today.getFullYear()) {
-                                //生成右側選項
-                                //將值接過去
-                                //找出有沒有這天的資料from calendar
-                                //沒有的話價格跟預定都帶預設值
-                                //有的話要帶calendar表的值
-                                //寫Crud功能
-
-
-
-                            }
-
 
 
 
@@ -253,17 +239,30 @@
         console.log(dropSourse)
         function initDropMenu() {
             RoomNameDropMenu.innerHTML = ''
-            dropSourse.forEach( room => {
+
+            if (dropSourse.length == 0) {
                 let li = document.createElement('li')
                 let a = document.createElement('a')
-                a.innerText = room.RoomName
+                a.innerText = "創建房源"
                 a.setAttribute('class', 'dropdown-item')
-                a.setAttribute ('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
+                a.setAttribute('href', `/RoomOwner/CreateRoom`)
                 li.appendChild(a)
-                //要寫超連結src
                 RoomNameDropMenu.appendChild(li)
+            }
+            else {
+                dropSourse.forEach(room => {
+                    let li = document.createElement('li')
+                    let a = document.createElement('a')
+                    a.innerText = room.RoomName
+                    a.setAttribute('class', 'dropdown-item')
+                    a.setAttribute('href', `/RoomOwner/CalendarRoomId?roomid=${room.RoomId}`)
+                    li.appendChild(a)
+                    //要寫超連結src
+                    RoomNameDropMenu.appendChild(li)
 
-            })
+                })
+            }
+
 
                 //< li > <a class="dropdown-item" href="#">Action</a></li >
                 //<li><a class="dropdown-item" href="#">Another action</a></li>

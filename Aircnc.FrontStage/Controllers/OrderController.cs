@@ -13,8 +13,8 @@ namespace Aircnc.FrontStage.Controllers
     public class OrderController : Controller
     {
         private readonly OrderService _orderService;
-        private static int totalRows;
-        int Pages = 0;
+        //private static int totalRows;
+        //int Pages = 0;
 
         public OrderController(OrderService orderService)
         {
@@ -22,7 +22,7 @@ namespace Aircnc.FrontStage.Controllers
         }
 
         [Authorize]
-        public IActionResult OrderList(int id = 1) //透過使用者ID去找他的訂單們
+        public IActionResult OrderList() //透過使用者ID去找他的訂單們
         {
             //這邊先撈所有訂單資料
             int userId = int.Parse(User.Identity.Name);

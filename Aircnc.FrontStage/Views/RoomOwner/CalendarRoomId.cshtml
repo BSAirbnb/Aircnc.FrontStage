@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "編輯月曆";
 
-    Layout = "RoomOwnerNavbar.cshtml";
+    Layout = "RoomCalendarLayout.cshtml";
     var jsonDrop = Html.Raw(ViewData["JsonUpDown"]);
     var jsonCalendar = Html.Raw(ViewData["JsonCalendar"]);
 }
@@ -11,6 +11,9 @@
 
 @section topCSS{
     <style>
+        #thecontainer {
+            padding-top:100px;
+        }
         td {
             border: 1px solid #EBEBEB;
             height: 80px;
@@ -32,20 +35,42 @@
         .btn:focus {
             box-shadow:none;
         }
+
+        #dropdownMenuButton1 {
+            /*background-image: linear-gradient(#F5C3EA, #C6A4DD);*/
+            /*border:2px solid black;*/
+        }
+        @@media screen and (min-width: 767px) {
+            #Change_area {
+                position: fixed;
+                top: 100px;
+                left: 75%;
+            }
+        }
+        tr > .tdchosen:hover {
+            background: #A5CAE8 !important;
+            transition:.3s;
+        }
+        td {
+            width: 14.2857142857%
+        }
+
+
+
     </style>
 }
 
 
 <body>
-    <div class="contanire-fluid">
-        <div class="row ps-5">
+    <div class="contanire-fluid" id="thecontainer">
+        <div class="row ps-md-5 CalendarRow ">
             <!-- 月曆區 -->
-            <div class="col-9">
+            <div class="col-md-9 col-12">
 
-                <div class="w-100 d-flex">
-                    <div class="my-5 fs-2 ms-2 me-auto" id="monthtext"></div>
+                <div class="w-100 d-flex mt-5 mb-5">
+                    @*<div class="my-5 fs-2 ms-2 me-auto" id="monthtext"></div>*@
                     <div class="dropdown ms-auto my-auto">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             @Model.CurrentRoom.RoomName
                         </button>
@@ -79,7 +104,7 @@
             </div>
 
             <!-- 選項 -->
-            <div class="col-3 border-start" id="Change_area">
+            <div class="col-12 col-md-3 border-start border-top mt-5 mt-md-0" id="Change_area">
                 @*<div class="row mt-5"  >
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
@@ -109,7 +134,7 @@
 
         //抓今天日期
             const today = new Date()
-            
+
         let year = today.getFullYear()
         //month0開始
         let month = today.getMonth()
@@ -146,18 +171,19 @@
             jsonCalendar = @jsonCalendar
                 jsonCalendar.forEach(x => {
                     x.DateTime = new Date(x.Date)
-                    
+
                 })
             console.log(jsonCalendar)
         function init() {
             //要傳進日曆使用的data
             ///room roomcalendar
-
+            let startMonth = today.getMonth()
+            let startYear = today.getFullYear()
             dateArea.innerHTML = ''
-            monthText.innerText = `${year}年${month + 1}月`
+            /*monthText.innerText = `${year}年${month + 1}月`*/
             // monthText.innerText = months[month]
             // yearText.innerText = year
-
+            while (month < (startMonth + 6) || (year < startYear + 1)) {
             //這個月第一天禮拜幾
             let firstDay = new Date(year, month, 1).getDay()
             //這個月有幾天
@@ -170,13 +196,23 @@
             let day = 1
             let rows = Math.ceil((dayOfMonth + firstDay) / 7)
 
+            
 
+            //判斷要生成半年
+           
+               
+                    let currentMonthText = document.createElement('div')
+                    currentMonthText.setAttribute('class', 'my-5 fs-2 ms-2 me-auto')
+                    currentMonthText.innerText = `${year}年 ${month+1}月`
+                    dateArea.appendChild(currentMonthText)
+                
+                
 
-            for (let row = 0; row < rows; row++) {
+                for (let row = 0; row < rows; row++) {
                 let tr = document.createElement('tr')
                 for (let col = 0; col < 7; col++) {
                     let td = document.createElement('td')
-                    td.setAttribute('id',`td_${year}_${month + 1}_${day}`)
+                    
                     //價格標籤
                     let div = document.createElement('div')
                     div.classList.add("mt-3")
@@ -194,7 +230,7 @@
                             jsonCalendar.forEach(x => {
                                 if (x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year)
                                 {
-                                            
+
                                     div.innerText = "$" + x.UnitPrice + " TWD"
 
                                     //    Booked = 1,
@@ -211,11 +247,11 @@
                                     }
                                     //今天和之後 邏輯寫在這邊
 
-                                    
+
                                 }
 
                             })
-                            
+
                             //今天之前的日子
                             if (day < today.getDate() && month == today.getMonth() && year == today.getFullYear() ||
                                 month < today.getMonth() && year <= today.getFullYear() || year < today.getFullYear()) {
@@ -230,20 +266,20 @@
                                 td.appendChild(TodaySpan)
 
                             }
-                            if (day >= today.getDate() && month >= today.getMonth() && year >=
-                                today.getFullYear() || day >= today.getDate() && month == today.getMonth() && year ==
-                                today.getFullYear() ) {
+                            if (day >= today.getDate() || month > today.getMonth() || year >
+                                today.getFullYear()) {
+                                td.setAttribute('id', `td_${year}_${month + 1}_${day}`)
                                 //生成右側選項
                                 //將值接過去
                                 //找出有沒有這天的資料from calendar
                                 //沒有的話價格跟預定都帶預設值
                                 //有的話要帶calendar表的值
                                 //寫Crud功能
-                                
-                                    
+                                td.classList.add('tdchosen')
+
                                 //日期
                                 let row = document.createElement('div')
-                                    
+
                                 row.setAttribute('class', 'row mt-5 d-none')
                                 row.setAttribute('id', `row_${year}_${month + 1}_${day}`)
                                     let datediv = document.createElement('div')
@@ -262,49 +298,20 @@
 
                                     let i_x = document.createElement('i')
                                     i_x.setAttribute('class', 'far fa-times-circle')
-                                    
+
                                     let i_v = document.createElement('i')
 
                                     i_v.setAttribute('class', 'far fa-check-circle')
                                     let btn_able = document.createElement('button')
                                     btn_able.setAttribute('class', 'btn fs-2')
-                                    
+
                                     /*buttondiv.setAttribute('id', `buttondiv_${year}${month + 1}${day}`)*/
                                     btn_unable.setAttribute('id', `btn_unable_${year}_${month + 1}_${day}`)
                                     btn_able.setAttribute('id', `btn_able_${year}_${month + 1}_${day}`)
 
 
-                                //fetch
-                                //當點回可預訂要顯示平日樣子
-                                btn_able.addEventListener('click', () => {
-                                    let d = btn_able.id.replace('btn_able_','')
-                                    
-                                    let tdTarget = document.querySelector(`#td_${d}`)
-                                    let divtarget = tdTarget.querySelector('div')
-                                    divtarget.setAttribute('class','mb-3 mt-3')
-                                    
-                                    
-                                    tdTarget.setAttribute('style','background-color: white')
-                                })
-                                
-                                //fetch
-                                //當點到不可預定要屏蔽
-                                    btn_unable.addEventListener('click', () => {
-                                    let d = btn_unable.id.replace('btn_unable_', '')
-                                    
-                                    let tdTarget = document.querySelector(`#td_${d}`)
-                                    console.log(tdTarget)
-                                    let divtarget = tdTarget.querySelector('div')
-                                    divtarget.setAttribute('class', 'd-none')
-                                    
-
-                                    tdTarget.setAttribute('style', 'background-color: #ccc')
-                                })
-                                
-                                   
- 
                                 btn_unable.setAttribute('class', 'btn fs-2')
-                               
+
 
                                 btn_unable.appendChild(i_x)
 
@@ -313,13 +320,15 @@
                                 buttondiv.appendChild(btn_able)
                                 //按鍵選取到的反應
                                 let btns = buttondiv.querySelectorAll('button')
-                                console.log(btns)
+
                                 btns.forEach(btn => {
                                     btn.addEventListener('click', () => {
                                         btns.forEach(btn => {
                                             btn.setAttribute('class', "btn fs-2")
+                                            btn.disabled = false
                                         })
                                         btn.setAttribute('class', "btn fs-2 chosed")
+                                        btn.disabled = true
                                     })
                                 })
                                     hidediv.appendChild(bookablediv)
@@ -329,6 +338,7 @@
 
                                 let pricearea = document.createElement('div')
                                 pricearea.setAttribute('class', 'col-12 border-bottom')
+                                pricearea.id = `pricearea_${year}_${month + 1}_${day}`
                                 let pricetext = document.createElement('div')
                                 pricetext.setAttribute('class', 'mt-3 fs-5 fw-bolder')
                                 pricetext.innerText = "每晚訂價"
@@ -342,78 +352,158 @@
                                 priceinputbtn.setAttribute('class', "btn btn-dark mt-1 mb-3")
                                 priceinputbtn.innerText = "儲存"
                                 priceinputbtn.setAttribute('id', `priceinputbtn_${year}_${month + 1}_${day}`)
-
-                                
-                    
-
                                 input.value = parseInt(div.innerText.replace('$', '').replace('TWD', '').trim())
                                 input.setAttribute('class', 'w-75 input_price')
                                 /*input.setAttribute('oninput', "value=value.replace(/^(0+)|[^\d]+/g,'')")*/
                                 input.setAttribute('oninput', "this.value = this.value.replace(/[^0-9]/g, '');")
+
+
+                                //fetch
+                                //當點回可預訂要顯示平日樣子
+                                btn_able.addEventListener('click', () => {
+                                    let d = btn_able.id.replace('btn_able_', '')
+                                    console.log(d)
+                                    let tdTarget = document.querySelector(`#td_${d}`)
+                                    let divtarget = tdTarget.querySelector('div')
+                                    divtarget.setAttribute('class', 'mb-3 mt-3')
+                                    let priceareaTarget = document.querySelector(`#pricearea_${d}`)
+                                    priceareaTarget.setAttribute('class', 'col-12 border-bottom d-block')
+
+                                    tdTarget.setAttribute('style', 'background-color: white')
+                                    let dd = d.replace('_', '/').replace('_', "/")
+                                    //要傳出去的資料
+                                    let result = {}
+
+                                    result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
+                                    result.Date = new Date(dd)
+
+                                    result.RoomCalendarStatus = 3
+                                    result.UnitPrice = parseInt(parseInt(div.innerText.replace('$', '').replace('TWD', '').trim()))
+
+
+
+                                    fetch("/RoomOwner/ChangeRoomStatusToable", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(result)
+
+                                    }).then(response => response.json())
+                                        .then(jsonData => {
+                                            console.log(jsonData)
+                                        })
+
+                                })
+
+                                //fetch
+                                //當點到不可預定要屏蔽
+                                btn_unable.addEventListener('click', () => {
+                                    let d = btn_able.id.replace('btn_able_', '')
+
+                                    let tdTarget = document.querySelector(`#td_${d}`)
+
+                                    let divtarget = tdTarget.querySelector('div')
+                                    divtarget.setAttribute('class', 'd-none')
+                                    let priceareaTarget = document.querySelector(`#pricearea_${d}`)
+                                    //隱藏價格區域
+                                    priceareaTarget.setAttribute('class', 'col-12 border-bottom d-none')
+
+                                    tdTarget.setAttribute('style', 'background-color: #ccc')
+                                    let dd = d.replace('_', '/').replace('_', "/")
+                                    //要傳出去的資料
+                                    let result = {}
+
+                                    result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
+                                    result.Date = new Date(dd)
+
+                                    result.RoomCalendarStatus = 3
+                                    result.UnitPrice = parseInt(parseInt(divtarget.innerText.replace('$', '').replace('TWD', '').trim()))
+
+
+
+                                    fetch("/RoomOwner/ChangeRoomStatusToDisable", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(result)
+
+                                    }).then(response => response.json())
+                                        .then(jsonData => {
+                                            console.log(jsonData)
+
+                                        })
+
+
+                                })
+
+
+
+
+
                                 //儲存改變價格
 
-                                //這邊 要寫改變價格
+
+                                //fetch
                                 priceinputbtn.addEventListener('click', () => {
                                     let d = priceinputbtn.id.replace('priceinputbtn_', '')
                                     let currentinput = document.querySelector(`#priceinput_${d}`)
                                     let tdTarget = document.querySelector(`#td_${d}`)
                                     let divtarget = tdTarget.querySelector('div')
-                                    divtarget.innerText = "$" + parseInt(currentinput.value) + " TWD"
 
+                                    let dd = d.replace('_', '/').replace('_', "/")
+                                    //要傳出去的資料
 
-                                    tdTarget.setAttribute('style', 'background-color: white')
+                                    if (currentinput.value!='')
+                                    {
+                                        divtarget.innerText = "$" + parseInt(currentinput.value) + " TWD"
+                                        tdTarget.setAttribute('style', 'background-color: white')
+                                        let result = {}
+
+                                        result.RoomId = @Html.Raw(Model.CurrentRoom.RoomId)
+                                        result.Date = new Date(dd)
+                                        result.RoomCalendarStatus = 3
+                                        result.UnitPrice = parseInt(div.innerText.replace('$', '').replace('TWD', '').trim())
+
+                                        fetch("/RoomOwner/ChangeUnitPrice", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify(result)
+
+                                        }).then(response => response.json())
+                                            .then(jsonData => {
+                                                console.log(jsonData)
+                                            })
+                                    }
+
                                 })
+
+
+
                                 input_ctrl.appendChild(input)
                                 pricearea.appendChild(pricetext)
                                 pricearea.appendChild(input_ctrl)
                                 pricearea.appendChild(priceinputbtn)
                                 row.appendChild(pricearea)
 
-
-
-
-
-
-
-
-                                    //< div class="col-12 border-bottom" >
-                                //    <div class="mt-3 fs-5 fw-bolder">每晚訂價</div>
-                                //    <div id="input_ctrl " class="w-100 mt-3 mb-5">
-                                //        <input type="text" value="500" class="w-75 input_price"
-                                //            onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
-
-                                //    </div>
-
-
-
-
-                                             //<div class="col-12 fs-3 fw-bolder mt-5 ">{{ 4月9日 週六 }}</div>datediv
-                                //<div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">hidediv
-                                //    <div class="fs-5 mt-auto mb-auto fw-bolder">可供預定</div>bookablediv
-                                //    <div>buttondiv
-                                //        <button class="btn fs-2"><i class="far fa-check-circle"></i></button>
-                                //        <button class="btn fs-2"><i class="far fa-times-circle"></i></button>
-                                //    </div>
-                                //</div>
-                                //
-
-
-
-
-
-                                Change_area.appendChild(row)
                                  //如果日期跟今天一樣且狀態為被屏蔽 要點進去就顯示已經被取消
                                 jsonCalendar.forEach(x => {
                                     if (x.RoomCalendarStatus == 2 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
                                         btn_unable.setAttribute('class', 'btn fs-2 chosed')
+                                        btn_unable.disabled = true
+                                        pricearea.setAttribute('class','col-12 border-bottom d-none')
                                     }
                                     if (x.RoomCalendarStatus == 1 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
                                         row.innerText = ''
                                     }
                                 })
+                                //控制右側顯示的是現在的日期
                                 td.addEventListener('click', () => {
                                     let rows = Change_area.querySelectorAll('.row')
-                                    
+
                                     rows.forEach(r => {
                                         r.setAttribute('class','row mt-5 d-none')
                                     })
@@ -421,24 +511,10 @@
                                 })
 
 
-
-                                
-
-
-
-
-
-                   
-
-
-
-
+                                Change_area.appendChild(row)
                             }
 
-
                             td.appendChild(div)
-
-
                         } else {
                             //下個月
                             td.innerText = nextMonthDay
@@ -453,28 +529,45 @@
                 dateArea.append(tr)
             }
 
+                if (month < 12) {
+                    month++
+                    day =1
+                }
+                else
+                {
+                    month = 1
+                    year++
+                    day = 1
+                }
+                
+            }
             }
 
 
-        function lastMonth() {
-            month--
-            if (month == -1) {
-                month = 11
-                year--
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
 
-        function nextMonth() {
-            month++
-            if (month == 12) {
-                month = 0
-                year++
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
+        //function lastMonth() {
+        //    month--
+        //    if (month == -1) {
+        //        month = 11
+        //        year--
+        //    }
+
+        //    location.reload
+        //    monthText.innerText = `${year}年${month + 1}月`
+        //    init()
+        //}
+
+        //function nextMonth() {
+        //    month++
+        //    if (month == 12) {
+        //        month = 0
+        //        year++
+        //    }
+
+        //    location.reload
+        //    monthText.innerText = `${year}年${month + 1}月`
+        //    init()
+        //}
 
         let dropSourse = []
         dropSourse = @jsonDrop

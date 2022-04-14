@@ -37,11 +37,7 @@ namespace Aircnc.FrontStage.Services.Guest
                 UnitPrice = room.UnitPrice,
                 
             }).ToList();
-            //篩選入住人數
-            if (input.NavSearch.NumberOfGuests.HasValue)
-            {
-                rooms = rooms.Where(room => room.Pax >= input.NavSearch.NumberOfGuests.Value).ToList();
-            }
+            
             //篩選日期與計算平均房價
             if (input.NavSearch.StartDate.HasValue)
             {
@@ -68,10 +64,32 @@ namespace Aircnc.FrontStage.Services.Guest
                     }
                 }
                 //查RoomCalendar是否有特別設定價格並算出平均房價
-                //foreach (var room in rooms.ToList())
-                //{
-                //    var totalBookDays = 3m;
-                //}
+                foreach (var room in rooms.ToList())
+                {
+                    var totalSearchDays = DateTime.Parse(input.NavSearch.EndDate.ToString()).Subtract(DateTime.Parse(input.NavSearch.StartDate.ToString())).Days;
+                    
+                    var priceList = _dbRepository.GetAll<RoomCalendar>().Where(rc => rc.Date >= input.NavSearch.StartDate && rc.Date < input.NavSearch.EndDate && rc.RoomCalendarStatus == RoomCalendarStatusEnum.Able).Select(rc => rc.UnitPrice).ToList();
+                    if (priceList.Count != 0)
+                    {
+                        if ( priceList.Count == totalSearchDays)
+                        {
+                            room.UnitPrice = Math.Ceiling(priceList.Average());
+                        }
+                        else
+                        {
+                            for (int d = priceList.Count; d < totalSearchDays; d++)
+                            {
+                                priceList.Add(room.UnitPrice);
+                            }
+                            room.UnitPrice = Math.Ceiling(priceList.Average());
+                        }
+                    }
+                }
+            }
+            //篩選入住人數
+            if (input.NavSearch.NumberOfGuests.HasValue)
+            {
+                rooms = rooms.Where(room => room.Pax >= input.NavSearch.NumberOfGuests.Value).ToList();
             }
             //找出評價則數,平均星等
             foreach (var room in rooms)

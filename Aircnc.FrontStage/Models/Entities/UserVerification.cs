@@ -23,6 +23,8 @@ namespace Aircnc.FrontStage.Models.Entities
 
         public virtual Admin Admin { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        
+        public string IdPhoto { get; set; }
     }
 
     public enum DocumentTypeEnum

@@ -55,7 +55,6 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Route("RoomDetail/RoomDetail")]
         public IActionResult AddToWishList()
         {
             int roomId = (int)TempData["roomId"];
