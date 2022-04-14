@@ -187,6 +187,7 @@ bedroomSave.addEventListener('click', function () {
 //#region
 const btnAdSearch = document.getElementById('btnAdSearch');
 
+
 btnAdSearch.addEventListener('click', function () {
     let values = [];
     adSearchVM.roomServiceLabels = values;
@@ -195,9 +196,9 @@ btnAdSearch.addEventListener('click', function () {
     adSearchVM.roomServiceLabels = values;
 
 
-    navSearch.Location = location.innerHTML;
-    navSearch.StartDate = ""
-    navSearch.EndDate = ""
+    navSearch.Location = wantToGo.innerText;
+    navSearch.StartDate = startDate.value;
+    navSearch.EndDate = endDate.value;
     navSearch.NumberOfGuests = guestNumbers.value;
 
     searchVM.NavSearch = navSearch;
