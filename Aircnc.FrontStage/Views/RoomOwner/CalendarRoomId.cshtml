@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "編輯月曆";
 
-    Layout = "RoomOwnerNavbar.cshtml";
+    Layout = "RoomCalendarLayout.cshtml";
     var jsonDrop = Html.Raw(ViewData["JsonUpDown"]);
     var jsonCalendar = Html.Raw(ViewData["JsonCalendar"]);
 }
@@ -11,6 +11,9 @@
 
 @section topCSS{
     <style>
+        #thecontainer {
+            padding-top:100px;
+        }
         td {
             border: 1px solid #EBEBEB;
             height: 80px;
@@ -32,20 +35,42 @@
         .btn:focus {
             box-shadow:none;
         }
+
+        #dropdownMenuButton1 {
+            /*background-image: linear-gradient(#F5C3EA, #C6A4DD);*/
+            /*border:2px solid black;*/
+        }
+        @@media screen and (min-width: 767px) {
+            #Change_area {
+                position: fixed;
+                top: 100px;
+                left: 75%;
+            }
+        }
+        tr > .tdchosen:hover {
+            background: #A5CAE8 !important;
+            transition:.3s;
+        }
+        td {
+            width: 14.2857142857%
+        }
+
+
+
     </style>
 }
 
 
 <body>
-    <div class="contanire-fluid">
-        <div class="row ps-5">
+    <div class="contanire-fluid" id="thecontainer">
+        <div class="row ps-md-5 CalendarRow ">
             <!-- 月曆區 -->
-            <div class="col-9">
+            <div class="col-md-9 col-12">
 
-                <div class="w-100 d-flex">
-                    <div class="my-5 fs-2 ms-2 me-auto" id="monthtext"></div>
+                <div class="w-100 d-flex mt-5 mb-5">
+                    @*<div class="my-5 fs-2 ms-2 me-auto" id="monthtext"></div>*@
                     <div class="dropdown ms-auto my-auto">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        <button class="btn btn-secondary dropdown-toggle fs-4 " type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             @Model.CurrentRoom.RoomName
                         </button>
@@ -79,7 +104,7 @@
             </div>
 
             <!-- 選項 -->
-            <div class="col-3 border-start" id="Change_area">
+            <div class="col-12 col-md-3 border-start border-top mt-5 mt-md-0" id="Change_area">
                 @*<div class="row mt-5"  >
                     <div class="col-12 fs-3 fw-bolder mt-5 ">{{4月9日 週六}}</div>
                     <div class="col-12 d-flex justify-content-between mt-5 pb-5 border-bottom">
@@ -152,12 +177,13 @@
         function init() {
             //要傳進日曆使用的data
             ///room roomcalendar
-
+            let startMonth = today.getMonth()
+            let startYear = today.getFullYear()
             dateArea.innerHTML = ''
-            monthText.innerText = `${year}年${month + 1}月`
+            /*monthText.innerText = `${year}年${month + 1}月`*/
             // monthText.innerText = months[month]
             // yearText.innerText = year
-
+            while (month < (startMonth + 6) || (year < startYear + 1)) {
             //這個月第一天禮拜幾
             let firstDay = new Date(year, month, 1).getDay()
             //這個月有幾天
@@ -170,13 +196,23 @@
             let day = 1
             let rows = Math.ceil((dayOfMonth + firstDay) / 7)
 
+            
 
+            //判斷要生成半年
+           
+               
+                    let currentMonthText = document.createElement('div')
+                    currentMonthText.setAttribute('class', 'my-5 fs-2 ms-2 me-auto')
+                    currentMonthText.innerText = `${year}年 ${month+1}月`
+                    dateArea.appendChild(currentMonthText)
+                
+                
 
-            for (let row = 0; row < rows; row++) {
+                for (let row = 0; row < rows; row++) {
                 let tr = document.createElement('tr')
                 for (let col = 0; col < 7; col++) {
                     let td = document.createElement('td')
-                    td.setAttribute('id',`td_${year}_${month + 1}_${day}`)
+                    
                     //價格標籤
                     let div = document.createElement('div')
                     div.classList.add("mt-3")
@@ -230,15 +266,16 @@
                                 td.appendChild(TodaySpan)
 
                             }
-                            if (day >= today.getDate() || month > today.getMonth() || year >=
-                                today.getFullYear() ) {
+                            if (day >= today.getDate() || month > today.getMonth() || year >
+                                today.getFullYear()) {
+                                td.setAttribute('id', `td_${year}_${month + 1}_${day}`)
                                 //生成右側選項
                                 //將值接過去
                                 //找出有沒有這天的資料from calendar
                                 //沒有的話價格跟預定都帶預設值
                                 //有的話要帶calendar表的值
                                 //寫Crud功能
-
+                                td.classList.add('tdchosen')
 
                                 //日期
                                 let row = document.createElement('div')
@@ -325,7 +362,7 @@
                                 //當點回可預訂要顯示平日樣子
                                 btn_able.addEventListener('click', () => {
                                     let d = btn_able.id.replace('btn_able_', '')
-
+                                    console.log(d)
                                     let tdTarget = document.querySelector(`#td_${d}`)
                                     let divtarget = tdTarget.querySelector('div')
                                     divtarget.setAttribute('class', 'mb-3 mt-3')
@@ -362,7 +399,7 @@
                                 //fetch
                                 //當點到不可預定要屏蔽
                                 btn_unable.addEventListener('click', () => {
-                                    let d = btn_unable.id.replace('btn_unable_', '')
+                                    let d = btn_able.id.replace('btn_able_', '')
 
                                     let tdTarget = document.querySelector(`#td_${d}`)
 
@@ -492,28 +529,45 @@
                 dateArea.append(tr)
             }
 
+                if (month < 12) {
+                    month++
+                    day =1
+                }
+                else
+                {
+                    month = 1
+                    year++
+                    day = 1
+                }
+                
+            }
             }
 
 
-        function lastMonth() {
-            month--
-            if (month == -1) {
-                month = 11
-                year--
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
 
-        function nextMonth() {
-            month++
-            if (month == 12) {
-                month = 0
-                year++
-            }
-            init()
-            monthText.innerText = `${year}年${month + 1}月`
-        }
+        //function lastMonth() {
+        //    month--
+        //    if (month == -1) {
+        //        month = 11
+        //        year--
+        //    }
+
+        //    location.reload
+        //    monthText.innerText = `${year}年${month + 1}月`
+        //    init()
+        //}
+
+        //function nextMonth() {
+        //    month++
+        //    if (month == 12) {
+        //        month = 0
+        //        year++
+        //    }
+
+        //    location.reload
+        //    monthText.innerText = `${year}年${month + 1}月`
+        //    init()
+        //}
 
         let dropSourse = []
         dropSourse = @jsonDrop
