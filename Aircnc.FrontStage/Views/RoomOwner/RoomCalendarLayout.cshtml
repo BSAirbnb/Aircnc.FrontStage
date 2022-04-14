@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aircnc</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/Room_Owner/Footer.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @RenderSection("topCSS", required: false)
+    @RenderSection("topJS", required: false)
+    <style>
+        body {
+            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        #navbar_host_layout {
+            min-height: 100px;
+            border-bottom: 1px solid #E4E4E4;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index :4;
+        }
+
+        .img-ctrl {
+            max-width: 50px;
+            max-height: 50px;
+            border: 1px double #E4E4E4;
+            border-radius: 50%;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        #navbarScrollingDropdown2::after {
+            content: none;
+        }
+        /* 調整usericon的位置及下拉彈出要在視窗內部喔 喔喔喔喔喔*/
+        @@media screen and (min-width:768px) {
+            #user_icon {
+                margin-left: calc(35vw - 50px);
+            }
+
+            .dropdown-menu[data-bs-popper] {
+                left: -7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light bg-white" id="navbar_host_layout">
+            <div class="container-fluid ">
+                <a href="~/RoomOwner/HostHomePageReservation" class="navbar-brand col-1">
+                    <img src="~/Img/logo.jpg" alt="Creatures of Corner" class="logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                        aria-controls="navbar-brand" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarScroll">
+                    <ul class="navbar-nav ms-md-auto   my-2 my-lg-0 fs-6 fw-bolder" style="--bs-scroll-height: 100px;">
+                        <!-- 當選到的時候要在下面的li的class + active -->
+                        <li class="nav-item my-auto">
+                            <a class="nav-link" aria-current="page" href="~/RoomOwner/HostHomePageReservation">今天</a>
+                        </li>
+                        <li class="nav-item ms-md-4 my-auto">
+                            <a class="nav-link" href="#">收件匣</a>
+                        </li>
+                        <li class="nav-item ms-md-4 my-auto">
+                            <a class="nav-link" href="~/RoomOwner/Calendar">日曆</a>
+                        </li>
+                        <li class="nav-item ms-md-4 my-auto">
+                            <a class="nav-link" href="~/Transaction/CompletedTransaction">交易紀錄</a>
+                        </li>
+                        <!-- 選單下拉 -->
+                        <li class="nav-item dropdown ms-md-4 my-auto">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown1" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                選單
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown1">
+                                <li><a class="dropdown-item" href="~/RoomOwner/HostList">房源</a></li>
+                                <li><a class="dropdown-item" href="~/RoomOwner/HostReservation">預定</a></li>
+                                <li><a class="dropdown-item" href="~/RoomOwner/CreateRoom">建立新房源</a></li>
+                                <!--<li>-->
+                                <!-- 分隔線 -->
+                                <!--<hr class="dropdown-divider">
+                                </li>-->
+                                @*<li><a class="dropdown-item" href="#">在地指南</a></li>*@
+                                @*<li>*@@*<a class="dropdown-item" href="~/Transaction/CompletedTransaction">交易紀錄</a>*@@*</li>*@
+                                @*<li><a class="dropdown-item" href="#">瀏覽出租資源</a></li>
+                                    <li><a class="dropdown-item" href="#">前往我們的社區論壇</a></li>*@
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown text-end  " id="user_icon">
+                            <a class="nav-link dropdown-toggle " href="#" id="navbarScrollingDropdown2" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <div class="img-ctrl">
+                                    <!-- 放使用者頭像 -->
+                                    @*<img src="/Img/UserImgSample.jpeg" alt="user_icon" class="img-fluid">*@
+                                    <img src="@User.Claims.First(x=>x.Type == "UserPhoto").Value" alt="user_icon" class="img-fluid">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown2">
+                                <li><a class="dropdown-item" href="~/Personal/Personal_Details">個人資料</a></li>
+                                <li><a class="dropdown-item" href="~/Personal/PersonalBox">帳號</a></li>
+                                @*<li><a class="dropdown-item" href="#">尋求協助</a></li>*@
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">繁體中文(TW)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">$TWD</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item fw-bolder" href="/">切換至旅行模式</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item " href="~/Account/Logout">登出</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @if (ViewData["Title"].ToString() != "預定" && ViewData["Title"].ToString() != "控制面板")
+    {
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - Aircnc.FrontStage - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    }
+    else
+    {
+        <footer class="bg-light w-100 mt-5">
+            <div class="container my-3 mx-auto w-75">
+                <div class="row justify-content-space-between">
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">用戶支援</h4></li>
+                            <li class="my-2"><a href="">說明中心</a></li>
+                            <li class="my-2"><a href="">安全資訊</a></li>
+                            <li class="my-2"><a href="">退訂選項</a></li>
+                            <li class="my-2"><a href="">我們的新冠肺炎因應措施</a></li>
+                            <li class="my-2"><a href="">支援身心障礙人士</a></li>
+                            <li class="my-2"><a href="">回報社區問題</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">社區</h4></li>
+                            <li class="my-2"><a href="">救災住宿</a></li>
+                            <li class="my-2"><a href="">支援阿富汗難民</a></li>
+                            <li class="my-2"><a href="">消弭歧視</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">出租房源和舉辦體驗</h4></li>
+                            <li class="my-2"><a href="">開始出租／舉辦體驗</a></li>
+                            <li class="my-2"><a href="">保障房東和體驗達人</a></li>
+                            <li class="my-2"><a href="">瀏覽待客資源</a></li>
+                            <li class="my-2"><a href="">前往我們的社區論壇</a></li>
+                            <li class="my-2"><a href="">落實負責任出租和舉辦體驗的方法</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 border-bottom">
+                        <ul>
+                            <li><h4 class="my-3">關於</h4></li>
+                            <li class="my-2"><a href="">新聞中心</a></li>
+                            <li class="my-2"><a href="">了解新功能</a></li>
+                            <li class="my-2"><a href="">創辦人的信</a></li>
+                            <li class="my-2"><a href="">工作機會</a></li>
+                            <li class="my-2"><a href="">投資人</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2">
+                <div>
+                    <p class="text-center p_room_owner_copyRight">
+                        &copy; 2022 Creatures of Corner, Inc.&nbsp;
+                        <a href="">隱私</a>·
+                        <a href="">相關條款</a>·
+                        <a href="">網站地圖</a>
+                    </p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://facebook.com" class="social"><i class="fab fa-facebook-square fs-3 mx-2"></i></a>
+                    <a href="https://line.com" class="social"><i class="fab fa-line fs-3 mx-2"></i></a>
+                    <a href="https://instagram.com" class="social"><i class="fab fa-instagram-square fs-3 mx-2"></i></a>
+                    <a href="https://twitter.com" class="social"><i class="fab fa-twitter-square fs-3 mx-2"></i></a>
+                </div>
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("endJS", required: false)
+</body>
+</html>
+
