@@ -7,6 +7,7 @@ namespace Aircnc.FrontStage.Models.DataModels.Account.Personal
 {
     public class SendUrlDataModel
     {
+        public string IdPhoto { get; set; }
         public string Photo { get; set; }
     }
 }

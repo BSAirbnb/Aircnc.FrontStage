@@ -37,14 +37,15 @@ namespace Aircnc.FrontStage.Controllers
         public IActionResult SendUrlToDatabase([FromBody] SendUrlDataModel request)
         {
             var userid = int.Parse(User.Identity.Name);
-            var target = _dBRepository.GetEntityById<User>(userid);
-            target.Photo = request.Photo;
-            _dBRepository.Update<User>(target);
+            var select_userverification_in_user = _dBRepository.GetEntityById<User>(userid).UserVerificationId;
+            var select_photoId_in_userverification = _dBRepository.GetEntityById<UserVerification>(select_userverification_in_user);
+
+            select_photoId_in_userverification.IdPhoto = request.IdPhoto;
+            _dBRepository.Update<UserVerification>(select_photoId_in_userverification);
             _dBRepository.Save();
 
-            return new JsonResult("");
+            return RedirectToAction("PersonalBox", "Personal", new { area = "" });
         }
-
 
 
     [Authorize]

@@ -36,7 +36,7 @@ namespace AircncFrontStage.Repositories
         }
 
         //傳入PK  return 那一筆entity 找不到則return null
-        public TEntity GetEntityById<TEntity>(int id) where TEntity : class
+        public TEntity GetEntityById<TEntity>(int? id) where TEntity : class
         {
             return _DbContext.Find<TEntity>(id);
         }
