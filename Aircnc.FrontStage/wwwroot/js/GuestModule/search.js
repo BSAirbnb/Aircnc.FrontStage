@@ -51,7 +51,7 @@ function initMap() {
 //advenceSearch
 let navSearch = new Object();
 let adSearchVM = new Object();
-let searchVM = new Object();
+
 //每晚預算
 //#region
 const priceModal = new bootstrap.Modal(document.getElementById('priceModal'));
@@ -72,8 +72,8 @@ btnpriceSave.addEventListener('click', function () {
         priceError.classList.add('visible');
     }
     else {
-        adSearchVM.minPrice = minPrice.value;
-        adSearchVM.maxPrice = maxPrice.value;
+        adSearchVM.minPrice = parseInt(minPrice.value);
+        adSearchVM.maxPrice = parseInt(maxPrice.value);
         priceModal.hide();
     }
     
@@ -176,9 +176,9 @@ bedroomClear.addEventListener('click', function () {
     bathroomCount.innerText = "0";
 });
 bedroomSave.addEventListener('click', function () {
-    adSearchVM.bedCount = bedCount.innerText;
-    adSearchVM.roomCount = bedroomCount.innerText;
-    adSearchVM.bathroomCount = bathroomCount.innerText;
+    adSearchVM.bedCount = parseInt(bedCount.innerText);
+    adSearchVM.roomCount = parseInt(bedroomCount.innerText);
+    adSearchVM.bathroomCount = parseInt(bathroomCount.innerText);
     bedroomModal.hide();
     //console.log(adSearchVM)
 })
@@ -199,12 +199,14 @@ btnAdSearch.addEventListener('click', function () {
     navSearch.Location = wantToGo.value;
     navSearch.StartDate = startDate.value;
     navSearch.EndDate = endDate.value;
-    navSearch.NumberOfGuests = guestNumbers.value;
-
-    searchVM.navSearch = navSearch;
-    searchVM.adSearch = adSearchVM;
-    searchVM.SearchRoom = "";
-    searchVM.RoomDetailVM = "";
+    navSearch.NumberOfGuests = parseInt(guestNumbers.value);
+    let searchVM = {
+        NavSearch: navSearch,
+        AdSearch: adSearchVM
+    }
+    //searchVM.NavSearch = navSearch;
+    //searchVM.AdSearch = adSearchVM;
+    
     let request = {
         searchVM: searchVM
     }
