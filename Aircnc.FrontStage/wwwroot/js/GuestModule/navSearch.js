@@ -35,15 +35,23 @@ window.onload = function () {
     const searchBtn = document.getElementById('search-btn')
     const msg = document.getElementById('location-msg')
     
-    if (wantToGo.value != null) {
-        searchBtn.disabled = false
-        msg.innerText = ''
-    }
-    else {
+    //if (wantToGo.value != null && wantToGo.value != '') {
+    //    searchBtn.disabled = false
+    //    msg.innerText = ''
+    //}
+    //else {
+    //    searchBtn.disabled = true
+    //    msg.innerText = '位置 為必填欄位'
+    //}
+    
+    if (wantToGo.value == null || wantToGo.value == '') {
         searchBtn.disabled = true
         msg.innerText = '位置 為必填欄位'
     }
-    
+    else {
+        searchBtn.disabled = false
+        msg.innerText = ''
+    }
 
     wantToGo.addEventListener('change', function () {
         if (wantToGo.value == null || wantToGo.value == '') {
