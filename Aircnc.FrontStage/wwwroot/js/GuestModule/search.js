@@ -209,9 +209,6 @@ btnAdSearch.addEventListener('click', function () {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(searchVM)
     })
-        .then(response => response.json())
-        .then(jsonData => {
-            console.log(jsonData)
-        })
+
 })
 //#endregion
