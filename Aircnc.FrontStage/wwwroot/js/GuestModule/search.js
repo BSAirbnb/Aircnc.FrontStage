@@ -200,6 +200,7 @@ btnAdSearch.addEventListener('click', function () {
     navSearch.StartDate = startDate.value;
     navSearch.EndDate = endDate.value;
     navSearch.NumberOfGuests = parseInt(guestNumbers.value);
+
     let searchVM = {
         NavSearch: navSearch,
         AdSearch: adSearchVM

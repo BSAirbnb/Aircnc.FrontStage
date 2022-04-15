@@ -50,6 +50,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
             return View(searchVM);
         }
+
         [HttpPost]
         public IActionResult Search([FromBody] SearchVM searchVM)
         //public IActionResult Search([FromBody] string input)
