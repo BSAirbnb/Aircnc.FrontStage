@@ -15,5 +15,6 @@ namespace Aircnc.FrontStage.Models.ViewModels.Member
         public string CreateTime { get; set; }
         public string Photo { get; set; }
         public bool MailIsVerify { get; set; }
+        public string IdPhoto { get; set; }
     }
 }

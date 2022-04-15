@@ -38,7 +38,7 @@
                 </a>
                 <hr>
                 <div class="confirm-already mb-5">
-                    <h4 class="my-4">@Model.Name 已確認</h4>
+                    <h4 class="my-4">@Model.Name 已驗證</h4>
                     @if (Model.MailIsVerify)
                     {
                         <div class="checklist my-2">
@@ -46,11 +46,18 @@
                             電子郵件地址
                         </div>
                     }
-                    @if (Model.Phone != "")
+                    @if (Model.Phone != null || Model.Phone != "")
                     {
                         <div class="checklist my-2">
                             <i class="fas fa-check">&nbsp;</i>
                             電話號碼
+                        </div>
+                    }
+                    @if (Model.IdPhoto != null || Model.IdPhoto != "")
+                    {
+                        <div class="checklist my-2">
+                            <i class="fas fa-check">&nbsp;</i>
+                            身分
                         </div>
                     }
                 </div>
@@ -102,7 +109,6 @@
                         <i class="fas fa-home"></i>
                         住在<span id="location_output"> @Model.Address</span>
                     </div>
-                    <!-- <div class="residency my-2"><i class="fas fa-home"></i> 住在 @Model.Address</div> -->
                     <div class="language my-3">
                         <i class="fas fa-comment-alt"></i>
                         使用語言：<span id="language_output"></span>

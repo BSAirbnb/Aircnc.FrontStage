@@ -60,6 +60,27 @@ function updateThumbnail(dropZoneElement, file) {
         thumbnailElement.style.backgroundImage = null;
     }
 }
+// ↓↓↓↓↓↓↓↓ 轉成url後直接傳到資料庫
+//const file = document.getElementById('drop-zone__input');
+//const url = document.getElementById('url');
+//file.addEventListener('change', ev => {
+//    const cloudinary = require('cloudinary').v2;
+//    cloudinary.config({
+//        cloud_name: dz5yujoyp,
+//        api_key: 899612568264711,
+//        api_secret: jPdZnY_hUQlAxXkwbsfvjxOP1HM
+//    });
+//    const file = './../assets/images/waffle.png';
+//    const options = {
+//        tags: 'waffle'
+//    }
+//    cloudinary.uploader.upload(file, options).then(image =& gt; {
+//        console.log(image);
+//    }).catch(err =& gt; {
+//    console.error(err);
+//});
+//});
+
 
 // ↓↓↓↓↓↓↓↓ 轉成url後直接傳到資料庫
 const file = document.getElementById('drop-zone__input');
@@ -89,7 +110,6 @@ file.addEventListener('change', ev => {
             })
         })
         .then((res) => console.log(res))
-
 });
 
 // 編輯個人資訊 //
@@ -104,12 +124,12 @@ const save_btn = document.querySelector('#save_btn');
 
 document.querySelector('.edit-personal-data').addEventListener("click", () => {
     document.querySelector('.edit-personal-data').disabled = true;
-    cancel_btn.style.visibility = 'visible';
-    save_btn.style.visibility = 'visible';
-    document.querySelector('.show_personal_data').style.display = 'none';
     about_me_input.value = about_me_output.innerText;
     location_input.value = location_output.innerText;
     language_input.value = language_output.innerText;
+    cancel_btn.style.visibility = 'visible';
+    save_btn.style.visibility = 'visible';
+    document.querySelector('.show_personal_data').style.display = 'none';
 });
 
 save_btn.addEventListener("click", () => {

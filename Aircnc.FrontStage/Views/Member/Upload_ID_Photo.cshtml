@@ -137,14 +137,13 @@
         })
     })
 
-    // ↑↑↑↑↑↑↑↑ 轉成url
-    // ↓↓↓↓↓↓↓↓ 傳到資料庫
+    //傳圖片的url去資料庫
     const btn_save_name = document.querySelector('#btn_save')
     btn_save.addEventListener('click', () => {
 
         const url = document.getElementById('url');
         let result = {}
-        result.Photo = url.innerText
+        result.IdPhoto = url.innerText
 
         fetch('/Member/SendUrlToDatabase', {
             method: "POST",
