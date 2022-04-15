@@ -195,19 +195,23 @@ btnAdSearch.addEventListener('click', function () {
     checkboxes.forEach((checkbox) => { values.push(checkbox.value) });
     adSearchVM.roomServiceLabels = values;
 
-
-    navSearch.Location = wantToGo.innerText;
+    console.log(wantToGo)
+    navSearch.Location = wantToGo.value;
     navSearch.StartDate = startDate.value;
     navSearch.EndDate = endDate.value;
     navSearch.NumberOfGuests = guestNumbers.value;
 
-    searchVM.NavSearch = navSearch;
-    searchVM.AdSearch = adSearchVM;
-    console.log(searchVM);
+    searchVM.navSearch = navSearch;
+    searchVM.adSearch = adSearchVM;
+    searchVM.SearchRoom = "";
+    searchVM.RoomDetailVM = "";
+    let request = {
+        searchVM: searchVM
+    }
     fetch("/Search/Search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(searchVM)
+        body: JSON.stringify(request)
     })
 
 })

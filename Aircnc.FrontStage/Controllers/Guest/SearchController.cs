@@ -51,8 +51,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
             return View(searchVM);
         }
         [HttpPost]
-        public IActionResult Search([FromBody] SearchVM searchVM, int id = 1)
+        public IActionResult Search([FromBody] SearchVM searchVM)
         {
+            var id = 1;
             //int userId = int.Parse(User.Identity.Name);
             //SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
 
