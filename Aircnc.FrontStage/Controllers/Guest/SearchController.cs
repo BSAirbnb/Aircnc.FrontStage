@@ -64,10 +64,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
             
             int activePage = id;
             int pageRows = 8; // show rows per page
-            if (totalRows == 0)
-            {
-                totalRows = rooms.Count();
-            }
+            totalRows = rooms.Count();
+            
             int pages = 0; //計算總頁數
             if (totalRows % pageRows == 0)
             {
