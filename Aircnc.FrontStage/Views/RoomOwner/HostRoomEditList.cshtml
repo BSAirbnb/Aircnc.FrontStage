@@ -50,20 +50,47 @@
             <!-- 房源基本資訊 -->
             <h2 class="mt-4 mb-4 h2_room_detail">房源基本資訊</h2>
             <!-- 房源標題編輯 -->
-            <div class="edit_section edit_room_title_section">
-                <div class="d-flex justify-content-between">
-                    <h3 class="mt-4 h3_room_detail">房源標題</h3>
-                    <button class="btn btn_edit_room">編輯</button>
+            <div class="accordion edit_section edit_room_title_section" id="edit_room_title">
+                <div class="accordion-item">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="accordion-header h3_room_detail mt-4" id="edit_room_title">
+                            房源標題
+                        </h3>
+                        <button class="accordion-button btn btn_edit_room" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitle" aria-expanded="false" aria-controls="collapseTitle">
+                            編輯
+                        </button>
+
+                    </div>
+                    <p class="edit_room_title">@Model.Select(x => x.RoomName).First()</p>
+
+                    <div id="collapseTitle" class="accordion-collapse collapse" aria-labelledby="edit_room_title" data-bs-parent="#edit_room_title">
+                        <div class="accordion-body">
+                            內容
+                        </div>
+                    </div>
                 </div>
-                <p class="edit_room_title">@Model.Select(x => x.RoomName).First()</p>
             </div>
+
             <!-- 房源描述編輯 -->
-            <div class="edit_section edit_room_description_section">
-                <div class="d-flex justify-content-between">
-                    <h3 class="mt-4 h3_room_detail">房源描述</h3>
-                    <button class="btn btn_edit_room">編輯</button>
+            <div class="accordion edit_section edit_room_description_section" id="edit_room_description">
+                <div class="accordion-item">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="accordion-header h3_room_detail mt-4" id="edit_room_description">
+                            房源描述
+                        </h3>
+                        <button class="accordion-button btn btn_edit_room" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescrtiption" aria-expanded="false" aria-controls="collapseDescrtiption">
+                            編輯
+                        </button>
+
+                    </div>
+                    <p class="edit_room_description">@Model.Select(x => x.RoomDescription).First()</p>
+
+                    <div id="collapseDescrtiption" class="accordion-collapse collapse" aria-labelledby="edit_room_description" data-bs-parent="#edit_room_description">
+                        <div class="accordion-body">
+                            內容
+                        </div>
+                    </div>
                 </div>
-                <p class="edit_room_description">@Model.Select(x => x.RoomDescription).First()</p>
             </div>
             <!-- 房源人數編輯 -->
             <div class="edit_section edit_room_guestCount_section">
@@ -92,14 +119,29 @@
                 </div>
                 <p class="edit_room_language">undefined (預設)</p>
             </div>
+
             <!-- 房源狀態編輯 -->
-            <div class="edit_section edit_room_status_section">
-                <div class="d-flex justify-content-between">
-                    <h3 class="mt-4 h3_room_detail">房源狀態</h3>
-                    <button class="btn btn_edit_room">編輯</button>
+            <div class="accordion edit_section edit_room_status_section" id="edit_room_status">
+                <div class="accordion-item">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="accordion-header h3_room_detail mt-4" id="edit_room_status">
+                            房源狀態
+                        </h3>
+                        <button class="accordion-button btn btn_edit_room" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRoomStatus" aria-expanded="false" aria-controls="collapseRoomStatus">
+                            編輯
+                        </button>
+
+                    </div>
+                    <p class="edit_room_status">@Model.Select(x => x.RoomStatus).First()- 房客可以在搜尋結果中找到你的房源，且可以提出預訂申請或預訂日曆上開放的日期。</p>
+
+                    <div id="collapseRoomStatus" class="accordion-collapse collapse" aria-labelledby="edit_room_status" data-bs-parent="#edit_room_status">
+                        <div class="accordion-body">
+                            內容
+                        </div>
+                    </div>
                 </div>
-                <p class="edit_room_status">@Model.Select(x => x.RoomStatus).First()- 房客可以在搜尋結果中找到你的房源，且可以提出預訂申請或預訂日曆上開放的日期。</p>
             </div>
+
             <!-- 設備與服務編輯 -->
             <div class="edit_section edit_room_equipment_and_service_section">
                 <div class="d-flex justify-content-between">
@@ -109,8 +151,7 @@
                 <div class="edit_room_equipment_and_service">
                     @foreach (var item in (Model.Select(x => x.RoomService).First()).Split(","))
                     {
-                    <span class="d-block">@item</span>
-
+                        <span class="d-block">@item</span>
                     }
                 </div>
             </div>
@@ -160,26 +201,53 @@
             <!-- 房源與房型 -->
             <h2 class="mt-4 mb-4 h2_room_detail">房源與房型</h2>
             <!-- 房源類型編輯 -->
-            <div class="edit_section edit_room_type_section">
-                <div class="d-flex justify-content-between">
-                    <h3 class="mt-4 h3_room_detail">房源類型</h3>
-                    <button class="btn btn_edit_room">編輯</button>
+            <div class="accordion edit_section edit_room_type_section" id="p_room_type">
+                <div class="accordion-item">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="accordion-header h3_room_detail mt-4" id="p_room_type">
+                            房源類型
+                        </h3>
+                        <button class="accordion-button btn btn_edit_room" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRoomType" aria-expanded="false" aria-controls="collapseRoomType">
+                            編輯
+                        </button>
+
+                    </div>
+                    @*<p>私有公寓</p>*@
+                    <p class="p_room_type">房源類型: @Model.Select(x => x.RoomType).First()／@Model.Select(x => x.HouseType).First()</p>
+
+                    <div id="collapseRoomType" class="accordion-collapse collapse" aria-labelledby="p_room_type" data-bs-parent="#p_room_type">
+                        <div class="accordion-body">
+                            內容
+                        </div>
+                    </div>
                 </div>
-                @*<p>私有公寓</p>*@
-                <p class="p_room_type">房源類型: @Model.Select(x => x.RoomType).First()／@Model.Select(x => x.HouseType).First()</p>
             </div>
+
             <!-- 房間與空間編輯 -->
-            <div class="edit_section edit_room_space_section">
-                <div class="d-flex justify-content-between">
-                    <h3 class="mt-4 h3_room_detail">房間與空間</h3>
-                    <button class="btn btn_edit_room">編輯</button>
+            <div class="accordion edit_section edit_room_space_section" id="edit_room_space_section">
+                <div class="accordion-item">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="accordion-header h3_room_detail mt-4" id="edit_room_space_section">
+                            房間與空間
+                        </h3>
+                        <button class="accordion-button btn btn_edit_room" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRoomSpace" aria-expanded="false" aria-controls="collapseRoomSpace">
+                            編輯
+                        </button>
+                    </div>
+                    <span class="d-block span_room_space">臥室: @Model.Select(x => x.RoomCount).First()</span>
+                    <span class="d-block span_room_space">床數： @Model.Select(x => x.BedCount).First()</span>
+                    <span class="d-block span_room_space">衛浴: @Model.Select(x => x.BathroomCount).First()</span>
+                    <span class="d-block span_room_space">其他區域: 0</span>
+                    <span class="d-block span_room_space">房客可能會共用部分區域</span>
+
+                    <div id="collapseRoomSpace" class="accordion-collapse collapse" aria-labelledby="edit_room_space_section" data-bs-parent="#edit_room_space_section">
+                        <div class="accordion-body">
+                            內容
+                        </div>
+                    </div>
                 </div>
-                <span class="d-block span_room_space">臥室: @Model.Select(x => x.RoomCount).First()</span>
-                <span class="d-block span_room_space">床數： @Model.Select(x => x.BedCount).First()</span>
-                <span class="d-block span_room_space">衛浴: @Model.Select(x => x.BathroomCount).First()</span>
-                <span class="d-block span_room_space">其他區域: 0</span>
-                <span class="d-block span_room_space">房客可能會共用部分區域</span>
             </div>
+
             <!-- 無障礙設施與服務編輯 -->
             <div class="edit_section edit_room_disabled_facilities_and_services_section">
                 <div class="d-flex justify-content-between">

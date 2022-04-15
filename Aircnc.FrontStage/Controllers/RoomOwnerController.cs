@@ -40,6 +40,7 @@ namespace Aircnc.FrontStage.Controllers
         /// <returns></returns>
         /// 
         [Authorize]
+        [HttpGet]
         public IActionResult HostList()
         {
             //先假設user1的房源
@@ -60,6 +61,27 @@ namespace Aircnc.FrontStage.Controllers
                     TypeOfLabel = RoomOwnerDto.TypeOfLabel
                 });
 
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult HostList([FromBody]HostListSearchDto hostListSearchDto)
+        {
+            var result = _hostListService.SearchHostListByOwnerId(hostListSearchDto).Select(RoomOwnerDto => new HostListViewModel
+            {
+                RoomId = RoomOwnerDto.RoomId,
+                UserId = RoomOwnerDto.UserId,
+                Status = RoomOwnerDto.Status,
+                State = RoomOwnerDto.Status == RoomStatusEnum.Online ? "上架中" : RoomOwnerDto.Status == RoomStatusEnum.Pending ? "<i class='fas fa-hourglass-half'></i>建立中" : "已下架",
+                RoomName = RoomOwnerDto.RoomName,
+                BathroomCount = RoomOwnerDto.BathroomCount,
+                Address = $"{RoomOwnerDto.Country} {RoomOwnerDto.City}",
+                BedCount = RoomOwnerDto.BedCount,
+                RoomCount = RoomOwnerDto.RoomCount,
+                CreateTime = RoomOwnerDto.CreateTime,
+                LastChangeTime = RoomOwnerDto.LastChangeTime,
+                TypeOfLabel = RoomOwnerDto.TypeOfLabel
+            });
             return View(result);
         }
 
