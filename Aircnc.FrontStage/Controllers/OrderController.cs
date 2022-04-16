@@ -1,6 +1,7 @@
 ﻿using Aircnc.FrontStage.Models.Entities;
 using Aircnc.FrontStage.Models.ViewModels.Order;
 using Aircnc.FrontStage.Services;
+using Aircnc.FrontStage.Services.Guest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,12 +14,15 @@ namespace Aircnc.FrontStage.Controllers
     public class OrderController : Controller
     {
         private readonly OrderService _orderService;
+        private readonly RoomDetailService _roomDetailService;
+
         //private static int totalRows;
         //int Pages = 0;
 
-        public OrderController(OrderService orderService)
+        public OrderController(OrderService orderService , RoomDetailService roomDetailService)
         {
             _orderService = orderService;
+            _roomDetailService = roomDetailService;
         }
 
         [Authorize]
@@ -36,7 +40,8 @@ namespace Aircnc.FrontStage.Controllers
                 Street = x.Street,
                 RoomImg = x.RoomImg,
                 RoomOwnerName = x.RoomOwnerName,
-                Status = x.Status
+                Status = x.Status,
+                RoomId = x.RoomId
 
             });
             var result = orderList.OrderBy(x => x.CkeckIn);

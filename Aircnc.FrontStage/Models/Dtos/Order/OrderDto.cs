@@ -10,6 +10,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Order
     {
         public int OrderId { get; set; }
         public string RoomName { get; set; }
+        public int RoomId { get; set; }
         public DateTime CkeckIn { get; set; }
         public DateTime CkeckOut { get; set; }
         public string Country { get; set; }

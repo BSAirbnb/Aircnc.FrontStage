@@ -26,7 +26,7 @@
 
     <!-- 查詢交易紀錄區塊 -->
     <div class="row mt-4 ms-md-3">
-        <div class="col-10 col-md-8 ms-4 mt-5">
+        <div class="col-10 col-md-8 ms-4 mt-3">
             <span class="fs-2 fw-bold transactions ms-md-3">交易紀錄</span>
         </div>
         <!-- 選項切換列 -->
@@ -136,8 +136,10 @@
         data = @transactionList
         //console.log(data)
 
-        let filterData = []
-        filterData = data
+            let filterData = []
+        data.forEach(x => {
+            filterData.push(x)
+        })
         console.log(filterData)
 
         submitBtn.addEventListener('click', function () {
@@ -148,53 +150,72 @@
         //function
         function FilterDataByRoom(filterData) {
             table.innerHTML = ''
-            let tbody = document.createElement('tbody')
-            let tbodyTr
 
-            filterData.forEach(content => {
-                //如果選到的房間沒有任何交易紀錄
-                if (!roomSelector.value == "所有房源" && !filterData.includes(roomSelector.value)) {
-                    table.innerText = "查無資料"
-                }
+
+            
+                filterData.forEach(content => {
+                    //如果選到的房間沒有任何交易紀錄
+                    let tbody = document.createElement('tbody')
+                    let tbodyTr = document.createElement('tr')
+                    //if (roomSelector.value != "所有房源" && content.RoomName!=roomSelector.value) {
+                    //    console.log(1)
+                    //    table.innerText = "查無資料!"
+                    //    table.classList.add("mx-auto","mb-3")
+                    //}
 
                 //如果條件為所有房源
-                else if (roomSelector.value == '所有房源') {
-                    timeTh.innerText = '生成時間'
-                    timeTh.classList.add("fs-4")
-                    totalAmountTh.innerText = '總金額'
-                    totalAmountTh.classList.add("fs-4")
-                    theadTr.append(timeTh, totalAmountTh)
+                 if (roomSelector.value == '所有房源') {
+                        timeTh.innerText = '生成時間'
+                        timeTh.classList.add("fs-4")
+                        totalAmountTh.innerText = '總金額'
+                        totalAmountTh.classList.add("fs-4")
+                        theadTr.append(timeTh, totalAmountTh)
+                        thead.append(theadTr)
+
+                        tbodyTr = document.createElement('tr')
+                        let createTimeTd = document.createElement('td')
+                        let totalAmountTd = document.createElement('td')
+                        createTimeTd.innerText = content.CreateTime
+                        totalAmountTd.innerText = content.TotalAmount
+                        tbodyTr.append(createTimeTd, totalAmountTd)
+                        tbody.append(tbodyTr)
+
+                        table.append(thead, tbody)
+                        table.classList.add("table")
+                        filterData = []
+                        data.forEach(x => {
+                            filterData.push(x)
+                        })
+                    }
+                    //如果條件為單一房源
+                    else if (roomSelector.value == content.RoomName) {
+                        console.log(987)
+                        timeTh.innerText = '生成時間'
+                        timeTh.classList.add("fs-4")
+                        totalAmountTh.innerText = '總金額'
+                        totalAmountTh.classList.add("fs-4")
+                        theadTr.append(timeTh, totalAmountTh)
 
 
-                    tbodyTr = document.createElement('tr')
-                    let createTimeTd = document.createElement('td')
-                    let totalAmountTd = document.createElement('td')
-                    createTimeTd.innerText = content.CreateTime
-                    totalAmountTd.innerText = content.TotalAmount
-                    tbodyTr.append(createTimeTd, totalAmountTd)
 
-                }
-                //如果條件為單一房源
-                else if (roomSelector.value == content.RoomName ) {
-                    timeTh.innerText = '生成時間'
-                    timeTh.classList.add("fs-4")
-                    totalAmountTh.innerText = '總金額'
-                    totalAmountTh.classList.add("fs-4")
-                    theadTr.append(timeTh, totalAmountTh)
+                        let createTimeTd = document.createElement('td')
+                        let totalAmountTd = document.createElement('td')
+                        createTimeTd.innerText = content.CreateTime
+                        totalAmountTd.innerText = content.TotalAmount
+                        tbodyTr.append(createTimeTd, totalAmountTd)
+                        thead.append(theadTr)
+                        tbody.append(tbodyTr)
+                        table.append(thead, tbody)
+                        table.classList.add("table")
+                        filterData = []
+                        data.forEach(x => {
+                            filterData.push(x)
+                        })
+                    }
 
-
-                    tbodyTr = document.createElement('tr')
-                    let createTimeTd = document.createElement('td')
-                    let totalAmountTd = document.createElement('td')
-                    createTimeTd.innerText = content.CreateTime
-                    totalAmountTd.innerText = content.TotalAmount
-                    tbodyTr.append(createTimeTd, totalAmountTd)
-                }
-                thead.append(theadTr)
-                tbody.append(tbodyTr)
-                table.append(thead, tbody)
-                table.classList.add("table")
-            })
+                })
+            
+            
         }
     </script>
 }

@@ -9,6 +9,7 @@ namespace Aircnc.FrontStage.Models.ViewModels.Order
     public class OrderViewModel
     {
         public int OrderId { get; set; }
+        public int RoomId { get; set; }
         public string RoomName { get; set; }
         public string CkeckIn { get; set; }
         public string CkeckOut { get; set; }
