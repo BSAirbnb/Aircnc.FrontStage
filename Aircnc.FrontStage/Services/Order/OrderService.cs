@@ -21,6 +21,7 @@ namespace Aircnc.FrontStage.Services
             return _dbRepository.GetAll<Order>().Where(order => order.UserId == userId).Select(order => new OrderDto
             {
                 OrderId = order.OrderId,
+                RoomId = order.RoomId,
                 RoomName = order.RoomName,
                 CkeckIn = order.CkeckIn,
                 CkeckOut = order.CkeckOut,
