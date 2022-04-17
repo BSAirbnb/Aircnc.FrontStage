@@ -5,7 +5,7 @@ window.onload = function () {
     const minusGuestsBtn = document.getElementById('minus-guests')
     const addGuestsBtn = document.getElementById('add-guests')
     const guestNumbers = document.getElementById('guestNumbers')
-    //for advence search js
+    //for advance search js
     const startDate = document.getElementById('startDate');
     const endDate = document.getElementById('endDate');
 

@@ -50,6 +50,9 @@ namespace Aircnc.FrontStage.Controllers.Guest
                 ReviewsCount = room.Reviews.Count()
             };
             var result = new SearchVM() { RoomDetailVM = detail };
+
+            //以 json 傳遞房源not available的時間
+            ViewData["RoomAvailability"] = System.Text.Json.JsonSerializer.Serialize(room.roomAvailability);
             return View(result);
         }
 

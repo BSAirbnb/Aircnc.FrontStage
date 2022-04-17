@@ -126,7 +126,7 @@
 
                 <div id="calendar">
                     <p class="my-3 fs-5 fw-bold">選擇您的時間</p>
-                    <input id="start" type="text" name="start" value="" class="me-5"/>
+                    <input id="start" type="text" name="start" value="" class="me-5" />
                     <input id="end" type="text" name="end" value="" class="ms-4" />
                 </div>
 
@@ -136,17 +136,17 @@
             <div class="col-lg-4 d-none d-lg-block">
                 <div class="modal-content position-sticky" id="reservation-sticky">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="bookingLabel">你的行程?</h5>
+                        <h5 class="modal-title" id="bookingLabel">你的行程</h5>
                     </div>
                     <div class="modal-body">
                         <section class="container">
                             <form class="row flex-column">
-                                @*<div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]"></div>*@
+                                <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]" readonly="readonly"></div>
                                 <label for="date" class="col-4 col-form-label">日期</label>
                                 <div class="d-flex my-2 flex-wrap">
-                                    <input type="date" class="form-control" value="@TempData["startDate"]">
+                                    <input type="date" class="form-control" value="@TempData["startDate"]" readonly="readonly">
                                     <span class="px-2 fs-5">至</span>
-                                    <input type="date" class="form-control" value="@TempData["endDate"]">
+                                    <input type="date" class="form-control" value="@TempData["endDate"]" readonly="readonly">
                                 </div>
                                 <div class="d-flex justify-content-evenly align-items-center my-2">
                                     <span class="col-4">人數</span>
@@ -340,6 +340,40 @@
 @section endJS {
     <script src="~/js/GuestModule/RoomDetailBooking.js"></script>
     <script src="https://unpkg.com/js-datepicker"></script>
-    <script src="~/js/GuestModule/datepicker.js"></script>
+
+    <script>
+        let dates = @Html.Raw((string)ViewData["RoomAvailability"]);
+        let disabled = []
+
+        dates.forEach(date => {
+            disabled.push(new Date(date.year, date.month - 1, date.day))
+        })
+
+        const start = datepicker('#start', {
+            id: 1,
+            customDays: ['天', '一', '二', '三', '四', '五', '六'],
+            customMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
+            customOverlayMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
+            overlayButton: '送出',
+            alwaysShow: true,
+            disabledDates: disabled
+        })
+        const end = datepicker('#end', {
+            id: 1,
+            customDays: ['天', '一', '二', '三', '四', '五', '六'],
+            customMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
+            customOverlayMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
+            overlayButton: '送出',
+            alwaysShow: true,
+            disabledDates: disabled
+        })
+
+    </script>
 }
 
+<!--//let disabledDatesArr = []-->
+@*@foreach (var date in Model.RoomDetailVM.roomAvailability)
+    {
+        disabledDatesArr.push(new Date(date.Year, date.Month, date.Day));
+    }*@
+        <!--//disabledDatesArr.push(new Date())-->

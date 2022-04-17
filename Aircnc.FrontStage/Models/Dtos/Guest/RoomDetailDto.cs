@@ -34,6 +34,7 @@ namespace Aircnc.FrontStage.Models.Dtos.Guest
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
         public int Status { get; set; }
+        public List<RoomAvailabilityDto> roomAvailability { get; set; }
 
         public List<RoomServiceLabel> ServiceLabels { get; set; }
 
