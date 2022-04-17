@@ -33,9 +33,14 @@ function toMap(event){
     roomlist.classList.remove('d-md-block');
 }
 //#endregion
+
 window.onload = function () {
     initMap();
 }
+
+var locations = JSON.parse(@Html.Raw((string)ViewData["Locations"]));
+console.log(locations)
+
 // Initialize and add the map
 function initMap() {
     // The location of Uluru
@@ -50,6 +55,7 @@ function initMap() {
     position: uluru,
     map: map,
     });
+    
     }
 
 //advenceSearch
