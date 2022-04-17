@@ -269,6 +269,85 @@ OptionsRow5BtnsEven.forEach(OptionsRow5Btn => {
         }
     })
 });
+
+//p6 圖片上傳
+// 將上傳的圖片透過Imgur API轉成url
+const file = document.getElementById('drop-zone__input')
+const picArea = document.getElementById('picArea')
+/*let RoomCurrentIndex = 1*/
+file.addEventListener('change', ev => {
+    file.disabled = true
+    let  formdata = new FormData()
+    formdata.append('image', ev.target.files[0])
+    console.dir(formdata)
+    //加入之前的img數量 用來判別還能不能加照片
+    let nowimgs = document.querySelectorAll('.RoomImgs')
+    /*console.log(nowimgs)*/
+    if (nowimgs.length >= 6) {
+        alert('最多只能新增6張照片')
+    }
+    else {
+        fetch('https://api.imgur.com/3/image/', {
+            method: "post",
+            headers: {
+                Authorization: 'Client-ID b1a32cb086da79f',
+            }
+            , body: formdata
+        })
+            .then(data => data.json())
+            .then(data => {
+                console.log(data)
+
+                if (data.status == 200) {
+                    /*pic_upload_0.innerText = data.data.link*/
+                    let imgdiv = document.createElement('div')
+/*                    imgdiv.id = `imgdiv${RoomCurrentIndex}`*/
+                    imgdiv.setAttribute('class', 'col-4 position-relative')
+                    let img = document.createElement('img')
+                    img.setAttribute('class', 'img-fluid RoomImgs')
+/*                    img.id = `uploadedimg${RoomCurrentIndex}`*/
+                    img.src = data.data.link
+                    let delbtn = document.createElement('button')
+                    delbtn.setAttribute('class', 'btn btn-sm btn-danger delbtn')
+                    delbtn.setAttribute('style','width:2rem')
+                    delbtn.innerText = 'x'
+/*                    delbtn.id = `delbtn${RoomCurrentIndex}`*/
+                    delbtn.addEventListener('click', () => {
+                        imgdiv.innerHTML = ''
+                        imgdiv.setAttribute('class', 'd-none')
+                        let nowimgsdelete = document.querySelectorAll('.RoomImgs')
+                        if (nowimgsdelete.length < 1)
+                        {
+                            $(".next")[5].disabled = true
+                        }
+                    })
+                    imgdiv.appendChild(img)
+                    imgdiv.appendChild(delbtn)
+                    picArea.appendChild(imgdiv)
+/*                    RoomCurrentIndex ++*/
+                    //加入完之後的img數量
+                    let nowimgsafter = document.querySelectorAll('.RoomImgs')
+                    if (nowimgsafter.length >= 1) {
+
+                        $(".next")[5].disabled = false
+                        /*console.log($(".next")[5].disabled)*/
+                    }
+                }
+                file.disabled = false
+            })
+            .catch(error => {
+                alert('圖片上傳失敗，請再試一次')
+                file.disabled = false
+            })
+
+    }
+
+
+
+
+})
+
+
 // p7 房源名稱
 //Dom
 const OptionsRow7 = document.querySelector(".OptionsRow7")
@@ -378,6 +457,13 @@ btn_CreateRoom.addEventListener('click', () => {
             serviceLabel.push(labelenum)
         }
     })
+    //p6 img upload
+    let resultImg = []
+    let FinallyRoomImgs = document.querySelectorAll('.RoomImgs')
+    FinallyRoomImgs.forEach(img => {
+        resultImg.push(img.src)
+    })
+    result.RoomImg = resultImg
     result.RoomServiceLabel = serviceLabel
     result.RoomName = RoomTitleTextArea.value
     result.RoomDescription = RoomDesrcibeTextArea.value
@@ -395,8 +481,7 @@ btn_CreateRoom.addEventListener('click', () => {
         .then(response => response.json())
         .then(jsonData => {
             console.log(jsonData)
-            //the url need to be changed
-/*            window.location.href = "/controller/action"*/
+
             let url = "/RoomOwner/HostList"
             
             

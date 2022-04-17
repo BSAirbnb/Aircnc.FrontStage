@@ -299,24 +299,7 @@ i {
     }
 }
 
-/* 選項 */
-.OptionsRow6 > .OptionCards {
-    height: 150px;
-    border: 2px solid #DDDDDD;
-    border-radius: 10px;
-    padding: 20px;
-}
 
-    .OptionsRow6 > .OptionCards > i {
-        margin: auto 1rem auto 0;
-        font-size: 36px;
-    }
-
-    .OptionsRow6 > .OptionCards > span {
-        margin: auto 0;
-        font-weight: 600;
-        font-size: 24px;
-    }
 
 .nextstep {
     /* margin-top: auto; */
@@ -330,7 +313,8 @@ i {
 }
 
 #pic_upload_0 {
-    height: 60vh;
+    min-height:100px;
+    height: 20vh;
     border: 2px dashed #dddddd;
 }
 
@@ -341,7 +325,11 @@ i {
 .OptionsRow6 {
     height: 100vh;
 }
-
+.delbtn {
+    position:absolute;
+    left:80%;
+    top:0;
+}
 /* p7 建立標題 */
 @media screen and (max-width:767px) {
     .Options > .OptionsRow7 {

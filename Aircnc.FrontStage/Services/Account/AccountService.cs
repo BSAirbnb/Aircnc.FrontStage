@@ -114,7 +114,7 @@ namespace Aircnc.FrontStage.Services.Account
             result.User.Email = currentUser.Email;
             //如果使用者照片為null 使用預設值
 
-            result.User.Photo = currentUser.Photo ?? "/Img/user-cover.jpg";
+            result.User.Photo = currentUser.Photo ?? "Img/user-cover.jpg";
             
 
 

@@ -49,8 +49,9 @@ namespace Aircnc.FrontStage.Services.RoomOwner
                 Lat = request.Lat,
                 Lng = request.Lng,
                 //加入roomlabel
-                RoomServiceLabel = request.RoomServiceLabel
+                RoomServiceLabel = request.RoomServiceLabel,
                 //要加入roomimg(尚未)
+                RoomImg = request.RoomImg
             };
             var room = new Room();
             //transaction 
@@ -102,8 +103,21 @@ namespace Aircnc.FrontStage.Services.RoomOwner
                         
                     }
                     //img表 foreach加入
-
-
+                    int imgIndex = 1;
+                    foreach (var roomimg in result.RoomImg)
+                    {
+                        RoomImg _roomImg = new RoomImg
+                        {
+                            RoomId = room.RoomId,
+                            ImageUrl = roomimg,
+                            Sort = imgIndex,
+                            CreateTime = DateTime.Now,
+                        };
+                        _repository.Create(_roomImg);
+                        imgIndex++;
+                        
+                    }
+                    _repository.Save();
                     transaction.Commit();
                     //_logger.LogWarning("新建房源成功!");
                 }

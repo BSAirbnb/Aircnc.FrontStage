@@ -24,5 +24,7 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public decimal Lat { get; set; }
         public decimal Lng{ get; set; }
         public IEnumerable<int> RoomServiceLabel { get; set; }
+        public IEnumerable<string> RoomImg { get; set; }
     }
+    
 }
