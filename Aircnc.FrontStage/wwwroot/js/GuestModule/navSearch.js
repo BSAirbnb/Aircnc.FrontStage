@@ -1,13 +1,18 @@
-﻿
+﻿// navigation search modal - guests number buttons
+const minusGuestsBtn = document.getElementById('minus-guests')
+const addGuestsBtn = document.getElementById('add-guests')
+const guestNumbers = document.getElementById('guestNumbers')
+const wantToGo = document.getElementById('location-field');
+const searchBtn = document.getElementById('search-btn')
+const msg = document.getElementById('location-msg')
+//for advence search js
+const startDate = document.getElementById('startDate');
+const endDate = document.getElementById('endDate');
 
 window.onload = function () {
-    // navigation search modal - guests number buttons
-    const minusGuestsBtn = document.getElementById('minus-guests')
-    const addGuestsBtn = document.getElementById('add-guests')
-    const guestNumbers = document.getElementById('guestNumbers')
-    //for advance search js
-    const startDate = document.getElementById('startDate');
-    const endDate = document.getElementById('endDate');
+    
+    
+    
 
     let guests = guestNumbers.value
 
@@ -31,9 +36,8 @@ window.onload = function () {
     
 
     //判斷搜尋中 "位置" 欄位是否為空
-    const wantToGo = document.getElementById('location-field')
-    const searchBtn = document.getElementById('search-btn')
-    const msg = document.getElementById('location-msg')
+    
+    
     
     //if (wantToGo.value != null && wantToGo.value != '') {
     //    searchBtn.disabled = false
