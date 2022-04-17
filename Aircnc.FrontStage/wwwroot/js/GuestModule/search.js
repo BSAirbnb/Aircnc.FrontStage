@@ -1,7 +1,7 @@
 
 //const bootstrap = require("../../bootstrap/js/bootstrap");
 
-//地圖切換
+//手機版地圖切換(list to map)
 //#region
 let btnswitchmap = document.querySelector('#btn-switch-map-list')
 let roomlist = document.querySelector('.room-list')
@@ -20,7 +20,7 @@ function toRoomList(event){
     mapcontainer.classList.remove('d-md-block');
 }
 //#endregion
-//地圖功能
+//手機版地圖切換(map to list)
 //#region
 function toMap(event){
     let target = event.target;
@@ -31,6 +31,10 @@ function toMap(event){
     mapcontainer.classList.add('d-md-block');
     roomlist.classList.remove('d-none');
     roomlist.classList.remove('d-md-block');
+}
+//#endregion
+window.onload = function () {
+    initMap();
 }
 // Initialize and add the map
 function initMap() {
@@ -47,7 +51,7 @@ function initMap() {
     map: map,
     });
     }
-//#endregion
+
 //advenceSearch
 let navSearch = new Object();
 let adSearchVM = new Object();

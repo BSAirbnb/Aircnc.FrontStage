@@ -25,6 +25,11 @@ namespace Aircnc.FrontStage.Controllers.Guest
             if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
+            //取經緯度
+            //var locations = rooms.Select(room => new { room.Lat, room.Lng }).ToList();
+            //ViewData["Locations"] = locations;
+
+            //分頁
             int activePage = id;
             int pageRows = 8; // show rows per page
             totalRows = rooms.Count();
@@ -59,7 +64,6 @@ namespace Aircnc.FrontStage.Controllers.Guest
             //SearchVM searchVM = new SearchVM();
             //SearchVM searchVM = System.Text.Json.JsonSerializer.Deserialize<SearchVM>(input);
             //int userId = int.Parse(User.Identity.Name);
-            //SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
 
             //searchVM.NavSearch.Location = (string)TempData["location"];
             //if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
