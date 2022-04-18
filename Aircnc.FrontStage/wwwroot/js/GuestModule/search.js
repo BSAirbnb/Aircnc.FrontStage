@@ -38,25 +38,7 @@ window.onload = function () {
     initMap();
 }
 
-var locations = JSON.parse(@Html.Raw((string)ViewData["Locations"]));
-console.log(locations)
 
-// Initialize and add the map
-function initMap() {
-    // The location of Uluru
-    const uluru = { lat: 23.8906, lng: 121.0082 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-    });
-    
-    }
 
 //advenceSearch
 let navSearch = new Object();

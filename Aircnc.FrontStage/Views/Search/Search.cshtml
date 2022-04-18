@@ -345,4 +345,25 @@
 @section endJS{
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNUeaLH8za5eiC7S-fwsQ5tJjqCnusKb0&callback=initMap"></script>
 <script src="~/js/GuestModule/search.js"></script>
+<script>
+	var locations = @Html.Raw((string)ViewData["Locations"]);
+	console.log(locations)
+
+	// Initialize and add the map
+	function initMap() {
+		// The location of Uluru
+		const uluru = { lat: 23.8906, lng: 121.0082 };
+		// The map, centered at Uluru
+		const map = new google.maps.Map(document.getElementById("map"), {
+		zoom: 4,
+		center: uluru,
+		});
+		// The marker, positioned at Uluru
+		const marker = new google.maps.Marker({
+		position: uluru,
+		map: map,
+		});
+
+		}
+</script>
 }
