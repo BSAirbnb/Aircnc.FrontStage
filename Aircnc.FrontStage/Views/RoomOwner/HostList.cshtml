@@ -78,13 +78,44 @@
 
         <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
             <div class="d-flex justify-content-between dropdown_equipment_and_service flex-wrap">
-                @foreach (var item in Model.Select(x => x.TypeOfLabel).First())
-                {
-                    <div class="form_check_equipment_and_service">
-                        <input type="checkbox" id="@item.ToString()" value="@Convert.ToInt32(item)" />
-                        <label for="@item.ToString()">@item.GetDescriptionText()</label>
-                    </div>
-                }
+                @*@foreach (var item in Model.Select(x => x.TypeOfLabel).First())
+        {
+            <div class="form_check_equipment_and_service">
+                <input type="checkbox" id="@item.ToString()" value="@Convert.ToInt32(item)" />
+                <label for="@item.ToString()">@item.GetDescriptionText()</label>
+            </div>
+        }*@
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="WiFi" value="1" />
+                    <label for="WiFi">WiFi</label>
+                </div>
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="Kitchen" value="2" />
+                    <label for="Kitchen">廚房</label>
+                </div>
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="TV" value="3" />
+                    <label for="TV">電視</label>
+                </div>
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="Washing" value="4" />
+                    <label for="Washing">洗衣機</label>
+                </div>
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="Aircon" value="5" />
+                    <label for="Aircon">空調</label>
+                </div>
+
+                <div class="form_check_equipment_and_service">
+                    <input type="checkbox" id="Parking" value="6" />
+                    <label for="Parking">停車位</label>
+                </div>
+
             </div>
 
             <!-- 清除 -->
@@ -176,7 +207,7 @@
                     </td>
 
                     <td>
-                        @*<i class="fas fa-hourglass-half"></i>*@
+                        <i class="fas fa-hourglass-half"></i>
                         @Html.Raw(room.State)
                     </td>
                     <td><button class="btn">完成</button></td>

@@ -1,5 +1,3 @@
-// let btn_edit_room_minus = document.querySelectorAll('.btn_edit_room_minus');
-// let btn_edit_room_plus = document.querySelectorAll('.btn_edit_room_plus');
 let edit_room_count = document.querySelector('.edit_room_count');
 let edit_bed_count = document.querySelector('.edit_bed_count');
 let edit_bathroom_count = document.querySelector('.edit_bathroom_count');
@@ -131,56 +129,50 @@ function hostList_search(searchResult) {
 
             })
           
-            /*window.location.reload()*/
 
                 let tbody = document.querySelector('tbody')
             tbody.innerHTML = ''
                 
             jsonData.forEach(x => {
-                //let tr = document.createElement('tr')
-                //let td = document.createElement('td')
-                //td.innerText = x.roomName
-                //tr.appendChild(td)
-                //tbody.appendChild(tr)
-                    let row = `<tr class="tr_roomlist w-100">
+            let row = `<tr class="tr_roomlist w-100">
 
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                        </div>
-                    </td>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                </div>
+            </td>
 
-                    <td class="hostList_room_name">
-                        <a href="/RoomOwner/HostRoomEditList?roomid=${x.roomId}">
-                            <div class="d-flex  host_list_house_img">
-                                <img src="">
-                                <p class="host_list_house_name">${x.roomName}</p>
-                            </div>
-                        </a>
+            <td class="hostList_room_name">
+                <a href="/RoomOwner/HostRoomEditList?roomid=${x.roomId}">
+                    <div class="d-flex  host_list_house_img">
+                        <img src="">
+                        <p class="host_list_house_name">${x.roomName}</p>
+                    </div>
+                </a>
 
-                    </td>
+            </td>
 
-                    <td>
-                       ${x.status}
-                        ${x.state}
-                    </td>
-                    <td><button class="btn">完成</button></td>
-                    <td><i class="fas fa-check-circle"></i>開</td>
-                    <td>${x.roomCount}</td>
-                    <td>${x.bedCount}</td>
-                    <td>${x.bathroomCount}</td>
-                    <td>${x.address}</td>
+            <td>
+                ${x.status}
+                ${x.state}
+            </td>
+            <td><button class="btn">完成</button></td>
+            <td><i class="fas fa-check-circle"></i>開</td>
+            <td>${x.roomCount}</td>
+            <td>${x.bedCount}</td>
+            <td>${x.bathroomCount}</td>
+            <td>${x.address}</td>
                 
-                    <td>
-                       ${x.createTime}
-                    </td>
+            <td>
+                ${x.createTime}
+            </td>
 
-                </tr>`
-                tbody.innerHTML += row
-                    console.log(row)
-                    console.log(tbody)
+            </tr>`
+            tbody.innerHTML += row
+                console.log(row)
+                console.log(tbody)
 
-                })
+        })
             
 
         })

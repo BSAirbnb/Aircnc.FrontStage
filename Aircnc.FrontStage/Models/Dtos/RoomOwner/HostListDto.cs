@@ -22,5 +22,6 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int RoomCount { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? LastChangeTime { get; set; }
+        public string KeyWord { get; set; }
     }
 }
