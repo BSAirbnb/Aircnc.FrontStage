@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Aircnc.FrontStage.Models.Entities.RoomServiceLabel;
 
 namespace Aircnc.FrontStage.Services
 {
@@ -63,17 +64,16 @@ namespace Aircnc.FrontStage.Services
 
             if (hostListSearchDto.Status != null)
             {
-                result = result.Where(x => x.Status == hostListSearchDto.Status).ToList();
+                result = result.Where(x => (int)x.Status == hostListSearchDto.Status).ToList();
             }
 
             if (hostListSearchDto.TypeOfLabel?.Count > 0)
             {
                 result = result.Where(r =>
-                                      r.RoomServiceLabels.Where(x => hostListSearchDto.TypeOfLabel.Contains(x.TypeOfLabel)).Any()
+                                      r.RoomServiceLabels.Where(x => (hostListSearchDto.TypeOfLabel).Contains((int)x.TypeOfLabel)).Any()
                                      ).ToList();
             }
-
-
+            
             var searchResult = result.Select(x => new HostListDto
             {
                 RoomId = x.RoomId,
