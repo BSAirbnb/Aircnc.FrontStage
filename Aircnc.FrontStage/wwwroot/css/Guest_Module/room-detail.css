@@ -59,3 +59,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 #calendar{
     width: 500px;
 }
+.qs-datepicker-container {
+    z-index: 2 !important;
+}
+.qs-controls {
+    background: none !important;
+}

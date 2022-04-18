@@ -125,9 +125,17 @@
                 </div>
 
                 <div id="calendar">
-                    <p class="my-3 fs-5 fw-bold">選擇您的時間</p>
-                    <input id="start" type="text" name="start" value="" class="me-5" />
-                    <input id="end" type="text" name="end" value="" class="ms-4" />
+                    <p class="my-4 fs-5 fw-bold">選擇您的時間</p>
+                    <div class="d-flex">
+                        <div class="d-inline">
+                            <span class="d-block">選擇開始日期</span>
+                            <input id="start" type="text" name="start" value="" class="me-5" readonly="readonly" />
+                        </div>
+                        <div class="d-inline">
+                            <span class="d-block ms-5">選擇結束日期</span>
+                            <input id="end" type="text" name="end" value="" class="ms-5" />
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -178,8 +186,6 @@
                                 string scorePercentage = (@Model.RoomDetailVM.AvgStars / 5.0 * 100).ToString("N1") + "%";
                                 <div id="review-bar-dark" style="width: @scorePercentage;"></div>
                             }
-
-
                         </div>
                         <span>@Model.RoomDetailVM.AvgStars.ToString("N1")</span>
                     </div>
@@ -187,7 +193,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="border-bottom border-2 my-3 d-flex flex-column">
             <div class="d-flex flex-wrap">
@@ -356,7 +361,11 @@
             customOverlayMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
             overlayButton: '送出',
             alwaysShow: true,
-            disabledDates: disabled
+            disabledDates: disabled,
+            formatter: (input, date, instance) => {
+                const value = date.toLocaleDateString()
+                input.value = value
+            }
         })
         const end = datepicker('#end', {
             id: 1,
@@ -365,7 +374,11 @@
             customOverlayMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',],
             overlayButton: '送出',
             alwaysShow: true,
-            disabledDates: disabled
+            disabledDates: disabled,
+            formatter: (input, date, instance) => {
+                const value = date.toLocaleDateString()
+                input.value = value
+            }
         })
 
     </script>
