@@ -64,9 +64,9 @@ function filterBtn(Id) {
     //搜尋房源
     searchResult.KeyWord = Keyword.textContent;
     //房間與床鋪
-    searchResult.BedCount = edit_bed_count.textContent;
-    searchResult.BathroomCount = edit_bathroom_count.textContent;
-    searchResult.RoomCount = edit_room_count.textContent;
+    searchResult.BedCount = parseInt(edit_bed_count.textContent);
+    searchResult.BathroomCount = parseInt(edit_bathroom_count.textContent);
+    searchResult.RoomCount = parseInt(edit_room_count.textContent);
     //設備與服務
     searchResult.TypeOfLabel = []
     if (Aircon != null && Aircon.checked) {
@@ -99,18 +99,24 @@ function filterBtn(Id) {
     if (Pending.checked) {
         searchResult.Status = 3;
     }
-    hostList_search(searchResult);
+    //console.log(searchResult)
+    let result = {
+        hostListSearchDto: searchResult
+    }
+    console.log(result)
+    hostList_search(result);
+   
 }
 
 
 //關鍵字搜尋
-function hostList_search(result) {
+function hostList_search(result2) {
     fetch("/RoomOwner/HostList", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(result)
+        body: JSON.stringify(result2)
 
     })
         //.then(response => response.json())
