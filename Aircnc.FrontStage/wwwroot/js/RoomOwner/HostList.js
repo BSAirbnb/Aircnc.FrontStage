@@ -100,29 +100,90 @@ function filterBtn(Id) {
         searchResult.Status = 3;
     }
     //console.log(searchResult)
-    let result = {
-        hostListSearchDto: searchResult
-    }
-    console.log(result)
-    hostList_search(result);
+    //let result = {
+    //    hostListSearchDto: searchResult
+    //}
+    console.log(searchResult)
+    hostList_search(searchResult);
    
 }
 
 
 //關鍵字搜尋
-function hostList_search(result2) {
+function hostList_search(searchResult) {
     fetch("/RoomOwner/HostList", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(result2)
+        body: JSON.stringify(searchResult)
 
     })
-        //.then(response => response.json())
-        //.then(jsonData => {
-        //    console.log(jsonData)
-        //})
+        .then(response => response.json())
+        .then(jsonData => {
+            console.log(jsonData)
+             jsonData.forEach(x => {
+                 if (x.status == 1)
+                {
+                     x.status = `<i class="fas fa-hourglass-half"></i>`
+                    
+                 }
+
+            })
+          
+            /*window.location.reload()*/
+
+                let tbody = document.querySelector('tbody')
+            tbody.innerHTML = ''
+                
+            jsonData.forEach(x => {
+                //let tr = document.createElement('tr')
+                //let td = document.createElement('td')
+                //td.innerText = x.roomName
+                //tr.appendChild(td)
+                //tbody.appendChild(tr)
+                    let row = `<tr class="tr_roomlist w-100">
+
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        </div>
+                    </td>
+
+                    <td class="hostList_room_name">
+                        <a href="/RoomOwner/HostRoomEditList?roomid=${x.roomId}">
+                            <div class="d-flex  host_list_house_img">
+                                <img src="">
+                                <p class="host_list_house_name">${x.roomName}</p>
+                            </div>
+                        </a>
+
+                    </td>
+
+                    <td>
+                       ${x.status}
+                        ${x.state}
+                    </td>
+                    <td><button class="btn">完成</button></td>
+                    <td><i class="fas fa-check-circle"></i>開</td>
+                    <td>${x.roomCount}</td>
+                    <td>${x.bedCount}</td>
+                    <td>${x.bathroomCount}</td>
+                    <td>${x.address}</td>
+                
+                    <td>
+                       ${x.createTime}
+                    </td>
+
+                </tr>`
+                tbody.innerHTML += row
+                    console.log(row)
+                    console.log(tbody)
+
+                })
+            
+
+        })
 }
 
 //let searchResult = {}

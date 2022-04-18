@@ -63,11 +63,12 @@ namespace Aircnc.FrontStage.Controllers
 
             return View(result);
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult HostList([FromBody]HostListSearchDto hostListSearchDto)
         {
-            var result = _hostListService.SearchHostListByOwnerId(hostListSearchDto).Select(RoomOwnerDto => new HostListViewModel
+            int hostId = int.Parse(User.Identity.Name);
+            var result  = _hostListService.GetAllRoomByOwnerId(hostId).Where(x=>x.BathroomCount == hostListSearchDto.BathroomCount &&x.BedCount == hostListSearchDto.BedCount && x.RoomCount == hostListSearchDto.RoomCount).Select(RoomOwnerDto => new HostListViewModel
             {
                 RoomId = RoomOwnerDto.RoomId,
                 UserId = RoomOwnerDto.UserId,
@@ -82,8 +83,27 @@ namespace Aircnc.FrontStage.Controllers
                 LastChangeTime = RoomOwnerDto.LastChangeTime,
                 TypeOfLabel = RoomOwnerDto.TypeOfLabel
             });
-            return View(result);
+
+
+            //var result = _hostListService.SearchHostListByOwnerId(hostListSearchDto).Select(RoomOwnerDto => new HostListViewModel
+            //{
+            //    RoomId = RoomOwnerDto.RoomId,
+            //    UserId = RoomOwnerDto.UserId,
+            //    Status = RoomOwnerDto.Status,
+            //    State = RoomOwnerDto.Status == RoomStatusEnum.Online ? "上架中" : RoomOwnerDto.Status == RoomStatusEnum.Pending ? "<i class='fas fa-hourglass-half'></i>建立中" : "已下架",
+            //    RoomName = RoomOwnerDto.RoomName,
+            //    BathroomCount = RoomOwnerDto.BathroomCount,
+            //    Address = $"{RoomOwnerDto.Country} {RoomOwnerDto.City}",
+            //    BedCount = RoomOwnerDto.BedCount,
+            //    RoomCount = RoomOwnerDto.RoomCount,
+            //    CreateTime = RoomOwnerDto.CreateTime,
+            //    LastChangeTime = RoomOwnerDto.LastChangeTime,
+            //    TypeOfLabel = RoomOwnerDto.TypeOfLabel
+            //});
+            return new JsonResult(result);
         }
+
+
 
         /// <summary>
         /// 預定
