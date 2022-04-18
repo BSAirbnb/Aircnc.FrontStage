@@ -36,9 +36,6 @@ namespace Aircnc.FrontStage.Controllers
         /// <summary>
         /// 管理房源
         /// </summary>
-        /// <param name="userid"></param>
-        /// <returns></returns>
-        /// 
         [Authorize]
         [HttpGet]
         public IActionResult HostList()
@@ -46,29 +43,57 @@ namespace Aircnc.FrontStage.Controllers
             //先假設user1的房源
             int hostId = int.Parse(User.Identity.Name);
             var result = _hostListService.GetAllRoomByOwnerId(hostId).Select(RoomOwnerDto => new HostListViewModel
-                {
-                    RoomId = RoomOwnerDto.RoomId,
-                    UserId = RoomOwnerDto.UserId,
-                    Status = RoomOwnerDto.Status,
-                    State = RoomOwnerDto.Status == RoomStatusEnum.Online ? "上架中" : RoomOwnerDto.Status == RoomStatusEnum.Pending ? "<i class='fas fa-hourglass-half'></i>建立中" : "已下架",
-                    RoomName = RoomOwnerDto.RoomName,
-                    BathroomCount = RoomOwnerDto.BathroomCount,
-                    Address = $"{RoomOwnerDto.Country} {RoomOwnerDto.City}",
-                    BedCount = RoomOwnerDto.BedCount,
-                    RoomCount = RoomOwnerDto.RoomCount,
-                    CreateTime = RoomOwnerDto.CreateTime,
-                    LastChangeTime = RoomOwnerDto.LastChangeTime,
-                    TypeOfLabel = RoomOwnerDto.TypeOfLabel
-                });
+            {
+                RoomId = RoomOwnerDto.RoomId,
+                UserId = RoomOwnerDto.UserId,
+                Status = RoomOwnerDto.Status,
+                State = RoomOwnerDto.Status == RoomStatusEnum.Online ? "上架中" : RoomOwnerDto.Status == RoomStatusEnum.Pending ? "<i class='fas fa-hourglass-half'></i>建立中" : "已下架",
+                RoomName = RoomOwnerDto.RoomName,
+                BathroomCount = RoomOwnerDto.BathroomCount,
+                Address = $"{RoomOwnerDto.Country} {RoomOwnerDto.City}",
+                BedCount = RoomOwnerDto.BedCount,
+                RoomCount = RoomOwnerDto.RoomCount,
+                CreateTime = RoomOwnerDto.CreateTime,
+                LastChangeTime = RoomOwnerDto.LastChangeTime,
+                TypeOfLabel = RoomOwnerDto.TypeOfLabel
+            });
 
             return View(result);
         }
         [Authorize]
         [HttpPost]
-        public IActionResult HostList([FromBody]HostListSearchDto hostListSearchDto)
+        public IActionResult HostList([FromBody] HostListSearchDto hostListSearchDto)
         {
             int hostId = int.Parse(User.Identity.Name);
-            var result  = _hostListService.GetAllRoomByOwnerId(hostId).Where(x=>x.BathroomCount == hostListSearchDto.BathroomCount &&x.BedCount == hostListSearchDto.BedCount && x.RoomCount == hostListSearchDto.RoomCount).Select(RoomOwnerDto => new HostListViewModel
+            var result = _hostListService.GetAllRoomByOwnerId(hostId).ToList();
+            if (!string.IsNullOrEmpty(hostListSearchDto.KeyWord))
+            {
+                result = result.Where(x => x.KeyWord.Contains(hostListSearchDto.KeyWord)).ToList();
+            }
+            if (hostListSearchDto.BathroomCount > 0)
+            {
+                result = result.Where(x => x.BathroomCount == hostListSearchDto.BathroomCount).ToList();
+            }
+            if (hostListSearchDto.BedCount > 0)
+            {
+                result = result.Where(x => x.BedCount == hostListSearchDto.BedCount).ToList();
+            }
+            if (hostListSearchDto.RoomCount > 0)
+            {
+                result = result.Where(x => x.RoomCount == hostListSearchDto.RoomCount).ToList();
+            }
+            if (hostListSearchDto.TypeOfLabel.Count > 0)
+            {
+                result = result.Where(x => hostListSearchDto.TypeOfLabel.Intersect(
+                                           x.TypeOfLabel.Select(x => (int)x).ToList()).Any()
+                                     ).ToList();
+            }
+            if (hostListSearchDto.Status != null && hostListSearchDto.Status > 0)
+            {
+                result = result.Where(x => (int)x.Status == hostListSearchDto.Status).ToList();
+            }
+
+            var searchResult =  result.Select(RoomOwnerDto => new HostListViewModel
             {
                 RoomId = RoomOwnerDto.RoomId,
                 UserId = RoomOwnerDto.UserId,
@@ -100,7 +125,7 @@ namespace Aircnc.FrontStage.Controllers
             //    LastChangeTime = RoomOwnerDto.LastChangeTime,
             //    TypeOfLabel = RoomOwnerDto.TypeOfLabel
             //});
-            return new JsonResult(result);
+            return new JsonResult(searchResult);
         }
 
 
@@ -239,12 +264,12 @@ namespace Aircnc.FrontStage.Controllers
             _calendarService.ChangeStatusToHided(request);
 
 
-            return new JsonResult("修改成功"); 
+            return new JsonResult("修改成功");
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult ChangeRoomStatusToable([FromBody]ChangeRoomStatusDataModel request)
+        public IActionResult ChangeRoomStatusToable([FromBody] ChangeRoomStatusDataModel request)
         {
 
             _calendarService.ChangeStatusToAble(request);
