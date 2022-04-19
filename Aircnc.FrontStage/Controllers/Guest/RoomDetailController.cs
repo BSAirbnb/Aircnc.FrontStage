@@ -57,6 +57,16 @@ namespace Aircnc.FrontStage.Controllers.Guest
         }
 
         [HttpPost]
+        public IActionResult RoomDetail(SearchVM input)
+        {
+            var startDate = input.roomDetailPost.startDate;
+            var endDate = input.roomDetailPost.endDate;
+            var guests = input.roomDetailPost.guestNumbers;
+
+            return RedirectToAction("Booking", "Booking", input);
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddToWishList()
         {

@@ -24,9 +24,17 @@ namespace Aircnc.FrontStage.Controllers
         {
             if (ModelState.IsValid && input.NavSearch.Location != null)
             {
-                TempData["location"] = input.NavSearch.Location;
-                TempData["startDate"] = input.NavSearch.StartDate;
-                TempData["endDate"] = input.NavSearch.EndDate;
+                if (input.NavSearch.StartDate != null) 
+                { 
+                    var startDate = (DateTime)input.NavSearch.StartDate; 
+                    TempData["startDate"] = startDate;
+                }
+                if (input.NavSearch.EndDate != null) 
+                { 
+                    var endDate = (DateTime)input.NavSearch.EndDate;
+                    TempData["endDate"] = endDate.ToString("yyyy-MM-dd");
+                }
+                TempData["location"] = input.NavSearch.Location;                
                 TempData["numberOfGuests"] = input.NavSearch.NumberOfGuests;
                 return RedirectToAction("Search", "Search");
             }
