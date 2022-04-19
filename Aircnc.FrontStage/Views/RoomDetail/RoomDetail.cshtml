@@ -141,30 +141,31 @@
             </div>
 
             <!-- 右方 sticky 預訂欄 -->
-            <div class="col-lg-4 d-none d-lg-block">
+            <div class="col-lg-5 d-none d-lg-block">
                 <div class="modal-content position-sticky" id="reservation-sticky">
-                    <div class="modal-header">
+                    <div class="modal-header p-2">
                         <h5 class="modal-title" id="bookingLabel">你的行程</h5>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body p-2">
                         <section class="container">
                             <form method="post" asp-controller="Booking" asp-action="Booking" class="row flex-column">
-                                <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]" readonly="readonly"></div>
-                                <label for="date" class="col-4 col-form-label">日期</label>
+                                @*<div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]" readonly="readonly"></div>*@
+                                <label for="date" class="col-4 col-form-label p-2">日期</label>
                                 <div class="d-flex my-2 flex-wrap">
                                     <input id="bookingStartDate" asp-for="roomDetailPost.startDate" type="text" class="form-control booking" value="@TempData["startDate"]" readonly="readonly">
-                                    <span class="px-2 fs-5">至</span>
+                                    <span class="px-2 fs-6">至</span>
                                     <input id="bookingEndDate" asp-for="roomDetailPost.endDate" type="text" class="form-control" value="@TempData["endDate"]" readonly="readonly">
                                 </div>
                                 <div class="d-flex justify-content-evenly align-items-center my-2">
                                     <span class="col-4">人數</span>
                                     <div class="d-flex justify-content-center">
                                         <div id="minus" class="btn"><i class="fas fa-minus-circle fs-4"></i></div>
-                                        <input asp-for="roomDetailPost.guestNumbers" id="guestNum" type="text" class="form-control w-25 text-center" value="@TempData["numberOfGuests"]" onkeypress="keyPressDisabled(e)">
-                                        <div id="add" class="btn"><i class="fas fa-plus-circle fs-4"></i></div>
+                                        <input asp-for="roomDetailPost.guestNumbers" id="guestNum" type="text" class="form-control w-50 text-center" value="@TempData["numberOfGuests"]" onkeypress="keyPressDisabled(e)">
+                                        <div id="add" class="btn"><i class="fas fa-plus-circle fs-5"></i></div>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-success rounded-pill my-3 w-50" type="submit">訂購</button>
+                                <button id="bookingBtn" class="btn btn-outline-success rounded-pill w-25 align-self-center" type="submit">訂購</button>
+                                <span id="bookingMsg" class="fs-6 text-danger text-center"></span>
                             </form>
                         </section>
                     </div>
@@ -347,8 +348,8 @@
     <script src="https://unpkg.com/js-datepicker"></script>
 
     <script>
-        window.onload = function () {
-const bookingStart = document.getElementById('bookingStartDate')
+        
+        const bookingStart = document.getElementById('bookingStartDate')
         const bookingEnd = document.getElementById('bookingEndDate')
         // 房源行事曆
         let dates = @Html.Raw((string)ViewData["RoomAvailability"]);
@@ -391,11 +392,17 @@ const bookingStart = document.getElementById('bookingStartDate')
             onSelect: () => {
                 bookingEnd.value = end.dateSelected.toLocaleDateString()
             }
-        })
+        })        
 
-        // 訂單資訊
-        const guestNum = document.getElementById('guestNum')
-        }
+        //訂購鈕按下後，確認日期、人數都有填入
+        const bookingBtn = document.getElementById('bookingBtn')
+        const bookingMsg = document.getElementById('bookingMsg')
+        bookingBtn.addEventListener('click', function (e) {
+            if (bookingStart.value == '' || bookingEnd.value == '' || guestNum.value == '' || guestNum.value == 0) {
+                bookingMsg.innerText = '請填寫日期與人數'
+                e.preventDefault()
+            }
+        })
 
     </script>
 }

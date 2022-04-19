@@ -10,9 +10,6 @@ const startDate = document.getElementById('startDate');
 const endDate = document.getElementById('endDate');
 
 window.onload = function () {
-    
-    
-    
 
     let guests = guestNumbers.value
 
@@ -33,21 +30,7 @@ window.onload = function () {
         }
     })
 
-    
-
     //判斷搜尋中 "位置" 欄位是否為空
-    
-    
-    
-    //if (wantToGo.value != null && wantToGo.value != '') {
-    //    searchBtn.disabled = false
-    //    msg.innerText = ''
-    //}
-    //else {
-    //    searchBtn.disabled = true
-    //    msg.innerText = '位置 為必填欄位'
-    //}
-    
     if (wantToGo.value == null || wantToGo.value == '') {
         searchBtn.disabled = true
         msg.innerText = '位置 為必填欄位'
