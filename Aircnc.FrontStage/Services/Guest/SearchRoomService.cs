@@ -11,9 +11,11 @@ namespace Aircnc.FrontStage.Services.Guest
     public class SearchRoomService
     {
         private readonly DBRepository _dbRepository;
-        public SearchRoomService(DBRepository dbRepository)
+        private readonly AverageRoomPriceService _averageRoomPriceService;
+        public SearchRoomService(DBRepository dbRepository, AverageRoomPriceService averageRoomPriceService)
         {
             _dbRepository = dbRepository;
+            _averageRoomPriceService = averageRoomPriceService;
         }
         public IEnumerable<SearchRoomDto> GetRoom(SearchVM input)
         {
@@ -66,24 +68,26 @@ namespace Aircnc.FrontStage.Services.Guest
                 //查RoomCalendar是否有特別設定價格並算出平均房價
                 foreach (var room in rooms.ToList())
                 {
-                    var totalSearchDays = DateTime.Parse(input.NavSearch.EndDate.ToString()).Subtract(DateTime.Parse(input.NavSearch.StartDate.ToString())).Days;
+
+                    room.UnitPrice = _averageRoomPriceService.FindPrice(room.RoomId, DateTime.Parse(input.NavSearch.StartDate.ToString()), DateTime.Parse(input.NavSearch.EndDate.ToString()));
+                    //var totalSearchDays = DateTime.Parse(input.NavSearch.EndDate.ToString()).Subtract(DateTime.Parse(input.NavSearch.StartDate.ToString())).Days;
                     
-                    var priceList = _dbRepository.GetAll<RoomCalendar>().Where(rc => rc.Date >= input.NavSearch.StartDate && rc.Date < input.NavSearch.EndDate && rc.RoomCalendarStatus == RoomCalendarStatusEnum.Able).Select(rc => rc.UnitPrice).ToList();
-                    if (priceList.Count != 0)
-                    {
-                        if ( priceList.Count == totalSearchDays)
-                        {
-                            room.UnitPrice = Math.Ceiling(priceList.Average());
-                        }
-                        else
-                        {
-                            for (int d = priceList.Count; d < totalSearchDays; d++)
-                            {
-                                priceList.Add(room.UnitPrice);
-                            }
-                            room.UnitPrice = Math.Ceiling(priceList.Average());
-                        }
-                    }
+                    //var priceList = _dbRepository.GetAll<RoomCalendar>().Where(rc =>rc.RoomId == room.RoomId && rc.Date >= input.NavSearch.StartDate && rc.Date < input.NavSearch.EndDate && rc.RoomCalendarStatus == RoomCalendarStatusEnum.Able).Select(rc => rc.UnitPrice).ToList();
+                    //if (priceList.Count != 0)
+                    //{
+                    //    if ( priceList.Count == totalSearchDays)
+                    //    {
+                    //        room.UnitPrice = Math.Ceiling(priceList.Average());
+                    //    }
+                    //    else
+                    //    {
+                    //        for (int d = priceList.Count; d < totalSearchDays; d++)
+                    //        {
+                    //            priceList.Add(room.UnitPrice);
+                    //        }
+                    //        room.UnitPrice = Math.Ceiling(priceList.Average());
+                    //    }
+                    //}
                 }
             }
             //篩選入住人數

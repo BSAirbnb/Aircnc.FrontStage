@@ -8,9 +8,11 @@ namespace Aircnc.FrontStage.Controllers.Guest
     public class BookingController : Controller
     {
         private readonly RoomDetailService _roomDetailService;
-        public BookingController(RoomDetailService roomDetailService)
+        private readonly AverageRoomPriceService _averageRoomPriceService;
+        public BookingController(RoomDetailService roomDetailService, AverageRoomPriceService averageRoomPriceService)
         {
             _roomDetailService = roomDetailService;
+            _averageRoomPriceService = averageRoomPriceService;
         }
         public IActionResult Booking()
         {
@@ -37,6 +39,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
                     ReviewsCount = room.Reviews.Count
                 };
                 input.RoomDetailVM = detail;
+
+                input.RoomDetailVM.UnitPrice = _averageRoomPriceService.FindPrice(roomId, input.roomDetailPost.startDate, input.roomDetailPost.endDate);
             }
             return View(input);
         }
