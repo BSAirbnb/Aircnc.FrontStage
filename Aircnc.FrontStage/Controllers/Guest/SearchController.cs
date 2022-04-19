@@ -27,7 +27,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
             //取經緯度往view傳
-            var locations = rooms.Select(room => new { room.Lat, room.Lng }).ToArray();
+            var locations = rooms.Select(room => new { room.lat, room.lng }).ToArray();
             string jsonLocations = JsonConvert.SerializeObject(locations);
             ViewData["Locations"] = jsonLocations;
 

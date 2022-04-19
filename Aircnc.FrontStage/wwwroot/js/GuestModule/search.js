@@ -34,11 +34,6 @@ function toMap(event){
 }
 //#endregion
 
-window.onload = function () {
-    initMap();
-}
-
-
 
 //advenceSearch
 let navSearch = new Object();
