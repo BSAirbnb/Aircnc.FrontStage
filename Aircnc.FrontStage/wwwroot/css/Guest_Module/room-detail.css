@@ -11,7 +11,8 @@
 }
 
 #reservation-sticky{
-    top: 100px;
+    top: 90px;
+    z-index: 3;
 }
 
 #reserve-btn{
