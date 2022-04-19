@@ -13,7 +13,7 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int? BathroomCount { get; set; }
         public int? BedCount { get; set; }
         public int? RoomCount { get; set; }
-        public int Status { get; set; }
+        public int? Status { get; set; }
         public List<int> TypeOfLabel { get; set; }
         public string KeyWord { get; set; }
     }
