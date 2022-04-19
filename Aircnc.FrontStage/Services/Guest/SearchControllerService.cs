@@ -29,6 +29,8 @@ namespace Aircnc.FrontStage.Services.Guest
                 City = SearchRoomDto.City,
                 District = SearchRoomDto.District,
                 UnitPrice = SearchRoomDto.UnitPrice,
+                lat = SearchRoomDto.Lat,
+                lng = SearchRoomDto.Lng,
                 Comments = SearchRoomDto.Comments,
                 Stars = SearchRoomDto.Stars,
                 RoomServiceLabels = SearchRoomDto.RoomServiceLabels,

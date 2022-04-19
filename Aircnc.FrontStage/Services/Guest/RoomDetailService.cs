@@ -16,7 +16,7 @@ namespace Aircnc.FrontStage.Services.Guest
             _dbRepository = dbRepository;
         }
 
-        //以下為 RoomDetail 測試
+        //以 roomId 搜尋房間細節
         public RoomDetailDto GetRoomDetailById(int roomId)
         {
             var room = _dbRepository.GetAll<Room>().FirstOrDefault(room => room.RoomId == roomId);
@@ -39,12 +39,13 @@ namespace Aircnc.FrontStage.Services.Guest
                 BedCount = room.BedCount,
                 BathroomCount = room.BathroomCount,
                 RoomDescription = room.RoomDescription,
+                roomAvailability = GetRoomAvailability(roomId),
                 ServiceLabels = roomServiceLabel,
 
                 Reviews = GetReviews(reviews),
                 AvgStars = ReviewsTotalScore(reviews)
             };
-        
+
             return result;
         }
 
@@ -64,7 +65,7 @@ namespace Aircnc.FrontStage.Services.Guest
             {
                 return 0;
             }
-            
+
         }
 
         public List<ReviewsDto> GetReviews(List<Comment> reviews)
@@ -82,9 +83,9 @@ namespace Aircnc.FrontStage.Services.Guest
         public string AddToWishListService(int userId, int roomId)
         {
             bool isExisted = _dbRepository.GetAll<WishList>().Any(x => x.UserId == userId && x.RoomId == roomId);
-            if (isExisted) 
-            { 
-                return "已經在您的願望清單內"; 
+            if (isExisted)
+            {
+                return "已經在您的願望清單內";
             }
             else
             {
@@ -112,6 +113,26 @@ namespace Aircnc.FrontStage.Services.Guest
             if (isAdded) { return "已加入到您的願望清單"; }
 
             return "請再試一次";
+        }
+
+        public List<RoomAvailabilityDto> GetRoomAvailability(int roomId)
+        {   // 找出該房源不可訂之日期
+            var room = _dbRepository.GetAll<RoomCalendar>().Where(room => room.RoomId == roomId);
+            var unavailableDates = room
+                .Where(status => status.RoomCalendarStatus == RoomCalendarStatusEnum.Booked || status.RoomCalendarStatus == RoomCalendarStatusEnum.Hided)
+                .Select(date => date.Date).ToList();
+
+            List<RoomAvailabilityDto> result = new List<RoomAvailabilityDto>();
+            foreach (var date in unavailableDates)
+            {
+                result.Add(new RoomAvailabilityDto() 
+                { 
+                    year = date.Year.ToString(),
+                    month = date.Month.ToString(),
+                    day = date.Day.ToString()
+                });
+            }
+            return result;
         }
     }
 }

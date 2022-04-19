@@ -2,6 +2,7 @@
 using Aircnc.FrontStage.Models.ViewModels.Guest;
 using Aircnc.FrontStage.Services.Guest;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 
@@ -25,12 +26,16 @@ namespace Aircnc.FrontStage.Controllers.Guest
             if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
+            //取經緯度往view傳
+            var locations = rooms.Select(room => new { room.lat, room.lng }).ToArray();
+            string jsonLocations = JsonConvert.SerializeObject(locations);
+            ViewData["Locations"] = jsonLocations;
+
+            //分頁
             int activePage = id;
             int pageRows = 8; // show rows per page
-            if (totalRows == 0)
-            {
-                totalRows = rooms.Count();
-            }
+            totalRows = rooms.Count();
+
             int pages = 0; //計算總頁數
             if (totalRows % pageRows == 0)
             {
@@ -52,11 +57,15 @@ namespace Aircnc.FrontStage.Controllers.Guest
 
             return View(searchVM);
         }
+
         [HttpPost]
-        public IActionResult Search([FromBody] SearchVM searchVM, int id = 1)
+        public IActionResult Search([FromBody] SearchVM searchVM)
+        //public IActionResult Search([FromBody] string input)
         {
+            var id = 1;
+            //SearchVM searchVM = new SearchVM();
+            //SearchVM searchVM = System.Text.Json.JsonSerializer.Deserialize<SearchVM>(input);
             //int userId = int.Parse(User.Identity.Name);
-            //SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost()};
 
             //searchVM.NavSearch.Location = (string)TempData["location"];
             //if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
@@ -66,10 +75,8 @@ namespace Aircnc.FrontStage.Controllers.Guest
             
             int activePage = id;
             int pageRows = 8; // show rows per page
-            if (totalRows == 0)
-            {
-                totalRows = rooms.Count();
-            }
+            totalRows = rooms.Count();
+            
             int pages = 0; //計算總頁數
             if (totalRows % pageRows == 0)
             {

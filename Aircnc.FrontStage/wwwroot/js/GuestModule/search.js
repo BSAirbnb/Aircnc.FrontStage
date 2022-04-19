@@ -1,7 +1,7 @@
 
 //const bootstrap = require("../../bootstrap/js/bootstrap");
 
-//地圖切換
+//手機版地圖切換(list to map)
 //#region
 let btnswitchmap = document.querySelector('#btn-switch-map-list')
 let roomlist = document.querySelector('.room-list')
@@ -20,7 +20,7 @@ function toRoomList(event){
     mapcontainer.classList.remove('d-md-block');
 }
 //#endregion
-//地圖功能
+//手機版地圖切換(map to list)
 //#region
 function toMap(event){
     let target = event.target;
@@ -32,26 +32,13 @@ function toMap(event){
     roomlist.classList.remove('d-none');
     roomlist.classList.remove('d-md-block');
 }
-// Initialize and add the map
-function initMap() {
-    // The location of Uluru
-    const uluru = { lat: 23.8906, lng: 121.0082 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-    });
-    }
 //#endregion
+
+
 //advenceSearch
 let navSearch = new Object();
 let adSearchVM = new Object();
-let searchVM = new Object();
+
 //每晚預算
 //#region
 const priceModal = new bootstrap.Modal(document.getElementById('priceModal'));
@@ -72,8 +59,8 @@ btnpriceSave.addEventListener('click', function () {
         priceError.classList.add('visible');
     }
     else {
-        adSearchVM.minPrice = minPrice.value;
-        adSearchVM.maxPrice = maxPrice.value;
+        adSearchVM.minPrice = parseInt(minPrice.value);
+        adSearchVM.maxPrice = parseInt(maxPrice.value);
         priceModal.hide();
     }
     
@@ -176,9 +163,9 @@ bedroomClear.addEventListener('click', function () {
     bathroomCount.innerText = "0";
 });
 bedroomSave.addEventListener('click', function () {
-    adSearchVM.bedCount = bedCount.innerText;
-    adSearchVM.roomCount = bedroomCount.innerText;
-    adSearchVM.bathroomCount = bathroomCount.innerText;
+    adSearchVM.bedCount = parseInt(bedCount.innerText);
+    adSearchVM.roomCount = parseInt(bedroomCount.innerText);
+    adSearchVM.bathroomCount = parseInt(bathroomCount.innerText);
     bedroomModal.hide();
     //console.log(adSearchVM)
 })
@@ -195,19 +182,26 @@ btnAdSearch.addEventListener('click', function () {
     checkboxes.forEach((checkbox) => { values.push(checkbox.value) });
     adSearchVM.roomServiceLabels = values;
 
-
-    navSearch.Location = wantToGo.innerText;
+    console.log(wantToGo)
+    navSearch.Location = wantToGo.value;
     navSearch.StartDate = startDate.value;
     navSearch.EndDate = endDate.value;
-    navSearch.NumberOfGuests = guestNumbers.value;
+    navSearch.NumberOfGuests = parseInt(guestNumbers.value);
 
-    searchVM.NavSearch = navSearch;
-    searchVM.AdSearch = adSearchVM;
-    console.log(searchVM);
+    let searchVM = {
+        NavSearch: navSearch,
+        AdSearch: adSearchVM
+    }
+    //searchVM.NavSearch = navSearch;
+    //searchVM.AdSearch = adSearchVM;
+    
+    let request = {
+        searchVM: searchVM
+    }
     fetch("/Search/Search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(searchVM)
+        body: JSON.stringify(request)
     })
 
 })
