@@ -35,7 +35,7 @@ namespace Aircnc.FrontStage.Controllers.Account
             if (outputDto.IsSuccess)
             {
                 //先跳回首頁看以後要怎樣
-                return  Redirect("/");
+                return  RedirectToAction("AfterSignup");
             }
             else 
             {
@@ -43,6 +43,11 @@ namespace Aircnc.FrontStage.Controllers.Account
             }
 
             
+        }
+        public IActionResult AfterSignup(int user)
+        {
+            
+            return View();
         }
         public IActionResult Verify(int user)
         {
