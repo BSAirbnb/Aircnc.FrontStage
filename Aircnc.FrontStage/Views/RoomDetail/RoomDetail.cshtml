@@ -148,7 +148,7 @@
                     </div>
                     <div class="modal-body">
                         <section class="container">
-                            <form method="post" asp-controller="RoomDetail" asp-action="RoomDetail" class="row flex-column">
+                            <form method="post" asp-controller="Booking" asp-action="Booking" class="row flex-column">
                                 <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]" readonly="readonly"></div>
                                 <label for="date" class="col-4 col-form-label">日期</label>
                                 <div class="d-flex my-2 flex-wrap">
@@ -313,7 +313,7 @@
             </div>
             <div class="modal-body">
                 <section class="container">
-                    <form method="post" asp-controller="RoomDetail" asp-action="RoomDetail" class="row flex-column">
+                    <form method="post" asp-controller="Booking" asp-action="Booking" class="row flex-column">
                         <div class="my-2"><input placeholder="位置" class="form-control" value="@TempData["location"]" readonly="readonly"></div>
                         <label for="date" class="col-4 col-form-label">日期</label>
                         <div class="d-flex my-2 flex-wrap">
