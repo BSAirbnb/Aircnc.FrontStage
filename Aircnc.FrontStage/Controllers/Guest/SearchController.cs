@@ -2,6 +2,7 @@
 using Aircnc.FrontStage.Models.ViewModels.Guest;
 using Aircnc.FrontStage.Services.Guest;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 
@@ -25,9 +26,10 @@ namespace Aircnc.FrontStage.Controllers.Guest
             if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
             var rooms = _searchControllerService.searchContorller(searchVM);
-            //取經緯度
-            //var locations = rooms.Select(room => new { room.Lat, room.Lng }).ToList();
-            //ViewData["Locations"] = locations;
+            //取經緯度往view傳
+            var locations = rooms.Select(room => new { room.Lat, room.Lng }).ToArray();
+            string jsonLocations = JsonConvert.SerializeObject(locations);
+            ViewData["Locations"] = jsonLocations;
 
             //分頁
             int activePage = id;

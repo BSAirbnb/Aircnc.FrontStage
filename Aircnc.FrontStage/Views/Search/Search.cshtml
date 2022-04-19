@@ -7,7 +7,7 @@
 	int activePage = (int)ViewData["ActivePage"];
 	int pages = (int)ViewData["Pages"];
 	int totalRows = (int)ViewData["TotalRows"];
-	
+
 }
 
 <div class="container-fluid advance-search d-flex justify-content-center">
@@ -343,5 +343,47 @@
 <link rel="stylesheet" href="~/css/Guest_Module/search-style.css">
 }
 @section endJS{
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNUeaLH8za5eiC7S-fwsQ5tJjqCnusKb0&callback=initMap"></script>
+<script src="https://unpkg.com/@@googlemaps/markerclusterer/dist/index.min.js"></script>
 <script src="~/js/GuestModule/search.js"></script>
+<script>
+	var locations = @Html.Raw((string)ViewData["Locations"]);
+	console.log(locations)
+
+	// Initialize and add the map
+	function initMap() {
+    // The location of Uluru
+		const uluru = { lat: 23.8906, lng: 121.0082 };
+    // The map, centered at Uluru
+		const map = new google.maps.Map(document.getElementById("map"), {
+			zoom: 4,
+			center: uluru,
+		});
+    // Create an array of alphabetical characters used to label the markers.
+		const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // The marker, positioned at Uluru
+    //const marker = new google.maps.Marker({
+    //position: uluru,
+    //map: map,
+    //});
+
+    // Add some markers to the map.
+		const markers = locations.map((position, i) => {
+			const label = labels[i % labels.length];
+			const marker = new google.maps.Marker({
+				position,
+				label,
+			});
+        // markers can only be keyboard focusable when they have click listeners
+        // open info window when marker is clicked
+			marker.addListener("click", () => {
+				infoWindow.setContent(label);
+				infoWindow.open(map, marker);
+			});
+			return marker;
+		});
+    // Add a marker clusterer to manage the markers.
+		new MarkerClusterer({ markers, map });
+	}
+</script>
 }
