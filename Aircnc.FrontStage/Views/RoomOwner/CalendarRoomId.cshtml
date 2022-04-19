@@ -289,7 +289,7 @@
                                     let hidediv = document.createElement('div')
                                     hidediv.setAttribute('class', 'col-12 d-flex justify-content-between mt-5 pb-5 border-bottom')
                                     let bookablediv = document.createElement('div')
-                                    bookablediv.setAttribute('class', "fs-5 mt-auto mb-auto fw-bolder")
+                                bookablediv.setAttribute('class', "fs-5 mt-auto mb-auto fw-bolder ")
                                     bookablediv.innerText = '可供預定'
                                     let buttondiv = document.createElement('div')
                                     let btn_unable = document.createElement('button')
@@ -303,11 +303,13 @@
 
                                     i_v.setAttribute('class', 'far fa-check-circle')
                                     let btn_able = document.createElement('button')
-                                    btn_able.setAttribute('class', 'btn fs-2')
-
+                                    btn_able.setAttribute('class', 'btn fs-2 chosed')
+                                    btn_able.disabled = true
                                     /*buttondiv.setAttribute('id', `buttondiv_${year}${month + 1}${day}`)*/
                                     btn_unable.setAttribute('id', `btn_unable_${year}_${month + 1}_${day}`)
-                                    btn_able.setAttribute('id', `btn_able_${year}_${month + 1}_${day}`)
+                                btn_able.setAttribute('id', `btn_able_${year}_${month + 1}_${day}`)
+                                
+                                
 
 
                                 btn_unable.setAttribute('class', 'btn fs-2')
@@ -494,10 +496,14 @@
                                     if (x.RoomCalendarStatus == 2 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
                                         btn_unable.setAttribute('class', 'btn fs-2 chosed')
                                         btn_unable.disabled = true
-                                        pricearea.setAttribute('class','col-12 border-bottom d-none')
+                                        //因為生成月曆時先把所有的btn_able調成btn_able.disabled = false chosed 所以那天如果已經被屏蔽要改回來
+                                        btn_able.setAttribute('class', 'btn fs-2 ')
+                                        btn_able.disabled = false
+                                        pricearea.setAttribute('class', 'col-12 border-bottom d-none')
                                     }
-                                    if (x.RoomCalendarStatus == 1 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
+                                    else if (x.RoomCalendarStatus == 1 && x.DateTime.getDate() == day && x.DateTime.getMonth() == month && x.DateTime.getFullYear() == year) {
                                         row.innerText = ''
+          
                                     }
                                 })
                                 //控制右側顯示的是現在的日期
