@@ -12,5 +12,6 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public AdvancedSearchVM AdSearch { get; set; }
         public NavSearchVMPost NavSearch { get; set; }
         public RoomDetailViewModel RoomDetailVM { get; set; }
+        public RoomDetailPostVM roomDetailPost { get; set; }
     }
 }
