@@ -60,7 +60,7 @@ function filterBtn(Id) {
     let searchResult = {}
     searchResult.UserId = Id
     //搜尋房源
-    searchResult.KeyWord = Keyword.textContent;
+    searchResult.keyWord = Keyword.value;
     //房間與床鋪
     searchResult.BedCount = parseInt(edit_bed_count.textContent);
     searchResult.BathroomCount = parseInt(edit_bathroom_count.textContent);

@@ -16,5 +16,6 @@ namespace Aircnc.FrontStage.Models.Dtos.RoomOwner
         public int? Status { get; set; }
         public List<int> TypeOfLabel { get; set; }
         public string KeyWord { get; set; }
+        public string RoomName { get; set; }
     }
 }

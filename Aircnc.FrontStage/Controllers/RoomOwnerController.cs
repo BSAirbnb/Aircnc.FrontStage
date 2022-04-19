@@ -68,7 +68,7 @@ namespace Aircnc.FrontStage.Controllers
             var result = _hostListService.GetAllRoomByOwnerId(hostId).ToList();
             if (!string.IsNullOrEmpty(hostListSearchDto.KeyWord))
             {
-                result = result.Where(x => x.KeyWord.Contains(hostListSearchDto.KeyWord)).ToList();
+                result = result.Where(x => x.RoomName.Contains(hostListSearchDto.KeyWord)).ToList();
             }
             if (hostListSearchDto.BathroomCount > 0)
             {
