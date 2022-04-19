@@ -22,8 +22,8 @@ namespace Aircnc.FrontStage.Models.ViewModels.Guest
         public string RoomDescription { get; set; }
         public string RoomName { get; set; }
         public decimal UnitPrice { get; set; }
-        public decimal Lat { get; set; }
-        public decimal Lng { get; set; }
+        public decimal lat { get; set; }
+        public decimal lng { get; set; }
         public RoomStatusEnum Status { get; set; }
         public Double Stars { get; set; }
         public int Comments { get; set; }

@@ -343,7 +343,7 @@
 <link rel="stylesheet" href="~/css/Guest_Module/search-style.css">
 }
 @section endJS{
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNUeaLH8za5eiC7S-fwsQ5tJjqCnusKb0&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEsRONwcGSIu6xTXnVa_DeONA080hsKpU&callback=initMap"></script>
 <script src="https://unpkg.com/@@googlemaps/markerclusterer/dist/index.min.js"></script>
 <script src="~/js/GuestModule/search.js"></script>
 <script>
@@ -358,6 +358,10 @@
 		const map = new google.maps.Map(document.getElementById("map"), {
 			zoom: 4,
 			center: uluru,
+		});
+		const infoWindow = new google.maps.InfoWindow({
+			content: "",
+			disableAutoPan: true,
 		});
     // Create an array of alphabetical characters used to label the markers.
 		const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -385,5 +389,6 @@
     // Add a marker clusterer to manage the markers.
 		new MarkerClusterer({ markers, map });
 	}
+	window.initMap = initMap;
 </script>
 }
