@@ -21,7 +21,15 @@ namespace Aircnc.FrontStage.Controllers.Guest
         {
             SearchVM searchVM = new SearchVM() { NavSearch = new NavSearchVMPost() };
 
-            if (location != null) { searchVM.NavSearch.Location = location; } else { searchVM.NavSearch.Location = (string)TempData["location"]; }
+            if (location != null) 
+            { 
+                searchVM.NavSearch.Location = location;
+                TempData["location"] = location;
+            } 
+            else 
+            { 
+                searchVM.NavSearch.Location = (string)TempData["location"]; 
+            }
             if (TempData["startDate"] != null) { searchVM.NavSearch.StartDate = DateTime.Parse(TempData["startDate"].ToString()); }
             if (TempData["endDate"] != null) { searchVM.NavSearch.EndDate = DateTime.Parse(TempData["endDate"].ToString()); }
             if (TempData["numberofGuests"] != null) { searchVM.NavSearch.NumberOfGuests = (int)TempData["numberOfGuests"]; }
