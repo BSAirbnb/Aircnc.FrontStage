@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Aircnc.FrontStage.Services.Guest;
 using System.Linq;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Aircnc.FrontStage.Controllers.Guest
 {
@@ -14,6 +16,7 @@ namespace Aircnc.FrontStage.Controllers.Guest
             _roomDetailService = roomDetailService;
             _averageRoomPriceService = averageRoomPriceService;
         }
+
         public IActionResult Booking()
         {
             return View();
@@ -22,10 +25,11 @@ namespace Aircnc.FrontStage.Controllers.Guest
         [HttpPost]
         public IActionResult Booking(SearchVM input)
         {
-            if (TempData["roomId"] != null) { var roomId = (int)TempData["roomId"]; }
+            var userid = int.Parse(User.Identity.Name);
+            int roomId = (int)TempData["roomId"];
+            
             if (ModelState.IsValid)
             {
-                int roomId = 22;
                 var room = _roomDetailService.GetRoomDetailById(roomId);
                 var detail = new RoomDetailViewModel()
                 {

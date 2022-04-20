@@ -6,8 +6,9 @@
 @{
     ViewData["Title"] = "確認並付款";
     Layout = "_BookingLayout";
-    int days = Model.roomDetailPost.endDate.Subtract(Model.roomDetailPost.startDate).Days - 1;
+    int days = Model.roomDetailPost.endDate.Subtract(Model.roomDetailPost.startDate).Days;
     decimal total = Model.RoomDetailVM.UnitPrice * days;
+    var freeCancelDay = Model.roomDetailPost.startDate.AddDays(-7).ToShortDateString();
     string roomtype;
     switch (@Model.RoomDetailVM.RoomType)
 	{
@@ -81,7 +82,7 @@
                             <p class="mb-0">日期</p>
                             @*<button class="btn btn-link mb-0" data-bs-toggle="modal" data-bs-target="#editModal">編輯</button>*@
                         </div>
-                        <p>@Model.roomDetailPost.startDate 至 @Model.roomDetailPost.endDate</p>
+                        <p>@Model.roomDetailPost.startDate.ToShortDateString() 至 @Model.roomDetailPost.endDate.ToShortDateString()</p>
                     </div>
                     <div>
                         <p class="fw-bold mb-0">房客人數</p>
@@ -128,7 +129,7 @@
                 </div>
                 <div class="border-bottom my-3">
                     <h3>退訂政策</h3>
-                    <p>3月31日下午4:00 前可免費取消。 在這之後，若在 4月5日 下午4:00 前取消預訂，房客可獲得 50% 的退款，但不包含首晚房費和服務費。</p>
+                    <p>@freeCancelDay 下午4:00 前可免費取消。 在這之後，若在 @Model.roomDetailPost.startDate.ToShortDateString() 下午4:00 前取消預訂，房客可獲得 50% 的退款，但不包含首晚房費和服務費。</p>
                     <p>我們的《特殊情況政策》不適用因新冠疫情而受影響的旅程。</p>
                 </div>
                 <div class="my-3">
