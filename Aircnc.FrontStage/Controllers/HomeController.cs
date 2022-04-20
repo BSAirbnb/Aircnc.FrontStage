@@ -27,12 +27,12 @@ namespace Aircnc.FrontStage.Controllers
                 if (input.NavSearch.StartDate != null) 
                 { 
                     var startDate = (DateTime)input.NavSearch.StartDate; 
-                    TempData["startDate"] = startDate;
+                    TempData["startDate"] = startDate.ToShortDateString();
                 }
                 if (input.NavSearch.EndDate != null) 
                 { 
                     var endDate = (DateTime)input.NavSearch.EndDate;
-                    TempData["endDate"] = endDate.ToString("yyyy-MM-dd");
+                    TempData["endDate"] = endDate.ToShortDateString();
                 }
                 TempData["location"] = input.NavSearch.Location;                
                 TempData["numberOfGuests"] = input.NavSearch.NumberOfGuests;
