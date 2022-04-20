@@ -36,26 +36,25 @@ namespace Aircnc.FrontStage.Services
             }) ;
         }
 
-
-        public IEnumerable<HistoryListDto> GetHistoryList(int userId)
+        //更改訂單狀態
+        public void UpdateOrderStatus(int orderid)
         {
-            return (IEnumerable<HistoryListDto>)_dbRepository.GetAll<Order>().Where(order => order.Status == OrderStatusEnum.Past).Select(order => new OrderDto
+            var target = _dbRepository.GetAll<Order>().First(x => x.OrderId == orderid);
+            var today = DateTime.Now;
+            var timeCompare = DateTime.Compare(today, target.CkeckIn);
+            if(timeCompare > 0)
             {
-                OrderId = order.OrderId,
-                RoomName = order.RoomName,
-                CkeckIn = order.CkeckIn,
-                CkeckOut = order.CkeckOut,
-                Country = order.Country,
-                City = order.City,
-                District = order.District,
-                Street = order.Street,
-                RoomImg = _dbRepository.GetAll<RoomImg>()
-                .Where(x => x.RoomId == order.RoomId).OrderBy(x => x.Sort).Select(x => x.ImageUrl).FirstOrDefault(),
-                RoomOwnerName = (_dbRepository.GetAll<User>().FirstOrDefault(x => x.UserId == order.Room.UserId)).Name,
-                Status = order.Status
-            });
-
+                target.Status = OrderStatusEnum.Past;
+                _dbRepository.Update<Order>(target);
+            }
+            else
+            {
+                target.Status = OrderStatusEnum.Future;
+                _dbRepository.Update<Order>(target);
+            }
+            _dbRepository.Save();
         }
 
-    }
+
+}
 }
